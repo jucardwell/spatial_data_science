@@ -1,0 +1,114 @@
+# Software and File Management
+
+## Downloading and Installing R and RStudio
+
+To use R and RStudio, you will need to download and install both programs on your computer.
+
+-   [Download R](https://cran.rstudio.com/) (make sure to download the correct version for your operating system)
+
+-   [Download RStudio](https://posit.co/download/rstudio-desktop/)
+
+Once you have downloaded and installed RStudio, open up the application. We need to change one global setting before we start. **You only need to do this once!** Navigate **Tools** \> **Global Options**, unclick “Restore .RData into Workspace at Startup” and choosing **Never** on the “Save workspace to .RData on exit”.
+
+## The RStudio Environment
+
+The RStudio environment consists of four panels.
+
+1.  **Source**: This is where you can edit R files (either .R or .Rmd) and run R code.
+2.  **Console:** The console is an interactive R environment, where you can easily run R commands. Commands written in the console are not saved into any file. It can be good to use the console for quickly testing R code
+3.  **Environment:** This is where R objects made during each session will appear.
+4.  **Output:** This is where charts and graphs will appear.
+
+![RStudio Panes](images/rstudio-panes-labeled.jpeg)
+
+## Creating and Saving Files
+
+In this class, we will primarily be working with .Rmd files. An R Markdown or .Rmd is a document format that is designed to easily integrate text and code. This means that you can easily type answers to questions, descriptions of code outputs, and other assignment tasks within the same document as your code.
+
+To make a new .Rmd file, navigate to File \> New Script \> R Markdown
+
+## Downloading Packages
+
+R packages extend the functionality of Base R and must be downloaded. We will use a small set of libraries in this class.
+
+-   tmap: This is the main mapping package we will use
+-   gt: We will use this package to create nice tables
+-   tidyverse: This is the package we will use to create "tidy" analysis workflows. Tidyverse also includes ggplot2 which will be our main package to create graphics
+-   e1071: calculates descriptive statistics
+-   sf: This package allows us to read and manipulate spatial datasets
+
+You should copy and paste each of these commands into the **Console** one by one to download the packages.
+
+```{r, eval=F}
+
+install.packages("tmap")
+install.packages("tidyverse")
+install.packages("gt")
+install.packages("sf")
+install.packages("e1071")
+
+```
+
+Once you have downloaded the packages, you will need to load them every time you want to use them.
+
+## File Management
+
+You will generate a large number of files in this class. The easiest thing to do to make sure that you can succeed in this class is to make sure you are following a file organization structure. These are the rules for file management in this class.
+
+-   Everyone **MUST** make a GEOG215 folder on their computer (please do not put it in your Downloads folder!!!)
+-   Every time you create a file or download data, you **MUST** save into your GEOG215 folder
+-   Do **NOT** leave files open in RStudio. Every time you stop working, save your file and close it. Then close RStudio.
+-   If you are **not accessing a dataset directly from a cloud location** (more on this later), you **must use relative file paths** to read in the data.
+
+## Accessing Data
+
+For most of this class, you will **access datasets directly from Google Drive without downloading them**. This makes things simpler and saves you from having to manage a large number of files on your computer. Whenever you need to use data from Google Drive, I will provide the exact command to read it in.
+
+However, there will be cases where you will download data onto your computer. In these cases, you have to tell R where on your computer the data is saved. We do this using a "file path" which references a location on your local computer.
+
+### Finding File Paths
+
+Both Mac and PC have ways to find the file path of a particular document.
+
+-   On a Mac, press and hold the command key and click on the file \> "Get Info" \> "Where"
+-   On a PC, press and hold the shift key and right click on the file \> "Copy as Path"
+
+Mac uses forward slashes in file paths (/) by default. Windows *sometimes* uses backslashes (\\) in file paths. You must always use forward slashes in R, even if you are using Windows. This means that if you copy a file path from a PC, you must replace all backslashes to front slashes.
+
+There are two ways to write file paths.
+
+### Absolute File Paths
+
+An absolute file path references a specific location on someone's local computer (what you would get from the "Get Info" or "Copy as Path" and will look something like this:
+
+"/Users/juliacardwell/Documents/GEOG215/my_data.csv"
+
+### Relative File Paths
+
+Relative file paths reference a location *relative* to the current working directory. You can find the current working directory by looking in the console.
+
+![](images/workingdirectory.png)
+
+For instance, if I had a file within my spatial_data_sciene folder called "my_data.csv", the relative path would be:
+
+"my_data.csv"
+
+The command "../" takes you "up" one level from the working directory (for instance, if the file was in my Documents folder). The command "/" takes you "down" one level from the working directory (for instance, if I had a sub-folder in my spatial_data_science folder and the data was in there).
+
+When you open a script, the working directory is automatically set to where that script is saved. If you are saving a new file, you must save it, close it, and reopen it for the working directory to be correct.
+
+## .Rmd Formatting
+
+A .Rmd is made up of two main components: code chunks (this is where you write code) and text (any words that are outside of a code chunk). Any time you are writing code, it needs to be in a code chunk. Chunks can then be **run** to execute the code within the chunk. The idea of *chunking* is to group code that accomplishes a single, related task into one code chunk. When you begin a new step or process in your workflow, you start a new chunk.
+
+Knitting a .Rmd means that you create a rendered .html including your code, output, and text. To knit your document, click the knit button. It will create a .html in whatever folder you have the .Rmd saved in.
+
+Sometimes we want to modify how code and output actually appears in our knitted document. The follow commands can be used to help format .Rmd documents so that the knitted document is easy to read.
+
+### Text Formatting
+
+![](images/textformatting.png)
+
+### Chunk Formatting
+
+![](images/codechunk.png)

@@ -1,0 +1,159 @@
+# Point Pattern Analysis
+
+Point Pattern Analysis (PPA) is a set of methods that can help us interpret the spatial distribution of events (represented as points) in a defined study area/region. The goal is to determine if the observed pattern is likely the result of a random process (the null hypothesis of Complete Spatial Randomness, or CSR) or if it exhibits significant clustering or regularity (dispersion).
+
+If a pattern is random, there is no way to predict where the next event will happen. However, if a spatial pattern is non-random, that means that it is likely the outcome of a meaningful process. If this is the case, we than then develop hypotheses about the **underlying process**.
+
+Spatial patterns are the outcome of different mechanistic processes:
+
+-   A first-order process means the pattern of points is determined by external factors or a trend in the environment.
+-   A second-order process means the pattern is determined by interaction (attraction or repulsion) between the points themselves.
+
+We will use the following spatial datasets:
+
+-   Location of lightning strikes in Orange County in 2024 from [Geostationary Lightning Mapper](https://www.goes-r.gov/spacesegment/glm.html) data
+-   Storm Event reports in Orange County from the [NCEI Storm Events Database](https://www.ncei.noaa.gov/stormevents/)
+-   Orange County boundaries from the `tigris` package
+
+**To follow along with this tutorial, make a new .Rmd document. As you move through the tutorial add chunks, headers, and relevant text to your document.**
+
+## Reading in Data
+
+```{r, include = F}
+library(sf)
+library(tidyverse)
+library(spatstat)
+
+#lightning
+lightning <- st_read("https://drive.google.com/uc?export=download&id=1mskHuewJIzt5WgUXmr7EK7B72CJt2s62") |> st_transform(crs = 2264)
+
+storm_events <- st_read("https://drive.google.com/uc?export=download&id=1pXB0M5Xi_ocXWBiD6K9Fv6nhWIpmeZ8V") |> st_transform(crs = 2264)
+
+county_boundary <- st_read("https://drive.google.com/uc?export=download&id=1KmNzcbvzggh1rJ-mH0YB4kbCB7sxmrjc") |> st_transform(crs = 2264)
+```
+
+```{r, warning = F, eval = F}
+library(sf)
+library(tidyverse)
+library(spatstat)
+
+#lightning
+lightning <- st_read("https://drive.google.com/uc?export=download&id=1mskHuewJIzt5WgUXmr7EK7B72CJt2s62") |> st_transform(crs = 2264)
+
+storm_events <- st_read("https://drive.google.com/uc?export=download&id=1pXB0M5Xi_ocXWBiD6K9Fv6nhWIpmeZ8V") |> st_transform(crs = 2264)
+
+county_boundary <- st_read("https://drive.google.com/uc?export=download&id=1KmNzcbvzggh1rJ-mH0YB4kbCB7sxmrjc") |> st_transform(crs = 2264)
+```
+
+## Analyzing Global Structure
+
+### Quadrat Analyis
+
+Quadrat analysis is a count-based method used to assess the global structure of a spatial pattern. In this method, the study area is divided into a grid of equally-sized cells (quadrats), and the number of points falling into each cell is counted. The results are then compared to the outcome of a Poisson distribution (which we use to model CSR).
+
+We can start by creating 12 quadrats and counting the number of lightning strikes in each. The number of quadrats is highly dependent on the size of the study region and the number of events.
+
+```{r}
+#turn county boundary into owin object for spatstat
+oc_owin <- county_boundary |> as.owin()
+
+#turn lightning strikes into a ppp
+lightning.ppp <- as.ppp(st_coordinates(lightning), W = oc_owin)
+
+#create a quadrat count with 9 quadrats
+q_count <- quadratcount(lightning.ppp, nx = 3, ny = 3)
+
+#create a table with counts in each quadrat
+table(q_count)
+
+#plot counts
+plot(q_count)
+
+```
+
+**Q1: What do you notice about the quadrat counts (note that some of the quadrats are slightly smaller than others based on the boundaries of the county)?**
+
+We can formally test the quadrat counts against CSR using the quadrat test. A chi-square test compares quadrat counts to expected counts from CSR.
+
+```{r}
+q_test <- quadrat.test(lightning.ppp, nx = 3, ny = 3)
+
+q_test
+
+plot(q_test)
+```
+
+The very small p-value tells us that we can reject the null hypothesis and indicates that the pattern is not random. To interpret whether the pattern is likely clustered or likely dispersed, we compare our X2 value (225.12) to the degrees of freedom (8). A larger X2 value means more clustered.
+
+If you explore the plot of the quadrat test, the first number (top-left) is the number of events in the quadrat. The second number (top-right) is the expected number of events under CSR. The third number (bottom) is the residual, which is based on how different the top two values are. A larger residual indicates a larger difference.
+
+**Q2: Based on the residuals, which quadrats differ the most from expected values. What does this tell us about the spatial pattern?**
+
+There are a few issues with quadrat tests. The results are highly sensitive to the size and placement of the quadrats and also don't consider variability within the quadrats.
+
+**Q3: Experiment with different numbers of quadrats. How do your results change?**
+
+### Kernel Density
+
+Kernel Density Estimation (KDE) is a simple way to create a smooth map of where points are most concentrated. Instead of dividing the study area into fixed quadrats and counting how many events fall in each one (like the quadrat test), KDE places a smooth, bell-shaped “influence curve” over every point in the dataset (kernel). These curves are highest at the point itself and gradually taper off with distance. When all of these curves are added together, they form a continuous surface where high peaks show areas with many nearby points and lower areas show places with fewer points. Because KDE is only a descriptive smoothing technique, it does not involve a statistical model or a test of randomness like a quadrat test does. However, it can capture more local variability and is not sensitive to size/placement of the window of analysis like quadrat tests.
+
+The main parameter of the KDE is bandwidth. The bandwidth controls the width of each kernel. A large bandwidth (each point has broader influence) is better at capturing global variation and a small bandwidth is better at capturing local variation.
+
+We can create a kernel density estimation for lightning strikes:
+
+```{r}
+#turn off scientific notation
+options(scipen = 999)
+
+#create KDE, sigma is the bandwidth (which is in feet in this dataset)
+kernel_density <- density(lightning.ppp, 
+                          sigma = 4000)
+#plot 
+plot(kernel_density)
+```
+
+**Q4: Experiment with different bandwidth sizes. How does this change what you can learn about the data? What spatial patterns emerge in the data?**
+
+## Analyzing Local Structure
+
+### Nearest Neighbor Analysis
+
+Nearest neighbor methods evaluate clustering or dispersion based on the distances between each point and its closest neighbors. In these methods, we are analyzing local structure, not global structure.
+
+#### G- Function
+
+The G-function (nearest-neighbor distribution function) analyzes the distance from each point to its closest neighboring point. It helps us determine if points are closer (clustered) or farther (dispersed) from their neighbors than expected under CSR.
+
+If the G-curve of our data rises faster than the CSR curve at short distances (i.e., lies above it), this indicates that points tend to have closer neighbors than expected by chance, meaning clustering. If it rises slower (below CSR), points are more evenly spaced, indicating dispersion.
+
+```{r}
+g_pattern1 <- Gest(lightning.ppp, correction = "none")
+
+plot(g_pattern1)
+```
+
+Modeling the G-curve of our lightning data, we can see that it is very similar to the CSR-curve, meaning that there is likely not local clustering.
+
+#### F- Function
+
+The F-function (empty space function) examines the distance from randomly chosen locations in the study area to the nearest point in the dataset. It helps us determine whether points are generally closer to or farther from arbitrary locations than expected under Complete Spatial Randomness (CSR).
+
+If the F-curve of our data rises faster than the CSR curve at short distances (i.e., lies above it), this suggests that empty spaces are closer to events than expected, compared to the null landscape, as in a dispersed pattern. If it rises slower (below CSR), most locations are farther from empty space than expected by chance, indicating clustering.
+
+```{r}
+
+f_pattern <- Fest(lightning.ppp, correction = "none")
+
+plot(f_pattern)
+
+```
+
+Modeling the F-curve of our lightning data, we see that it closely follows the CSR-curve, suggesting that random locations in the study area are, on average, about as close to the nearest lightning strike as expected under Complete Spatial Randomness.
+
+**Q5: Based on this global and local analysis of spatial patterns in the lightning strike dataset, how would you describe the spatial pattern of this dataset?**
+
+**Q6: Can you hypothesis about what type of process might be determining this spatial pattern?**
+
+## Mini-Challenge
+
+The [NOAA Storm Events](https://www.ncei.noaa.gov/stormevents/) dataset is a long-term dataset that contains records of major storms/weather events that are intense enough to cause loss of life, injuries, or significant property damage. The data subset that you have is all event entries in Orange County from 2010-2025. Using the methods we've learned, analyze the spatial pattern of this dataset considering its local and global structure. Hypothesize on the types of processes (and even the actual processes) that might be determining this spatial pattern.

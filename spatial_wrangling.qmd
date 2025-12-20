@@ -1,0 +1,146 @@
+# Spatial Wrangling
+
+Beyond wrangling the structure and attributes of our data, we can also wrangle our spatial features.This involves using spatial relationships to create new variables. After completing these exercises, you should be able to:
+
+-   Use `st_nearest_feature()` and `st_distance()` to identify nearest spatial features (and the distance to them)
+-   Use `st_join()` to execute spatial joins and `group_by()` and `summarise` to aggregate based on spatial joins
+-   Calculate geometries using `st_length()`
+-   Use `st_buffer()` to compute zones of influence around features
+-   Use `exact_extract()` to calculate summaries of raster values within vector boundaries
+-   Develop workflows to perform multi-step data wrangling involving spatial and attribute manipulation
+
+We will use the following datasets in this chapter:
+
+-   Sidewalks in Durham, NC from [Durham Open Data](https://live-durhamnc.opendata.arcgis.com/search)
+-   Schools in Durham, NC from [Durham Open Data](https://live-durhamnc.opendata.arcgis.com/search)
+-   Raster of urban heat in Durham from [NIHHIS-CAPA HeatWatch Campaign](https://nihhis.cpo.noaa.gov/Urban-Heat-Islands/Mapping-Campaigns)
+-   Medical facilities from [NCOneMap](https://www.nconemap.gov/datasets/hospitals/data)
+
+To start, create a new .Rmd document. Add a first-level header called "Reading in Data". Then add the following code chunk. For each of the research questions below, add an additional header and code chunk.
+
+```{r, eval = FALSE}
+library(sf)
+library(tidyverse)
+library(tmap)
+library(terra)
+library(exactextractr)
+
+durham_sidewalks <- st_read("https://drive.google.com/uc?export=download&id=1-Zjhs4w0W49cMfnD7wi7t7ZlB63_pKLu") 
+
+durham_schools <- st_read("https://drive.google.com/uc?export=download&id=1ajKBLeKpFMW8z0HCbnLi4C44tgryCsRt") 
+
+durham_heat <- rast("https://drive.google.com/uc?export=download&id=1JJevl4YG-l9mtWxaw66iE1yOcJ57m-If")
+
+medical_facilities <- st_read("https://drive.google.com/uc?export=download&id=1goDoTCMwDdwFn-SSri10iQpUkIYZq30I")
+```
+
+Any time we do spatial analysis in R, we MUST use a projected coordinate system. For these exercises, we will use CRS = 2264 (North Carolina State Plane)
+
+**Q1: For each of the vector objects above, transform them to CRS = 2264. Do not transform the raster.**
+
+## Research Question 1: Which schools in Durham, NC are most accessible by sidewalk?
+
+### Plain Language Summary:
+
+We have two spatial datasets: one showing the locations of sidewalks in Durham, NC, and another showing the locations of schools. To understand how accessible each school is by sidewalk, we first create an area around each school (for instance, a .5 mile radius) using a buffer. This buffer represents the nearby area that students might reasonably walk.
+
+Next, we use a spatial join to identify which sidewalks fall within each school’s buffer. This is like a table join, but is joining by location, instead of a key field. We can then measure the length of each sidewalk, and aggregate this to the school buffer level.
+
+### Step 1: Add Buffer Around Schools
+
+Our schools are currently represented by points. Buffers allow us to add a zone around features. In our case, we will add a .5 mile zone around each school to represent the walkable area around each school. Remember that our units in crs = 2264 are in FEET.
+
+```{r}
+#add a buffer around each school
+buffered_schools <- durham_schools |> st_buffer(dist = 2640)
+```
+
+### Step 2: Calculate the Length of Each Sidewalk Segment
+
+Now we calculate the length of each sidewalk segment. This will be calculated as a "Units" field type. We'll convert this to standard numeric since we know the data is in feet (due to our coordinate system)
+
+```{r}
+durham_sidewalks <- durham_sidewalks |>
+  #get length of the geometry column in data
+  mutate(length_sidewalk = as.numeric(st_length(geometry)))
+```
+
+### Step 3: Join Sidewalks to School Buffers
+
+We use a spatial join to link sidewalk segments to school buffers based on spatial intersection. This join assigns each sidewalk to the school or schools whose buffer it falls within. Because a sidewalk can be within walking distance of more than one school, the same sidewalk segment may appear multiple times in the joined dataset. This is expected and reflects a many-to-many spatial relationship.
+
+After the spatial join, we are no longer doing spatial operations. From this point forward, we are working with a table of relationships between sidewalks and schools. To simplify the data and avoid confusion, we drop the geometry column.
+
+```{r}
+sidewalks_by_school <- sidewalks |>
+  # join by intersection
+  st_join(buffered_schools) |> 
+  # drop geometry for aggregation (aggregating geometries is not a good idea!)
+  st_drop_geometry()
+
+```
+
+**Q2: Open up the `sidewalks_by_school` object. What is different about this object compared to the original `sidewalks` object?**
+
+### **Step 4: Aggregate Sidewalk Data to School Level**
+
+Now that we are done with the spatial wrangling, we are back to known territory.
+
+**Q3: Using the `group_by()` and `summarise()` commands, calculate the total length of sidewalks in each school zone.**
+
+**Q4: Using a standard table join `left_join()` , join the aggregated sidewalk data back to the school points. Remember to identify a matching key field. Then make a map of sidewalk accessibility per school.**
+
+## Research Question 2: Which schools in Durham, NC have the hottest surrounding area?
+
+### Plain Language Summary
+
+We have already calculated our zones of influence around schools (`buffered_schools`). We have a raster dataset of temperature values collected during a Heat Mapping Campaign in the summer of 2021. Each cell in this raster represents the temperature at a specific location. To determine which schools are surrounded by the hottest areas, we calculate **zonal statistics**. This means we summarize the temperature values from the raster that fall within each school’s buffer. For example, we can calculate the average, maximum, or minimum temperature within each buffer. By comparing these summary statistics across schools, we can identify which schools are located in areas with higher surrounding temperatures and may be more exposed to extreme heat.
+
+**Q5: First, make a simple map of the raster heat data. What patterns do you see?**
+
+```{r}
+#calculate zonal statistics
+buffered_schools <- buffered_schools |> mutate(av_temp = exact_extract(durham_heat, geometry, fun = "mean"))
+
+```
+
+**Q6: Make a non-map graphic of the `av_temp` column.**
+
+**Q7: Make a map of `av_temp` by school.**
+
+## Research Question 3: What is the closest hospital to each nursing home in NC, and how far away is it? 
+
+### Plain Language Summary
+
+Our `medical_facilities` object contains both hospitals and nursing homes. To find the closest hospital to each nursing home, we first separate these two facility types into their own datasets. We then use a built-in spatial function, `st_nearest_feature()`, which works by looking at each nursing home and identifying the single nearest hospital based on straight-line (Euclidean) distance. Once we know which hospital is closest to each nursing home, we use `st_distance()` to calculate the distance between the nursing home and that nearest hospital. This gives us a numeric distance value for each nursing home, measured in the units of the dataset’s coordinate reference system.
+
+**Q8: Make two new objects `hospitals` and `nursing_homes`. You will use the `filter()` command to select these facility types out of the `medical_facilities` object.**
+
+```{r}
+#command to calculate nearest hospital and distance
+nursing_homes <- nursing_homes |>
+  mutate(
+    #this command returns the INDEX of the nearest hospital
+    nearest_hosp = st_nearest_feature(nursing_homes, hospitals),
+    #this command gets the name of the nearest hospital using base R syntax
+    hospital_name = hospitals$name[nearest_hosp],
+    #this calculates the distance using base R synax
+    dist_hospital = st_distance(
+      nursing_homes,
+      hospitals[nearest_hosp, ],
+      by_element = TRUE
+    )
+  )
+
+```
+
+**Q9: Which nursing home is furthest from the nearest hospital? Which nursing home is the closest?**
+
+## Mini Challenge
+
+In this challenge, you should add a code chunk that does the following:
+
+-   Filter your `nursing_home` object to just those in Durham County
+-   Compute a 1000ft buffer around each Durham nursing home
+-   Calculate the maximum temperature within each 1000ft buffer using the `exact_extract()` function (note that the raster does not cover the whole county, so not every nursing home will have a temperature value)
+-   Make a map of maximum temperature near Durham nursing homes

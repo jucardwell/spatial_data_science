@@ -1,0 +1,178 @@
+# Advanced Tidyverse
+
+In data science workflows, we rarely work directly with the raw data. Instead, we often have to do substantial pre-processing (sometimes called wrangling), to get our data to the point where it is meaningful to analyze in relation to our research questions. In this chapter, we will work with more `tidyverse` functions to do more advanced data wrangling. After completing these exercises, you should be able to:
+
+-   Use the `group_by`, `summarise` , and `pivot` tidyverse functions to reshape and aggregate data
+-   Execute table joins (`left_join`) between datasets by identifying a common key field
+-   Manage missing data
+-   Develop workflows to perform multi-step data wrangling
+
+We will use the following datasets in this chapter:
+
+-   North Carolina hospitals and public schools from [NCOneMap](https://www.nconemap.gov/datasets/hospitals/data)
+-   Weather station temperature data for stations near Chapel Hill from the [North Carolina State Climate Office](https://products.climate.ncsu.edu/data/)
+-   SAT data for North Carolina schools from the [North Carolina Department of Public Instruction](https://www.dpi.nc.gov/data-reports/school-report-cards)
+-   North Carolina county boundaries and 2020 census population from the [US Census Bureau](https://data.census.gov/)
+
+At this point in the class, we will start organizing our exercises around specific research questions or ideas. Remember that data science is an iterative process. You do not need to have a fully formed research question before you begin working with data. Often, exploring the data helps us refine our questions or even come up with new ones. That said, we usually begin with some initial idea or curiosity, which helps guide our data wrangling and analysis.
+
+To start, create a new .Rmd document. Add a first-level header called "Reading in Data". Then add the following code chunk. For each of the research questions below, add an additional header and code chunk.
+
+```{r, eval = F}
+library(sf)
+library(tidyverse)
+library(tmap)
+
+nc_counties <- st_read("https://drive.google.com/uc?export=download&id=1g9sGIikgOEubqoj97fUVoCYAKlBDVX5a")
+
+ch_temp <- read_csv("https://drive.google.com/uc?export=download&id=1drgW5ePqpIgCFKDnI5-x5-o1oYyYa21y")
+  
+sat_data <- read_csv("https://drive.google.com/uc?export=download&id=17N5VYYKKfLH_tqoTnoXIf--WAkJsbr27")
+  
+schools <- st_read("https://drive.google.com/uc?export=download&id=1FuEpBS72F4xRUM51LHPQxorY0YKFywDR")
+  
+hospitals <- read_csv("https://drive.google.com/uc?export=download&id=1Ylu33qdfA-pXb0uHtKMQIcDeVBOwUHMV")
+  
+```
+
+**Q1: Based on the commands above, which of these datasets are spatial files?**
+
+## **Research Question 1: How does hospital bed availability per capita vary across NC counties?**
+
+### Plain Language Summary:
+
+In our NC county dataset, each row represents one county. In the hospital dataset, each row represents one hospital, and multiple hospitals can exist within the same county. Because these datasets are organized differently, we can’t compare them directly. To make them compatible, we first need to summarize the hospital data at the county level (aggregation). Then we need to combine the datasets so that we can use fields from both (joining). After we join the datasets, we can create new variables of interest (like number of hospital beds per county resident).
+
+### Step 1: Aggregating Hospital Data
+
+To start, we need to get our hospital data to the county level so it is directly comparable to our county dataset. The workhorse for aggregation in the `tidyverse` package is the combination of `group_by` and `summarise`.
+
+```{r, eval = F}
+
+#the group_by command tells tidyverse which column(s) we want to aggregate based on. #the summarise command tells tidyverse how to summarise the data
+summarised_hospital <- hospitals |> 
+  group_by(fcounty) |> 
+  summarise(total_general_beds = sum(hgenlic))
+```
+
+**Q2: Write a command to calculate the total number of beds (`hgenlic` + `rehabhlic`). You should add a new field in the hospitals dataset (`mutate`) before grouping and summarizing.**
+
+### Step 2: Joining our Data
+
+Now, we need to combine our county data with our hospital data. We do this through a table join (`left_join`). If you are joining spatial and non-spatial data, the spatial data must always be what is joined to. A table join requires a key field. A key field means that the values match between both datasets. The name of the column does not need to match.
+
+```{r, eval = F}
+#the first argument in the join is the object you want to join, the second is the fields to join by
+county_hosp <- nc_counties |> 
+  left_join(summarised_hospital, join_by(NAMELSAD == fcounty))
+```
+
+**Q3: Open the county_hosp object. Did the join work? How do you know?**
+
+**Q4: Can you figure out what's wrong with our join and fix it? (hint: it has to do with the fields we chose to join by)**
+
+### Step 3: Create our Variable of Interest
+
+**Q5: Using the mutate command on your joined dataset (after you've fixed the join), calculate a density metric of hospital beds per 1000 people per county using the formula bed_density = total_beds / (county pop/ 1000)**
+
+### Step 4: Explore our Variable of Interest
+
+**Q6: Make a descriptive statistics table of hospital beds/ 1000 people. Note that there are `NA`s in the dataset (counties with no hospitals). Your descriptive statistics table will need to use the `na.rm = TRUE` argument**
+
+**Q7: Make one non-map graphic of the variable of interest.**
+
+**Q8: Create a map of the variable of interest.**
+
+**Q9: What is the spatial pattern of hospital bed density across North Carolina?**
+
+## Research Question 2: How does maximum temperature vary throughout the seasons across stations near Chapel Hill, NC?
+
+### Plain Language Summary
+
+In our `ch_temp` dataset, each row represents the maximum temperature for a single day per station. We want to temporally aggregate this data so that we, instead, have summary values for each station for each season. Once we have our summary values, we'll want to "pivot" our data so that instead of having a row for each season per station, we have a row for each station and the seasons are columns. Then, we'll want to make our data spatial.
+
+### Step 1: Create a Season Variable
+
+We can use the mutate command to add a column that notes the season of each row. `tidyverse` is very good at working with dates, through the `lubridate` package included in tidyverse.
+
+```{r}
+#add a season variable by manipulating date
+ch_temp <- ch_temp |>
+  mutate(
+    month = month(Date),
+    season = case_when(
+      month == 12 | month < 3  ~ "Winter",
+      month >= 3  & month < 6  ~ "Spring",
+      month >= 6  & month < 9  ~ "Summer",
+      month >= 9  & month < 12 ~ "Fall"
+    )
+  )
+```
+
+**Q10: What does the `case_when` command allow us to do?**
+
+### Step 2: Aggregate by Station and Season
+
+We can put multiple arguments in the `group_by` command. If you noticed above, the grouped summary ONLY retains the grouping fields and the summary fields. It removes all other fields. Because we want to make our data spatial later, we will also group by the latitude and longitude fields (since we know that these are identical at each location and we want to use them later on).
+
+```{r}
+#aggregate by station and season
+ch_temp_agg <- ch_temp |>
+  group_by(season, Location, Latitude, Longitude) |>
+  summarise(mean = mean(`Maximum Air Temperature (F)`),
+            min = mean(`Maximum Air Temperature (F)`),
+            max = mean(`Maximum Air Temperature (F)`))
+```
+
+**Q11: Did our summarizing work? Can you figure out why not? (Hint: look at the field type of the maximum air temperature column)**
+
+We've got a missing data issue in our dataset. R is able to recognize blank cells, or cells with `NA` as missing data. However, in our temperature dataset, they use MV to represent missing data, which R does not recognize. Because all data must be the same type in a tidyverse column, this data, which is numeric, has been read in as string to account for the "MV" value in some of the cells. To fix this, we can "force" the data to numeric, which will replace any non-numeric characters with NA. When you run the command below, it should give you a warning that NAs were introduced by coersion. That's good!
+
+```{r}
+#aggregate by station and season
+ch_temp_agg <- ch_temp |>
+  mutate(temp = as.numeric(`Maximum Air Temperature (F)`)) |>
+  group_by(season, Location, Latitude, Longitude) |>
+  summarise(mean = mean(temp, na.rm = TRUE),
+            min = min(temp, na.rm = TRUE),
+            max = max(temp, na.rm = TRUE))
+
+```
+
+### Step 3: Pivot the Data
+
+Right now, our dataset has multiple rows per station, one row for each season. Ultimately, we want a single row per station. In the `tidyverse` universe, we call this "pivoting". In this case, we want to "widen" our data
+
+```{r}
+#pivot wider (move seasons from rows to columns)
+ch_temp_wide <- ch_temp_agg |>
+  pivot_wider(
+    names_from = season,
+    values_from = c(mean, min, max),
+    names_sep = "_"
+  )
+
+
+sat_wide <- sat_data |>
+  pivot_wider(
+    names_from = year,
+    values_from = c(avg_sat_score, pct_sat_participation),
+    names_sep = "_"
+  )
+
+sat_wide1 <- sat_wide |> mutate(diff = avg_sat_score_2021 - avg_sat_score_2019)
+
+```
+
+### Step 4: Make our Data Spatial
+
+Q12: The latitude and longitude values in the `ch_temp_wide` object are in CRS =4326. Using the command we learned in the Introduction to Spatial Data chapter, convert this object to a spatial object and map the maximum summer temperature at the four stations. Add the command `tmap_options("view")` before you create the map.
+
+## Mini Challenge
+
+In this challenge, you should add a code chunk that does the following:
+
+-   Pivot the sat_data object wider (so that the yearly data becomes columns, not rows)
+-   Add a column that represents the difference between average SAT score before Covid (2019) and directly after Covid (2021)
+-   Join the SAT data to the `schools` object. Remember that the spatial object must go first in the join.
+-   Make a map of school SAT score change

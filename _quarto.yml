@@ -1,0 +1,35 @@
+project:
+  type: book
+
+book:
+  title: "spatial_data_science"
+  author: "Norah Jones"
+  date: "10/7/2025"
+  chapters:
+    - index.qmd
+    - schedule.qmd
+    - syllabus.qmd
+    - competencies.qmd
+    - labs.qmd
+    - other_files.qmd
+    - introduction_to_R.qmd
+    - tidyverse_basics.qmd
+    - tidyverse.qmd
+    - describing_spatial_data.qmd
+    - wrangling.qmd
+    - spatial_wrangling.qmd
+    - ppa.qmd
+    - autocorrelation.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
