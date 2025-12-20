@@ -54,7 +54,7 @@
     "href": "introduction_to_R.html#downloading-packages",
     "title": "6  Software and File Management",
     "section": "6.4 Downloading Packages",
-    "text": "6.4 Downloading Packages\nR packages extend the functionality of Base R and must be downloaded. We will use a small set of libraries in this class.\n\ntmap: This is the main mapping package we will use\ngt: We will use this package to create nice tables\ntidyverse: This is the package we will use to create “tidy” analysis workflows. Tidyverse also includes ggplot2 which will be our main package to create graphics\ne1071: calculates descriptive statistics\nsf: This package allows us to read and manipulate spatial datasets\n\nYou should copy and paste each of these commands into the Console one by one to download the packages.\n\ninstall.packages(\"tmap\")\ninstall.packages(\"tidyverse\")\ninstall.packages(\"gt\")\ninstall.packages(\"sf\")\ninstall.packages(\"e1071\")\n\nOnce you have downloaded the packages, you will need to load them every time you want to use them.",
+    "text": "6.4 Downloading Packages\nR packages extend the functionality of Base R and must be downloaded. We will use a small set of libraries in this class.\n\ntmap: This is the main mapping package we will use\nmaptiles: This package helps us add basemaps to our maps\ngt: We will use this package to create nice tables\ntidyverse: This is the package we will use to create “tidy” analysis workflows. Tidyverse also includes ggplot2 which will be our main package to create graphics\nsf: This package allows us to read and manipulate spatial datasets\nterra: This package allows us to read and manipulate rasters\nspdep: We use this package to create neighborhood definitions for spatial data\ncar: Includes basic statistical functions\ne1071:Includes basic statistical functions\nspatstat:Includes spatial statistical functions\n\nYou should copy and paste each of these commands into the Console one by one to download the packages.\n\ninstall.packages(\"tmap\")\ninstall.packages(\"maptiles\")\ninstall.packages(\"tidyverse\")\ninstall.packages(\"gt\")\ninstall.packages(\"sf\")\ninstall.packages(\"spdep\")\ninstall.packages(\"terra\")\ninstall.packages(\"e1071\")\ninstall.packages(\"car\")\ninstall.packages(\"spatstat\")\n\nOnce you have downloaded the packages, you will need to load them every time you want to use them.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
     ]
@@ -437,6 +437,126 @@
     "text": "13.6 Mini Challenge\n\nCalculate global and local indicators of spatial autocorrelation for the average commuting time variable and interpret the results\nCalculate global and local indicators of spatial autocorrelation for the chronic school absences after covid and interpret the results",
     "crumbs": [
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Spatial Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "2  Schedule",
+    "section": "",
+    "text": "See course schedule here!",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Schedule</span>"
+    ]
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "1  Syllabus",
+    "section": "",
+    "text": "See course syllabus here!",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html",
+    "href": "competencies.html",
+    "title": "3  Course Competencies",
+    "section": "",
+    "text": "3.1 Concept 1: Data Science & Data Acquisition\nGuiding Question: What is data science, and how do we acquire data for analysis?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-1-data-science-data-acquisition",
+    "href": "competencies.html#concept-1-data-science-data-acquisition",
+    "title": "3  Course Competencies",
+    "section": "",
+    "text": "Explain the purpose of data science and describe each stage in a typical data science workflow\nIdentify types of spatial data providers and explain the differences between “old-school” and “new-school” data acquisition.\nDetermine what each row in a dataset represents (the unit of analysis) and identify the type of each variable\nIdentify the main characteristics of data quality, bias, and representativeness and how these influence whether a dataset is fit for a particular use",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-2-tidy-data-and-early-exploration",
+    "href": "competencies.html#concept-2-tidy-data-and-early-exploration",
+    "title": "3  Course Competencies",
+    "section": "3.2 Concept 2: Tidy Data and Early Exploration",
+    "text": "3.2 Concept 2: Tidy Data and Early Exploration\nGuiding Question: How do we structure and explore data effectively?\n\nExplain the relationship between general programming concepts and tidyverse abstractions for data wrangling\nIdentify the major components of “tidy” data\nUse basic tidyverse functions (select, filter, mutate, rename) to manipulate a dataset\nCreate basic visualizations ( non-map graphics) of a variable\nGenerate and interpret descriptive statistics of a variable",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-3-spatial-data",
+    "href": "competencies.html#concept-3-spatial-data",
+    "title": "3  Course Competencies",
+    "section": "3.3 Concept 3: Spatial Data",
+    "text": "3.3 Concept 3: Spatial Data\nGuiding Question: How is spatial data unique?\n\nDescribe spatial dependence, spatial heterogeneity, and distance decay, and explain why they make spatial data unique\nDescribe the main components of vector and raster data structures and how they relate to conceptual models of the world (field and object)\nExplain the characteristics of geographic and projected coordinate systems and their importance for spatial analysis\nEvaluate the impact of MAUP and ecological fallacy on spatial data analysis and the conclusions drawn from aggregated data\nCreate basic maps of a variable\nCalculate basic spatial descriptive statistics",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-4-asking-spatial-questions",
+    "href": "competencies.html#concept-4-asking-spatial-questions",
+    "title": "3  Course Competencies",
+    "section": "3.4 Concept 4: Asking Spatial Questions",
+    "text": "3.4 Concept 4: Asking Spatial Questions\nGuiding Question: How do spatial questions guide spatial data science, and how do they shape analytical datasets?\n\nGenerate a spatial research question and connect it to specific spatial data requirements\nExplain the distinction between raw data and analytical data\nDetermine the data transformations required to convert raw spatial data into analytical datasets that can address specific spatial questions",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-5-wrangling-data",
+    "href": "competencies.html#concept-5-wrangling-data",
+    "title": "3  Course Competencies",
+    "section": "3.5 Concept 5: Wrangling Data",
+    "text": "3.5 Concept 5: Wrangling Data\nGuiding Question: How do we transform raw spatial data into datasets ready for analysis?\n\nUse tidyverse tools to group, summarize, reshape, and join datasets\nUse tidyverse tools to create derived variables and construct aggregations\nPerform spatial joins, buffering operations, and distance calculations using sf tools\nDetect and address missing data, duplicates, and invalid geometries\nApply the data transformations required to convert raw spatial data into analytical datasets that can address specific spatial questions",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-6-mapping",
+    "href": "competencies.html#concept-6-mapping",
+    "title": "3  Course Competencies",
+    "section": "3.6 Concept 6: Mapping",
+    "text": "3.6 Concept 6: Mapping\nGuiding Question: How do we visualize spatial patterns in our analytical dataset and communicate them?\n\nCreate effective thematic maps using tmap, including layering, symbology, legends, and annotation\nSelect appropriate classification methods and evaluate how those choices affect interpretation",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-7-ai-in-programming",
+    "href": "competencies.html#concept-7-ai-in-programming",
+    "title": "3  Course Competencies",
+    "section": "3.7 Concept 7: AI in Programming",
+    "text": "3.7 Concept 7: AI in Programming\nGuiding Question: How does AI change the way we write code and solve problems? How can we use AI tools effectively for coding and analysis? \n\nExplain how AI-assisted programming fits into modern data science workflows\nIdentify the strengths, limitations, and risks of using AI in spatial data science \nCreate effective prompts that guide LLM tools towards effective code assistance\nApply GitHub Copilot to assist in writing, debugging, and documenting code\nAssess the reliability and accuracy of AI-generated code",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-8-spatial-neighborhoods-and-weights",
+    "href": "competencies.html#concept-8-spatial-neighborhoods-and-weights",
+    "title": "3  Course Competencies",
+    "section": "3.8 Concept 8: Spatial Neighborhoods and Weights",
+    "text": "3.8 Concept 8: Spatial Neighborhoods and Weights\nGuiding Question: How do we quantify spatial relationships? \n\nExplain why different spatial weight and neighborhood definitions are used and how they influence analysis outcomes\nConstruct spatial weights and spatial weights matrices, justifying the choice of method for a specific analytical context",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
+    ]
+  },
+  {
+    "objectID": "competencies.html#concept-9-exploratory-spatial-data-analysis-esda",
+    "href": "competencies.html#concept-9-exploratory-spatial-data-analysis-esda",
+    "title": "3  Course Competencies",
+    "section": "3.9 Concept 9: Exploratory Spatial Data Analysis (ESDA)",
+    "text": "3.9 Concept 9: Exploratory Spatial Data Analysis (ESDA)\nGuiding Question: How can we detect and interpret spatial patterns in data?\n\nCalculate and interpret global and local spatial autocorrelation metrics (e.g., Moran’s I, LISA)\nConduct point pattern analysis using nearest-neighbor measures and density estimation\nIdentify and interpret clusters, hot spots, outliers, and distinguish random from structured spatial patterns.\nCreate bivariate maps to visualize and interpret spatial relationships between two variables\nUse ESDA results to generate or refine hypotheses and research questions",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
     ]
   }
 ]

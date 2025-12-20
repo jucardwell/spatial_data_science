@@ -1,1 +1,83 @@
 # Course Competencies
+
+##  Concept 1: Data Science & Data Acquisition
+
+**Guiding Question:** What is data science, and how do we acquire data for analysis?
+
+-   Explain the purpose of data science and describe each stage in a typical data science workflow
+-   Identify types of spatial data providers and explain the differences between “old-school” and “new-school” data acquisition.
+-   Determine what each row in a dataset represents (the unit of analysis) and identify the type of each variable
+-   Identify the main characteristics of data quality, bias, and representativeness and how these influence whether a dataset is fit for a particular use
+
+## Concept 2: Tidy Data and Early Exploration
+
+**Guiding Question:** How do we structure and explore data effectively?
+
+-   Explain the relationship between general programming concepts and tidyverse abstractions for data wrangling
+-   Identify the major components of “tidy” data
+-   Use basic tidyverse functions (select, filter, mutate, rename) to manipulate a dataset
+-   Create basic visualizations ( non-map graphics) of a variable
+-   Generate and interpret descriptive statistics of a variable
+
+## Concept 3: Spatial Data
+
+**Guiding Question:** How is spatial data unique?
+
+-   Describe spatial dependence, spatial heterogeneity, and distance decay, and explain why they make spatial data unique
+-   Describe the main components of vector and raster data structures and how they relate to conceptual models of the world (field and object)
+-   Explain the characteristics of geographic and projected coordinate systems and their importance for spatial analysis
+-   Evaluate the impact of MAUP and ecological fallacy on spatial data analysis and the conclusions drawn from aggregated data
+-   Create basic maps of a variable
+-   Calculate basic spatial descriptive statistics
+
+## Concept 4: Asking Spatial Questions
+
+**Guiding Question:** How do spatial questions guide spatial data science, and how do they shape analytical datasets?
+
+-   Generate a spatial research question and connect it to specific spatial data requirements
+-   Explain the distinction between raw data and analytical data
+-   Determine the data transformations required to convert raw spatial data into analytical datasets that can address specific spatial questions
+
+## Concept 5: Wrangling Data
+
+**Guiding Question:** How do we transform raw spatial data into datasets ready for analysis?
+
+-   Use tidyverse tools to group, summarize, reshape, and join datasets
+-   Use tidyverse tools to create derived variables and construct aggregations
+-   Perform spatial joins, buffering operations, and distance calculations using sf tools
+-   Detect and address missing data, duplicates, and invalid geometries
+-   Apply the data transformations required to convert raw spatial data into analytical datasets that can address specific spatial questions
+
+## Concept 6: Mapping
+
+**Guiding Question:** How do we visualize spatial patterns in our analytical dataset and communicate them?
+
+-   Create effective thematic maps using tmap, including layering, symbology, legends, and annotation
+-   Select appropriate classification methods and evaluate how those choices affect interpretation
+
+## Concept 7: AI in Programming
+
+**Guiding Question:** How does AI change the way we write code and solve problems? How can we use AI tools effectively for coding and analysis? 
+
+-   Explain how AI-assisted programming fits into modern data science workflows
+-   Identify the strengths, limitations, and risks of using AI in spatial data science 
+-   Create effective prompts that guide LLM tools towards effective code assistance
+-   Apply GitHub Copilot to assist in writing, debugging, and documenting code
+-   Assess the reliability and accuracy of AI-generated code
+
+## Concept 8: Spatial Neighborhoods and Weights
+
+**Guiding Question**: How do we quantify spatial relationships? 
+
+-   Explain why different spatial weight and neighborhood definitions are used and how they influence analysis outcomes
+-   Construct spatial weights and spatial weights matrices, justifying the choice of method for a specific analytical context
+
+## Concept 9: Exploratory Spatial Data Analysis (ESDA)
+
+**Guiding Question:** How can we detect and interpret spatial patterns in data?
+
+-   Calculate and interpret global and local spatial autocorrelation metrics (e.g., Moran’s I, LISA)
+-   Conduct point pattern analysis using nearest-neighbor measures and density estimation
+-   Identify and interpret clusters, hot spots, outliers, and distinguish random from structured spatial patterns.
+-   Create bivariate maps to visualize and interpret spatial relationships between two variables
+-   Use ESDA results to generate or refine hypotheses and research questions

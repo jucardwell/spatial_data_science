@@ -195,8 +195,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#concept-1-data-science-data-acquisition" id="toc-concept-1-data-science-data-acquisition" class="nav-link active" data-scroll-target="#concept-1-data-science-data-acquisition"><span class="header-section-number">3.1</span> Concept 1: Data Science &amp; Data Acquisition</a></li>
+  <li><a href="#concept-2-tidy-data-and-early-exploration" id="toc-concept-2-tidy-data-and-early-exploration" class="nav-link" data-scroll-target="#concept-2-tidy-data-and-early-exploration"><span class="header-section-number">3.2</span> Concept 2: Tidy Data and Early Exploration</a></li>
+  <li><a href="#concept-3-spatial-data" id="toc-concept-3-spatial-data" class="nav-link" data-scroll-target="#concept-3-spatial-data"><span class="header-section-number">3.3</span> Concept 3: Spatial Data</a></li>
+  <li><a href="#concept-4-asking-spatial-questions" id="toc-concept-4-asking-spatial-questions" class="nav-link" data-scroll-target="#concept-4-asking-spatial-questions"><span class="header-section-number">3.4</span> Concept 4: Asking Spatial Questions</a></li>
+  <li><a href="#concept-5-wrangling-data" id="toc-concept-5-wrangling-data" class="nav-link" data-scroll-target="#concept-5-wrangling-data"><span class="header-section-number">3.5</span> Concept 5: Wrangling Data</a></li>
+  <li><a href="#concept-6-mapping" id="toc-concept-6-mapping" class="nav-link" data-scroll-target="#concept-6-mapping"><span class="header-section-number">3.6</span> Concept 6: Mapping</a></li>
+  <li><a href="#concept-7-ai-in-programming" id="toc-concept-7-ai-in-programming" class="nav-link" data-scroll-target="#concept-7-ai-in-programming"><span class="header-section-number">3.7</span> Concept 7: AI in Programming</a></li>
+  <li><a href="#concept-8-spatial-neighborhoods-and-weights" id="toc-concept-8-spatial-neighborhoods-and-weights" class="nav-link" data-scroll-target="#concept-8-spatial-neighborhoods-and-weights"><span class="header-section-number">3.8</span> Concept 8: Spatial Neighborhoods and Weights</a></li>
+  <li><a href="#concept-9-exploratory-spatial-data-analysis-esda" id="toc-concept-9-exploratory-spatial-data-analysis-esda" class="nav-link" data-scroll-target="#concept-9-exploratory-spatial-data-analysis-esda"><span class="header-section-number">3.9</span> Concept 9: Exploratory Spatial Data Analysis (ESDA)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -220,8 +234,99 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="concept-1-data-science-data-acquisition" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="concept-1-data-science-data-acquisition"><span class="header-section-number">3.1</span> Concept 1: Data Science &amp; Data Acquisition</h2>
+<p><strong>Guiding Question:</strong> What is data science, and how do we acquire data for analysis?</p>
+<ul>
+<li>Explain the purpose of data science and describe each stage in a typical data science workflow</li>
+<li>Identify types of spatial data providers and explain the differences between “old-school” and “new-school” data acquisition.</li>
+<li>Determine what each row in a dataset represents (the unit of analysis) and identify the type of each variable</li>
+<li>Identify the main characteristics of data quality, bias, and representativeness and how these influence whether a dataset is fit for a particular use</li>
+</ul>
+</section>
+<section id="concept-2-tidy-data-and-early-exploration" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="concept-2-tidy-data-and-early-exploration"><span class="header-section-number">3.2</span> Concept 2: Tidy Data and Early Exploration</h2>
+<p><strong>Guiding Question:</strong> How do we structure and explore data effectively?</p>
+<ul>
+<li>Explain the relationship between general programming concepts and tidyverse abstractions for data wrangling</li>
+<li>Identify the major components of “tidy” data</li>
+<li>Use basic tidyverse functions (select, filter, mutate, rename) to manipulate a dataset</li>
+<li>Create basic visualizations ( non-map graphics) of a variable</li>
+<li>Generate and interpret descriptive statistics of a variable</li>
+</ul>
+</section>
+<section id="concept-3-spatial-data" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="concept-3-spatial-data"><span class="header-section-number">3.3</span> Concept 3: Spatial Data</h2>
+<p><strong>Guiding Question:</strong> How is spatial data unique?</p>
+<ul>
+<li>Describe spatial dependence, spatial heterogeneity, and distance decay, and explain why they make spatial data unique</li>
+<li>Describe the main components of vector and raster data structures and how they relate to conceptual models of the world (field and object)</li>
+<li>Explain the characteristics of geographic and projected coordinate systems and their importance for spatial analysis</li>
+<li>Evaluate the impact of MAUP and ecological fallacy on spatial data analysis and the conclusions drawn from aggregated data</li>
+<li>Create basic maps of a variable</li>
+<li>Calculate basic spatial descriptive statistics</li>
+</ul>
+</section>
+<section id="concept-4-asking-spatial-questions" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="concept-4-asking-spatial-questions"><span class="header-section-number">3.4</span> Concept 4: Asking Spatial Questions</h2>
+<p><strong>Guiding Question:</strong> How do spatial questions guide spatial data science, and how do they shape analytical datasets?</p>
+<ul>
+<li>Generate a spatial research question and connect it to specific spatial data requirements</li>
+<li>Explain the distinction between raw data and analytical data</li>
+<li>Determine the data transformations required to convert raw spatial data into analytical datasets that can address specific spatial questions</li>
+</ul>
+</section>
+<section id="concept-5-wrangling-data" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="concept-5-wrangling-data"><span class="header-section-number">3.5</span> Concept 5: Wrangling Data</h2>
+<p><strong>Guiding Question:</strong> How do we transform raw spatial data into datasets ready for analysis?</p>
+<ul>
+<li>Use tidyverse tools to group, summarize, reshape, and join datasets</li>
+<li>Use tidyverse tools to create derived variables and construct aggregations</li>
+<li>Perform spatial joins, buffering operations, and distance calculations using sf tools</li>
+<li>Detect and address missing data, duplicates, and invalid geometries</li>
+<li>Apply the data transformations required to convert raw spatial data into analytical datasets that can address specific spatial questions</li>
+</ul>
+</section>
+<section id="concept-6-mapping" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="concept-6-mapping"><span class="header-section-number">3.6</span> Concept 6: Mapping</h2>
+<p><strong>Guiding Question:</strong> How do we visualize spatial patterns in our analytical dataset and communicate them?</p>
+<ul>
+<li>Create effective thematic maps using tmap, including layering, symbology, legends, and annotation</li>
+<li>Select appropriate classification methods and evaluate how those choices affect interpretation</li>
+</ul>
+</section>
+<section id="concept-7-ai-in-programming" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="concept-7-ai-in-programming"><span class="header-section-number">3.7</span> Concept 7: AI in Programming</h2>
+<p><strong>Guiding Question:</strong> How does AI change the way we write code and solve problems? How can we use AI tools effectively for coding and analysis?&nbsp;</p>
+<ul>
+<li>Explain how AI-assisted programming fits into modern data science workflows</li>
+<li>Identify the strengths, limitations, and risks of using AI in spatial data science&nbsp;</li>
+<li>Create effective prompts that guide LLM tools towards effective code assistance</li>
+<li>Apply GitHub Copilot to assist in writing, debugging, and documenting code</li>
+<li>Assess the reliability and accuracy of AI-generated code</li>
+</ul>
+</section>
+<section id="concept-8-spatial-neighborhoods-and-weights" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="concept-8-spatial-neighborhoods-and-weights"><span class="header-section-number">3.8</span> Concept 8: Spatial Neighborhoods and Weights</h2>
+<p><strong>Guiding Question</strong>: How do we quantify spatial relationships?&nbsp;</p>
+<ul>
+<li>Explain why different spatial weight and neighborhood definitions are used and how they influence analysis outcomes</li>
+<li>Construct spatial weights and spatial weights matrices, justifying the choice of method for a specific analytical context</li>
+</ul>
+</section>
+<section id="concept-9-exploratory-spatial-data-analysis-esda" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="concept-9-exploratory-spatial-data-analysis-esda"><span class="header-section-number">3.9</span> Concept 9: Exploratory Spatial Data Analysis (ESDA)</h2>
+<p><strong>Guiding Question:</strong> How can we detect and interpret spatial patterns in data?</p>
+<ul>
+<li>Calculate and interpret global and local spatial autocorrelation metrics (e.g., Moran’s I, LISA)</li>
+<li>Conduct point pattern analysis using nearest-neighbor measures and density estimation</li>
+<li>Identify and interpret clusters, hot spots, outliers, and distinguish random from structured spatial patterns.</li>
+<li>Create bivariate maps to visualize and interpret spatial relationships between two variables</li>
+<li>Use ESDA results to generate or refine hypotheses and research questions</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

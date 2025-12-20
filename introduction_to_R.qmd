@@ -32,20 +32,30 @@ To make a new .Rmd file, navigate to File \> New Script \> R Markdown
 R packages extend the functionality of Base R and must be downloaded. We will use a small set of libraries in this class.
 
 -   tmap: This is the main mapping package we will use
+-   maptiles: This package helps us add basemaps to our maps
 -   gt: We will use this package to create nice tables
 -   tidyverse: This is the package we will use to create "tidy" analysis workflows. Tidyverse also includes ggplot2 which will be our main package to create graphics
--   e1071: calculates descriptive statistics
 -   sf: This package allows us to read and manipulate spatial datasets
+-   terra: This package allows us to read and manipulate rasters
+-   spdep: We use this package to create neighborhood definitions for spatial data
+-   car: Includes basic statistical functions
+-   e1071:Includes basic statistical functions
+-   spatstat:Includes spatial statistical functions
 
 You should copy and paste each of these commands into the **Console** one by one to download the packages.
 
 ```{r, eval=F}
 
 install.packages("tmap")
+install.packages("maptiles")
 install.packages("tidyverse")
 install.packages("gt")
 install.packages("sf")
+install.packages("spdep")
+install.packages("terra")
 install.packages("e1071")
+install.packages("car")
+install.packages("spatstat")
 
 ```
 
