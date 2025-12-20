@@ -50,7 +50,7 @@ Next, we use a spatial join to identify which sidewalks fall within each schoolâ
 
 Our schools are currently represented by points. Buffers allow us to add a zone around features. In our case, we will add a .5 mile zone around each school to represent the walkable area around each school. Remember that our units in crs = 2264 are in FEET.
 
-```{r}
+```{r, eval = F}
 #add a buffer around each school
 buffered_schools <- durham_schools |> st_buffer(dist = 2640)
 ```
@@ -59,7 +59,7 @@ buffered_schools <- durham_schools |> st_buffer(dist = 2640)
 
 Now we calculate the length of each sidewalk segment. This will be calculated as a "Units" field type. We'll convert this to standard numeric since we know the data is in feet (due to our coordinate system)
 
-```{r}
+```{r, eval = F}
 durham_sidewalks <- durham_sidewalks |>
   #get length of the geometry column in data
   mutate(length_sidewalk = as.numeric(st_length(geometry)))
@@ -71,7 +71,7 @@ We use a spatial join to link sidewalk segments to school buffers based on spati
 
 After the spatial join, we are no longer doing spatial operations. From this point forward, we are working with a table of relationships between sidewalks and schools. To simplify the data and avoid confusion, we drop the geometry column.
 
-```{r}
+```{r, eval = F}
 sidewalks_by_school <- sidewalks |>
   # join by intersection
   st_join(buffered_schools) |> 
@@ -98,7 +98,7 @@ We have already calculated our zones of influence around schools (`buffered_scho
 
 **Q5: First, make a simple map of the raster heat data. What patterns do you see?**
 
-```{r}
+```{r, eval = F}
 #calculate zonal statistics
 buffered_schools <- buffered_schools |> mutate(av_temp = exact_extract(durham_heat, geometry, fun = "mean"))
 
@@ -108,7 +108,7 @@ buffered_schools <- buffered_schools |> mutate(av_temp = exact_extract(durham_he
 
 **Q7: Make a map of `av_temp` by school.**
 
-## Research Question 3: What is the closest hospital to each nursing home in NC, and how far away is it? 
+## Research Question 3: What is the closest hospital to each nursing home in NC, and how far away is it?
 
 ### Plain Language Summary
 
@@ -116,7 +116,7 @@ Our `medical_facilities` object contains both hospitals and nursing homes. To fi
 
 **Q8: Make two new objects `hospitals` and `nursing_homes`. You will use the `filter()` command to select these facility types out of the `medical_facilities` object.**
 
-```{r}
+```{r, eval = F}
 #command to calculate nearest hospital and distance
 nursing_homes <- nursing_homes |>
   mutate(

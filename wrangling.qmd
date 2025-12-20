@@ -95,7 +95,7 @@ In our `ch_temp` dataset, each row represents the maximum temperature for a sing
 
 We can use the mutate command to add a column that notes the season of each row. `tidyverse` is very good at working with dates, through the `lubridate` package included in tidyverse.
 
-```{r}
+```{r, eval = F}
 #add a season variable by manipulating date
 ch_temp <- ch_temp |>
   mutate(
@@ -115,7 +115,7 @@ ch_temp <- ch_temp |>
 
 We can put multiple arguments in the `group_by` command. If you noticed above, the grouped summary ONLY retains the grouping fields and the summary fields. It removes all other fields. Because we want to make our data spatial later, we will also group by the latitude and longitude fields (since we know that these are identical at each location and we want to use them later on).
 
-```{r}
+```{r, eval = F}
 #aggregate by station and season
 ch_temp_agg <- ch_temp |>
   group_by(season, Location, Latitude, Longitude) |>
@@ -128,7 +128,7 @@ ch_temp_agg <- ch_temp |>
 
 We've got a missing data issue in our dataset. R is able to recognize blank cells, or cells with `NA` as missing data. However, in our temperature dataset, they use MV to represent missing data, which R does not recognize. Because all data must be the same type in a tidyverse column, this data, which is numeric, has been read in as string to account for the "MV" value in some of the cells. To fix this, we can "force" the data to numeric, which will replace any non-numeric characters with NA. When you run the command below, it should give you a warning that NAs were introduced by coersion. That's good!
 
-```{r}
+```{r, eval = F}
 #aggregate by station and season
 ch_temp_agg <- ch_temp |>
   mutate(temp = as.numeric(`Maximum Air Temperature (F)`)) |>
@@ -143,7 +143,7 @@ ch_temp_agg <- ch_temp |>
 
 Right now, our dataset has multiple rows per station, one row for each season. Ultimately, we want a single row per station. In the `tidyverse` universe, we call this "pivoting". In this case, we want to "widen" our data
 
-```{r}
+```{r, eval = F}
 #pivot wider (move seasons from rows to columns)
 ch_temp_wide <- ch_temp_agg |>
   pivot_wider(
@@ -151,16 +151,6 @@ ch_temp_wide <- ch_temp_agg |>
     values_from = c(mean, min, max),
     names_sep = "_"
   )
-
-
-sat_wide <- sat_data |>
-  pivot_wider(
-    names_from = year,
-    values_from = c(avg_sat_score, pct_sat_participation),
-    names_sep = "_"
-  )
-
-sat_wide1 <- sat_wide |> mutate(diff = avg_sat_score_2021 - avg_sat_score_2019)
 
 ```
 

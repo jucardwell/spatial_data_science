@@ -1,5 +1,1 @@
----
-title: "competencies"
-format: html
----
-
+# Course Competencies

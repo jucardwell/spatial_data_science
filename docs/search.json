@@ -1,0 +1,442 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "spatial_data_science",
+    "section": "",
+    "text": "Preface\nThis site includes the material for GEOG215: Introduction to Spatial Data Science at UNC Chapel Hill.\nAnyone is free to share or adapt this material under the CC BY-NC 4.0 license.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "introduction_to_R.html",
+    "href": "introduction_to_R.html",
+    "title": "6  Software and File Management",
+    "section": "",
+    "text": "6.1 Downloading and Installing R and RStudio\nTo use R and RStudio, you will need to download and install both programs on your computer.\nOnce you have downloaded and installed RStudio, open up the application. We need to change one global setting before we start. You only need to do this once! Navigate Tools &gt; Global Options, unclick “Restore .RData into Workspace at Startup” and choosing Never on the “Save workspace to .RData on exit”.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
+    ]
+  },
+  {
+    "objectID": "introduction_to_R.html#downloading-and-installing-r-and-rstudio",
+    "href": "introduction_to_R.html#downloading-and-installing-r-and-rstudio",
+    "title": "6  Software and File Management",
+    "section": "",
+    "text": "Download R (make sure to download the correct version for your operating system)\nDownload RStudio",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
+    ]
+  },
+  {
+    "objectID": "introduction_to_R.html#the-rstudio-environment",
+    "href": "introduction_to_R.html#the-rstudio-environment",
+    "title": "6  Software and File Management",
+    "section": "6.2 The RStudio Environment",
+    "text": "6.2 The RStudio Environment\nThe RStudio environment consists of four panels.\n\nSource: This is where you can edit R files (either .R or .Rmd) and run R code.\nConsole: The console is an interactive R environment, where you can easily run R commands. Commands written in the console are not saved into any file. It can be good to use the console for quickly testing R code\nEnvironment: This is where R objects made during each session will appear.\nOutput: This is where charts and graphs will appear.\n\n\n\n\nRStudio Panes",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
+    ]
+  },
+  {
+    "objectID": "introduction_to_R.html#creating-and-saving-files",
+    "href": "introduction_to_R.html#creating-and-saving-files",
+    "title": "6  Software and File Management",
+    "section": "6.3 Creating and Saving Files",
+    "text": "6.3 Creating and Saving Files\nIn this class, we will primarily be working with .Rmd files. An R Markdown or .Rmd is a document format that is designed to easily integrate text and code. This means that you can easily type answers to questions, descriptions of code outputs, and other assignment tasks within the same document as your code.\nTo make a new .Rmd file, navigate to File &gt; New Script &gt; R Markdown",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
+    ]
+  },
+  {
+    "objectID": "introduction_to_R.html#downloading-packages",
+    "href": "introduction_to_R.html#downloading-packages",
+    "title": "6  Software and File Management",
+    "section": "6.4 Downloading Packages",
+    "text": "6.4 Downloading Packages\nR packages extend the functionality of Base R and must be downloaded. We will use a small set of libraries in this class.\n\ntmap: This is the main mapping package we will use\ngt: We will use this package to create nice tables\ntidyverse: This is the package we will use to create “tidy” analysis workflows. Tidyverse also includes ggplot2 which will be our main package to create graphics\ne1071: calculates descriptive statistics\nsf: This package allows us to read and manipulate spatial datasets\n\nYou should copy and paste each of these commands into the Console one by one to download the packages.\n\ninstall.packages(\"tmap\")\ninstall.packages(\"tidyverse\")\ninstall.packages(\"gt\")\ninstall.packages(\"sf\")\ninstall.packages(\"e1071\")\n\nOnce you have downloaded the packages, you will need to load them every time you want to use them.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
+    ]
+  },
+  {
+    "objectID": "introduction_to_R.html#file-management",
+    "href": "introduction_to_R.html#file-management",
+    "title": "6  Software and File Management",
+    "section": "6.5 File Management",
+    "text": "6.5 File Management\nYou will generate a large number of files in this class. The easiest thing to do to make sure that you can succeed in this class is to make sure you are following a file organization structure. These are the rules for file management in this class.\n\nEveryone MUST make a GEOG215 folder on their computer (please do not put it in your Downloads folder!!!)\nEvery time you create a file or download data, you MUST save into your GEOG215 folder\nDo NOT leave files open in RStudio. Every time you stop working, save your file and close it. Then close RStudio.\nIf you are not accessing a dataset directly from a cloud location (more on this later), you must use relative file paths to read in the data.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
+    ]
+  },
+  {
+    "objectID": "introduction_to_R.html#accessing-data",
+    "href": "introduction_to_R.html#accessing-data",
+    "title": "6  Software and File Management",
+    "section": "6.6 Accessing Data",
+    "text": "6.6 Accessing Data\nFor most of this class, you will access datasets directly from Google Drive without downloading them. This makes things simpler and saves you from having to manage a large number of files on your computer. Whenever you need to use data from Google Drive, I will provide the exact command to read it in.\nHowever, there will be cases where you will download data onto your computer. In these cases, you have to tell R where on your computer the data is saved. We do this using a “file path” which references a location on your local computer.\n\n6.6.1 Finding File Paths\nBoth Mac and PC have ways to find the file path of a particular document.\n\nOn a Mac, press and hold the command key and click on the file &gt; “Get Info” &gt; “Where”\nOn a PC, press and hold the shift key and right click on the file &gt; “Copy as Path”\n\nMac uses forward slashes in file paths (/) by default. Windows sometimes uses backslashes (\\) in file paths. You must always use forward slashes in R, even if you are using Windows. This means that if you copy a file path from a PC, you must replace all backslashes to front slashes.\nThere are two ways to write file paths.\n\n\n6.6.2 Absolute File Paths\nAn absolute file path references a specific location on someone’s local computer (what you would get from the “Get Info” or “Copy as Path” and will look something like this:\n“/Users/juliacardwell/Documents/GEOG215/my_data.csv”\n\n\n6.6.3 Relative File Paths\nRelative file paths reference a location relative to the current working directory. You can find the current working directory by looking in the console.\n\nFor instance, if I had a file within my spatial_data_sciene folder called “my_data.csv”, the relative path would be:\n“my_data.csv”\nThe command “../” takes you “up” one level from the working directory (for instance, if the file was in my Documents folder). The command “/” takes you “down” one level from the working directory (for instance, if I had a sub-folder in my spatial_data_science folder and the data was in there).\nWhen you open a script, the working directory is automatically set to where that script is saved. If you are saving a new file, you must save it, close it, and reopen it for the working directory to be correct.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
+    ]
+  },
+  {
+    "objectID": "introduction_to_R.html#rmd-formatting",
+    "href": "introduction_to_R.html#rmd-formatting",
+    "title": "6  Software and File Management",
+    "section": "6.7 .Rmd Formatting",
+    "text": "6.7 .Rmd Formatting\nA .Rmd is made up of two main components: code chunks (this is where you write code) and text (any words that are outside of a code chunk). Any time you are writing code, it needs to be in a code chunk. Chunks can then be run to execute the code within the chunk. The idea of chunking is to group code that accomplishes a single, related task into one code chunk. When you begin a new step or process in your workflow, you start a new chunk.\nKnitting a .Rmd means that you create a rendered .html including your code, output, and text. To knit your document, click the knit button. It will create a .html in whatever folder you have the .Rmd saved in.\nSometimes we want to modify how code and output actually appears in our knitted document. The follow commands can be used to help format .Rmd documents so that the knitted document is easy to read.\n\n6.7.1 Text Formatting\n\n\n\n6.7.2 Chunk Formatting",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Software and File Management</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html",
+    "href": "tidyverse_basics.html",
+    "title": "7  Basic R",
+    "section": "",
+    "text": "7.1 Creating a .Rmd and Reading Data\nThis chapter will introduce you to the basics of working with base R. After completing these exercises, you should be able to:\nWe will use the following datasets:\nTo follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. Once you’ve saved it, close the file and re-open it. Every time you see code below, you should copy it to your own document!\nQ1: Once you re-open the folder, what is your current working directory? How do you know?\nRemove all the code chunks except for the setup chunk. Below the setup chunk add a “first-level header” called “Loading Libraries and Reading in Data”.\nThen add a chunk below this text and load the tidyverse package. Format that chunk so that it is not included in the knitted document.\nYou will read in the school absence data directly from Google Drive using the following command:\nabsences &lt;- read_csv(\"https://drive.google.com/uc?export=download&id=1yH50dkdLLPx0AiHbvzWoLtSSnIY-1moh\")\nTo practice reading in data locally, download the NC Rurality Data to your GEOG215 folder (or whatever subfolder you have your .Rmd file saved to). Then, write a relative file path to read in that file. You will use the command\nrurality &lt;- read_csv(\"RELATIVEFILEPATH\")\nYour .Rmd should now look something like this",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#running-chunks-and-knitting",
+    "href": "tidyverse_basics.html#running-chunks-and-knitting",
+    "title": "7  Basic R",
+    "section": "7.2 Running Chunks and Knitting",
+    "text": "7.2 Running Chunks and Knitting\nWe have completed our code chunk for loading libraries and reading in data. Now we can”Run” or evaluate that code. We can evaluate a code chunk by clicking the green arrow. Once you’ve evaluated the chunk, the datasets should show up in your Environment. Those are now “Objects”\n\nNow practice knitting your document using the Knit button on the top panel. This should create a new .html file that will be saved in your working directory. The file will open in a new window.\n\nQ2: Why does the knitted document not include our code?",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#basic-r-commands",
+    "href": "tidyverse_basics.html#basic-r-commands",
+    "title": "7  Basic R",
+    "section": "7.3 Basic R Commands",
+    "text": "7.3 Basic R Commands\nAdd a new first level header called “Practicing Basic R Commands”. Then add a code chunk below that.\n\n7.3.1 Making Comments\nAny time you write a command, you will want to include a descriptive comment above it. To make a comment, we use this formatting.\n\n## this is a comment\n\n\n\n7.3.2 Basic Math\nAdd the following commands to your code chunk. In addition to running a full chunk, you can also run a single line of code by clicking “Command” and “Return” on a Mac or “Control” and “Enter” on a PC. Run each of the following commands.\n\n## basic addition\n4 + 3\n\n## basic division\n123.1 / 3.445\n\n##exponents\n5^2\n\nQ3: Where is the output printed when you run those commands?\n\n\n7.3.3 Boolean Operators\nBoolean logical operators return either a true or a false based on the conditions. Add these commands to your code chunk and run each one.\n\n## is greater? \n2 &gt; 5\n\n## is equal? \n3 == 3\n\n## is greater or equal? \n10000 &gt;= 1\n\n## is less? \n(3 * 5) &lt; 20\n\n\n\n7.3.4 Functions\nFunctions can be though of as “actions”. Base R already has many built in functions. The basic setup of a function is function(argument, ...). Add these commands to your code chunk and run each one.\n\n#sum\nsum(2:963)\n\n#sum\nmean(c(1, 10, 100, NA))\n\n#sum, remove na\nmean(c(1, 10, 100, NA), na.rm = TRUE)",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#assigning-and-printing-objects",
+    "href": "tidyverse_basics.html#assigning-and-printing-objects",
+    "title": "7  Basic R",
+    "section": "7.4 Assigning and Printing Objects",
+    "text": "7.4 Assigning and Printing Objects\nSo far, every command we’ve run has been evaluated in the console, which means R immediately prints the result at the bottom of the chunk. This happens any time you type an expression without saving it as an object.\nSaving as an object means that the result of that command is stored in our environment (like the data we read in). To create objects, we use the &lt;- command. To see the output in the console, you need to print the object. The benefit of using objects is that we can “call” that object in later commands without having to rewrite the whole command over again. Add these commands to your code chunk and run each one.\n\n## save an object\nmath_object &lt;- 4 + 3\n\n## print an object\nmath_object",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#data-types",
+    "href": "tidyverse_basics.html#data-types",
+    "title": "7  Basic R",
+    "section": "7.5 Data Types",
+    "text": "7.5 Data Types\nR works with several fundamental data types. Remember that the data type has to do with the data values:\n\nNumeric: numbers with decimals\nInteger: whole numbers\nCharacter: text data (strings)\nLogical: True/False values\nFactor: Categorical data with predefined levels\nNA: Missing data\n\nYou can check the data type using the class() command. Add these objects to your code chunk. Then write a command to check the data type of each object.\n\nx &lt;- 5\n\ny &lt;- 10L #R stores numbers as numeric, unless you specify\n\ntext &lt;- \"North Carolina\" #Try running this without the quotations\n\nsample &lt;- \"10\" #try adding sample to x. What happens? Why? \n\nlogical &lt;- 3 &gt; 1\n\nrural &lt;- factor(c(\"Urban\", \"Rural\"))\n\nQ4: What happens if you values are not the expected data type? For instance, if you wanted to add sample to x?",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#data-structures",
+    "href": "tidyverse_basics.html#data-structures",
+    "title": "7  Basic R",
+    "section": "7.6 Data Structures",
+    "text": "7.6 Data Structures\nR organizes data into several common structures. These structures determine how values are stored and how you can work with them. Remember that data structure has to do with how values (of any type) are stored\n\nVector: Collection of items that are all the same data type\nList: Collection of items that can be different data types\nMatrix: Two-dimensional table of values, all of the same data type\nData Frame: Two-dimensional table where columns can be different data types\n\nYou can check the structure of any object using the str() command. Add the following objects to your chunk and check the structure of each:\n\nv &lt;- c(1, 5, 10, 20) #note that c() is used to combine\n\nl &lt;- list(1, \"NC\", TRUE)\n\nm &lt;- matrix(1:6, nrow = 2)\n\ndf &lt;- data.frame(a = 1:3, b = c(\"x\", \"y\", \"z\"))",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#indexing-and-subsetting",
+    "href": "tidyverse_basics.html#indexing-and-subsetting",
+    "title": "7  Basic R",
+    "section": "7.7 Indexing and Subsetting",
+    "text": "7.7 Indexing and Subsetting\nIndexing is used to select or subset elements from data structures.\n\n[] selects elements by position\n[[]] extracts a single element\n$ extracts a column by name\nLogical indexing selects elements that meet a condition\n\nAdd these commands to your chunk. Run each command and add a comment based on what the command is doing.\n\n#practice df (I made these values up!)\nnc_example &lt;- data.frame(\n  county = c(\"Wake\", \"Durham\", \"Orange\", \"Buncombe\", \"Mecklenburg\"),\n  population = c(1130000, 330000, 150000, 270000, 1135000),\n  region = factor(c(\"Piedmont\", \"Piedmont\", \"Piedmont\", \"Mountain\", \"Piedmont\")),\n  pct_rural = c(0.03, 0.07, 0.28, 0.35, 0.02),\n  has_university = c(TRUE, TRUE, TRUE, FALSE, TRUE)\n)\n\n#\nnc_example[1, ]  \n\n#\nnc_example[, 2]\n\n#\nnc_example[3, 1] \n\n#\nnc_example[2:4, 3]\n\n#\nnc_example$population\n\n#\nnc_example[[\"population\"]]\n\n#\nnc_example[nc_example$population &gt; 300000, ]",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#creating-a-new-variable",
+    "href": "tidyverse_basics.html#creating-a-new-variable",
+    "title": "7  Basic R",
+    "section": "7.8 Creating a New Variable",
+    "text": "7.8 Creating a New Variable\nWe can create new variables using the $ command. Add this command and a descriptive comment\n\n#\nnc_example$pct_urban = 1 - nc_example$pct_rural",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#mini-challenge",
+    "href": "tidyverse_basics.html#mini-challenge",
+    "title": "7  Basic R",
+    "section": "7.9 Mini-Challenge",
+    "text": "7.9 Mini-Challenge\nAdd a new first level header called “Mini-Challenge #1”. Under that header, add a code chunk. In the code chunk, write commands to do the following:\n\nAdd a variable to the nc_example data frame called “pop_million” that calculates the population of each county in millions\nUsing the nc_example data frame, create a new object called triangle_region that contains only the counties located in the Piedmont region.\nExtract the pct_rural value for Orange County\nUsing the triangle-region object you created, calculate and print the mean population of the Triangle counties\nCreate a new object called very_rural that returns a filtered data frame containing only counties where more than 20% of the population is rural",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html",
+    "href": "tidyverse.html",
+    "title": "8  Basic Tidyverse Manipulation",
+    "section": "",
+    "text": "8.1 Data Structure in the Tidyverse\nThis chapter will introduce you to the basics of working with the tidyverse. After completing these exercises, you should be able to:\nWe will continue to use the data that we used in the Basic R chapter. To start, create a new .Rmd document (formatted like we formatted our .Rmd in the Basic R chapter). Read in the data using the same command we used in our previous .Rmd.\nAdd a first-level header called “Using the Tidyverse”. Under the header, add a code chunk\nFor the most part, we will be working with a special data structure called a tibble. A tibble is tidyverse’s version of a data frame. In a tibble, each row is an observation and each column is a variable. This is called “tidy” data.\nTo get a basic understanding of our data, we can use the str command:\n#structure of absences\nstr(absences)\n\n#structure of rurality\nstr(rurality)\nYou should also double-click each object in the “Environment” tab. This will open the tibble so that you can explore it.\nQ1: How many rows are in the absences dataset?\nQ2: How many variables are in our rurality dataset?\nQ3: What is the data type of the year variable in the absences dataset?\nQ4: Which of the absences variables are characters?\nBasic data manipulation in the tidyverse generally involves “piping”. Piping is the way that we can “chain” operations or commands and it looks like this: |&gt; (in documentation you might also see a pipe written like this %&gt;%). Run each of the following commands and add a descriptive comment above it.\n#\nabsences |&gt; slice_head(n = 5)\n\n#\nabsences |&gt; select(1)\n\n#\nabsences |&gt; select(rural)\n\n#\nabsences |&gt;\n  summarise(mean_percent = mean(pre_covid_pct))\n\n#\nabsences |&gt;\n  summarise(max_percent = max(after_covid_pct))\n\n#\nrurality |&gt; summarise(n_rural = sum(nc_rural_center == \"Rural\"))\n\n#\nsummary &lt;- absences |&gt;\n  summarise(max_before_covid = max(pre_covid_pct), max_after_covid = max(after_covid_pct))\nQ5: Why wasn’t the last command printed to the console?\nQ6: Write a command that creates an object called metro_core and counts the number of observations that have a ruca_code of “Metropolitan Core”\nUsually, unless we are doing basic data exploration, we want to save our manipulated data as objects. You can either “re-write” an object by using the same name, or you can re-name the manipulated object. Run each of the following commands and add a descriptive comment above it.\n#\nnon_rural_data &lt;- absences |&gt; filter(rural == \"non-rural\")\n\n#\npre_covid &lt;- absences |&gt; select(agency_code, pre_covid_pct)\n\n#\nrenamed_absences &lt;- absences |&gt; rename(pre_covid_ratio = pre_covid_pct, after_covid_ratio = after_covid_pct)\n\n#\nadded_column &lt;- renamed_absences |&gt; mutate(change = after_covid_ratio - pre_covid_ratio)\n\n#\nlogical &lt;- renamed_absences |&gt; mutate(high_absence = ifelse(pre_covid_ratio &gt; .25, 1, 0))\n\n#\nlogical_rural &lt;- rurality |&gt; mutate(highly_rural = ifelse(ruca_code %in% c(\"Small town low commuting\", \"Rural area\", \"Small town core\"), \"Highly Rural\", \"Not Highly Rural\"))\nQ7: Write a command that creates an object called high_absence_schools that filters the logical object to just schools that have a high absence rate before Covid.\nQ8: Write a command that creates an object called urban that filters the rurality object to just observations that are “Metropolitan high commuting” or “Metropolitan core”",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Basic Tidyverse Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html#descriptive-statistics",
+    "href": "tidyverse.html#descriptive-statistics",
+    "title": "8  Basic Tidyverse Manipulation",
+    "section": "8.2 Descriptive Statistics",
+    "text": "8.2 Descriptive Statistics\nDescriptive statistics allow us to understand the distribution of our dataset. We can use a similar command structure to create almost all of the descriptive statistics tables in our class. Add a first-level header called “Describing the Data”. Add a code chunk below.\n\n##Notice that you need to add these libraries. You might need to install them. \nlibrary(e1071)\nlibrary(gt)\n\n#calculate descriptive statistics \npre_covid_stat &lt;- absences |&gt; select(pre_covid_pct) |&gt;\n  summarise(\n    n = n(),\n    num_na = sum(is.na(pre_covid_pct)), \n    mean_pct = mean(pre_covid_pct, na.rm = TRUE),\n    median_pct = median(pre_covid_pct, na.rm = TRUE),\n    sd_pct = sd(pre_covid_pct, na.rm = TRUE),\n    variance_pct = var(pre_covid_pct, na.rm = TRUE),\n    mean_dev = mean(abs(pre_covid_pct - mean(pre_covid_pct, na.rm = TRUE)), na.rm = TRUE),\n    cv_pct = sd_pct / mean_pct,\n    min_pct = min(pre_covid_pct, na.rm = TRUE),\n    max_pct = max(pre_covid_pct, na.rm = TRUE),\n    skewness = skewness(pre_covid_pct, na.rm = TRUE), \n    kurtosis = kurtosis(pre_covid_pct, na.rm = TRUE)\n  )\n\n##this will format the table for display\ndisplay_table &lt;-  pre_covid_stat |&gt; pivot_longer(everything(), names_to = \"Statistic\", values_to = \"Value\") |&gt;\n  gt() |&gt;\n  tab_header(\n    title = \"Chronic Absences at NC Public Schools before Covid-19\",\n  ) %&gt;%\n  fmt_number(\n    columns = everything(),\n    decimals = 2\n  )\n\n#display the table\ndisplay_table\n\n\n### CATEGORICAL DATA #####\n## create a basic table of descriptive statistics for NC Rural Center Rural Definition\nrural_table &lt;- rurality |&gt; \n  group_by(nc_rural_center) |&gt;\n  summarise(n = n())  |&gt;  gt() \n\nrural_table",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Basic Tidyverse Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html#basic-plotting-with-ggplot2",
+    "href": "tidyverse.html#basic-plotting-with-ggplot2",
+    "title": "8  Basic Tidyverse Manipulation",
+    "section": "8.3 Basic Plotting with ggplot2",
+    "text": "8.3 Basic Plotting with ggplot2\nData visualizations can add additional information to our descriptive statistics table. Add a first-level header called “Plotting our Data”. Add a code chunk below it.\n\n8.3.1 The “Language” of ggplot2\nThe ggplot2 package builds visualizations using a conceptual framework based on the grammar of graphics– meaning that every graph can be built from the same components. These components are a dataset, a coordinate system, and geoms (visual marks that represent data points). The basic “formula” of a ggplot is:\n1) Start with the data -&gt; ggplot(DATAFRAME,\n2) Map variables to aesthetics -&gt; aes(x = , y =, color = , size = , shape= )\n3) Add layers (what kind of graph) -&gt; + geom_***\nFor instance, a basic scatterplot could look like\nggplot(data, aes(x = var_for_x_axis, y = var_for_y_axis)) + geom_point()\nWe will work extensively with ggplot2 graphs in this class. The following examples provide a very brief introduction on using ggplot2\n\n\n8.3.2 Histogram/ Density Plot\nA histogram is a graph that displays the frequency of observations within user-set “bins”. A density plot is a smooth curve that shows the distribution of the data. The curve represents the proportion of the data in each range rather than the frequency. Both of these visualizations help us understand the distribution of our data\n\n## create a histogram of pre covid absences\n#absences is our data, x is the variable for x axis (no y axis with histograms, since it is frequency)\n#binwidth is how large each bin is\n#alpha sets the transparency\n#labs adds labels\nggplot(absences, aes(x = pre_covid_pct)) + \n  geom_histogram(binwidth = .05, fill = \"lightgrey\", color = \"black\", alpha = 0.7) +\n  labs(\n    title = \"Histogram of Pre Covid Absences\",\n    x = \"Absence Ratio\",\n    y = \"Frequency\"\n  ) \n\n## create a density plot of pre covid absences\nggplot(absences, aes(x = pre_covid_pct)) +\n  geom_density(fill = \"lightgrey\", color = \"black\", alpha = 0.7) +\n  labs(\n    title = \"Density Plot of Pre Covid Absences\",\n    x = \"Absence Ratio\",\n    y = \"Proportion\"\n  ) \n\n\n8.3.2.1 Boxplot\nA boxplot is a standardized way of displaying the distribution of data based on a five-number summary: minimum, first quartile (Q1), median, third quartile (Q3), and maximum. It can also highlight outliers in the data.\n\n## absences is the data\n## y axis only (if you wanted to flip the box plot, you would use x = )\nggplot(absences, aes(y = pre_covid_pct)) +\n  geom_boxplot(fill = \"lightgrey\") +\n  labs(\n    title = \"Boxplot of Chronic Absences\",\n    y = \"Ratio\"\n  )\n\nQ16: Make a box plot of after covid absences\n\n\n8.3.2.2 Violin Plot\nA violin plot is a method of plotting numeric data and can be understood as a combination of a boxplot and a density plot. It shows the distribution of the data across different values.\n\n##Look how we've layered two different plot types onto the same graph\nggplot(absences, aes(x = 1, y = pre_covid_pct)) +\n  geom_violin(fill = \"lightgrey\", bw = .05)  + geom_boxplot(width=0.3) +\n  labs(\n    title = \"Violin Plot of of Chronic Absences\",\n    y = \"Ratio\"\n  ) + theme(axis.title.x=element_blank(),\n        axis.text.x=element_blank(),\n        axis.ticks.x=element_blank())\n\n\n\n\n8.3.3 Bar Chart\nA bar chart displays the count of each observations in a group. It is a useful visualization for nominal/categorical data.\n\n#this creates the grouped dataset\ngrouped_rural &lt;- rurality |&gt; \n  group_by(ruca_code) |&gt;\n  summarise(Count = n()) \n\n#this plots the bar plot (note that the coord_flip swtiches the axis which is better for labeling in this case)\nggplot(grouped_rural, aes(x=ruca_code, y=Count)) + \n  geom_bar(stat = \"identity\") + coord_flip() + labs(\n    x = \"RUCA Code Category\",\n    y = \"Number of Census Tracts\",\n  )\n\n\n\n8.3.4 Faceting and Grouping Plots\nFaceting and grouped visualization are two ways to compare distributions across categories in ggplot2. Faceting creates separate panels for each level of a categorical variable, making it easy to see each group individually. Grouped visualization overlays multiple groups in a single plot, using color or fill to distinguish them, so you can compare distributions directly. In both cases, the variable used to define the groups must be categorical (like rural), because these techniques rely on discrete levels to separate or color the data.\n\n##grouped visualization (see fill value)\nggplot(absences, aes(x = pre_covid_pct, fill = rural)) +\n  geom_density(binwidth = .05, alpha = .7) +\n  labs(\n    title = \"Histogram of Pre Covid Absences\",\n    x = \"Absence Ratio\",\n    y = \"Frequency\"\n  ) \n\n#faceted visualization (see facet_wrap)\nggplot(absences, aes(x = pre_covid_pct)) +\n  geom_density(binwidth = 0.05, alpha = 0.7, fill = \"lightblue\") +\n  facet_wrap(~ rural) +   # create separate panels by the 'rural' variable\n  labs(\n    title = \"Density of Pre-Covid Absences by Rural Category\",\n    x = \"Absence Ratio\",\n    y = \"Density\"\n  )\n\n\n#violin plots and box plots use the x variable to look at categories\nggplot(absences, aes(x = rural, y = pre_covid_pct)) +\n  geom_violin(fill = \"lightgrey\", bw = .05)  + geom_boxplot(width=0.1) +\n  labs(\n    title = \"Violin Plot of Summer Temperatures (1991-2020)\",\n    y = \"Summer Temperature (°F)\"\n  )",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Basic Tidyverse Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse.html#mini-challenge",
+    "href": "tidyverse.html#mini-challenge",
+    "title": "8  Basic Tidyverse Manipulation",
+    "section": "8.4 Mini-Challenge",
+    "text": "8.4 Mini-Challenge\nAdd a new first level header called “Mini-Challenge #2”. Under that header, add a code chunk. In the code chunk, write commands to do the following:\n\nMake a descriptive statistics table of after_covid_ratio\nMake a descriptive statistics table of ruca_code\nMake a histogram and density plot of after covid absences\nMake a violin chart of after covid absences\nMake a bar chart of NC Rural Center rural definition",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Basic Tidyverse Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "describing_spatial_data.html",
+    "href": "describing_spatial_data.html",
+    "title": "9  Introduction to Spatial Data",
+    "section": "",
+    "text": "9.1 Getting to Know Spatial Data\nIn this chapter, we will start working with spatial data formats using the sf (for vector data), spdep library (spatial statistics), the terra package (for raster data), and tmap (for mapping) packages. After completing these exercises, you should be able to:\nWe will use the following datasets:\nCreate a new .Rmd document and add the code chunk below to read in the data.\nAdd a first-level header called “Getting to Know Spatial Data”. As you move through the tutorial, copy and paste the commands, making sure each command has a descriptive comment.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introduction to Spatial Data</span>"
+    ]
+  },
+  {
+    "objectID": "describing_spatial_data.html#getting-to-know-spatial-data",
+    "href": "describing_spatial_data.html#getting-to-know-spatial-data",
+    "title": "9  Introduction to Spatial Data",
+    "section": "",
+    "text": "9.1.1 Inspecting Geometry in Vector Data\nAll vector data has a required column, which is almost always named geometry. This column stores the spatial component of each data point (row). We can get a basic understanding of this geometry column by running the following command:\n\n## inspect geometry of tornado dataset\nst_geometry(torn)\n\nQ1: Does this dataset have point, line, or polygon geometries?\nQ2: What is the CRS of this dataset? (you can also find the crs by running the command crs()\n\n\n9.1.2 Inspecting Raster Structure\nRaster data are not structured like tibbles (or vectors). Instead of rows and columns in a table, rasters represent values stored in a regular grid of cells across space. Remember that the attributes of the raster data are stored as the cell value (as opposed to columns in a row). The following\n\n#get resolution of raster data. Remember that the resolution will be in the unit of the CRS. \nres(tree_cover)\n\n[1] 30 30\n\n#get the spatial extent of the raster\next(tree_cover)\n\nSpatExtent : -8807610, -8788650, 4279980, 4307520 (xmin, xmax, ymin, ymax)\n\n#get the crs of the raster\ncrs(tree_cover)\n\n[1] \"PROJCRS[\\\"WGS 84 / Pseudo-Mercator\\\",\\n    BASEGEOGCRS[\\\"WGS 84\\\",\\n        DATUM[\\\"World Geodetic System 1984\\\",\\n            ELLIPSOID[\\\"WGS 84\\\",6378137,298.257223563,\\n                LENGTHUNIT[\\\"metre\\\",1]]],\\n        PRIMEM[\\\"Greenwich\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433]],\\n        ID[\\\"EPSG\\\",4326]],\\n    CONVERSION[\\\"unnamed\\\",\\n        METHOD[\\\"Popular Visualisation Pseudo Mercator\\\",\\n            ID[\\\"EPSG\\\",1024]],\\n        PARAMETER[\\\"Latitude of natural origin\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8801]],\\n        PARAMETER[\\\"Longitude of natural origin\\\",0,\\n            ANGLEUNIT[\\\"degree\\\",0.0174532925199433],\\n            ID[\\\"EPSG\\\",8802]],\\n        PARAMETER[\\\"False easting\\\",0,\\n            LENGTHUNIT[\\\"metre\\\",1],\\n            ID[\\\"EPSG\\\",8806]],\\n        PARAMETER[\\\"False northing\\\",0,\\n            LENGTHUNIT[\\\"metre\\\",1],\\n            ID[\\\"EPSG\\\",8807]]],\\n    CS[Cartesian,2],\\n        AXIS[\\\"easting (X)\\\",east,\\n            ORDER[1],\\n            LENGTHUNIT[\\\"metre\\\",1]],\\n        AXIS[\\\"northing (Y)\\\",north,\\n            ORDER[2],\\n            LENGTHUNIT[\\\"metre\\\",1]],\\n    USAGE[\\n        SCOPE[\\\"Web mapping and visualisation.\\\"],\\n        AREA[\\\"World between 85.06°S and 85.06°N.\\\"],\\n        BBOX[-85.06,-180,85.06,180]],\\n    ID[\\\"EPSG\\\",3857]]\"\n\n#get the dimensions of the raster\ndim(tree_cover)\n\n[1] 918 632   1\n\n#get a summary of the cell values\nsummary(tree_cover)\n\nWarning: [summary] used a sample\n\n\n NLCD_Percent_Tree_Canopy_Cover\n Min.   : 0.0                  \n 1st Qu.:47.0                  \n Median :82.0                  \n Mean   :65.5                  \n 3rd Qu.:89.0                  \n Max.   :99.0                  \n\n\nQ3: What is the CRS of the raster dataset. What does that tell you about the unit of resolution? (feet, meters, miles)\nQ4: What do our summary statistics tell us about tree cover in Chapel Hill?\n\n\n9.1.3 Making Data Spatial\nOften we have spatial data that is not in an explicitly spatial format (i.e. geojson, shapefile, etc.) but has spatial information in it as columns (a latitude and longitude column). We can easily convert this to a spatial feature in R as long as we know the coordinate system.\nFor instance, we can convert the hospital data from a .csv to spatial features because this dataset has an X and Y column and we know the CRS is 2264 (North Carolina State Plane)\n\n## transform to spatial features\nspatial_hosp &lt;- nc_hosp |&gt; st_as_sf(coords = c(\"X\", \"Y\"), crs = 2264)\n\nQ5: Inspect the geometry column of this dataset\n\n\n9.1.4 Making Basic Maps\nWe will use the tmap package to create maps of our spatial data. Mapping data is a very important component of getting to know our data.\nWe can make a very basic map of tornado locations using the following command:\n\n#tm_shape references the object, we use tm_dots for points tm_polygons for polygons and tm_lines for lines\ntm_shape(torn) + tm_dots()\n\n\n\n\n\n\n\n##we can plot a variable by adding an argument into our tm_dots command\n## this maps the month the tornado happened\ntm_shape(torn) + tm_dots(fill = \"mo\")\n\n\n\n\n\n\n\n\nQ6: Make a basic map of the spatial_hosp object that displays the number of general beds in each hospital (ngenlic)\nTo map rasters, we use the\n\ntm_shape(tree_cover) + tm_raster()\n\n\n\n\n\n\n\n\nQ7: Can you notice any recognizable features in the raster?",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introduction to Spatial Data</span>"
+    ]
+  },
+  {
+    "objectID": "describing_spatial_data.html#spatial-descriptive-statistics",
+    "href": "describing_spatial_data.html#spatial-descriptive-statistics",
+    "title": "9  Introduction to Spatial Data",
+    "section": "9.2 Spatial Descriptive Statistics",
+    "text": "9.2 Spatial Descriptive Statistics\nWith vector-based spatial data, we can expand our descriptive statistics to include spatial descriptive statistics. Combining traditional descriptive statistics with spatial descriptive statistics can expand our understanding of the dataset.\n\n9.2.0.1 Mean Center\nThe mean center of a spatial dataset represents the average location of a set of points and is calculated by taking the average of all the x-coordinates and all the y-coordinates in the dataset.\n\n#calculate mean center of all tornados in dataset\ntorn_mean_center &lt;- center_mean(torn)\n\n#map tornadoes and mean center\ntm_shape(torn) + tm_dots() + tm_shape(torn_mean_center) + tm_dots(fill = \"blue\") + tm_add_legend(\n    type = \"symbols\",\n    labels = \"Mean Center\",\n    fill = \"blue\"\n  )\n\n\n\n\n\n\n\n\nQ8. What does the location of our mean center tell us about the spatial distribution of tornadoes in the United States?\n\n\n9.2.0.2 Weighted Mean Center\nThe weighted mean center calculates the average location, but allows you to select a variable to weight by. The calculation then gives more influence to features with larger values of that variable. For instance, we could give higher weight to fatal tornadoes\n\n## calculate weighted mean center using \"fat\" variable\ntorn_w_mean_center &lt;- center_mean(torn, weight = torn$fat)\n\n\n##map mean center and weighted mean center\ntm_shape(torn) + tm_dots() + tm_shape(torn_mean_center) + tm_dots(fill = \"blue\", ) + tm_shape(torn_w_mean_center) + tm_dots(fill = \"red\") + tm_add_legend(\n    type = \"symbols\",\n    labels = c(\"Mean Center\", \"Weighted Mean Center\"),\n    fill = c(\"blue\", \"red\")\n  )\n\n\n\n\n\n\n\n\nQ9. What does the difference between the mean center and the weighted mean center (weighted by fatalities) tell us about the spatial distribution of fatal tornadoes?\n\n\n9.2.0.3 Standard Deviational Ellipse\nThe standard deviational ellipse is a method for summarizing the spatial central tendency, dispersion, and directional trends. The ellipse visually represents the spread of the data and the direction of the spread. It is centered on the mean center and its axes represent the standard deviation of the x and y coordinates.\n\n#calculate standard ellipse values\nstd_ellip_torn &lt;- std_dev_ellipse(torn)\n\n#create an ellipse of those values\nstd_ellip_torn &lt;- sfdep::st_ellipse(geometry =std_ellip_torn,\n                                   sx = std_ellip_torn$sx,\n                                   sy = std_ellip_torn$sy,\n                                   rotation = -std_ellip_torn$theta)\n#map the ellipse with transparency\ntm_shape(torn) + tm_dots() + tm_shape(std_ellip_torn) + tm_polygons(fill_alpha = .5)\n\n\n\n\n\n\n\n\n\n\n9.2.1 Mini Challenge #3\nAdd a new first level header called “Mini-Challenge #3”. Under that header, add a code chunk. In the code chunk, write commands to do the following:\n\nCreate two objects– one representing all tornadoes before 2000 and one representing all tornadoes after 2000.\nCalculate the weighted mean center (by mag) for tornadoes before and after 2000\nDetermine what this difference tells us about how the spatial pattern of tornadoes has changed over time.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Introduction to Spatial Data</span>"
+    ]
+  },
+  {
+    "objectID": "wrangling.html",
+    "href": "wrangling.html",
+    "title": "10  Advanced Tidyverse",
+    "section": "",
+    "text": "10.1 Research Question 1: How does hospital bed availability per capita vary across NC counties?\nIn data science workflows, we rarely work directly with the raw data. Instead, we often have to do substantial pre-processing (sometimes called wrangling), to get our data to the point where it is meaningful to analyze in relation to our research questions. In this chapter, we will work with more tidyverse functions to do more advanced data wrangling. After completing these exercises, you should be able to:\nWe will use the following datasets in this chapter:\nAt this point in the class, we will start organizing our exercises around specific research questions or ideas. Remember that data science is an iterative process. You do not need to have a fully formed research question before you begin working with data. Often, exploring the data helps us refine our questions or even come up with new ones. That said, we usually begin with some initial idea or curiosity, which helps guide our data wrangling and analysis.\nTo start, create a new .Rmd document. Add a first-level header called “Reading in Data”. Then add the following code chunk. For each of the research questions below, add an additional header and code chunk.\nQ1: Based on the commands above, which of these datasets are spatial files?",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Advanced Tidyverse</span>"
+    ]
+  },
+  {
+    "objectID": "wrangling.html#research-question-1-how-does-hospital-bed-availability-per-capita-vary-across-nc-counties",
+    "href": "wrangling.html#research-question-1-how-does-hospital-bed-availability-per-capita-vary-across-nc-counties",
+    "title": "10  Advanced Tidyverse",
+    "section": "",
+    "text": "10.1.1 Plain Language Summary:\nIn our NC county dataset, each row represents one county. In the hospital dataset, each row represents one hospital, and multiple hospitals can exist within the same county. Because these datasets are organized differently, we can’t compare them directly. To make them compatible, we first need to summarize the hospital data at the county level (aggregation). Then we need to combine the datasets so that we can use fields from both (joining). After we join the datasets, we can create new variables of interest (like number of hospital beds per county resident).\n\n\n10.1.2 Step 1: Aggregating Hospital Data\nTo start, we need to get our hospital data to the county level so it is directly comparable to our county dataset. The workhorse for aggregation in the tidyverse package is the combination of group_by and summarise.\n\n#the group_by command tells tidyverse which column(s) we want to aggregate based on. #the summarise command tells tidyverse how to summarise the data\nsummarised_hospital &lt;- hospitals |&gt; \n  group_by(fcounty) |&gt; \n  summarise(total_general_beds = sum(hgenlic))\n\nQ2: Write a command to calculate the total number of beds (hgenlic + rehabhlic). You should add a new field in the hospitals dataset (mutate) before grouping and summarizing.\n\n\n10.1.3 Step 2: Joining our Data\nNow, we need to combine our county data with our hospital data. We do this through a table join (left_join). If you are joining spatial and non-spatial data, the spatial data must always be what is joined to. A table join requires a key field. A key field means that the values match between both datasets. The name of the column does not need to match.\n\n#the first argument in the join is the object you want to join, the second is the fields to join by\ncounty_hosp &lt;- nc_counties |&gt; \n  left_join(summarised_hospital, join_by(NAMELSAD == fcounty))\n\nQ3: Open the county_hosp object. Did the join work? How do you know?\nQ4: Can you figure out what’s wrong with our join and fix it? (hint: it has to do with the fields we chose to join by)\n\n\n10.1.4 Step 3: Create our Variable of Interest\nQ5: Using the mutate command on your joined dataset (after you’ve fixed the join), calculate a density metric of hospital beds per 1000 people per county using the formula bed_density = total_beds / (county pop/ 1000)\n\n\n10.1.5 Step 4: Explore our Variable of Interest\nQ6: Make a descriptive statistics table of hospital beds/ 1000 people. Note that there are NAs in the dataset (counties with no hospitals). Your descriptive statistics table will need to use the na.rm = TRUE argument\nQ7: Make one non-map graphic of the variable of interest.\nQ8: Create a map of the variable of interest.\nQ9: What is the spatial pattern of hospital bed density across North Carolina?",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Advanced Tidyverse</span>"
+    ]
+  },
+  {
+    "objectID": "wrangling.html#research-question-2-how-does-maximum-temperature-vary-throughout-the-seasons-across-stations-near-chapel-hill-nc",
+    "href": "wrangling.html#research-question-2-how-does-maximum-temperature-vary-throughout-the-seasons-across-stations-near-chapel-hill-nc",
+    "title": "10  Advanced Tidyverse",
+    "section": "10.2 Research Question 2: How does maximum temperature vary throughout the seasons across stations near Chapel Hill, NC?",
+    "text": "10.2 Research Question 2: How does maximum temperature vary throughout the seasons across stations near Chapel Hill, NC?\n\n10.2.1 Plain Language Summary\nIn our ch_temp dataset, each row represents the maximum temperature for a single day per station. We want to temporally aggregate this data so that we, instead, have summary values for each station for each season. Once we have our summary values, we’ll want to “pivot” our data so that instead of having a row for each season per station, we have a row for each station and the seasons are columns. Then, we’ll want to make our data spatial.\n\n\n10.2.2 Step 1: Create a Season Variable\nWe can use the mutate command to add a column that notes the season of each row. tidyverse is very good at working with dates, through the lubridate package included in tidyverse.\n\n#add a season variable by manipulating date\nch_temp &lt;- ch_temp |&gt;\n  mutate(\n    month = month(Date),\n    season = case_when(\n      month == 12 | month &lt; 3  ~ \"Winter\",\n      month &gt;= 3  & month &lt; 6  ~ \"Spring\",\n      month &gt;= 6  & month &lt; 9  ~ \"Summer\",\n      month &gt;= 9  & month &lt; 12 ~ \"Fall\"\n    )\n  )\n\nQ10: What does the case_when command allow us to do?\n\n\n10.2.3 Step 2: Aggregate by Station and Season\nWe can put multiple arguments in the group_by command. If you noticed above, the grouped summary ONLY retains the grouping fields and the summary fields. It removes all other fields. Because we want to make our data spatial later, we will also group by the latitude and longitude fields (since we know that these are identical at each location and we want to use them later on).\n\n#aggregate by station and season\nch_temp_agg &lt;- ch_temp |&gt;\n  group_by(season, Location, Latitude, Longitude) |&gt;\n  summarise(mean = mean(`Maximum Air Temperature (F)`),\n            min = mean(`Maximum Air Temperature (F)`),\n            max = mean(`Maximum Air Temperature (F)`))\n\nQ11: Did our summarizing work? Can you figure out why not? (Hint: look at the field type of the maximum air temperature column)\nWe’ve got a missing data issue in our dataset. R is able to recognize blank cells, or cells with NA as missing data. However, in our temperature dataset, they use MV to represent missing data, which R does not recognize. Because all data must be the same type in a tidyverse column, this data, which is numeric, has been read in as string to account for the “MV” value in some of the cells. To fix this, we can “force” the data to numeric, which will replace any non-numeric characters with NA. When you run the command below, it should give you a warning that NAs were introduced by coersion. That’s good!\n\n#aggregate by station and season\nch_temp_agg &lt;- ch_temp |&gt;\n  mutate(temp = as.numeric(`Maximum Air Temperature (F)`)) |&gt;\n  group_by(season, Location, Latitude, Longitude) |&gt;\n  summarise(mean = mean(temp, na.rm = TRUE),\n            min = min(temp, na.rm = TRUE),\n            max = max(temp, na.rm = TRUE))\n\n\n\n10.2.4 Step 3: Pivot the Data\nRight now, our dataset has multiple rows per station, one row for each season. Ultimately, we want a single row per station. In the tidyverse universe, we call this “pivoting”. In this case, we want to “widen” our data\n\n#pivot wider (move seasons from rows to columns)\nch_temp_wide &lt;- ch_temp_agg |&gt;\n  pivot_wider(\n    names_from = season,\n    values_from = c(mean, min, max),\n    names_sep = \"_\"\n  )\n\n\n\n10.2.5 Step 4: Make our Data Spatial\nQ12: The latitude and longitude values in the ch_temp_wide object are in CRS =4326. Using the command we learned in the Introduction to Spatial Data chapter, convert this object to a spatial object and map the maximum summer temperature at the four stations. Add the command tmap_options(\"view\") before you create the map.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Advanced Tidyverse</span>"
+    ]
+  },
+  {
+    "objectID": "wrangling.html#mini-challenge",
+    "href": "wrangling.html#mini-challenge",
+    "title": "10  Advanced Tidyverse",
+    "section": "10.3 Mini Challenge",
+    "text": "10.3 Mini Challenge\nIn this challenge, you should add a code chunk that does the following:\n\nPivot the sat_data object wider (so that the yearly data becomes columns, not rows)\nAdd a column that represents the difference between average SAT score before Covid (2019) and directly after Covid (2021)\nJoin the SAT data to the schools object. Remember that the spatial object must go first in the join.\nMake a map of school SAT score change",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Advanced Tidyverse</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_wrangling.html",
+    "href": "spatial_wrangling.html",
+    "title": "11  Spatial Wrangling",
+    "section": "",
+    "text": "11.1 Research Question 1: Which schools in Durham, NC are most accessible by sidewalk?\nBeyond wrangling the structure and attributes of our data, we can also wrangle our spatial features.This involves using spatial relationships to create new variables. After completing these exercises, you should be able to:\nWe will use the following datasets in this chapter:\nTo start, create a new .Rmd document. Add a first-level header called “Reading in Data”. Then add the following code chunk. For each of the research questions below, add an additional header and code chunk.\nAny time we do spatial analysis in R, we MUST use a projected coordinate system. For these exercises, we will use CRS = 2264 (North Carolina State Plane)\nQ1: For each of the vector objects above, transform them to CRS = 2264. Do not transform the raster.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Spatial Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_wrangling.html#research-question-1-which-schools-in-durham-nc-are-most-accessible-by-sidewalk",
+    "href": "spatial_wrangling.html#research-question-1-which-schools-in-durham-nc-are-most-accessible-by-sidewalk",
+    "title": "11  Spatial Wrangling",
+    "section": "",
+    "text": "11.1.1 Plain Language Summary:\nWe have two spatial datasets: one showing the locations of sidewalks in Durham, NC, and another showing the locations of schools. To understand how accessible each school is by sidewalk, we first create an area around each school (for instance, a .5 mile radius) using a buffer. This buffer represents the nearby area that students might reasonably walk.\nNext, we use a spatial join to identify which sidewalks fall within each school’s buffer. This is like a table join, but is joining by location, instead of a key field. We can then measure the length of each sidewalk, and aggregate this to the school buffer level.\n\n\n11.1.2 Step 1: Add Buffer Around Schools\nOur schools are currently represented by points. Buffers allow us to add a zone around features. In our case, we will add a .5 mile zone around each school to represent the walkable area around each school. Remember that our units in crs = 2264 are in FEET.\n\n#add a buffer around each school\nbuffered_schools &lt;- durham_schools |&gt; st_buffer(dist = 2640)\n\n\n\n11.1.3 Step 2: Calculate the Length of Each Sidewalk Segment\nNow we calculate the length of each sidewalk segment. This will be calculated as a “Units” field type. We’ll convert this to standard numeric since we know the data is in feet (due to our coordinate system)\n\ndurham_sidewalks &lt;- durham_sidewalks |&gt;\n  #get length of the geometry column in data\n  mutate(length_sidewalk = as.numeric(st_length(geometry)))\n\n\n\n11.1.4 Step 3: Join Sidewalks to School Buffers\nWe use a spatial join to link sidewalk segments to school buffers based on spatial intersection. This join assigns each sidewalk to the school or schools whose buffer it falls within. Because a sidewalk can be within walking distance of more than one school, the same sidewalk segment may appear multiple times in the joined dataset. This is expected and reflects a many-to-many spatial relationship.\nAfter the spatial join, we are no longer doing spatial operations. From this point forward, we are working with a table of relationships between sidewalks and schools. To simplify the data and avoid confusion, we drop the geometry column.\n\nsidewalks_by_school &lt;- sidewalks |&gt;\n  # join by intersection\n  st_join(buffered_schools) |&gt; \n  # drop geometry for aggregation (aggregating geometries is not a good idea!)\n  st_drop_geometry()\n\nQ2: Open up the sidewalks_by_school object. What is different about this object compared to the original sidewalks object?\n\n\n11.1.5 Step 4: Aggregate Sidewalk Data to School Level\nNow that we are done with the spatial wrangling, we are back to known territory.\nQ3: Using the group_by() and summarise() commands, calculate the total length of sidewalks in each school zone.\nQ4: Using a standard table join left_join() , join the aggregated sidewalk data back to the school points. Remember to identify a matching key field. Then make a map of sidewalk accessibility per school.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Spatial Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_wrangling.html#research-question-2-which-schools-in-durham-nc-have-the-hottest-surrounding-area",
+    "href": "spatial_wrangling.html#research-question-2-which-schools-in-durham-nc-have-the-hottest-surrounding-area",
+    "title": "11  Spatial Wrangling",
+    "section": "11.2 Research Question 2: Which schools in Durham, NC have the hottest surrounding area?",
+    "text": "11.2 Research Question 2: Which schools in Durham, NC have the hottest surrounding area?\n\n11.2.1 Plain Language Summary\nWe have already calculated our zones of influence around schools (buffered_schools). We have a raster dataset of temperature values collected during a Heat Mapping Campaign in the summer of 2021. Each cell in this raster represents the temperature at a specific location. To determine which schools are surrounded by the hottest areas, we calculate zonal statistics. This means we summarize the temperature values from the raster that fall within each school’s buffer. For example, we can calculate the average, maximum, or minimum temperature within each buffer. By comparing these summary statistics across schools, we can identify which schools are located in areas with higher surrounding temperatures and may be more exposed to extreme heat.\nQ5: First, make a simple map of the raster heat data. What patterns do you see?\n\n#calculate zonal statistics\nbuffered_schools &lt;- buffered_schools |&gt; mutate(av_temp = exact_extract(durham_heat, geometry, fun = \"mean\"))\n\nQ6: Make a non-map graphic of the av_temp column.\nQ7: Make a map of av_temp by school.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Spatial Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_wrangling.html#research-question-3-what-is-the-closest-hospital-to-each-nursing-home-in-nc-and-how-far-away-is-it",
+    "href": "spatial_wrangling.html#research-question-3-what-is-the-closest-hospital-to-each-nursing-home-in-nc-and-how-far-away-is-it",
+    "title": "11  Spatial Wrangling",
+    "section": "11.3 Research Question 3: What is the closest hospital to each nursing home in NC, and how far away is it?",
+    "text": "11.3 Research Question 3: What is the closest hospital to each nursing home in NC, and how far away is it?\n\n11.3.1 Plain Language Summary\nOur medical_facilities object contains both hospitals and nursing homes. To find the closest hospital to each nursing home, we first separate these two facility types into their own datasets. We then use a built-in spatial function, st_nearest_feature(), which works by looking at each nursing home and identifying the single nearest hospital based on straight-line (Euclidean) distance. Once we know which hospital is closest to each nursing home, we use st_distance() to calculate the distance between the nursing home and that nearest hospital. This gives us a numeric distance value for each nursing home, measured in the units of the dataset’s coordinate reference system.\nQ8: Make two new objects hospitals and nursing_homes. You will use the filter() command to select these facility types out of the medical_facilities object.\n\n#command to calculate nearest hospital and distance\nnursing_homes &lt;- nursing_homes |&gt;\n  mutate(\n    #this command returns the INDEX of the nearest hospital\n    nearest_hosp = st_nearest_feature(nursing_homes, hospitals),\n    #this command gets the name of the nearest hospital using base R syntax\n    hospital_name = hospitals$name[nearest_hosp],\n    #this calculates the distance using base R synax\n    dist_hospital = st_distance(\n      nursing_homes,\n      hospitals[nearest_hosp, ],\n      by_element = TRUE\n    )\n  )\n\nQ9: Which nursing home is furthest from the nearest hospital? Which nursing home is the closest?",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Spatial Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_wrangling.html#mini-challenge",
+    "href": "spatial_wrangling.html#mini-challenge",
+    "title": "11  Spatial Wrangling",
+    "section": "11.4 Mini Challenge",
+    "text": "11.4 Mini Challenge\nIn this challenge, you should add a code chunk that does the following:\n\nFilter your nursing_home object to just those in Durham County\nCompute a 1000ft buffer around each Durham nursing home\nCalculate the maximum temperature within each 1000ft buffer using the exact_extract() function (note that the raster does not cover the whole county, so not every nursing home will have a temperature value)\nMake a map of maximum temperature near Durham nursing homes",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Spatial Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "ppa.html",
+    "href": "ppa.html",
+    "title": "12  Point Pattern Analysis",
+    "section": "",
+    "text": "12.1 Reading in Data\nPoint Pattern Analysis (PPA) is a set of methods that can help us interpret the spatial distribution of events (represented as points) in a defined study area/region. The goal is to determine if the observed pattern is likely the result of a random process (the null hypothesis of Complete Spatial Randomness, or CSR) or if it exhibits significant clustering or regularity (dispersion).\nIf a pattern is random, there is no way to predict where the next event will happen. However, if a spatial pattern is non-random, that means that it is likely the outcome of a meaningful process. If this is the case, we than then develop hypotheses about the underlying process.\nSpatial patterns are the outcome of different mechanistic processes:\nWe will use the following spatial datasets:\nTo follow along with this tutorial, make a new .Rmd document. As you move through the tutorial add chunks, headers, and relevant text to your document.\nlibrary(sf)\nlibrary(tidyverse)\nlibrary(spatstat)\n\n#lightning\nlightning &lt;- st_read(\"https://drive.google.com/uc?export=download&id=1mskHuewJIzt5WgUXmr7EK7B72CJt2s62\") |&gt; st_transform(crs = 2264)\n\nstorm_events &lt;- st_read(\"https://drive.google.com/uc?export=download&id=1pXB0M5Xi_ocXWBiD6K9Fv6nhWIpmeZ8V\") |&gt; st_transform(crs = 2264)\n\ncounty_boundary &lt;- st_read(\"https://drive.google.com/uc?export=download&id=1KmNzcbvzggh1rJ-mH0YB4kbCB7sxmrjc\") |&gt; st_transform(crs = 2264)",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Point Pattern Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "ppa.html#analyzing-global-structure",
+    "href": "ppa.html#analyzing-global-structure",
+    "title": "12  Point Pattern Analysis",
+    "section": "12.2 Analyzing Global Structure",
+    "text": "12.2 Analyzing Global Structure\n\n12.2.1 Quadrat Analyis\nQuadrat analysis is a count-based method used to assess the global structure of a spatial pattern. In this method, the study area is divided into a grid of equally-sized cells (quadrats), and the number of points falling into each cell is counted. The results are then compared to the outcome of a Poisson distribution (which we use to model CSR).\nWe can start by creating 12 quadrats and counting the number of lightning strikes in each. The number of quadrats is highly dependent on the size of the study region and the number of events.\n\n#turn county boundary into owin object for spatstat\noc_owin &lt;- county_boundary |&gt; as.owin()\n\n#turn lightning strikes into a ppp\nlightning.ppp &lt;- as.ppp(st_coordinates(lightning), W = oc_owin)\n\n#create a quadrat count with 9 quadrats\nq_count &lt;- quadratcount(lightning.ppp, nx = 3, ny = 3)\n\n#create a table with counts in each quadrat\ntable(q_count)\n\nq_count\n241 292 331 393 514 537 538 607 615 \n  1   1   1   1   1   1   1   1   1 \n\n#plot counts\nplot(q_count)\n\n\n\n\n\n\n\n\nQ1: What do you notice about the quadrat counts (note that some of the quadrats are slightly smaller than others based on the boundaries of the county)?\nWe can formally test the quadrat counts against CSR using the quadrat test. A chi-square test compares quadrat counts to expected counts from CSR.\n\nq_test &lt;- quadrat.test(lightning.ppp, nx = 3, ny = 3)\n\nq_test\n\n\n    Chi-squared test of CSR using quadrat counts\n\ndata:  lightning.ppp\nX2 = 225.12, df = 8, p-value &lt; 2.2e-16\nalternative hypothesis: two.sided\n\nQuadrats: 9 tiles (irregular windows)\n\nplot(q_test)\n\n\n\n\n\n\n\n\nThe very small p-value tells us that we can reject the null hypothesis and indicates that the pattern is not random. To interpret whether the pattern is likely clustered or likely dispersed, we compare our X2 value (225.12) to the degrees of freedom (8). A larger X2 value means more clustered.\nIf you explore the plot of the quadrat test, the first number (top-left) is the number of events in the quadrat. The second number (top-right) is the expected number of events under CSR. The third number (bottom) is the residual, which is based on how different the top two values are. A larger residual indicates a larger difference.\nQ2: Based on the residuals, which quadrats differ the most from expected values. What does this tell us about the spatial pattern?\nThere are a few issues with quadrat tests. The results are highly sensitive to the size and placement of the quadrats and also don’t consider variability within the quadrats.\nQ3: Experiment with different numbers of quadrats. How do your results change?\n\n\n12.2.2 Kernel Density\nKernel Density Estimation (KDE) is a simple way to create a smooth map of where points are most concentrated. Instead of dividing the study area into fixed quadrats and counting how many events fall in each one (like the quadrat test), KDE places a smooth, bell-shaped “influence curve” over every point in the dataset (kernel). These curves are highest at the point itself and gradually taper off with distance. When all of these curves are added together, they form a continuous surface where high peaks show areas with many nearby points and lower areas show places with fewer points. Because KDE is only a descriptive smoothing technique, it does not involve a statistical model or a test of randomness like a quadrat test does. However, it can capture more local variability and is not sensitive to size/placement of the window of analysis like quadrat tests.\nThe main parameter of the KDE is bandwidth. The bandwidth controls the width of each kernel. A large bandwidth (each point has broader influence) is better at capturing global variation and a small bandwidth is better at capturing local variation.\nWe can create a kernel density estimation for lightning strikes:\n\n#turn off scientific notation\noptions(scipen = 999)\n\n#create KDE, sigma is the bandwidth (which is in feet in this dataset)\nkernel_density &lt;- density(lightning.ppp, \n                          sigma = 4000)\n#plot \nplot(kernel_density)\n\n\n\n\n\n\n\n\nQ4: Experiment with different bandwidth sizes. How does this change what you can learn about the data? What spatial patterns emerge in the data?",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Point Pattern Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "ppa.html#analyzing-local-structure",
+    "href": "ppa.html#analyzing-local-structure",
+    "title": "12  Point Pattern Analysis",
+    "section": "12.3 Analyzing Local Structure",
+    "text": "12.3 Analyzing Local Structure\n\n12.3.1 Nearest Neighbor Analysis\nNearest neighbor methods evaluate clustering or dispersion based on the distances between each point and its closest neighbors. In these methods, we are analyzing local structure, not global structure.\n\n12.3.1.1 G- Function\nThe G-function (nearest-neighbor distribution function) analyzes the distance from each point to its closest neighboring point. It helps us determine if points are closer (clustered) or farther (dispersed) from their neighbors than expected under CSR.\nIf the G-curve of our data rises faster than the CSR curve at short distances (i.e., lies above it), this indicates that points tend to have closer neighbors than expected by chance, meaning clustering. If it rises slower (below CSR), points are more evenly spaced, indicating dispersion.\n\ng_pattern1 &lt;- Gest(lightning.ppp, correction = \"none\")\n\nplot(g_pattern1)\n\n\n\n\n\n\n\n\nModeling the G-curve of our lightning data, we can see that it is very similar to the CSR-curve, meaning that there is likely not local clustering.\n\n\n12.3.1.2 F- Function\nThe F-function (empty space function) examines the distance from randomly chosen locations in the study area to the nearest point in the dataset. It helps us determine whether points are generally closer to or farther from arbitrary locations than expected under Complete Spatial Randomness (CSR).\nIf the F-curve of our data rises faster than the CSR curve at short distances (i.e., lies above it), this suggests that empty spaces are closer to events than expected, compared to the null landscape, as in a dispersed pattern. If it rises slower (below CSR), most locations are farther from empty space than expected by chance, indicating clustering.\n\nf_pattern &lt;- Fest(lightning.ppp, correction = \"none\")\n\nplot(f_pattern)\n\n\n\n\n\n\n\n\nModeling the F-curve of our lightning data, we see that it closely follows the CSR-curve, suggesting that random locations in the study area are, on average, about as close to the nearest lightning strike as expected under Complete Spatial Randomness.\nQ5: Based on this global and local analysis of spatial patterns in the lightning strike dataset, how would you describe the spatial pattern of this dataset?\nQ6: Can you hypothesis about what type of process might be determining this spatial pattern?",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Point Pattern Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "ppa.html#mini-challenge",
+    "href": "ppa.html#mini-challenge",
+    "title": "12  Point Pattern Analysis",
+    "section": "12.4 Mini-Challenge",
+    "text": "12.4 Mini-Challenge\nThe NOAA Storm Events dataset is a long-term dataset that contains records of major storms/weather events that are intense enough to cause loss of life, injuries, or significant property damage. The data subset that you have is all event entries in Orange County from 2010-2025. Using the methods we’ve learned, analyze the spatial pattern of this dataset considering its local and global structure. Hypothesize on the types of processes (and even the actual processes) that might be determining this spatial pattern.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Point Pattern Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "autocorrelation.html",
+    "href": "autocorrelation.html",
+    "title": "13  Spatial Autocorrelation",
+    "section": "",
+    "text": "13.1 Reading in Data\nTobler’s First Law of Geography reminds us that everything is related to everything else, but near things are more related than distant things. Spatial autocorrelation describes how a variable is correlated with itself across geographic space. In other words, spatial autocorrelation can tell us how related near things are to each other in our dataset.\nPoint pattern analysis is focused on the location of events. In point patterns, the source of randomness is the location itself. In assessing autocorrelation, we are considering whether the value at locations is random.\nThere are two general scenarios in which we might want to analyze autocorrelation:\nJust like point pattern analysis, quantifying autocorrelation is useful because it helps us understand the spatial pattern/structure of our data, which helps us in generating hypotheses about the processes that generate the pattern.\nIn addition, spatial autocorrelation allows us to understand how spatially dependent our variable is. Spatial dependence can be a serious problem for applying traditional statistical methods because these methods generally have an assumption of independence. Measuring the strength of spatial dependence helps us evaluate how serious this issue is and decide whether we need to adjust our approach- for example, by modifying our sampling design, using methods that account for spatial structure, or interpreting results with greater caution.\nIn this chapter, we will explore autocorrelation in the Median Household Income variable from the 2023 American Community Survey for North Carolina census tracts and chronic absences at North Carolina public schools.\nTo follow along with this tutorial, make a new .Rmd document. As you move through the tutorial add chunks, headers, and relevant text to your document.\nlibrary(tmap)\nlibrary(tidyverse)\nlibrary(spdep)\nlibrary(sf)\n\n#Note that the crs \n#of the datasets is NAD83/ North Carolina, meaning that the units are feet\ntracts_sf &lt;- st_read(\"https://drive.google.com/uc?export=download&id=1_X3s6sTw5zeIuXa6wDQ61r8Px7_tI7Nr\")\n\nschools_sf &lt;- st_read(\"https://drive.google.com/uc?export=download&id=1mUxk0R_lqcfuJppw_A-1vy-pcB9XdCnS\")",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Spatial Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "autocorrelation.html#defining-neighbors",
+    "href": "autocorrelation.html#defining-neighbors",
+    "title": "13  Spatial Autocorrelation",
+    "section": "13.2 Defining Neighbors",
+    "text": "13.2 Defining Neighbors\nIn order to quantify spatial autocorrelation, we need to define each observation’s “spatial neighborhood” so that we can see how related an observation is to the observations near it. There are many ways to define neighbors, and the decision about what definition to use should reflect the processes you hypothesize might be shaping the spatial pattern. For example, if you are studying the spread of a disease, it may be appropriate to define neighbors based on travel networks or adjacency of regions. If you are examining soil properties, a distance-based neighborhood might better reflect how conditions diffuse across space. Some neighborhood definitions can be used for both areal and point datasets and some are specific to the unit of analysis.\nWe can explore three different neighborhood definitions using our datasets:\n\n13.2.1 Distance Threshold (Point and Areal)\nOne way to determine neighbors is to set a distance threshold. Any observations within a set distance would be considered a neighbor. For our census tracts, we could set a distance of 3 miles. The code below demonstrates the neighborhood for the census tract that campus is in.\n\n#isolate ch tract\nch_tract &lt;- tracts_sf |&gt; filter(GEOID == 37135011400)\n\n#get 10 mile radius\nneighborhood_rad &lt;- ch_tract |&gt; st_buffer(15840)\n\n#get neighbors\nneighbors &lt;- st_filter(tracts_sf, neighborhood_rad)\ntm_shape(neighbors) + tm_polygons() + tm_shape(ch_tract) + tm_polygons(fill = \"blue\")\n\n\n\n\n\n\n\n\nFor our school dataset, we could say that any school within 20 miles is a neighbor\n\n#isolate Chapel Hill High School\nchhs &lt;- schools_sf |&gt; filter(school_nam == \"Chapel Hill High\")\n\n#get 5 mile radius\nchhs_neighborhood_rad &lt;- chhs |&gt; st_buffer(26400)\n\n#get neighbors\nchhs_neighbors &lt;- st_filter(schools_sf, chhs_neighborhood_rad)\n\n\ntm_shape(chhs_neighbors) + tm_dots() + tm_shape(chhs) + tm_dots(fill = \"blue\")\n\n\n\n\n\n\n\n\n\n\n13.2.2 Queens Case (Areal)\nThe Queens Case neighborhood definition is extremely common in spatial statistics that consider contiguous aerial units (like census tracts). The Queens neighborhood selects neighbors based on any contact (including corners) with the feature of interest. We can’t use contiguity based neighbors for points since they do not touch. The Queens neighborhood for Chapel Hill would look this this:\n\nqueen_neighbors &lt;- tracts_sf |&gt; st_filter(ch_tract, .predicates = st_intersects) \n\ntm_shape(queen_neighbors) + tm_polygons() + tm_shape(ch_tract) + tm_polygons(fill = \"blue\")",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Spatial Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "autocorrelation.html#k-nearest-neighbors-areal-and-point",
+    "href": "autocorrelation.html#k-nearest-neighbors-areal-and-point",
+    "title": "13  Spatial Autocorrelation",
+    "section": "13.3 K-Nearest Neighbors (Areal and Point)",
+    "text": "13.3 K-Nearest Neighbors (Areal and Point)\nThe k-nearest neighbor definition selects the nearest neighbors based on a set number of neighbors. For instance, for our Chapel Hill High point, we could set number of neighbors to 3.\n\n#calculate distances\ncalc_dist &lt;- chhs_neighbors |&gt; st_distance(chhs)\n\n#assign distances as a variable\nchhs_neighbors$distance &lt;- calc_dist\n\n#get 3 closest neighbors (we say 4 since CHHS will be the first closest (0ft))\nneighbors &lt;- chhs_neighbors |&gt; arrange(distance) |&gt; slice_head(n = 4)\n\ntm_shape(neighbors) + tm_dots() + tm_shape(chhs) + tm_dots(fill = \"blue\")",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Spatial Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "autocorrelation.html#calculating-global-autocorrelation",
+    "href": "autocorrelation.html#calculating-global-autocorrelation",
+    "title": "13  Spatial Autocorrelation",
+    "section": "13.4 Calculating Global Autocorrelation",
+    "text": "13.4 Calculating Global Autocorrelation\nTo calculate global autocorrelation, we can use Moran’s I. Moran’s I gives an indication of how clustered, random, or dispersed a dataset value is across space. It goes from -1 (perfect dispersion) to 1 (perfect clustering). Let’s start by making a basic map of our variable of interest.\nThe main parameter for calculating Moran’s I is the neighborhood definition.\n\n13.4.1 Global Autocorrelation in Median Household Income\nWe can start by making a basic map of our variable of interest.\n\ntm_shape(tracts_sf) + tm_polygons(fill = \"med_hh_inc\", fill.scale = tm_scale_intervals(style = \"fisher\"), col_alpha = 0)\n\n\n\n\n\n\n\n\nQ1: Just by looking at the values on the map, do you see evidence of a spatial pattern?\nWe can formalize this by calculating Moran’s I using Queens Case neighbors\n\n#calculate neighborhoods\nnb &lt;- poly2nb(tracts_sf, queen = TRUE) # queen shares point or border\n\n#set neighborhood weight matrix\nnbw &lt;- nb2listw(nb, style = \"W\")\n\n#calculate Morans I\ngmoran &lt;- moran.test(tracts_sf$med_hh_inc, nbw)\ngmoran\n\n\n    Moran I test under randomisation\n\ndata:  tracts_sf$med_hh_inc  \nweights: nbw    \n\nMoran I statistic standard deviate = 51.74, p-value &lt; 2.2e-16\nalternative hypothesis: greater\nsample estimates:\nMoran I statistic       Expectation          Variance \n     0.5886766588     -0.0003806624      0.0001296167 \n\n\nOur Moran’s I indicates strong clustering (.59) at a highly statistically significant level (very small p-value). Therefore, we now know that, at the global scale, this dataset is clustered.\n\n\n13.4.2 Global Autocorrelation in School Absence Rate\nWe can map chronic absence rate before Covid (which we’ve done before)\n\ntm_shape(schools_sf) + tm_dots(fill = \"pre_covid_pct\", fill.scale = tm_scale_intervals(style = \"fisher\"), col_alpha = 0)\n\n\n\n\n\n\n\n\nQ2: Just by looking at the values on the map, do you see evidence of a spatial pattern?\nWe can then calculate Moran’s I using a our 20-mile distance-based neighborhood definition\n\n#calculate neighborhoods\nnb_school &lt;- dnearneigh(schools_sf, d1 = 0, d2 = 26400) \n\nWarning in dnearneigh(schools_sf, d1 = 0, d2 = 26400): neighbour object has 247\nsub-graphs\n\n#set neighborhood weight matrix\nnbw_school &lt;- nb2listw(nb_school, style = \"W\", zero.policy = T)\n\n#calculate Morans I\ngmoran_school &lt;- moran.test(schools_sf$pre_covid_pct, nbw_school)\ngmoran_school\n\n\n    Moran I test under randomisation\n\ndata:  schools_sf$pre_covid_pct  \nweights: nbw_school  \nn reduced by no-neighbour observations  \n\nMoran I statistic standard deviate = 15.434, p-value &lt; 2.2e-16\nalternative hypothesis: greater\nsample estimates:\nMoran I statistic       Expectation          Variance \n     0.2181149958     -0.0004965243      0.0002006250 \n\n\nQ3: What does our Moran I value tell us about the spatial structure of our data?",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Spatial Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "autocorrelation.html#local-indicators-of-spatial-autocorrelation-lisa",
+    "href": "autocorrelation.html#local-indicators-of-spatial-autocorrelation-lisa",
+    "title": "13  Spatial Autocorrelation",
+    "section": "13.5 Local Indicators of Spatial Autocorrelation (LISA)",
+    "text": "13.5 Local Indicators of Spatial Autocorrelation (LISA)\nWe know that both of our datasets are clustered because of our Moran’s I values (with median household income strongly clustered and chronic absence rate weakly clustered). However, we don’t know where, specifically, these high and low clusters are. Local Indicators of Spatial Autocorrelation quantify where statistically significant clusters exist in a dataset.\nFor the median household income:\nFor the school chronic absences:\n\nlocali&lt;-localmoran_perm(tracts_sf$med_hh_inc, nbw) %&gt;%\n  as_tibble() %&gt;%\n  set_names(c(\"local_i\", \"exp_i\", \"var_i\", \"z_i\", \"p_i\",\n              \"p_i_sim\", \"pi_sim_folded\", \"skewness\", \"kurtosis\"))\n\n#bind LISA results\ntracts_sf &lt;- tracts_sf %&gt;%\n  bind_cols(locali)\n\n#Divide into quadrants\ntracts_sf &lt;- tracts_sf %&gt;%\n  mutate(incz =  as.numeric(scale(med_hh_inc)),\n         evratezlag = lag.listw(nbw, incz),\n         lisa_cluster = case_when(\n           p_i &gt;= 0.05 ~ \"Not significant\",\n           incz &gt; 0 & local_i &gt; 0 ~ \"High-high\",\n           incz &gt; 0 & local_i &lt; 0 ~ \"High-low\",\n           incz &lt; 0 & local_i &gt; 0 ~ \"Low-low\",\n           incz &lt; 0 & local_i &lt; 0 ~ \"Low-high\"\n         ))\n\n#Map\ntm_shape(tracts_sf) + tm_polygons(\"lisa_cluster\", col_alpha = 0)\n\n\n\n\n\n\n\n\nQ2: What is the spatial pattern of clustering in the median household income variable?\n\nlocali_school&lt;-localmoran_perm(schools_sf$pre_covid_pct, nbw_school) %&gt;%\n  as_tibble() %&gt;%\n  set_names(c(\"local_i\", \"exp_i\", \"var_i\", \"z_i\", \"p_i\",\n              \"p_i_sim\", \"pi_sim_folded\", \"skewness\", \"kurtosis\"))\n\n#bind LISA results\nschools_sf &lt;- schools_sf %&gt;%\n  bind_cols(locali_school)\n\n#Divide into quadrants\nschools_sf  &lt;- schools_sf  %&gt;%\n  mutate(absz =  as.numeric(scale(pre_covid_pct)),\n         evratezlag = lag.listw(nbw_school, absz),\n         lisa_cluster = case_when(\n           p_i &gt;= 0.05 ~ \"Not significant\",\n           absz &gt; 0 & local_i &gt; 0 ~ \"High-high\",\n           absz &gt; 0 & local_i &lt; 0 ~ \"High-low\",\n           absz &lt; 0 & local_i &gt; 0 ~ \"Low-low\",\n           absz &lt; 0 & local_i &lt; 0 ~ \"Low-high\"\n         ))\n\n#Map\ntm_shape(schools_sf ) + tm_dots(\"lisa_cluster\", col_alpha = 0)\n\n\n\n\n\n\n\n\nQ3: What is the spatial pattern of clustering in the school absence variable?",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Spatial Autocorrelation</span>"
+    ]
+  },
+  {
+    "objectID": "autocorrelation.html#mini-challenge",
+    "href": "autocorrelation.html#mini-challenge",
+    "title": "13  Spatial Autocorrelation",
+    "section": "13.6 Mini Challenge",
+    "text": "13.6 Mini Challenge\n\nCalculate global and local indicators of spatial autocorrelation for the average commuting time variable and interpret the results\nCalculate global and local indicators of spatial autocorrelation for the chronic school absences after covid and interpret the results",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Spatial Autocorrelation</span>"
+    ]
+  }
+]

@@ -1,9 +1,5 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+This site includes the material for GEOG215: Introduction to Spatial Data Science at UNC Chapel Hill.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
+Anyone is free to share or adapt this material under the [CC BY-NC 4.0 license.](https://creativecommons.org/licenses/by-nc/4.0/deed.en)

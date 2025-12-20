@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>wrangling</title>
+<title>4&nbsp; Labs – spatial_data_science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,141 +20,210 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="wrangling_files/libs/clipboard/clipboard.min.js"></script>
-<script src="wrangling_files/libs/quarto-html/quarto.js"></script>
-<script src="wrangling_files/libs/quarto-html/popper.min.js"></script>
-<script src="wrangling_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="wrangling_files/libs/quarto-html/anchor.min.js"></script>
-<link href="wrangling_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="wrangling_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="wrangling_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="wrangling_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="wrangling_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./other_files.html" rel="next">
+<link href="./competencies.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./labs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Labs</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">spatial_data_science</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schedule</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./competencies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Course Competencies</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Labs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./other_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Other Files</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction_to_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Software and File Management</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basic Tidyverse Manipulation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./describing_spatial_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to Spatial Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Advanced Tidyverse</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spatial_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Spatial Wrangling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ppa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-
-<section id="advanced-tidyverse" class="level1">
-<h1>Advanced Tidyverse</h1>
-<p>In data science workflows, we rarely work directly with the raw data. Instead, we often have to do substantial pre-processing (sometimes called wrangling), to get our data to the point where it is meaningful to analyze in relation to our research questions. In this chapter, we will work with more <code>tidyverse</code> functions to do more advanced data wrangling. After completing these exercises, you should be able to:</p>
-<ul>
-<li>Use the <code>group_by</code> and <code>summarise</code> tidyverse functions</li>
-<li>Execute table joins (<code>left_join</code>) between datasets by identifying a common key field</li>
-<li>Manage missing data</li>
-<li>Develop workflows to perform multi-step data wrangling</li>
-</ul>
-<p>We will use the following datasets in this chapter:</p>
-<ul>
-<li>North Carolina hospitals and public schools from <a href="https://www.nconemap.gov/datasets/hospitals/data">NCOneMap</a></li>
-<li>Weather station temperature data for stations near Chapel Hill from the <a href="https://products.climate.ncsu.edu/data/">North Carolina State Climate Office</a></li>
-<li>SAT data for North Carolina schools from the <a href="https://www.dpi.nc.gov/data-reports/school-report-cards">North Carolina Department of Public Instruction</a></li>
-<li>North Carolina county boundaries and 2020 census population from the <a href="https://data.census.gov/">US Census Bureau</a></li>
-</ul>
-<p>At this point in the class, we will start organizing our exercises around specific research questions or ideas. Remember that data science is an iterative process. You do not need to have a fully formed research question before you begin working with data. Often, exploring the data helps us refine our questions or even come up with new ones. That said, we usually begin with some initial idea or curiosity, which helps guide our data wrangling and analysis.</p>
-<p>To start, create a new .Rmd document. Add a first-level header called “Reading in Data”. Then add the following code chunk. For each of the research questions below, add an additional header and code chunk.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nc_counties <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1g9sGIikgOEubqoj97fUVoCYAKlBDVX5a"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ch_temp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1drgW5ePqpIgCFKDnI5-x5-o1oYyYa21y"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sat_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=17N5VYYKKfLH_tqoTnoXIf--WAkJsbr27"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>schools <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1FuEpBS72F4xRUM51LHPQxorY0YKFywDR"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>hospitals <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1Ylu33qdfA-pXb0uHtKMQIcDeVBOwUHMV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Labs</span></h1>
 </div>
-<p><strong>Q1: Based on the commands above, which of these datasets are spatial files?</strong></p>
-<section id="research-question-1-how-does-hospital-bed-availability-per-capita-vary-across-nc-counties" class="level2">
-<h2 class="anchored" data-anchor-id="research-question-1-how-does-hospital-bed-availability-per-capita-vary-across-nc-counties"><strong>Research Question 1: How does hospital bed availability per capita vary across NC counties?</strong></h2>
-<section id="plain-language-summary" class="level3">
-<h3 class="anchored" data-anchor-id="plain-language-summary">Plain Language Summary:</h3>
-<p>In our NC county dataset, each row represents <strong>one county</strong>. In the hospital dataset, each row represents <strong>one hospital</strong>, and multiple hospitals can exist within the same county. Because these datasets are organized differently, we can’t compare them directly. To make them compatible, we first need to <strong>summarize the hospital data at the county level (aggregation)</strong>. Then we need to combine the datasets so that we can use fields from both (<strong>joining</strong>). After we join the datasets, we can create new variables of interest (like number of hospital beds per county resident).</p>
-</section>
-<section id="step-1-aggregating-hospital-data" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-aggregating-hospital-data">Step 1: Aggregating Hospital Data</h3>
-<p>To start, we need to get our hospital data to the county level so it is directly comparable to our county dataset. The workhorse for aggregation in the <code>tidyverse</code> package is the combination of <code>group_by</code> and <code>summarise</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the group_by command tells tidyverse which column(s) we want to aggregate based on. #the summarise command tells tidyverse how to summarise the data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>summarised_hospital <span class="ot">&lt;-</span> hospitals <span class="sc">|&gt;</span> <span class="fu">group_by</span>(fcounty) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">total_general_beds =</span> <span class="fu">sum</span>(hgenlic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q2: Write a command to calculate the total number of beds (<code>hgenlic</code> + <code>rehabhlic</code>). You should add a new field in the hospitals dataset (<code>mutate</code>) before grouping and summarizing.</strong></p>
-</section>
-<section id="step-2-joining-our-data" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-joining-our-data">Step 2: Joining our Data</h3>
-<p>Now, we need to combine our county data with our hospital data. We do this through a table join (<code>left_join</code>). If you are joining spatial and non-spatial data, the spatial data must always be what is joined to. A table join requires a key field. A key field means that the values match between both datasets. The name of the column does not need to match.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#the first argument in the join is the object you want to join, the second is the fields to join by</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>county_hosp <span class="ot">&lt;-</span> nc_counties <span class="sc">|&gt;</span> <span class="fu">left_join</span>(summarised_hospital, <span class="fu">join_by</span>(NAMELSAD <span class="sc">==</span> fcounty))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q3: Open the county_hosp object. Did the join work? How do you know?</strong></p>
-<p><strong>Q4: Can you figure out what’s wrong with our join and fix it? (hint: it has to do with the fields we chose to join by)</strong></p>
-</section>
-<section id="step-3-create-our-variable-of-interest" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-create-our-variable-of-interest">Step 3: Create our Variable of Interest</h3>
-<p><strong>Q5: Using the mutate command on your joined dataset (after you’ve fixed the join), calculate a density metric of hospital beds per 1000 people per county using the formula bed_density = total_beds / (county pop/ 1000)</strong></p>
-</section>
-<section id="step-4-explore-our-variable-of-interest" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-explore-our-variable-of-interest">Step 4: Explore our Variable of Interest</h3>
-<p><strong>Q6: Make a descriptive statistics table of hospital beds/ 1000 people. Note that there are <code>NA</code>s in the dataset (counties with no hospitals). Your descriptive statistics table will need to use the <code>na.rm = TRUE</code> argument</strong></p>
-<p><strong>Q7: Make one non-map graphic of the variable of interest.</strong></p>
-<p><strong>Q8: Create a map of the variable of interest.</strong></p>
-<p><strong>Q9: What is the spatial pattern of hospital bed density across North Carolina?</strong></p>
-</section>
-</section>
-</section>
 
-</main>
-<!-- /main column -->
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -572,6 +641,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./competencies.html" class="pagination-link" aria-label="Course Competencies">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Course Competencies</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./other_files.html" class="pagination-link" aria-label="Other Files">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Other Files</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

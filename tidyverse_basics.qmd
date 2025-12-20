@@ -247,7 +247,7 @@ nc_example$pct_urban = 1 - nc_example$pct_rural
 
 ```
 
-## Mini-Challenge 
+## Mini-Challenge
 
 Add a new first level header called "Mini-Challenge #1". Under that header, add a code chunk. In the code chunk, write commands to do the following:
 

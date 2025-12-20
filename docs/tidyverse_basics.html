@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>tidyverse_basics</title>
+<title>7&nbsp; Basic R – spatial_data_science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,48 +57,237 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="tidyverse_basics_files/libs/clipboard/clipboard.min.js"></script>
-<script src="tidyverse_basics_files/libs/quarto-html/quarto.js"></script>
-<script src="tidyverse_basics_files/libs/quarto-html/popper.min.js"></script>
-<script src="tidyverse_basics_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="tidyverse_basics_files/libs/quarto-html/anchor.min.js"></script>
-<link href="tidyverse_basics_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="tidyverse_basics_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="tidyverse_basics_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="tidyverse_basics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="tidyverse_basics_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./tidyverse.html" rel="next">
+<link href="./introduction_to_R.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse_basics.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic R</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">spatial_data_science</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schedule</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./competencies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Course Competencies</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Labs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./other_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Other Files</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction_to_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Software and File Management</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse_basics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basic Tidyverse Manipulation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./describing_spatial_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to Spatial Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Advanced Tidyverse</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spatial_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Spatial Wrangling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ppa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#creating-a-.rmd-and-reading-data" id="toc-creating-a-.rmd-and-reading-data" class="nav-link active" data-scroll-target="#creating-a-.rmd-and-reading-data"><span class="header-section-number">7.1</span> Creating a .Rmd and Reading Data</a></li>
+  <li><a href="#running-chunks-and-knitting" id="toc-running-chunks-and-knitting" class="nav-link" data-scroll-target="#running-chunks-and-knitting"><span class="header-section-number">7.2</span> Running Chunks and Knitting</a></li>
+  <li><a href="#basic-r-commands" id="toc-basic-r-commands" class="nav-link" data-scroll-target="#basic-r-commands"><span class="header-section-number">7.3</span> Basic R Commands</a>
+  <ul class="collapse">
+  <li><a href="#making-comments" id="toc-making-comments" class="nav-link" data-scroll-target="#making-comments"><span class="header-section-number">7.3.1</span> Making Comments</a></li>
+  <li><a href="#basic-math" id="toc-basic-math" class="nav-link" data-scroll-target="#basic-math"><span class="header-section-number">7.3.2</span> Basic Math</a></li>
+  <li><a href="#boolean-operators" id="toc-boolean-operators" class="nav-link" data-scroll-target="#boolean-operators"><span class="header-section-number">7.3.3</span> Boolean Operators</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">7.3.4</span> Functions</a></li>
+  </ul></li>
+  <li><a href="#assigning-and-printing-objects" id="toc-assigning-and-printing-objects" class="nav-link" data-scroll-target="#assigning-and-printing-objects"><span class="header-section-number">7.4</span> Assigning and Printing Objects</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="header-section-number">7.5</span> Data Types</a></li>
+  <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures"><span class="header-section-number">7.6</span> Data Structures</a></li>
+  <li><a href="#indexing-and-subsetting" id="toc-indexing-and-subsetting" class="nav-link" data-scroll-target="#indexing-and-subsetting"><span class="header-section-number">7.7</span> Indexing and Subsetting</a></li>
+  <li><a href="#creating-a-new-variable" id="toc-creating-a-new-variable" class="nav-link" data-scroll-target="#creating-a-new-variable"><span class="header-section-number">7.8</span> Creating a New Variable</a></li>
+  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">7.9</span> Mini-Challenge</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic R</span></h1>
+</div>
 
 
 
-<section id="base-r-and-tidyverse-basics" class="level1">
-<h1>Base R and Tidyverse Basics</h1>
-<p>This chapter will introduce you to the basics of working with base R and the Tidyverse. After completing these exercises, you should be able to:</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This chapter will introduce you to the basics of working with base R. After completing these exercises, you should be able to:</p>
 <ul>
 <li>Create a .Rmd and save it to your GEOG215 folder</li>
 <li>Use basic text and chunk formatting to create a readable knitted .Rmd file (.html)</li>
-<li>Execute the basics of base R by creating comments, assigning objects, and using base R functions</li>
 <li>Read in data using a relative file path</li>
-<li>Use the <code>mutate</code>, <code>filter</code>, <code>rename</code>, <code>summarise</code>, and <code>select</code> commands from the tidyverse package</li>
-<li>Create a descriptive statistics table using the gt package</li>
-<li>Create basic visualizations and describe data distributions (histogram, boxplot/violin plot, scatterplot, bar chart)</li>
+<li>Execute the basics of base R by creating comments, assigning objects, and using base R functions</li>
 </ul>
 <p>We will use the following datasets:</p>
 <ul>
 <li>Data on chronic school absence rate for North Carolina Public Schools before and after the Covid-19 pandemic from the <a href="https://www.dpi.nc.gov/data-reports/school-report-cards/school-report-card-resources-researchers">North Carolina Department of Public Instruction</a></li>
 <li>North Carolina census tract rurality definitions (RUCA codes) from the <a href="https://www.ers.usda.gov/data-products/rural-urban-commuting-area-codes">USDA Economic Research Service</a> and the <a href="https://www.ncruralcenter.org/">NC Rural Center</a><strong>.</strong> RUCA codes establish urban cores and the census tracts that are the most economically integrated with those cores through commuting. The NC Rural Center defines rurality as areas with less than 250 residents per square mile.</li>
 </ul>
-<section id="creating-a-.rmd-and-reading-data" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-.rmd-and-reading-data">Creating a .Rmd and Reading Data</h2>
+<section id="creating-a-.rmd-and-reading-data" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="creating-a-.rmd-and-reading-data"><span class="header-section-number">7.1</span> Creating a .Rmd and Reading Data</h2>
 <p>To follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. Once you’ve saved it, close the file and re-open it. <strong>Every time you see code below, you should copy it to your own document!</strong></p>
 <p><strong>Q1: Once you re-open the folder, what is your current working directory? How do you know?</strong></p>
 <p>Remove all the code chunks except for the setup chunk. Below the setup chunk add a “first-level header” called “Loading Libraries and Reading in Data”.</p>
@@ -111,26 +300,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Your .Rmd should now look something like this</p>
 <p><img src="images/clipboard-3987952332.png" class="img-fluid"></p>
 </section>
-<section id="running-chunks-and-knitting" class="level2">
-<h2 class="anchored" data-anchor-id="running-chunks-and-knitting">Running Chunks and Knitting</h2>
+<section id="running-chunks-and-knitting" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="running-chunks-and-knitting"><span class="header-section-number">7.2</span> Running Chunks and Knitting</h2>
 <p>We have completed our code chunk for loading libraries and reading in data. Now we can”Run” or evaluate that code. We can evaluate a code chunk by clicking the green arrow. Once you’ve evaluated the chunk, the datasets should show up in your Environment. Those are now “Objects”</p>
 <p><img src="images/clipboard-1977768479.png" class="img-fluid"></p>
 <p>Now practice knitting your document using the Knit button on the top panel. This should create a new .html file that will be saved in your working directory. The file will open in a new window.</p>
 <p><img src="images/clipboard-1659240099.png" class="img-fluid"></p>
 <p><strong>Q2: Why does the knitted document not include our code?</strong></p>
 </section>
-<section id="basic-r-commands" class="level2">
-<h2 class="anchored" data-anchor-id="basic-r-commands">Basic R Commands</h2>
+<section id="basic-r-commands" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="basic-r-commands"><span class="header-section-number">7.3</span> Basic R Commands</h2>
 <p>Add a new first level header called “Practicing Basic R Commands”. Then add a code chunk below that.</p>
-<section id="making-comments" class="level3">
-<h3 class="anchored" data-anchor-id="making-comments">Making Comments</h3>
+<section id="making-comments" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="making-comments"><span class="header-section-number">7.3.1</span> Making Comments</h3>
 <p>Any time you write a command, you will want to include a descriptive comment above it. To make a comment, we use this formatting.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## this is a comment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="basic-math" class="level3">
-<h3 class="anchored" data-anchor-id="basic-math">Basic Math</h3>
+<section id="basic-math" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="basic-math"><span class="header-section-number">7.3.2</span> Basic Math</h3>
 <p>Add the following commands to your code chunk. In addition to running a full chunk, you can also run a single line of code by clicking “Command” and “Return” on a Mac or “Control” and “Enter” on a PC. Run each of the following commands.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## basic addition</span></span>
@@ -144,8 +333,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Q3: Where is the output printed when you run those commands?</strong></p>
 </section>
-<section id="boolean-operators" class="level3">
-<h3 class="anchored" data-anchor-id="boolean-operators">Boolean Operators</h3>
+<section id="boolean-operators" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="boolean-operators"><span class="header-section-number">7.3.3</span> Boolean Operators</h3>
 <p>Boolean logical operators return either a true or a false based on the conditions. Add these commands to your code chunk and run each one.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## is greater? </span></span>
@@ -161,8 +350,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span>) <span class="sc">&lt;</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="functions" class="level3">
-<h3 class="anchored" data-anchor-id="functions">Functions</h3>
+<section id="functions" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="functions"><span class="header-section-number">7.3.4</span> Functions</h3>
 <p>Functions can be though of as “actions”. Base R already has many built in functions. The basic setup of a function is <code>function(argument, ...)</code>. Add these commands to your code chunk and run each one.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sum</span></span>
@@ -176,8 +365,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="assigning-and-printing-objects" class="level2">
-<h2 class="anchored" data-anchor-id="assigning-and-printing-objects">Assigning and Printing Objects</h2>
+<section id="assigning-and-printing-objects" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="assigning-and-printing-objects"><span class="header-section-number">7.4</span> Assigning and Printing Objects</h2>
 <p>So far, every command we’ve run has been <em>evaluated in the console</em>, which means R immediately prints the result at the bottom of the chunk. This happens any time you type an expression without saving it as an object.</p>
 <p>Saving as an object means that the result of that command is stored in our environment (like the data we read in). To create objects, we use the <code>&lt;-</code> command. To see the output in the console, you need to print the object. The benefit of using objects is that we can “call” that object in later commands without having to rewrite the whole command over again. Add these commands to your code chunk and run each one.</p>
 <div class="cell">
@@ -188,8 +377,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>math_object</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="data-types" class="level2">
-<h2 class="anchored" data-anchor-id="data-types">Data Types</h2>
+<section id="data-types" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="data-types"><span class="header-section-number">7.5</span> Data Types</h2>
 <p>R works with several fundamental data types. Remember that the data type has to do with the data <em>values:</em></p>
 <ul>
 <li>Numeric: numbers with decimals</li>
@@ -215,8 +404,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Q4: What happens if you values are not the expected data type? For instance, if you wanted to add sample to x?</strong></p>
 </section>
-<section id="data-structures" class="level2">
-<h2 class="anchored" data-anchor-id="data-structures">Data Structures</h2>
+<section id="data-structures" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="data-structures"><span class="header-section-number">7.6</span> Data Structures</h2>
 <p>R organizes data into several common structures. These structures determine how values are stored and how you can work with them. Remember that data structure has to do with how values (of any type) are <em>stored</em></p>
 <ul>
 <li>Vector: Collection of items that are all the same data type</li>
@@ -235,8 +424,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"z"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="indexing-and-subsetting" class="level2">
-<h2 class="anchored" data-anchor-id="indexing-and-subsetting">Indexing and Subsetting</h2>
+<section id="indexing-and-subsetting" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="indexing-and-subsetting"><span class="header-section-number">7.7</span> Indexing and Subsetting</h2>
 <p>Indexing is used to select or subset elements from data structures.</p>
 <ul>
 <li><code>[]</code> selects elements by position</li>
@@ -277,16 +466,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>nc_example[nc_example<span class="sc">$</span>population <span class="sc">&gt;</span> <span class="dv">300000</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="creating-a-new-variable" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-new-variable">Creating a New Variable</h2>
+<section id="creating-a-new-variable" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="creating-a-new-variable"><span class="header-section-number">7.8</span> Creating a New Variable</h2>
 <p>We can create new variables using the <code>$</code> command. Add this command and a descriptive comment</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nc_example<span class="sc">$</span>pct_urban <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> nc_example<span class="sc">$</span>pct_rural</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="mini-challenge-1" class="level2">
-<h2 class="anchored" data-anchor-id="mini-challenge-1">Mini-Challenge 1</h2>
+<section id="mini-challenge" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">7.9</span> Mini-Challenge</h2>
 <p>Add a new first level header called “Mini-Challenge #1”. Under that header, add a code chunk. In the code chunk, write commands to do the following:</p>
 <ul>
 <li>Add a variable to the nc_example data frame called “pop_million” that calculates the population of each county in millions</li>
@@ -295,249 +484,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Using the triangle-region object you created, calculate and print the mean population of the Triangle counties</li>
 <li>Create a new object called very_rural that returns a filtered data frame containing only counties where more than 20% of the population is rural</li>
 </ul>
-</section>
-<section id="basic-tidyverse-manipulation" class="level2">
-<h2 class="anchored" data-anchor-id="basic-tidyverse-manipulation">Basic Tidyverse Manipulation</h2>
-<p>Add a first-level header called “Using the Tidyverse”. Under the header, add a code chunk</p>
-<p>For the most part, we will be working with a special data structure called a <code>tibble</code>. A tibble is tidyverse’s version of a data frame. In a tibble, each row is an observation and each column is a variable. This is called “tidy” data.</p>
-<p>To get a basic understanding of our data, we can use the <code>str</code> command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#structure of absences</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(absences)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#structure of rurality</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rurality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You should also double-click each object in the “Environment” tab. This will open the tibble so that you can explore it.</p>
-<p><strong>Q5: How many rows are in the absences dataset?</strong></p>
-<p><strong>Q6: How many variables are in our rurality dataset?</strong></p>
-<p><strong>Q7: What is the data type of the <code>year</code> variable in the absences dataset?</strong></p>
-<p><strong>Q8: Which of the absences variables are characters?</strong></p>
-<p>Basic data manipulation in the tidyverse generally involves “piping”. Piping is the way that we can “chain” operations or commands and it looks like this: <code>|&gt;</code> (in documentation you might also see a pipe written like this <code>%&gt;%</code>). Run each of the following commands and add a descriptive comment above it.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>absences <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>absences <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="dv">1</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>absences <span class="sc">|&gt;</span> <span class="fu">select</span>(rural)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>absences <span class="sc">|&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_percent =</span> <span class="fu">mean</span>(pre_covid_pct))</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>absences <span class="sc">|&gt;</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">max_percent =</span> <span class="fu">max</span>(after_covid_pct))</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>rurality <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">n_rural =</span> <span class="fu">sum</span>(nc_rural_center <span class="sc">==</span> <span class="st">"Rural"</span>))</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> absences <span class="sc">|&gt;</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">max_before_covid =</span> <span class="fu">max</span>(pre_covid_pct), <span class="at">max_after_covid =</span> <span class="fu">max</span>(after_covid_pct))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q9: Why wasn’t the last command printed to the console?</strong></p>
-<p><strong>Q10: Write a command that creates an object called <code>metro_core</code> and counts the number of observations that have a <code>ruca_code</code> of “Metropolitan Core”</strong></p>
-<p>Usually, unless we are doing basic data exploration, we want to save our manipulated data as objects. You can either “re-write” an object by using the same name, or you can re-name the manipulated object. Run each of the following commands and add a descriptive comment above it.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>non_rural_data <span class="ot">&lt;-</span> absences <span class="sc">|&gt;</span> <span class="fu">filter</span>(rural <span class="sc">==</span> <span class="st">"non-rural"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>pre_covid <span class="ot">&lt;-</span> absences <span class="sc">|&gt;</span> <span class="fu">select</span>(agency_code, pre_covid_pct)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>renamed_absences <span class="ot">&lt;-</span> absences <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">pre_covid_ratio =</span> pre_covid_pct, <span class="at">after_covid_ratio =</span> after_covid_pct)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>added_column <span class="ot">&lt;-</span> renamed_absences <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">change =</span> after_covid_ratio <span class="sc">-</span> pre_covid_ratio)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>logical <span class="ot">&lt;-</span> renamed_absences <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">high_absence =</span> <span class="fu">ifelse</span>(pre_covid_ratio <span class="sc">&gt;</span> .<span class="dv">25</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>logical_rural <span class="ot">&lt;-</span> rurality <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">highly_rural =</span> <span class="fu">ifelse</span>(ruca_code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Small town low commuting"</span>, <span class="st">"Rural area"</span>, <span class="st">"Small town core"</span>), <span class="st">"Highly Rural"</span>, <span class="st">"Not Highly Rural"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q11: Write a command that creates an object called <code>high_absence_schools</code> that filters the <code>logical</code></strong> <strong>object to just schools that have a high absence rate before Covid.</strong></p>
-<p><strong>Q12: Write a command that creates an object called</strong> <code>urban</code> <strong>that filters the <code>rurality</code> object to just observations that are “Metropolitan high commuting” or “Metropolitan core”</strong></p>
-</section>
-<section id="descriptive-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
-<p>Descriptive statistics allow us to understand the distribution of our dataset. We can use a similar command structure to create almost all of the descriptive statistics tables in our class. Add these commands to your code chunk and run each one.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Notice that you need to add these libraries. You might need to install them. </span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(e1071)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate descriptive statistics </span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>pre_covid_stat <span class="ot">&lt;-</span> absences <span class="sc">|&gt;</span> <span class="fu">select</span>(pre_covid_pct) <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">num_na =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(pre_covid_pct)), </span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_pct =</span> <span class="fu">mean</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_pct =</span> <span class="fu">median</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_pct =</span> <span class="fu">sd</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">variance_pct =</span> <span class="fu">var</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_dev =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(pre_covid_pct <span class="sc">-</span> <span class="fu">mean</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv_pct =</span> sd_pct <span class="sc">/</span> mean_pct,</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_pct =</span> <span class="fu">min</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_pct =</span> <span class="fu">max</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">skewness =</span> <span class="fu">skewness</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">kurtosis =</span> <span class="fu">kurtosis</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="do">##this will format the table for display</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>display_table <span class="ot">&lt;-</span>  pre_covid_stat <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Statistic"</span>, <span class="at">values_to =</span> <span class="st">"Value"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Chronic Absences at NC Public Schools before Covid-19"</span>,</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">everything</span>(),</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">#display the table</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>display_table</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="do">### CATEGORICAL DATA #####</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="do">## create a basic table of descriptive statistics for NC Rural Center Rural Definition</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>rural_table <span class="ot">&lt;-</span> rurality <span class="sc">|&gt;</span> </span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(nc_rural_center) <span class="sc">|&gt;</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())  <span class="sc">|&gt;</span>  <span class="fu">gt</span>() </span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>rural_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q13: Make a descriptive statistics table of <code>after_covid_ratio</code></strong></p>
-<p><strong>Q14: Make a descriptive statistics table of <code>ruca_code</code></strong></p>
-</section>
-<section id="basic-plotting-with-ggplot2" class="level2">
-<h2 class="anchored" data-anchor-id="basic-plotting-with-ggplot2">Basic Plotting with ggplot2</h2>
-<p>Data visualizations can add additional information to our descriptive statistics table. Add the following visualizations to your code chunk.</p>
-<section id="the-language-of-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="the-language-of-ggplot2">The “Language” of ggplot2</h3>
-<p>The ggplot2 package builds visualizations using a conceptual framework based on the grammar of graphics– meaning that every graph can be built from the same components. These components are a dataset, a coordinate system, and geoms (visual marks that represent data points). The basic “formula” of a ggplot is:</p>
-<p>1) Start with the data -&gt; ggplot(DATAFRAME,</p>
-<p>2) Map variables to aesthetics -&gt; aes(x = , y =, color = , size = , shape= )</p>
-<p>3) Add layers (what kind of graph) -&gt; + geom_***</p>
-<p>For instance, a basic scatterplot could look like</p>
-<p><code>ggplot(data, aes(x = var_for_x_axis, y = var_for_y_axis)) + geom_point()</code></p>
-<p>We will work extensively with ggplot2 graphs in this class. The following examples provide a very brief introduction on using ggplot2</p>
-</section>
-<section id="histogram-density-plot" class="level3">
-<h3 class="anchored" data-anchor-id="histogram-density-plot">Histogram/ Density Plot</h3>
-<p>A histogram is a graph that displays the frequency of observations within user-set “bins”. A density plot is a smooth curve that shows the distribution of the data. The curve represents the proportion of the data in each range rather than the frequency. Both of these visualizations help us understand the distribution of our data</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a histogram of pre covid absences</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#absences is our data, x is the variable for x axis (no y axis with histograms, since it is frequency)</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#binwidth is how large each bin is</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#alpha sets the transparency</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#labs adds labels</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(absences, <span class="fu">aes</span>(<span class="at">x =</span> pre_covid_pct)) <span class="sc">+</span> </span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">05</span>, <span class="at">fill =</span> <span class="st">"lightgrey"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Histogram of Pre Covid Absences"</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Absence Ratio"</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="do">## create a density plot of pre covid absences</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(absences, <span class="fu">aes</span>(<span class="at">x =</span> pre_covid_pct)) <span class="sc">+</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"lightgrey"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Density Plot of Pre Covid Absences"</span>,</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Absence Ratio"</span>,</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion"</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q15: Make a histogram and density plot of after covid absences</strong></p>
-<section id="boxplot" class="level4">
-<h4 class="anchored" data-anchor-id="boxplot">Boxplot</h4>
-<p>A boxplot is a standardized way of displaying the distribution of data based on a five-number summary: minimum, first quartile (Q1), median, third quartile (Q3), and maximum. It can also highlight outliers in the data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## absences is the data</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## y axis only (if you wanted to flip the box plot, you would use x = )</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(absences, <span class="fu">aes</span>(<span class="at">y =</span> pre_covid_pct)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightgrey"</span>) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Boxplot of Chronic Absences"</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Ratio"</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q16: Make a box plot of after covid absences</strong></p>
-</section>
-<section id="violin-plot" class="level4">
-<h4 class="anchored" data-anchor-id="violin-plot">Violin Plot</h4>
-<p>A violin plot is a method of plotting numeric data and can be understood as a combination of a boxplot and a density plot. It shows the distribution of the data across different values.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Look how we've layered two different plot types onto the same graph</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(absences, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> pre_covid_pct)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"lightgrey"</span>, <span class="at">bw =</span> .<span class="dv">05</span>)  <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">width=</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Violin Plot of of Chronic Absences"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Ratio"</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_blank</span>(),</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x=</span><span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q16: Make a violin chart of after covid absences</strong></p>
-</section>
-</section>
-<section id="bar-chart" class="level3">
-<h3 class="anchored" data-anchor-id="bar-chart">Bar Chart</h3>
-<p>A bar chart displays the count of each observations in a group. It is a useful visualization for nominal/categorical data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this creates the grouped dataset</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>grouped_rural <span class="ot">&lt;-</span> rurality <span class="sc">|&gt;</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ruca_code) <span class="sc">|&gt;</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>()) </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#this plots the bar plot (note that the coord_flip swtiches the axis which is better for labeling in this case)</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(grouped_rural, <span class="fu">aes</span>(<span class="at">x=</span>ruca_code, <span class="at">y=</span>Count)) <span class="sc">+</span> </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">labs</span>(</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"RUCA Code Category"</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Census Tracts"</span>,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="q17-make-a-bar-chart-of-nc-rural-center-rural-definition" class="level4">
-<h4 class="anchored" data-anchor-id="q17-make-a-bar-chart-of-nc-rural-center-rural-definition"><strong>Q17: Make a bar chart of NC Rural Center rural definition</strong></h4>
-</section>
-</section>
-<section id="faceting-and-grouping-plots" class="level3">
-<h3 class="anchored" data-anchor-id="faceting-and-grouping-plots">Faceting and Grouping Plots</h3>
-<p>Faceting and grouped visualization are two ways to compare distributions across categories in <code>ggplot2</code>. <strong>Faceting</strong> creates separate panels for each level of a categorical variable, making it easy to see each group individually. <strong>Grouped visualization</strong> overlays multiple groups in a single plot, using color or fill to distinguish them, so you can compare distributions directly. In both cases, the variable used to define the groups must be <strong>categorical</strong> (like <code>rural</code>), because these techniques rely on discrete levels to separate or color the data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">##grouped visualization (see fill value)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(absences, <span class="fu">aes</span>(<span class="at">x =</span> pre_covid_pct, <span class="at">fill =</span> rural)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">binwidth =</span> .<span class="dv">05</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Histogram of Pre Covid Absences"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Absence Ratio"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#faceted visualization (see facet_wrap)</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(absences, <span class="fu">aes</span>(<span class="at">x =</span> pre_covid_pct)) <span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> rural) <span class="sc">+</span>   <span class="co"># create separate panels by the 'rural' variable</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Density of Pre-Covid Absences by Rural Category"</span>,</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Absence Ratio"</span>,</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#violin plots and box plots use the x variable to look at categories</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(absences, <span class="fu">aes</span>(<span class="at">x =</span> rural, <span class="at">y =</span> pre_covid_pct)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"lightgrey"</span>, <span class="at">bw =</span> .<span class="dv">05</span>)  <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Violin Plot of Summer Temperatures (1991-2020)"</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Summer Temperature (°F)"</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  )  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
+
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -955,6 +906,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./introduction_to_R.html" class="pagination-link" aria-label="Software and File Management">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Software and File Management</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./tidyverse.html" class="pagination-link" aria-label="Basic Tidyverse Manipulation">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basic Tidyverse Manipulation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

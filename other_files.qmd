@@ -1,5 +1,1 @@
----
-title: "other_files"
-format: html
----
-
+# Other Files
