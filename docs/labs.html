@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -180,14 +214,32 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./analytical_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Analytic Datasets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced tmap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ppa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exploring_two.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bivariate Relationships and Regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -195,8 +247,50 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#general-formatting-guidance" id="toc-general-formatting-guidance" class="nav-link active" data-scroll-target="#general-formatting-guidance"><span class="header-section-number">4.1</span> General Formatting Guidance</a></li>
+  <li><a href="#lab-1" id="toc-lab-1" class="nav-link" data-scroll-target="#lab-1"><span class="header-section-number">4.2</span> Lab 1</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">4.2.1</span> Overview</a></li>
+  <li><a href="#specifications" id="toc-specifications" class="nav-link" data-scroll-target="#specifications"><span class="header-section-number">4.2.2</span> Specifications</a></li>
+  <li><a href="#lab-instructions" id="toc-lab-instructions" class="nav-link" data-scroll-target="#lab-instructions"><span class="header-section-number">4.2.3</span> Lab Instructions</a></li>
+  </ul></li>
+  <li><a href="#lab-2" id="toc-lab-2" class="nav-link" data-scroll-target="#lab-2"><span class="header-section-number">4.3</span> Lab 2</a>
+  <ul class="collapse">
+  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1"><span class="header-section-number">4.3.1</span> Overview</a></li>
+  <li><a href="#specifications-1" id="toc-specifications-1" class="nav-link" data-scroll-target="#specifications-1"><span class="header-section-number">4.3.2</span> Specifications</a></li>
+  <li><a href="#lab-instructions-1" id="toc-lab-instructions-1" class="nav-link" data-scroll-target="#lab-instructions-1"><span class="header-section-number">4.3.3</span> Lab Instructions</a></li>
+  </ul></li>
+  <li><a href="#lab-3" id="toc-lab-3" class="nav-link" data-scroll-target="#lab-3"><span class="header-section-number">4.4</span> Lab 3</a>
+  <ul class="collapse">
+  <li><a href="#overview-2" id="toc-overview-2" class="nav-link" data-scroll-target="#overview-2"><span class="header-section-number">4.4.1</span> Overview</a></li>
+  <li><a href="#specifications-2" id="toc-specifications-2" class="nav-link" data-scroll-target="#specifications-2"><span class="header-section-number">4.4.2</span> Specifications</a></li>
+  <li><a href="#lab-instructions-2" id="toc-lab-instructions-2" class="nav-link" data-scroll-target="#lab-instructions-2"><span class="header-section-number">4.4.3</span> Lab Instructions</a></li>
+  </ul></li>
+  <li><a href="#lab-4" id="toc-lab-4" class="nav-link" data-scroll-target="#lab-4"><span class="header-section-number">4.5</span> Lab 4</a>
+  <ul class="collapse">
+  <li><a href="#overview-3" id="toc-overview-3" class="nav-link" data-scroll-target="#overview-3"><span class="header-section-number">4.5.1</span> Overview</a></li>
+  <li><a href="#specifications-3" id="toc-specifications-3" class="nav-link" data-scroll-target="#specifications-3"><span class="header-section-number">4.5.2</span> Specifications</a></li>
+  <li><a href="#lab-instructions-3" id="toc-lab-instructions-3" class="nav-link" data-scroll-target="#lab-instructions-3"><span class="header-section-number">4.5.3</span> Lab Instructions</a></li>
+  </ul></li>
+  <li><a href="#lab-5" id="toc-lab-5" class="nav-link" data-scroll-target="#lab-5"><span class="header-section-number">4.6</span> Lab 5</a>
+  <ul class="collapse">
+  <li><a href="#overview-4" id="toc-overview-4" class="nav-link" data-scroll-target="#overview-4"><span class="header-section-number">4.6.1</span> Overview</a></li>
+  <li><a href="#specifications-4" id="toc-specifications-4" class="nav-link" data-scroll-target="#specifications-4"><span class="header-section-number">4.6.2</span> Specifications</a></li>
+  <li><a href="#lab-instructions-4" id="toc-lab-instructions-4" class="nav-link" data-scroll-target="#lab-instructions-4"><span class="header-section-number">4.6.3</span> Lab Instructions</a></li>
+  </ul></li>
+  <li><a href="#lab-6" id="toc-lab-6" class="nav-link" data-scroll-target="#lab-6"><span class="header-section-number">4.7</span> Lab 6</a>
+  <ul class="collapse">
+  <li><a href="#overview-5" id="toc-overview-5" class="nav-link" data-scroll-target="#overview-5"><span class="header-section-number">4.7.1</span> Overview</a></li>
+  <li><a href="#specifications-5" id="toc-specifications-5" class="nav-link" data-scroll-target="#specifications-5"><span class="header-section-number">4.7.2</span> Specifications</a></li>
+  <li><a href="#lab-instructions-5" id="toc-lab-instructions-5" class="nav-link" data-scroll-target="#lab-instructions-5"><span class="header-section-number">4.7.3</span> Lab Instructions</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -220,8 +314,437 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="general-formatting-guidance" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="general-formatting-guidance"><span class="header-section-number">4.1</span> General Formatting Guidance</h2>
+<p>All submitted labs should follow the following formatting guidelines (unless otherwise noted). If your work does not follow these guidelines, it will need to be revised and resubmitted:</p>
+<ul>
+<li>Submission:
+<ul>
+<li>You should submit two files for each lab– a .Rmd and a .html.</li>
+<li>You should not submit any other files.</li>
+<li>The files should be saved using the following convention: LASTNAME_Lab_X.Rmd</li>
+</ul></li>
+<li>Code:
+<ul>
+<li>All R code must appear inside code chunks. Do not place any code in the body text.</li>
+<li>All commands <strong>MUST</strong> have a descriptive comment</li>
+<li>Code must follow the syntax that we have used in class</li>
+<li>Code chunks should not display messages or warnings in the knitted .html. If messages or warnings are printed, you need to include <code>message = F, warning = F</code> in the r header.</li>
+<li>Each code chunk should perform one logical task/analysis</li>
+<li>Do not print large datasets or unnecessary intermediate outputs</li>
+</ul></li>
+<li>Organization
+<ul>
+<li>Code chunks should be logically organized under clear, informative section headers</li>
+<li>Written responses should appear directly below the code chunk that produces the the relevant output</li>
+</ul></li>
+</ul>
+</section>
+<section id="lab-1" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="lab-1"><span class="header-section-number">4.2</span> Lab 1</h2>
+<section id="overview" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">4.2.1</span> Overview</h3>
+<p>In this lab, you will examine several spatial datasets to understand their structure. You will identify the variables in each dataset, including their types and geographic components, and determine the unit of analysis. You will also identify where each dataset comes from and how the data was collected. Finally, you will assess basic aspects of data quality and representativeness in order to decide whether each dataset is appropriate for a particular use or research question.</p>
+</section>
+<section id="specifications" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="specifications"><span class="header-section-number">4.2.2</span> Specifications</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Student downloaded three appropriate data files from each of the sources in Part 1.</td>
+</tr>
+<tr class="even">
+<td>Student answered all Part 2 questions for each dataset in complete sentences and demonstrated competent understanding (no substantial errors).</td>
+</tr>
+<tr class="odd">
+<td>Student submitted one Word document with responses and all three data files to Canvas</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-instructions" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="lab-instructions"><span class="header-section-number">4.2.3</span> Lab Instructions</h3>
+<p><strong>Part 1: Downloading Spatial Data</strong></p>
+<p>For this lab, you will download three spatial datasets from different data providers. All datasets should be downloaded in a tabular format (either <code>.csv</code> or <code>.xlsx</code>) so they can be opened in Excel, Numbers, or Google Sheets.</p>
+<ul>
+<li><p><a href="https://www.inaturalist.org/home">iNaturalist</a> (you will need to create an account to download data):</p>
+<ul>
+<li>Use the “Explore” page to filter observations by a specific location, or a specific species and a specific location.</li>
+<li>Once filters are applied, <a href="https://help.inaturalist.org/en/support/solutions/articles/151000170342-how-can-i-download-data-from-inaturalist-">download data</a> from the “Filters” tab</li>
+</ul></li>
+<li><p><a href="https://data.census.gov/">US Census Bureau:</a></p>
+<ul>
+<li>Use the search bar and a query (for instance, “poverty in all counties in north carolina in 2020”) to search for a variable of interest for all North Carolina counties</li>
+<li>Select a table and use the Download option</li>
+</ul></li>
+<li><p><a href="https://www.nconemap.gov/">NCOneMap:</a></p>
+<ul>
+<li>Browse or search for a dataset of interest (e.g., public facilities, infrastructure, environmental features).</li>
+<li>Open the dataset’s information page and download as .csv.</li>
+</ul></li>
+</ul>
+<p><strong>Part 2: Exploring Data</strong></p>
+<p>In this part of the lab, you will examine each dataset you downloaded to understand its structure, variables, and source. You are not expected to perform any analysis. Complete the questions below for each dataset. Your responses should be written in complete sentences.</p>
+<ol type="1">
+<li>Who collected or provided the data?</li>
+<li>How was the data collected?</li>
+<li>Would this data be considered “old-school” or “new-school” data?</li>
+<li>What does one row in the dataset represent?</li>
+<li>What does one column in the dataset represent?</li>
+<li>What is the unit of analysis?</li>
+<li>Identify at least one numeric variable</li>
+<li>Identify at least one categorical variable</li>
+<li>Identify any fields that describe location or geography</li>
+<li>Are there missing values or incomplete fields?</li>
+<li>Identify one limitation or potential source of bias in the data</li>
+<li>Describe one research question this dataset could help answer</li>
+<li>Describe one research question that this dataset would not be useful for because the unit of analysis does not match the question</li>
+</ol>
+</section>
+</section>
+<section id="lab-2" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="lab-2"><span class="header-section-number">4.3</span> Lab 2</h2>
+<section id="overview-1" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="overview-1"><span class="header-section-number">4.3.1</span> Overview</h3>
+<p>In this lab, you will work with a population projection file for North Carolina provided by the <a href="https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/countystate-population-projections/population-overview">North Carolina Office of State Budget and Management</a>. You will read in a file, practice some basic data manipulation using base R and tidyverse, and make a graph.</p>
+</section>
+<section id="specifications-1" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="specifications-1"><span class="header-section-number">4.3.2</span> Specifications</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood.</td>
+</tr>
+<tr class="even">
+<td><strong>Reading Data</strong>: All required datasets are read into R. Responses correctly identify basic properties of the data. Minor inaccuracies are acceptable if overall understanding is clear.</td>
+</tr>
+<tr class="odd">
+<td><strong>Manipulating Data:</strong> Code produces the required variables and transformed datasets. Minor coding errors or inefficiencies are acceptable if the results are usable.</td>
+</tr>
+<tr class="even">
+<td><strong>Describing Data</strong>: Required tables and non-map graphics are present. Written responses correctly describe patterns or distributions shown in the outputs.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-instructions-1" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="lab-instructions-1"><span class="header-section-number">4.3.3</span> Lab Instructions</h3>
+<p>Create a new .Rmd document (and save it to your GEOG215 folder).</p>
+<p>Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.</p>
+<p><strong>Reading Data</strong></p>
+<ul>
+<li>Load the <code>tidyverse</code> and <code>gt</code> library and read in the data using the following command: <code>nc_pop &lt;- read_csv("https://drive.google.com/uc?export=download&amp;id=1ogC0lRjEMaXLmRrZkwLVI9MbmJdk4NIy")</code></li>
+<li>Answer the following questions:
+<ul>
+<li>What does each row in the dataset represent?</li>
+<li>What does each column in the dataset represent?</li>
+<li>What is the data type of each column? (either use the <code>class()</code> command or explore the environment tab)</li>
+</ul></li>
+</ul>
+<p><strong>Manipulating Data</strong></p>
+<ul>
+<li>Use base R to create an object called <code>high_pop_counties</code> that is just counties that have a a population over 100,000 in 2020</li>
+<li>Use tidyverse to create an object called <code>low_pop_counties</code> that is just counties that have a population below 20,000 in 2020</li>
+<li>Use base R to add a variable called <code>change</code> to the <code>nc_pop</code> object that is the population difference between 2010 and 2050</li>
+<li>Use tidyverse to add a variable called <code>growth</code> to the <code>nc_pop</code> object that assigns a value of “Growing” to counties that are projected to gain population between 2010 and 2050 and a value of “Shrinking” to populations that are projected to lose population between 2010 and 2050</li>
+<li>Write a command in base R that calculates the mean of the <code>change</code> variable</li>
+<li>Write a command in tidyverse that calculates the max of the <code>change</code> variable</li>
+<li>Write a tidyverse command that creates a new object called <code>simp_pop</code> that selects just the <code>change</code> variable and renames it to <code>pop_change</code></li>
+</ul>
+<p><strong>Describing Data</strong></p>
+<ul>
+<li>Create a descriptive statistics table of the <code>change</code> variable</li>
+<li>Create two graphics, using <code>ggplot</code> that help describe the data.</li>
+<li>Answer the following questions:
+<ul>
+<li>Describe what the descriptive statistics table tells you about the distribution of the variable</li>
+<li>Describe what the graphics tell you about the variable, focusing on what you couldn’t already learn from the descriptive statistics table</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="lab-3" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="lab-3"><span class="header-section-number">4.4</span> Lab 3</h2>
+<section id="overview-2" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="overview-2"><span class="header-section-number">4.4.1</span> Overview</h3>
+<p>In this lab, you will practice working with spatial data in R by examining spatial and non-spatial attributes, mapping variables, and calculating descriptive and spatial descriptive statistics.</p>
+<p>You will work with several spatial datasets:</p>
+<ul>
+<li><a href="https://data.census.gov/">American Community Survey</a> data on average commute for North Carolina counties and census tracts (vector data)</li>
+<li>Modeled Wet Bulb Globe Temperature on July 17, 2025 across Orange County, NC provided by Andrew Robinson (Geography PhD student) (raster data). WBGT is a measure of heat stress.</li>
+<li>Locations of wind turbines in the continental US from <a href="https://energy.usgs.gov/uswtdb/">The U.S. Wind Turbine Database</a></li>
+</ul>
+</section>
+<section id="specifications-2" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="specifications-2"><span class="header-section-number">4.4.2</span> Specifications</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lab is submitted on Canvas and follows general formatting guidelines. Minor formatting issues may be present but do not interfere with readability or interpretation.</td>
+</tr>
+<tr class="even">
+<td><strong>Reading Data</strong>: All required datasets are read into R. Responses correctly identify basic properties of the data. Minor inaccuracies are acceptable if overall understanding is clear.</td>
+</tr>
+<tr class="odd">
+<td><strong>Manipulating Data:</strong> Code produces the required variables and transformed datasets. Minor coding errors or inefficiencies are acceptable if the results are usable.</td>
+</tr>
+<tr class="even">
+<td><strong>Describing Data</strong>: Required maps, tables, and non-map graphics are present. Written responses correctly describe patterns or distributions shown in the outputs.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-instructions-2" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="lab-instructions-2"><span class="header-section-number">4.4.3</span> Lab Instructions</h3>
+<p>Create a new .Rmd document (and save it to your GEOG215 folder).</p>
+<p>Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.</p>
+<p><strong>Reading Data</strong></p>
+<ul>
+<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>spdep</code>, <code>gt</code>, <code>terra</code>, and <code>sf</code> libraries</p></li>
+<li><p>Read in the data using the following commands:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>turbines <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1LLl871Mv3BY7hI56kWPiaMvvk5SxFcQX"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>county_wfh <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1kV-HKXvlrhfSKOHli4QuRfNoW6I76ihN"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>tract_wfh <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1H-MgCZmca_0YLHg3P6zxqhVrldOTddyD"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>wbgt_raster <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1l4kZvyCf9ySy7CQlKlzl5y9z6aYHHlpa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Answer the following questions:</p>
+<ul>
+<li>What is the CRS of each dataset? Is it a geographic coordinate system or a projected coordinate system?</li>
+<li>What is the geometry type of <code>turbines</code>, <code>county_wfh</code>, and <code>tract_wfh</code>?</li>
+<li>What is the resolution of the WBGT data?</li>
+</ul></li>
+</ul>
+<p><strong>Manipulating Data</strong></p>
+<ul>
+<li>Use a tidyverse command to calculate a new field <code>perc_wfh</code> in the <code>county_wfh</code> and <code>tract_wfh</code> objects. (<code>wfeE</code> is the number of people working from home and <code>totalE</code> is the total population)</li>
+</ul>
+<p><strong>Describing Work From Home</strong></p>
+<ul>
+<li>Create a map of <code>perc_wfh</code> for both the <code>county_wfh</code> and <code>tract_wfh</code> objects.</li>
+<li>Create a descriptive statistics table of <code>perc_wfh</code> for both the <code>county_wfh</code> and <code>tract_wfh</code> objects</li>
+<li>Create one non-map graphic of <code>perc_wfh</code> for both the <code>county_wfh</code> and <code>tract_wfh</code> objects</li>
+<li>Answer the following questions (<em>Remember that the underlying data for the ACS is collected at the individual/household level, the only difference is the level of spatial aggregation</em>):
+<ul>
+<li>How does the distribution of <code>perc_wfh</code> differ between the county-level and tract level data?</li>
+<li>How does changing the scale of aggregation (counties vs.&nbsp;tracts) affect the spatial pattern you observe?</li>
+<li>What does this example demonstrate about the scale effect of MAUP and why it matters for interpreting spatial data?</li>
+</ul></li>
+</ul>
+<p><strong>Describing Heat Stress in Orange County NC</strong></p>
+<ul>
+<li>Create a map of <code>wbgt_raster</code></li>
+<li>Summarize the cell values of <code>wbgt_raster</code></li>
+</ul>
+<p><strong>Describing Wind Turbines</strong></p>
+<ul>
+<li>Calculate mean center of wind turbines, standard deviational ellipse of wind turbines, and weighted mean center based on a variable of interest selected from the <a href="https://eta-publications.lbl.gov/sites/default/files/2025-06/uswtdb_v8_1_20250527_codebook.xlsx">dataset</a>.</li>
+<li>Create a map that symbolizes the mean center of wind turbines, the standard deviational ellipse of wind turbines, and the weighted mean center (<em>make sure that you add manual legend entries for the mean center and weighted mean center</em>)</li>
+<li>Answer the following questions:
+<ul>
+<li>What does your map reveal about the spatial distribution of wind turbines?</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="lab-4" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="lab-4"><span class="header-section-number">4.5</span> Lab 4</h2>
+<section id="overview-3" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="overview-3"><span class="header-section-number">4.5.1</span> Overview</h3>
+<p>In this lab, you will practice formulating spatial research questions and finding, downloading, and loading spatial data that is relevant to those questions.</p>
+</section>
+<section id="specifications-3" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="specifications-3"><span class="header-section-number">4.5.2</span> Specifications</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood.</td>
+</tr>
+<tr class="even">
+<td><strong>RQ1</strong>: Student successfully reads in data using relative file paths and creates a basic map of the datasets. Written interpretation demonstrates competent understanding of the datasets.</td>
+</tr>
+<tr class="odd">
+<td><strong>RQ2</strong>: Student successfully reads in data using relative file paths and creates a basic map of the datasets. Written interpretation demonstrates competent understanding of the datasets.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-instructions-3" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="lab-instructions-3"><span class="header-section-number">4.5.3</span> Lab Instructions</h3>
+<p>Create a new .Rmd document (and save it to your GEOG215 folder).</p>
+<p>Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.</p>
+<p><strong>RQ1</strong></p>
+<ul>
+<li>Formulate a spatial research question. The question must be about geographic location, distribution, association, interaction, or change.</li>
+<li>Find and download two spatial datasets that would help you answer that research question. You should be looking for spatial files (.shp, .geojson, .tif) or a tabular file (.csv) that has coordinates in it.</li>
+<li>Read your spatial files into R using <strong>relative file paths.</strong></li>
+<li>Make a map of each of your datasets. If you found a .csv, you will need to use the <code>st_as_sf()</code> command to make the data spatial.</li>
+<li>Answer the following questions for each of your datasets:
+<ul>
+<li>What is the unit of analysis?</li>
+<li>What attributes does the data have that would contribute to answering your research question?</li>
+<li>What types of transformations would be required to be able to combine your datasets into a “tidy” object?</li>
+</ul></li>
+</ul>
+<p><strong>RQ2</strong></p>
+<ul>
+<li>Formulate a spatial research question. The question must be about geographic location, distribution, association, interaction, or change.</li>
+<li>Find and download two spatial datasets that would help you answer that research question. You should be looking for spatial files (.shp, .geojson, .tif) or a tabular file (.csv) that has coordinates in it.</li>
+<li>Read your spatial files into R using <strong>relative file paths.</strong></li>
+<li>Make a map of each of your datasets. If you found a .csv, you will need to use the <code>st_as_sf()</code> command to make the data spatial.</li>
+<li>Answer the following questions for each of your datasets:
+<ul>
+<li>What is the unit of analysis?</li>
+<li>What attributes does the data have that would contribute to answering your research question?</li>
+<li>What types of transformations would be required to be able to combine your datasets into a “tidy” object?</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="lab-5" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="lab-5"><span class="header-section-number">4.6</span> Lab 5</h2>
+<section id="overview-4" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="overview-4"><span class="header-section-number">4.6.1</span> Overview</h3>
+<p>In this lab, you will explore the analytic datasets produced in the Analytic Dataset Practicum</p>
+</section>
+<section id="specifications-4" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="specifications-4"><span class="header-section-number">4.6.2</span> Specifications</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood.</td>
+</tr>
+<tr class="even">
+<td>The required transformations are performed to create the analytic variable for each research question (e.g., aggregation, reprojection, spatial joins, buffering, distance calculations, raster extraction).</td>
+</tr>
+<tr class="odd">
+<td>The overall workflow reflects the intended steps, even if minor errors are present</td>
+</tr>
+<tr class="even">
+<td>Each dataset is saved to local device</td>
+</tr>
+<tr class="odd">
+<td>Descriptive statistics and a non-map visualization are created for each analytic dataset. Written responses accurately describe what the analytic variable represents and what the distribution shows.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-instructions-4" class="level3" data-number="4.6.3">
+<h3 data-number="4.6.3" class="anchored" data-anchor-id="lab-instructions-4"><span class="header-section-number">4.6.3</span> Lab Instructions</h3>
+<p>For this lab, use the same document that you created your analytic datasets in. Each analytic dataset should have it’s own header and code chunk.</p>
+<ul>
+<li>Create a descriptive statistics table and one non-map visualization for each dataset</li>
+<li>Export each dataset using the following command <code>st_write(DATASET, "name.geojson")</code>. Note that this will save the file into your working directory.</li>
+</ul>
+<p>For each analytic dataset, create a descriptive statistics table and one non-map visualization. Then answer the following questions for each dataset:</p>
+<ul>
+<li>What does a single row in your final analytic dataset represent?</li>
+<li>What did you need to do to the original data in order to create this analytic dataset?</li>
+<li>What does the distribution of this variable suggest about the research question?</li>
+</ul>
+</section>
+</section>
+<section id="lab-6" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="lab-6"><span class="header-section-number">4.7</span> Lab 6</h2>
+<section id="overview-5" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="overview-5"><span class="header-section-number">4.7.1</span> Overview</h3>
+<p>In this lab, you will create well-designed maps for the analytic datasets created in the Analytic Dataset Practicum. Remember to use this <a href="https://tmap.geocompx.org/">valuable resource</a>:</p>
+</section>
+<section id="specifications-5" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="specifications-5"><span class="header-section-number">4.7.2</span> Specifications</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood.</td>
+</tr>
+<tr class="even">
+<td>Maps follow the core design instructions. Minor design or formatting issues are acceptable</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-instructions-5" class="level3" data-number="4.7.3">
+<h3 data-number="4.7.3" class="anchored" data-anchor-id="lab-instructions-5"><span class="header-section-number">4.7.3</span> Lab Instructions</h3>
+<p><strong>Map 1: AQI for North Carolina Counties</strong></p>
+<p>This map should adhere to the following design guidelines:</p>
+<ul>
+<li>County values for percent moderate or worse air quality days should be represented by dots (hint: you can use the <code>tm_dots()</code> command even with polygons)</li>
+<li>The dots should visualized using an appropriate color palette and classification scheme</li>
+<li>The map should include a basemap and a legend within the map frame</li>
+<li>The map title should be centered above the map</li>
+</ul>
+<p><strong>Map 2: Bus Stop Canopy Coverage</strong></p>
+<p>This map should adhere to the following design guidelines:</p>
+<ul>
+<li>Bus stop points (<strong>NOT</strong> buffers) should be visualized. You should use the <code>st_drop_geometry()</code> command and a <code>left_join()</code> to join your buffered values back to the original bus stop object</li>
+<li>Bus stops should visualized using an appropriate color palette and classification scheme</li>
+<li>The map should include a satellite basemap and an appropriately placed legend</li>
+<li>The map title should be centered above the map</li>
+</ul>
+<p><strong>Map 3: Distance to Bus Stops in Chapel Hill</strong></p>
+<p>This map should adhere to the following design guidelines:</p>
+<ul>
+<li>Only addresses above a user-selected distance should be visualized (i.e.&nbsp;more than .25 miles from a bus stop)</li>
+<li>Chapel Hill boundaries should be included (<code>ch_boundaries &lt;-st_read("https://drive.google.com/uc?export=download&amp;id=1ievfdMpmrZBO1qBI_uILYpb1XbVXmC0b”)</code>)</li>
+<li>Bus stop locations should be included</li>
+<li>The map should include an unlabeled basemap and an appropriately placed legend</li>
+<li>The map title should be within the map frame</li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

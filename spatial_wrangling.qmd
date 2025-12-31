@@ -82,7 +82,7 @@ sidewalks_by_school <- sidewalks |>
 
 **Q2: Open up the `sidewalks_by_school` object. What is different about this object compared to the original `sidewalks` object?**
 
-### **Step 4: Aggregate Sidewalk Data to School Level**
+### Step 4: Aggregate Sidewalk Data to School Level
 
 Now that we are done with the spatial wrangling, we are back to known territory.
 

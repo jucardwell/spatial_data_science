@@ -1,1 +1,309 @@
 # Labs
+
+## General Formatting Guidance
+
+All submitted labs should follow the following formatting guidelines (unless otherwise noted). If your work does not follow these guidelines, it will need to be revised and resubmitted:
+
+-   Submission:
+    -   You should submit two files for each lab– a .Rmd and a .html.
+    -   You should not submit any other files.
+    -   The files should be saved using the following convention: LASTNAME_Lab_X.Rmd
+-   Code:
+    -   All R code must appear inside code chunks. Do not place any code in the body text.
+    -   All commands **MUST** have a descriptive comment
+    -   Code must follow the syntax that we have used in class
+    -   Code chunks should not display messages or warnings in the knitted .html. If messages or warnings are printed, you need to include `message = F, warning = F` in the r header.
+    -   Each code chunk should perform one logical task/analysis
+    -   Do not print large datasets or unnecessary intermediate outputs
+-   Organization
+    -   Code chunks should be logically organized under clear, informative section headers
+    -   Written responses should appear directly below the code chunk that produces the the relevant output
+
+## Lab 1
+
+### Overview
+
+In this lab, you will examine several spatial datasets to understand their structure. You will identify the variables in each dataset, including their types and geographic components, and determine the unit of analysis. You will also identify where each dataset comes from and how the data was collected. Finally, you will assess basic aspects of data quality and representativeness in order to decide whether each dataset is appropriate for a particular use or research question.
+
+### Specifications
+
+| Specification |
+|----|
+| Student downloaded three appropriate data files from each of the sources in Part 1. |
+| Student answered all Part 2 questions for each dataset in complete sentences and demonstrated competent understanding (no substantial errors). |
+| Student submitted one Word document with responses and all three data files to Canvas |
+
+### Lab Instructions
+
+**Part 1: Downloading Spatial Data**
+
+For this lab, you will download three spatial datasets from different data providers. All datasets should be downloaded in a tabular format (either `.csv` or `.xlsx`) so they can be opened in Excel, Numbers, or Google Sheets.
+
+-   [iNaturalist](https://www.inaturalist.org/home) (you will need to create an account to download data):
+
+    -   Use the "Explore" page to filter observations by a specific location, or a specific species and a specific location.
+    -   Once filters are applied, [download data](https://help.inaturalist.org/en/support/solutions/articles/151000170342-how-can-i-download-data-from-inaturalist-) from the "Filters" tab
+
+-   [US Census Bureau:](https://data.census.gov/)
+
+    -   Use the search bar and a query (for instance, "poverty in all counties in north carolina in 2020") to search for a variable of interest for all North Carolina counties
+    -   Select a table and use the Download option
+
+-   [NCOneMap:](https://www.nconemap.gov/)
+
+    -   Browse or search for a dataset of interest (e.g., public facilities, infrastructure, environmental features).
+    -   Open the dataset’s information page and download as .csv.
+
+**Part 2: Exploring Data**
+
+In this part of the lab, you will examine each dataset you downloaded to understand its structure, variables, and source. You are not expected to perform any analysis. Complete the questions below for each dataset. Your responses should be written in complete sentences.
+
+1.  Who collected or provided the data?
+2.  How was the data collected?
+3.  Would this data be considered "old-school" or "new-school" data?
+4.  What does one row in the dataset represent?
+5.  What does one column in the dataset represent?
+6.  What is the unit of analysis?
+7.  Identify at least one numeric variable
+8.  Identify at least one categorical variable
+9.  Identify any fields that describe location or geography
+10. Are there missing values or incomplete fields?
+11. Identify one limitation or potential source of bias in the data
+12. Describe one research question this dataset could help answer
+13. Describe one research question that this dataset would not be useful for because the unit of analysis does not match the question
+
+## Lab 2
+
+### Overview
+
+In this lab, you will work with a population projection file for North Carolina provided by the [North Carolina Office of State Budget and Management](https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/countystate-population-projections/population-overview). You will read in a file, practice some basic data manipulation using base R and tidyverse, and make a graph.
+
+### Specifications
+
+| Specification |
+|----|
+| Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
+| **Reading Data**: All required datasets are read into R. Responses correctly identify basic properties of the data. Minor inaccuracies are acceptable if overall understanding is clear. |
+| **Manipulating Data:** Code produces the required variables and transformed datasets. Minor coding errors or inefficiencies are acceptable if the results are usable. |
+| **Describing Data**: Required tables and non-map graphics are present. Written responses correctly describe patterns or distributions shown in the outputs. |
+
+### Lab Instructions
+
+Create a new .Rmd document (and save it to your GEOG215 folder).
+
+Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.
+
+**Reading Data**
+
+-   Load the `tidyverse` and `gt` library and read in the data using the following command: `nc_pop <- read_csv("https://drive.google.com/uc?export=download&id=1ogC0lRjEMaXLmRrZkwLVI9MbmJdk4NIy")`
+-   Answer the following questions:
+    -   What does each row in the dataset represent?
+    -   What does each column in the dataset represent?
+    -   What is the data type of each column? (either use the `class()` command or explore the environment tab)
+
+**Manipulating Data**
+
+-   Use base R to create an object called `high_pop_counties` that is just counties that have a a population over 100,000 in 2020
+-   Use tidyverse to create an object called `low_pop_counties` that is just counties that have a population below 20,000 in 2020
+-   Use base R to add a variable called `change` to the `nc_pop` object that is the population difference between 2010 and 2050
+-   Use tidyverse to add a variable called `growth` to the `nc_pop` object that assigns a value of "Growing" to counties that are projected to gain population between 2010 and 2050 and a value of "Shrinking" to populations that are projected to lose population between 2010 and 2050
+-   Write a command in base R that calculates the mean of the `change` variable
+-   Write a command in tidyverse that calculates the max of the `change` variable
+-   Write a tidyverse command that creates a new object called `simp_pop` that selects just the `change` variable and renames it to `pop_change`
+
+**Describing Data**
+
+-   Create a descriptive statistics table of the `change` variable
+-   Create two graphics, using `ggplot` that help describe the data.
+-   Answer the following questions:
+    -   Describe what the descriptive statistics table tells you about the distribution of the variable
+    -   Describe what the graphics tell you about the variable, focusing on what you couldn't already learn from the descriptive statistics table
+
+## Lab 3
+
+### Overview
+
+In this lab, you will practice working with spatial data in R by examining spatial and non-spatial attributes, mapping variables, and calculating descriptive and spatial descriptive statistics.
+
+You will work with several spatial datasets:
+
+-   [American Community Survey](https://data.census.gov/) data on average commute for North Carolina counties and census tracts (vector data)
+-   Modeled Wet Bulb Globe Temperature on July 17, 2025 across Orange County, NC provided by Andrew Robinson (Geography PhD student) (raster data). WBGT is a measure of heat stress.
+-   Locations of wind turbines in the continental US from [The U.S. Wind Turbine Database](https://energy.usgs.gov/uswtdb/)
+
+### Specifications
+
+| Specification |
+|----|
+| Lab is submitted on Canvas and follows general formatting guidelines. Minor formatting issues may be present but do not interfere with readability or interpretation. |
+| **Reading Data**: All required datasets are read into R. Responses correctly identify basic properties of the data. Minor inaccuracies are acceptable if overall understanding is clear. |
+| **Manipulating Data:** Code produces the required variables and transformed datasets. Minor coding errors or inefficiencies are acceptable if the results are usable. |
+| **Describing Data**: Required maps, tables, and non-map graphics are present. Written responses correctly describe patterns or distributions shown in the outputs. |
+
+### Lab Instructions
+
+Create a new .Rmd document (and save it to your GEOG215 folder).
+
+Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.
+
+**Reading Data**
+
+-   Load the `tidyverse` , `tmap`, `spdep`, `gt`, `terra`, and `sf` libraries
+
+-   Read in the data using the following commands:
+
+    ```{r, eval = F}
+    turbines <- st_read("https://drive.google.com/uc?export=download&id=1LLl871Mv3BY7hI56kWPiaMvvk5SxFcQX")
+
+    county_wfh <- st_read("https://drive.google.com/uc?export=download&id=1kV-HKXvlrhfSKOHli4QuRfNoW6I76ihN")
+
+    tract_wfh <- st_read("https://drive.google.com/uc?export=download&id=1H-MgCZmca_0YLHg3P6zxqhVrldOTddyD")
+
+    wbgt_raster <- rast("https://drive.google.com/uc?export=download&id=1l4kZvyCf9ySy7CQlKlzl5y9z6aYHHlpa")
+    ```
+
+-   Answer the following questions:
+
+    -   What is the CRS of each dataset? Is it a geographic coordinate system or a projected coordinate system?
+    -   What is the geometry type of `turbines`, `county_wfh`, and `tract_wfh`?
+    -   What is the resolution of the WBGT data?
+
+**Manipulating Data**
+
+-   Use a tidyverse command to calculate a new field `perc_wfh` in the `county_wfh` and `tract_wfh` objects. (`wfeE` is the number of people working from home and `totalE` is the total population)
+
+**Describing Work From Home**
+
+-   Create a map of `perc_wfh` for both the `county_wfh` and `tract_wfh` objects.
+-   Create a descriptive statistics table of `perc_wfh` for both the `county_wfh` and `tract_wfh` objects
+-   Create one non-map graphic of `perc_wfh` for both the `county_wfh` and `tract_wfh` objects
+-   Answer the following questions (*Remember that the underlying data for the ACS is collected at the individual/household level, the only difference is the level of spatial aggregation*):
+    -   How does the distribution of `perc_wfh` differ between the county-level and tract level data?
+    -   How does changing the scale of aggregation (counties vs. tracts) affect the spatial pattern you observe?
+    -   What does this example demonstrate about the scale effect of MAUP and why it matters for interpreting spatial data?
+
+**Describing Heat Stress in Orange County NC**
+
+-   Create a map of `wbgt_raster`
+-   Summarize the cell values of `wbgt_raster`
+
+**Describing Wind Turbines**
+
+-   Calculate mean center of wind turbines, standard deviational ellipse of wind turbines, and weighted mean center based on a variable of interest selected from the [dataset](https://eta-publications.lbl.gov/sites/default/files/2025-06/uswtdb_v8_1_20250527_codebook.xlsx).
+-   Create a map that symbolizes the mean center of wind turbines, the standard deviational ellipse of wind turbines, and the weighted mean center (*make sure that you add manual legend entries for the mean center and weighted mean center*)
+-   Answer the following questions:
+    -   What does your map reveal about the spatial distribution of wind turbines?
+
+## Lab 4
+
+### Overview
+
+In this lab, you will practice formulating spatial research questions and finding, downloading, and loading spatial data that is relevant to those questions.
+
+### Specifications
+
+| Specification |
+|----|
+| Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
+| **RQ1**: Student successfully reads in data using relative file paths and creates a basic map of the datasets. Written interpretation demonstrates competent understanding of the datasets. |
+| **RQ2**: Student successfully reads in data using relative file paths and creates a basic map of the datasets. Written interpretation demonstrates competent understanding of the datasets. |
+
+### Lab Instructions
+
+Create a new .Rmd document (and save it to your GEOG215 folder).
+
+Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.
+
+**RQ1**
+
+-   Formulate a spatial research question. The question must be about geographic location, distribution, association, interaction, or change.
+-   Find and download two spatial datasets that would help you answer that research question. You should be looking for spatial files (.shp, .geojson, .tif) or a tabular file (.csv) that has coordinates in it.
+-   Read your spatial files into R using **relative file paths.**
+-   Make a map of each of your datasets. If you found a .csv, you will need to use the `st_as_sf()` command to make the data spatial.
+-   Answer the following questions for each of your datasets:
+    -   What is the unit of analysis?
+    -   What attributes does the data have that would contribute to answering your research question?
+    -   What types of transformations would be required to be able to combine your datasets into a "tidy" object?
+
+**RQ2**
+
+-   Formulate a spatial research question. The question must be about geographic location, distribution, association, interaction, or change.
+-   Find and download two spatial datasets that would help you answer that research question. You should be looking for spatial files (.shp, .geojson, .tif) or a tabular file (.csv) that has coordinates in it.
+-   Read your spatial files into R using **relative file paths.**
+-   Make a map of each of your datasets. If you found a .csv, you will need to use the `st_as_sf()` command to make the data spatial.
+-   Answer the following questions for each of your datasets:
+    -   What is the unit of analysis?
+    -   What attributes does the data have that would contribute to answering your research question?
+    -   What types of transformations would be required to be able to combine your datasets into a "tidy" object?
+
+## Lab 5
+
+### Overview
+
+In this lab, you will explore the analytic datasets produced in the Analytic Dataset Practicum
+
+### Specifications
+
+| Specification |
+|----|
+| Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
+| The required transformations are performed to create the analytic variable for each research question (e.g., aggregation, reprojection, spatial joins, buffering, distance calculations, raster extraction). |
+| The overall workflow reflects the intended steps, even if minor errors are present |
+| Each dataset is saved to local device |
+| Descriptive statistics and a non-map visualization are created for each analytic dataset. Written responses accurately describe what the analytic variable represents and what the distribution shows. |
+
+### Lab Instructions
+
+For this lab, use the same document that you created your analytic datasets in. Each analytic dataset should have it's own header and code chunk.
+
+-   Create a descriptive statistics table and one non-map visualization for each dataset
+-   Export each dataset using the following command `st_write(DATASET, "name.geojson")`. Note that this will save the file into your working directory.
+
+For each analytic dataset, create a descriptive statistics table and one non-map visualization. Then answer the following questions for each dataset:
+
+-   What does a single row in your final analytic dataset represent?
+-   What did you need to do to the original data in order to create this analytic dataset?
+-   What does the distribution of this variable suggest about the research question?
+
+## Lab 6
+
+### Overview
+
+In this lab, you will create well-designed maps for the analytic datasets created in the Analytic Dataset Practicum. Remember to use this [valuable resource](https://tmap.geocompx.org/):
+
+### Specifications
+
+| Specification |
+|----|
+| Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
+| Maps follow the core design instructions. Minor design or formatting issues are acceptable |
+
+### Lab Instructions
+
+**Map 1: AQI for North Carolina Counties**
+
+This map should adhere to the following design guidelines:
+
+-   County values for percent moderate or worse air quality days should be represented by dots (hint: you can use the `tm_dots()` command even with polygons)
+-   The dots should visualized using an appropriate color palette and classification scheme
+-   The map should include a basemap and a legend within the map frame
+-   The map title should be centered above the map
+
+**Map 2: Bus Stop Canopy Coverage**
+
+This map should adhere to the following design guidelines:
+
+-   Bus stop points (**NOT** buffers) should be visualized. You should use the `st_drop_geometry()` command and a `left_join()` to join your buffered values back to the original bus stop object
+-   Bus stops should visualized using an appropriate color palette and classification scheme
+-   The map should include a satellite basemap and an appropriately placed legend
+-   The map title should be centered above the map
+
+**Map 3: Distance to Bus Stops in Chapel Hill**
+
+This map should adhere to the following design guidelines:
+
+-   Only addresses above a user-selected distance should be visualized (i.e. more than .25 miles from a bus stop)
+-   Chapel Hill boundaries should be included (`ch_boundaries <-st_read("https://drive.google.com/uc?export=download&id=1ievfdMpmrZBO1qBI_uILYpb1XbVXmC0b”)`)
+-   Bus stop locations should be included
+-   The map should include an unlabeled basemap and an appropriately placed legend
+-   The map title should be within the map frame

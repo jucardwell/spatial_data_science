@@ -9,6 +9,11 @@ Spatial patterns are the outcome of different mechanistic processes:
 -   A first-order process means the pattern of points is determined by external factors or a trend in the environment.
 -   A second-order process means the pattern is determined by interaction (attraction or repulsion) between the points themselves.
 
+After completing this chapter, you should be able to:
+
+-   Analyze global structure of point data using quadrat analysis and KDE
+-   Analyze local structure of point data using NNA
+
 We will use the following spatial datasets:
 
 -   Location of lightning strikes in Orange County in 2024 from [Geostationary Lightning Mapper](https://www.goes-r.gov/spacesegment/glm.html) data

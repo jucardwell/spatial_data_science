@@ -6,7 +6,7 @@ In this chapter, we will start working with spatial data formats using the `sf` 
 -   Explore spatial attributes, including identifying and transforming CRS
 -   Create a spatial object from a table coordinates
 -   Calculate descriptive statistics using rasters
--   Calculate spatial descriptive statistics using vectors
+-   Calculate spatial descriptive statistics
 -   Create a simple map of vector and raster data
 
 We will use the following datasets:

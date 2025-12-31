@@ -37,7 +37,7 @@ hospitals <- read_csv("https://drive.google.com/uc?export=download&id=1Ylu33qdfA
 
 **Q1: Based on the commands above, which of these datasets are spatial files?**
 
-## **Research Question 1: How does hospital bed availability per capita vary across NC counties?**
+## Research Question 1: How does hospital bed availability per capita vary across NC counties?
 
 ### Plain Language Summary:
 
@@ -52,7 +52,12 @@ To start, we need to get our hospital data to the county level so it is directly
 #the group_by command tells tidyverse which column(s) we want to aggregate based on. #the summarise command tells tidyverse how to summarise the data
 summarised_hospital <- hospitals |> 
   group_by(fcounty) |> 
-  summarise(total_general_beds = sum(hgenlic))
+            #total beds
+  summarise(total_general_beds = sum(hgenlic),
+            #total number of hospitals
+            num_hosp = n(), 
+            # total number of hospitals with > 50 gen beds
+            num_large_hosp = sum(hgenlic > 50))
 ```
 
 **Q2: Write a command to calculate the total number of beds (`hgenlic` + `rehabhlic`). You should add a new field in the hospitals dataset (`mutate`) before grouping and summarizing.**
@@ -120,8 +125,8 @@ We can put multiple arguments in the `group_by` command. If you noticed above, t
 ch_temp_agg <- ch_temp |>
   group_by(season, Location, Latitude, Longitude) |>
   summarise(mean = mean(`Maximum Air Temperature (F)`),
-            min = mean(`Maximum Air Temperature (F)`),
-            max = mean(`Maximum Air Temperature (F)`))
+            min = min(`Maximum Air Temperature (F)`),
+            max = max(`Maximum Air Temperature (F)`))
 ```
 
 **Q11: Did our summarizing work? Can you figure out why not? (Hint: look at the field type of the maximum air temperature column)**

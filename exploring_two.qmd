@@ -1,0 +1,138 @@
+# Bivariate Relationships and Regression
+
+In this chapter, we will explore relationships between two variables. There are multiple ways to explore bivariate relationships, including visual and descriptive approaches such as scatterplots and bivariate maps that allow us to identify patterns without making causal claims. These methods help us understand how two variables co-vary across space.
+
+Linear regression provides a statistical framework for modeling relationships between two variables and evaluating whether an observed association is unlikely to have occurred by chance. Ordinary least squares (OLS) regression allows us to test hypotheses about the strength and direction of a relationship. However, like hypothesis tests, standard regression models assume that observations are independent. When spatial dependence is present, OLS regression can produce biased estimates. When spatial dependence is present, we can use alternative, spatially-explicit regression approaches.
+
+We will use the following spatial datasets:
+
+-   2023 5-year ACS estimates for the triangle region of North Carolina
+
+```{r, include = F}
+library(tidyverse)
+library(tmap)
+library(sf)
+library(spatialreg)
+library(spdep)
+
+acs_tract_nc <- st_read("https://drive.google.com/uc?export=download&id=1b5zb4nM58mA9okcn-3S-NtWlL_JPhvjn") |> filter(COUNTYFP %in% c("135", "183", "063"))
+```
+
+```{r, eval = F}
+library(tidyverse)
+library(tmap)
+library(sf)
+library(spatialreg)
+library(spdep)
+
+acs_tract_nc <- st_read("https://drive.google.com/uc?export=download&id=1b5zb4nM58mA9okcn-3S-NtWlL_JPhvjn") |> filter(COUNTYFP %in% c("135", "183", "063")) |> filter(!is.na(no_health_insur), !is.na(pct_pov))
+
+```
+
+## Testing Correlation
+
+Correlation provides a single summary measure of the strength and direction of association between two numeric variables. The Pearson correlation coefficient ranges from −1 to 1, where values closer to −1 or 1 indicate stronger linear relationships, and values near 0 indicate little to no linear association. Correlation is useful as an initial diagnostic
+
+```{r, eval = F}
+#test correlation
+cor(acs_tract_nc$no_health_insur, acs_tract_nc$pct_pov)
+
+```
+
+**Q1: What does our correlation value tell us about the strength and direction of the relationship between percent of population without health insurance and percent of population living under the poverty level?**
+
+## Scatterplot
+
+One of the simplest visualizations we can use to explore bivariate relationships is a scatterplot. For instance, if we want to explore the relationship between our no health insurance variable and our poverty variable, we could do the following
+
+```{r, eval = F}
+
+ggplot(acs_tract_nc, aes(x = no_health_insur, y= pct_pov))  + geom_point()
+
+```
+
+## Bivariate Map
+
+While scatterplots ignore geography, bivariate maps allow us to explore how two variables co-vary across space. A bivariate map classifies each variable into categories (for instance, quantiles) and combines them into a single color scheme, making it possible to identify areas where both variables are simultaneously high or low.
+
+```{r, eval=F}
+#bivariate map based on quantiles
+tm_shape(acs_tract_nc) + 
+  tm_polygons(fill = tm_vars(c("no_health_insur", "pct_pov"), multivariate = TRUE),
+              fill.scale = tm_scale_bivariate(values ="bivario.folk_warmth", 
+                scale1 = tm_scale_intervals(n = 4, style = "quantile", labels = c("Lo", "", "", "Hi")), 
+                scale2 = tm_scale_intervals(n=4, style = "quantile", labels = c("Lo", "", "", "Hi"))))
+
+```
+
+**Q2: What does our bivariate map tell us about where the relationships between these two variables are the strongest?**
+
+## Regression
+
+Linear regression provides a formal statistical framework for modeling the relationship between two variables. In an ordinary least squares (OLS) regression, we estimate the expected value of a dependent variable as a linear function of an independent variable. OLS allows us to quantify the strength and direction of the relationship and to assess whether the observed association is unlikely to have occurred by chance.
+
+```{r, eval = F}
+#traditional regression
+ols_model <- lm(pct_pov ~ no_health_insur, data = acs_tract_nc)
+
+#see results
+summary(ols_model)
+```
+
+However, OLS regression relies on several assumptions, including that observations are independent. One way to evaluate whether spatial dependence is present is to examine the residuals from an OLS regression. If the model has adequately captured the underlying process, residuals should be randomly distributed across space. Spatial clustering in residuals suggests that important spatial structure remains unmodeled. A statistically significant Moran’s I indicates that the independence assumption of OLS has been violated and that a spatial regression approach may be more appropriate.
+
+```{r, eval = F}
+#add residuals as a variable
+acs_tract_nc <-acs_tract_nc |> mutate(olsresid = resid(ols_model)) 
+
+#map residuals
+tm_shape(acs_tract_nc) + tm_polygons(fill = "olsresid",fill.scale = tm_scale_intervals(values = "bu_pu", style = "quantile", n = 5))
+
+
+#calculate neighborhoods
+nb <- poly2nb(acs_tract_nc, queen = TRUE)
+
+#set neighborhood weight matrix
+nbw <- nb2listw(nb, style = "W")
+
+#calculate Morans I
+gmoran <- moran.test(acs_tract_nc$olsresid, nbw)
+gmoran
+
+```
+
+**Q3: Do our results indicate that we should use a spatial model?**
+
+## Spatial Regression
+
+When spatial dependence is present, we can use spatial regression models that explicitly incorporate spatial structure. Two common approaches are the spatial lag model and the spatial error model.
+
+The spatial lag model includes a spatially lagged version of the dependent variable, allowing outcomes in one location to be influenced by outcomes in neighboring locations. This approach is appropriate when the process itself is spatially contagious or when values diffuse across space.
+
+The spatial error model, in contrast, assumes that spatial dependence operates through the error term rather than through direct interaction between dependent variables. This approach is appropriate when unobserved spatial processes affect the outcome but are not explicitly included in the model.
+
+To choose an appropriate model, it is important that we don't just look at model fit, but that we also consider the potential underlying processes. In this case, it is not doesn't make much logical sense that it would be a diffusive process, so a lag model wouldn't be appropriate.
+
+```{r, eval = F}
+#lag model
+fit.lag<-lagsarlm(pct_pov ~ no_health_insur,  
+                  data = acs_tract_nc, 
+                  listw = nbw) 
+#see results
+summary(fit.lag)
+
+#error model
+fit.error<-errorsarlm(pct_pov ~ no_health_insur,  
+                  data = acs_tract_nc, 
+                  listw = nbw)  
+#see results
+summary(fit.error)
+```
+
+## Mini-Challenge
+
+This challenge will ask you to explore the bivariate relationship between two other variables in the `acs_tract_nc` object. Add a code chunk that does the following:
+
+-   Creates a scatterplot and bivariate map of the two variables
+-   Run a traditional OLS and interpret the results. Remember this will require choosing a dependent and independent variable. This choice should not be random, it should be based on a hypothesis
+-   Analyze the residuals for spatial dependence and determine whether a spatial model should be run.

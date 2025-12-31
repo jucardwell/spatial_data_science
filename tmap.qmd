@@ -11,8 +11,18 @@ After completing these exercises, you should be able to:
 -   Add basic formatting to a tmap
 
 We will use our NC county boundary and Durham schools data to practice our tmap visualization.
+```{r, include = F}
+library(tidyverse)
+library(sf)
+library(tmap)
 
-```{r}
+nc_counties <- st_read("https://drive.google.com/uc?export=download&id=1g9sGIikgOEubqoj97fUVoCYAKlBDVX5a")
+
+durham_schools <- st_read("https://drive.google.com/uc?export=download&id=1ajKBLeKpFMW8z0HCbnLi4C44tgryCsRt") 
+
+```
+
+```{r, eval = F}
 library(tidyverse)
 library(sf)
 library(tmap)
@@ -29,7 +39,7 @@ durham_schools <- st_read("https://drive.google.com/uc?export=download&id=1ajKBL
 
 We are already familiar with making a basic tmap using color to visualize patterns:
 
-```{r}
+```{r, message = F, warning=F}
 tm_shape(nc_counties) + tm_polygons(fill = "POP2020")
 
 ```
@@ -38,7 +48,7 @@ tm_shape(nc_counties) + tm_polygons(fill = "POP2020")
 
 We can also represent variables by size
 
-```{r}
+```{r, message = F, warning=F}
 tm_shape(nc_counties) + tm_symbols(size = "POP2020")
 
 ```
@@ -47,7 +57,7 @@ tm_shape(nc_counties) + tm_symbols(size = "POP2020")
 
 Or both!
 
-```{r}
+```{r, message = F, warning=F}
 tm_shape(nc_counties) + tm_symbols(size = "POP2020", fill = "POP2020")
 ```
 
@@ -55,7 +65,7 @@ tm_shape(nc_counties) + tm_symbols(size = "POP2020", fill = "POP2020")
 
 For categorical variables, we can also use shape
 
-```{r}
+```{r, message = F, warning=F}
 #with symbols there are a default of 5 symbols. If you have more than 5 categories, you need to specify which shapes to use using the shape.scale() argument
 tm_shape(durham_schools) + tm_symbols(shape = "factype", shape.scale = tm_scale(values = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)))
 ```
@@ -107,6 +117,19 @@ tmap_mode(mode = "view")
 tm_shape(nc_counties) + tm_polygons(fill = "POP2020", fill.scale = tm_scale_intervals(values = "bu_pu", style = "quantile"))
 ```
 
+## Multiple Layers
+
+You can add as many layers to a tmap as you want
+
+```{r, message = F, warning=F}
+#turn back to non-interactive
+tmap_mode("plot")
+
+durham_county <- nc_counties |> filter(NAME == "Durham")
+tm_shape(durham_county) + tm_borders() + tm_shape(durham_schools) + tm_dots()
+
+```
+
 ## Formatting
 
 ### Adding Transparency and additional classes
@@ -118,8 +141,6 @@ tm_shape(nc_counties) + tm_polygons(fill = "POP2020", fill_alpha = .3, fill.scal
 ### Adding a Basemap and a Title
 
 ```{r, message=F, warning=F}
-#change back to static plot
-tmap_mode(mode = "plot")
 
 tm_shape(nc_counties) + tm_polygons(fill = "POP2020",fill.scale = tm_scale_intervals(values = "bu_pu", style = "quantile", n = 5), fill_alpha = .3) +
 tm_title("Median Age by Census Block Group") + tm_basemap("OpenStreetMap")
@@ -166,4 +187,18 @@ tm_shape(nc_counties) +
 
 ```
 
-## 
+## Map Competition
+
+In this exercise, you will create a well-designed map that leverages the stylistic and formatting capabilities of the `tmap` package. You will likely want to add formatting components that we have not explicitly covered. See [Spatial Data Visualization with tmap](https://tmap.geocompx.org/) for additional assistance.
+
+### Map Prompt: Create a well-designed map of weekend bus serviceability to Chapel Hill parks 
+
+```{r, eval = F}
+
+ch_boundary <- st_read("https://drive.google.com/uc?export=download&id=1ievfdMpmrZBO1qBI_uILYpb1XbVXmC0b")
+
+num_weekend_buses <- st_read("https://drive.google.com/uc?export=download&id=1sm1wakDXNoHQjXHhScH7Q5QdgqRvZTCD")
+
+parks <- st_read("https://drive.google.com/uc?export=download&id=1WfzXK_3NZsll9ov8uD5-9i8ceVMlEUlN")
+```
+

@@ -1,6 +1,6 @@
 # Course Competencies
 
-##  Concept 1: Data Science & Data Acquisition
+## Concept 1: Data Science & Data Acquisition
 
 **Guiding Question:** What is data science, and how do we acquire data for analysis?
 
@@ -32,11 +32,11 @@
 
 ## Concept 4: Asking Spatial Questions
 
-**Guiding Question:** How do spatial questions guide spatial data science, and how do they shape analytical datasets?
+**Guiding Question:** How do spatial questions guide spatial data science, and how do they shape analytic datasets?
 
 -   Generate a spatial research question and connect it to specific spatial data requirements
--   Explain the distinction between raw data and analytical data
--   Determine the data transformations required to convert raw spatial data into analytical datasets that can address specific spatial questions
+-   Explain the distinction between raw data and analytic data
+-   Determine the data transformations required to convert raw spatial data into analytic datasets that can address specific spatial questions
 
 ## Concept 5: Wrangling Data
 
@@ -46,11 +46,11 @@
 -   Use tidyverse tools to create derived variables and construct aggregations
 -   Perform spatial joins, buffering operations, and distance calculations using sf tools
 -   Detect and address missing data, duplicates, and invalid geometries
--   Apply the data transformations required to convert raw spatial data into analytical datasets that can address specific spatial questions
+-   Apply the data transformations required to convert raw spatial data into analytic datasets that can address specific spatial questions
 
 ## Concept 6: Mapping
 
-**Guiding Question:** How do we visualize spatial patterns in our analytical dataset and communicate them?
+**Guiding Question:** How do we visualize spatial patterns in our analytic dataset and communicate them?
 
 -   Create effective thematic maps using tmap, including layering, symbology, legends, and annotation
 -   Select appropriate classification methods and evaluate how those choices affect interpretation
@@ -70,7 +70,7 @@
 **Guiding Question**: How do we quantify spatial relationships? 
 
 -   Explain why different spatial weight and neighborhood definitions are used and how they influence analysis outcomes
--   Construct spatial weights and spatial weights matrices, justifying the choice of method for a specific analytical context
+-   Construct spatial weights and spatial weights matrices, justifying the choice of method for a specific analytic context
 
 ## Concept 9: Exploratory Spatial Data Analysis (ESDA)
 
@@ -79,5 +79,5 @@
 -   Calculate and interpret global and local spatial autocorrelation metrics (e.g., Moran’s I, LISA)
 -   Conduct point pattern analysis using nearest-neighbor measures and density estimation
 -   Identify and interpret clusters, hot spots, outliers, and distinguish random from structured spatial patterns.
--   Create bivariate maps to visualize and interpret spatial relationships between two variables
+-   Use bivariate maps, scatterplots, and regression to visualize and interpret spatial relationships between two variables
 -   Use ESDA results to generate or refine hypotheses and research questions

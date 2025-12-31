@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; Spatial Autocorrelation – spatial_data_science</title>
+<title>15&nbsp; Spatial Autocorrelation – spatial_data_science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./exploring_two.html" rel="next">
 <link href="./ppa.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -114,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./autocorrelation.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./autocorrelation.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -213,14 +214,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./analytical_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Analytic Datasets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced tmap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ppa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exploring_two.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bivariate Relationships and Regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -233,20 +252,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reading-in-data" id="toc-reading-in-data" class="nav-link active" data-scroll-target="#reading-in-data"><span class="header-section-number">13.1</span> Reading in Data</a></li>
-  <li><a href="#defining-neighbors" id="toc-defining-neighbors" class="nav-link" data-scroll-target="#defining-neighbors"><span class="header-section-number">13.2</span> Defining Neighbors</a>
+  <li><a href="#reading-in-data" id="toc-reading-in-data" class="nav-link active" data-scroll-target="#reading-in-data"><span class="header-section-number">15.1</span> Reading in Data</a></li>
+  <li><a href="#defining-neighbors" id="toc-defining-neighbors" class="nav-link" data-scroll-target="#defining-neighbors"><span class="header-section-number">15.2</span> Defining Neighbors</a>
   <ul class="collapse">
-  <li><a href="#distance-threshold-point-and-areal" id="toc-distance-threshold-point-and-areal" class="nav-link" data-scroll-target="#distance-threshold-point-and-areal"><span class="header-section-number">13.2.1</span> Distance Threshold (Point and Areal)</a></li>
-  <li><a href="#queens-case-areal" id="toc-queens-case-areal" class="nav-link" data-scroll-target="#queens-case-areal"><span class="header-section-number">13.2.2</span> Queens Case (Areal)</a></li>
+  <li><a href="#distance-threshold-point-and-areal" id="toc-distance-threshold-point-and-areal" class="nav-link" data-scroll-target="#distance-threshold-point-and-areal"><span class="header-section-number">15.2.1</span> Distance Threshold (Point and Areal)</a></li>
+  <li><a href="#queens-case-areal" id="toc-queens-case-areal" class="nav-link" data-scroll-target="#queens-case-areal"><span class="header-section-number">15.2.2</span> Queens Case (Areal)</a></li>
   </ul></li>
-  <li><a href="#k-nearest-neighbors-areal-and-point" id="toc-k-nearest-neighbors-areal-and-point" class="nav-link" data-scroll-target="#k-nearest-neighbors-areal-and-point"><span class="header-section-number">13.3</span> K-Nearest Neighbors (Areal and Point)</a></li>
-  <li><a href="#calculating-global-autocorrelation" id="toc-calculating-global-autocorrelation" class="nav-link" data-scroll-target="#calculating-global-autocorrelation"><span class="header-section-number">13.4</span> Calculating Global Autocorrelation</a>
+  <li><a href="#k-nearest-neighbors-areal-and-point" id="toc-k-nearest-neighbors-areal-and-point" class="nav-link" data-scroll-target="#k-nearest-neighbors-areal-and-point"><span class="header-section-number">15.3</span> K-Nearest Neighbors (Areal and Point)</a></li>
+  <li><a href="#calculating-global-autocorrelation" id="toc-calculating-global-autocorrelation" class="nav-link" data-scroll-target="#calculating-global-autocorrelation"><span class="header-section-number">15.4</span> Calculating Global Autocorrelation</a>
   <ul class="collapse">
-  <li><a href="#global-autocorrelation-in-median-household-income" id="toc-global-autocorrelation-in-median-household-income" class="nav-link" data-scroll-target="#global-autocorrelation-in-median-household-income"><span class="header-section-number">13.4.1</span> Global Autocorrelation in Median Household Income</a></li>
-  <li><a href="#global-autocorrelation-in-school-absence-rate" id="toc-global-autocorrelation-in-school-absence-rate" class="nav-link" data-scroll-target="#global-autocorrelation-in-school-absence-rate"><span class="header-section-number">13.4.2</span> Global Autocorrelation in School Absence Rate</a></li>
+  <li><a href="#global-autocorrelation-in-median-household-income" id="toc-global-autocorrelation-in-median-household-income" class="nav-link" data-scroll-target="#global-autocorrelation-in-median-household-income"><span class="header-section-number">15.4.1</span> Global Autocorrelation in Median Household Income</a></li>
+  <li><a href="#global-autocorrelation-in-school-absence-rate" id="toc-global-autocorrelation-in-school-absence-rate" class="nav-link" data-scroll-target="#global-autocorrelation-in-school-absence-rate"><span class="header-section-number">15.4.2</span> Global Autocorrelation in School Absence Rate</a></li>
   </ul></li>
-  <li><a href="#local-indicators-of-spatial-autocorrelation-lisa" id="toc-local-indicators-of-spatial-autocorrelation-lisa" class="nav-link" data-scroll-target="#local-indicators-of-spatial-autocorrelation-lisa"><span class="header-section-number">13.5</span> Local Indicators of Spatial Autocorrelation (LISA)</a></li>
-  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">13.6</span> Mini Challenge</a></li>
+  <li><a href="#local-indicators-of-spatial-autocorrelation-lisa" id="toc-local-indicators-of-spatial-autocorrelation-lisa" class="nav-link" data-scroll-target="#local-indicators-of-spatial-autocorrelation-lisa"><span class="header-section-number">15.5</span> Local Indicators of Spatial Autocorrelation (LISA)</a></li>
+  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">15.6</span> Mini Challenge</a></li>
   </ul>
 </nav>
     </div>
@@ -255,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></h1>
 </div>
 
 
@@ -281,10 +300,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Just like point pattern analysis, quantifying autocorrelation is useful because it helps us understand the spatial pattern/structure of our data, which helps us in generating hypotheses about the processes that generate the pattern.</p>
 <p>In addition, spatial autocorrelation allows us to understand how spatially dependent our variable is. Spatial dependence can be a serious problem for applying traditional statistical methods because these methods generally have an assumption of independence. Measuring the strength of spatial dependence helps us evaluate how serious this issue is and decide whether we need to adjust our approach- for example, by modifying our sampling design, using methods that account for spatial structure, or interpreting results with greater caution.</p>
+<p>After completing these exercises, you should be able to:</p>
+<ul>
+<li>Define spatial neighborhoods using distance, k-nearest neighbors, and contiguity</li>
+<li>Assess global autocorrelation using Moran’s I</li>
+<li>Assess local autocorrelation using LISA</li>
+</ul>
+<p>We will use the following spatial data:</p>
+<ul>
+<li>Median household income and commute to work time from the American Community Survey</li>
+<li>Chronic absence data at North Carolina public schools</li>
+</ul>
 <p>In this chapter, we will explore autocorrelation in the Median Household Income variable from the 2023 American Community Survey for North Carolina census tracts and chronic absences at North Carolina public schools.</p>
 <p><strong>To follow along with this tutorial, make a new .Rmd document. As you move through the tutorial add chunks, headers, and relevant text to your document.</strong></p>
-<section id="reading-in-data" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="reading-in-data"><span class="header-section-number">13.1</span> Reading in Data</h2>
+<section id="reading-in-data" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="reading-in-data"><span class="header-section-number">15.1</span> Reading in Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -298,12 +328,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>schools_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1mUxk0R_lqcfuJppw_A-1vy-pcB9XdCnS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="defining-neighbors" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="defining-neighbors"><span class="header-section-number">13.2</span> Defining Neighbors</h2>
+<section id="defining-neighbors" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="defining-neighbors"><span class="header-section-number">15.2</span> Defining Neighbors</h2>
 <p>In order to quantify spatial autocorrelation, we need to define each observation’s “spatial neighborhood” so that we can see how related an observation is to the observations near it. There are many ways to define neighbors, and the decision about what definition to use should reflect the processes you hypothesize might be shaping the spatial pattern. For example, if you are studying the spread of a disease, it may be appropriate to define neighbors based on travel networks or adjacency of regions. If you are examining soil properties, a distance-based neighborhood might better reflect how conditions diffuse across space. Some neighborhood definitions can be used for both areal and point datasets and some are specific to the unit of analysis.</p>
 <p>We can explore three different neighborhood definitions using our datasets:</p>
-<section id="distance-threshold-point-and-areal" class="level3" data-number="13.2.1">
-<h3 data-number="13.2.1" class="anchored" data-anchor-id="distance-threshold-point-and-areal"><span class="header-section-number">13.2.1</span> Distance Threshold (Point and Areal)</h3>
+<section id="distance-threshold-point-and-areal" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="distance-threshold-point-and-areal"><span class="header-section-number">15.2.1</span> Distance Threshold (Point and Areal)</h3>
 <p>One way to determine neighbors is to set a distance threshold. Any observations within a set distance would be considered a neighbor. For our census tracts, we could set a distance of 3 miles. The code below demonstrates the neighborhood for the census tract that campus is in.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#isolate ch tract</span></span>
@@ -345,8 +375,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="queens-case-areal" class="level3" data-number="13.2.2">
-<h3 data-number="13.2.2" class="anchored" data-anchor-id="queens-case-areal"><span class="header-section-number">13.2.2</span> Queens Case (Areal)</h3>
+<section id="queens-case-areal" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="queens-case-areal"><span class="header-section-number">15.2.2</span> Queens Case (Areal)</h3>
 <p>The Queens Case neighborhood definition is extremely common in spatial statistics that consider contiguous aerial units (like census tracts). The Queens neighborhood selects neighbors based on any contact (including corners) with the feature of interest. We can’t use contiguity based neighbors for points since they do not touch. The Queens neighborhood for Chapel Hill would look this this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>queen_neighbors <span class="ot">&lt;-</span> tracts_sf <span class="sc">|&gt;</span> <span class="fu">st_filter</span>(ch_tract, <span class="at">.predicates =</span> st_intersects) </span>
@@ -362,8 +392,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="k-nearest-neighbors-areal-and-point" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="k-nearest-neighbors-areal-and-point"><span class="header-section-number">13.3</span> K-Nearest Neighbors (Areal and Point)</h2>
+<section id="k-nearest-neighbors-areal-and-point" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="k-nearest-neighbors-areal-and-point"><span class="header-section-number">15.3</span> K-Nearest Neighbors (Areal and Point)</h2>
 <p>The k-nearest neighbor definition selects the nearest neighbors based on a set number of neighbors. For instance, for our Chapel Hill High point, we could set number of neighbors to 3.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate distances</span></span>
@@ -385,12 +415,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="calculating-global-autocorrelation" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="calculating-global-autocorrelation"><span class="header-section-number">13.4</span> Calculating Global Autocorrelation</h2>
+<section id="calculating-global-autocorrelation" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="calculating-global-autocorrelation"><span class="header-section-number">15.4</span> Calculating Global Autocorrelation</h2>
 <p>To calculate global autocorrelation, we can use Moran’s I. Moran’s I gives an indication of how clustered, random, or dispersed a dataset value is across space. It goes from -1 (perfect dispersion) to 1 (perfect clustering). Let’s start by making a basic map of our variable of interest.</p>
 <p>The main parameter for calculating Moran’s I is the neighborhood definition.</p>
-<section id="global-autocorrelation-in-median-household-income" class="level3" data-number="13.4.1">
-<h3 data-number="13.4.1" class="anchored" data-anchor-id="global-autocorrelation-in-median-household-income"><span class="header-section-number">13.4.1</span> Global Autocorrelation in Median Household Income</h3>
+<section id="global-autocorrelation-in-median-household-income" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="global-autocorrelation-in-median-household-income"><span class="header-section-number">15.4.1</span> Global Autocorrelation in Median Household Income</h3>
 <p>We can start by making a basic map of our variable of interest.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tracts_sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"med_hh_inc"</span>, <span class="at">fill.scale =</span> <span class="fu">tm_scale_intervals</span>(<span class="at">style =</span> <span class="st">"fisher"</span>), <span class="at">col_alpha =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -430,8 +460,8 @@ Moran I statistic       Expectation          Variance
 </div>
 <p>Our Moran’s I indicates strong clustering (.59) at a highly statistically significant level (very small p-value). Therefore, we now know that, at the global scale, this dataset is clustered.</p>
 </section>
-<section id="global-autocorrelation-in-school-absence-rate" class="level3" data-number="13.4.2">
-<h3 data-number="13.4.2" class="anchored" data-anchor-id="global-autocorrelation-in-school-absence-rate"><span class="header-section-number">13.4.2</span> Global Autocorrelation in School Absence Rate</h3>
+<section id="global-autocorrelation-in-school-absence-rate" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="global-autocorrelation-in-school-absence-rate"><span class="header-section-number">15.4.2</span> Global Autocorrelation in School Absence Rate</h3>
 <p>We can map chronic absence rate before Covid (which we’ve done before)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(schools_sf) <span class="sc">+</span> <span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">"pre_covid_pct"</span>, <span class="at">fill.scale =</span> <span class="fu">tm_scale_intervals</span>(<span class="at">style =</span> <span class="st">"fisher"</span>), <span class="at">col_alpha =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -476,11 +506,10 @@ Moran I statistic       Expectation          Variance
 <p><strong>Q3: What does our Moran I value tell us about the spatial structure of our data?</strong></p>
 </section>
 </section>
-<section id="local-indicators-of-spatial-autocorrelation-lisa" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="local-indicators-of-spatial-autocorrelation-lisa"><span class="header-section-number">13.5</span> Local Indicators of Spatial Autocorrelation (LISA)</h2>
+<section id="local-indicators-of-spatial-autocorrelation-lisa" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="local-indicators-of-spatial-autocorrelation-lisa"><span class="header-section-number">15.5</span> Local Indicators of Spatial Autocorrelation (LISA)</h2>
 <p>We know that both of our datasets are clustered because of our Moran’s I values (with median household income strongly clustered and chronic absence rate weakly clustered). However, we don’t know where, specifically, these high and low clusters are. Local Indicators of Spatial Autocorrelation quantify where statistically significant clusters exist in a dataset.</p>
 <p>For the median household income:</p>
-<p>For the school chronic absences:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>locali<span class="ot">&lt;-</span><span class="fu">localmoran_perm</span>(tracts_sf<span class="sc">$</span>med_hh_inc, nbw) <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
@@ -514,6 +543,7 @@ Moran I statistic       Expectation          Variance
 </div>
 </div>
 <p><strong>Q2: What is the spatial pattern of clustering in the median household income variable?</strong></p>
+<p>For the school chronic absences:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>locali_school<span class="ot">&lt;-</span><span class="fu">localmoran_perm</span>(schools_sf<span class="sc">$</span>pre_covid_pct, nbw_school) <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
@@ -548,8 +578,8 @@ Moran I statistic       Expectation          Variance
 </div>
 <p><strong>Q3: What is the spatial pattern of clustering in the school absence variable?</strong></p>
 </section>
-<section id="mini-challenge" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">13.6</span> Mini Challenge</h2>
+<section id="mini-challenge" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">15.6</span> Mini Challenge</h2>
 <ul>
 <li><p>Calculate global and local indicators of spatial autocorrelation for the average commuting time variable and interpret the results</p></li>
 <li><p>Calculate global and local indicators of spatial autocorrelation for the chronic school absences after covid and interpret the results</p></li>
@@ -979,10 +1009,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./ppa.html" class="pagination-link" aria-label="Point Pattern Analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./exploring_two.html" class="pagination-link" aria-label="Bivariate Relationships and Regression">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bivariate Relationships and Regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

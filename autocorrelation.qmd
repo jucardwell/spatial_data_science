@@ -13,6 +13,17 @@ Just like point pattern analysis, quantifying autocorrelation is useful because 
 
 In addition, spatial autocorrelation allows us to understand how spatially dependent our variable is. Spatial dependence can be a serious problem for applying traditional statistical methods because these methods generally have an assumption of independence. Measuring the strength of spatial dependence helps us evaluate how serious this issue is and decide whether we need to adjust our approach- for example, by modifying our sampling design, using methods that account for spatial structure, or interpreting results with greater caution.
 
+After completing these exercises, you should be able to:
+
+-   Define spatial neighborhoods using distance, k-nearest neighbors, and contiguity
+-   Assess global autocorrelation using Moran's I
+-   Assess local autocorrelation using LISA
+
+We will use the following spatial data:
+
+-   Median household income and commute to work time from the American Community Survey
+-   Chronic absence data at North Carolina public schools
+
 In this chapter, we will explore autocorrelation in the Median Household Income variable from the 2023 American Community Survey for North Carolina census tracts and chronic absences at North Carolina public schools.
 
 **To follow along with this tutorial, make a new .Rmd document. As you move through the tutorial add chunks, headers, and relevant text to your document.**
@@ -178,8 +189,6 @@ We know that both of our datasets are clustered because of our Moran's I values 
 
 For the median household income:
 
-For the school chronic absences:
-
 ```{r}
 locali<-localmoran_perm(tracts_sf$med_hh_inc, nbw) %>%
   as_tibble() %>%
@@ -208,6 +217,7 @@ tm_shape(tracts_sf) + tm_polygons("lisa_cluster", col_alpha = 0)
 
 **Q2: What is the spatial pattern of clustering in the median household income variable?**
 
+For the school chronic absences:
 ```{r}
 locali_school<-localmoran_perm(schools_sf$pre_covid_pct, nbw_school) %>%
   as_tibble() %>%

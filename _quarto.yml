@@ -19,8 +19,12 @@ book:
     - describing_spatial_data.qmd
     - wrangling.qmd
     - spatial_wrangling.qmd
+    - analytical_datasets.qmd
+    - tmap.qmd
     - ppa.qmd
     - autocorrelation.qmd
+    - exploring_two.qmd
+	
 
 
 format:

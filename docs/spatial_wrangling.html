@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ppa.html" rel="next">
+<link href="./analytical_datasets.html" rel="next">
 <link href="./wrangling.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -214,14 +214,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./analytical_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Analytic Datasets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced tmap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ppa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exploring_two.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bivariate Relationships and Regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -240,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-1-add-buffer-around-schools" id="toc-step-1-add-buffer-around-schools" class="nav-link" data-scroll-target="#step-1-add-buffer-around-schools"><span class="header-section-number">11.1.2</span> Step 1: Add Buffer Around Schools</a></li>
   <li><a href="#step-2-calculate-the-length-of-each-sidewalk-segment" id="toc-step-2-calculate-the-length-of-each-sidewalk-segment" class="nav-link" data-scroll-target="#step-2-calculate-the-length-of-each-sidewalk-segment"><span class="header-section-number">11.1.3</span> Step 2: Calculate the Length of Each Sidewalk Segment</a></li>
   <li><a href="#step-3-join-sidewalks-to-school-buffers" id="toc-step-3-join-sidewalks-to-school-buffers" class="nav-link" data-scroll-target="#step-3-join-sidewalks-to-school-buffers"><span class="header-section-number">11.1.4</span> Step 3: Join Sidewalks to School Buffers</a></li>
-  <li><a href="#step-4-aggregate-sidewalk-data-to-school-level" id="toc-step-4-aggregate-sidewalk-data-to-school-level" class="nav-link" data-scroll-target="#step-4-aggregate-sidewalk-data-to-school-level"><span class="header-section-number">11.1.5</span> <strong>Step 4: Aggregate Sidewalk Data to School Level</strong></a></li>
+  <li><a href="#step-4-aggregate-sidewalk-data-to-school-level" id="toc-step-4-aggregate-sidewalk-data-to-school-level" class="nav-link" data-scroll-target="#step-4-aggregate-sidewalk-data-to-school-level"><span class="header-section-number">11.1.5</span> Step 4: Aggregate Sidewalk Data to School Level</a></li>
   </ul></li>
   <li><a href="#research-question-2-which-schools-in-durham-nc-have-the-hottest-surrounding-area" id="toc-research-question-2-which-schools-in-durham-nc-have-the-hottest-surrounding-area" class="nav-link" data-scroll-target="#research-question-2-which-schools-in-durham-nc-have-the-hottest-surrounding-area"><span class="header-section-number">11.2</span> Research Question 2: Which schools in Durham, NC have the hottest surrounding area?</a>
   <ul class="collapse">
@@ -348,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Q2: Open up the <code>sidewalks_by_school</code> object. What is different about this object compared to the original <code>sidewalks</code> object?</strong></p>
 </section>
 <section id="step-4-aggregate-sidewalk-data-to-school-level" class="level3" data-number="11.1.5">
-<h3 data-number="11.1.5" class="anchored" data-anchor-id="step-4-aggregate-sidewalk-data-to-school-level"><span class="header-section-number">11.1.5</span> <strong>Step 4: Aggregate Sidewalk Data to School Level</strong></h3>
+<h3 data-number="11.1.5" class="anchored" data-anchor-id="step-4-aggregate-sidewalk-data-to-school-level"><span class="header-section-number">11.1.5</span> Step 4: Aggregate Sidewalk Data to School Level</h3>
 <p>Now that we are done with the spatial wrangling, we are back to known territory.</p>
 <p><strong>Q3: Using the <code>group_by()</code> and <code>summarise()</code> commands, calculate the total length of sidewalks in each school zone.</strong></p>
 <p><strong>Q4: Using a standard table join <code>left_join()</code> , join the aggregated sidewalk data back to the school points. Remember to identify a matching key field. Then make a map of sidewalk accessibility per school.</strong></p>
@@ -831,8 +849,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ppa.html" class="pagination-link" aria-label="Point Pattern Analysis">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./analytical_datasets.html" class="pagination-link" aria-label="Creating Analytic Datasets">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Analytic Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

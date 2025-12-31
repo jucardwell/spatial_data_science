@@ -1,0 +1,78 @@
+# Creating Analytic Datasets
+
+In this chapter, we will work on manipulating and combining data to create analytic datasets.
+
+## RQ1: What is the distribution of moderate or worse air quality days by NC county in 2025?
+
+In this research question, our goal is to create an analytic variable representing the percent of air quality observations per county in 2025 that were moderate or worse air quality.
+
+### Data:
+
+-   North Carolina county boundaries from US Census Bureau
+-   2025 air quality data by station from [US EPA](https://www.epa.gov/outdoor-air-quality-data/download-daily-data)
+
+```{r, eval = F}
+library(tidyverse)
+library(sf)
+
+nc_counties <- st_read("https://drive.google.com/uc?export=download&id=1g9sGIikgOEubqoj97fUVoCYAKlBDVX5a")
+
+aq <- read_csv("https://drive.google.com/uc?export=download&id=1sP4D1SdDorB6c_MZo7H4mpkHoKOaNqIT")
+
+```
+
+### Processing Steps:
+
+-   In the `aq` object, each row represents a single day in 2025 at a single station. Aggregate the `aq` object to the station level (this will summarize values at that station over the year). The aggregated dataset should include two calculated columns `total_obs` (total number of observations in the year) `total_less` (total observations less than good AQI (AQI \> 50). The `group_by` command must include latitude and longitude as well as station ID.
+-   Spatialize the station data using the `st_as_sf()` command. The CRS = 4326
+-   Reproject the `nc_counties` and `aq` objects into CRS = 2264 (North Carolina State Plane, ft)
+-   Execute a spatial join between `aq` and `nc_counties`. Drop geometry and aggregate the `aq` object to the county level (take the sum of the `total_obs` and `total_less` columns per county).
+-   Calculate a `perc_less` variable representing the percent of county observations that are less than good AQI.
+-   Use a table join to add your county-aggregated data to the `nc_counties` object.
+-   Create a simplified dataset that includes only the following fields: `GEOID`, `NAME`, `total_obs`, `total_less`, `perc_less`.
+
+## RQ2: How does tree cover canopy vary within walking distance from bus stops in Chapel Hill, NC?
+
+In this research question, our goal is to create an analytic variable representing the percent tree canopy cover within .5 miles of each bus stop in Chapel Hill, NC.
+
+### Data:
+
+-   Bus stop locations from [Chapel Hill Open Data](https://opendata-townofchapelhill.hub.arcgis.com/datasets/townofchapelhill::chapel-hill-transit-bus-stops/explore)
+-   Tree canopy cover from [NLCD](https://www.mrlc.gov/data/type/nlcd-tree-canopy-cover). Each pixel value represents the percent of tree canopy cover in that pixel.
+
+```{r, eval = F}
+library(terra)
+library(exactextractr)
+
+bus_stops <- st_read("https://drive.google.com/uc?export=download&id=1jRINUl-5uBAsBcWnKTRmdUO7ZTs1EV4G")
+
+tree_canopy <- rast("https://drive.google.com/uc?export=download&id=1_SqO-ocyLCg3g1Mv1ZbqOd5Pa1sTddps")
+
+```
+
+### Processing Steps:
+
+-   Transform `bus_stops` object into EPSG:3857 to match the tree canopy projection. Note that the units in this projection are meters
+-   Buffer the `bus_stops` 804.672 meters (.5 miles)
+-   Use the `exact_extract()` function to add a field to the buffered bus stop object that represents the average canopy cover
+-   Create a simplified dataset that includes only the following fields: `STOP_ID`, average tree canopy variable
+
+## RQ3: How accessible are bus stops to Chapel Hill addresses?
+
+In this research question, our goal is to create an analytic variable representing the distance of each address in Chapel Hill to the nearest bus stop.
+
+### Data:
+
+-   Bus stop locations from [Chapel Hill Open Data](https://opendata-townofchapelhill.hub.arcgis.com/datasets/townofchapelhill::chapel-hill-transit-bus-stops/explore)
+-   Chapel Hill addresses from [Chapel Hill Open Data](https://opendata-townofchapelhill.hub.arcgis.com/datasets/townofchapelhill::chapel-hill-transit-bus-stops/explore)
+
+```{r, eval = F}
+ch_addresses <- st_read("https://drive.google.com/uc?export=download&id=1fFXfEbOWjwfsT_JLeLYnaVPkbJCGYA2_")
+
+```
+
+### Processing Steps:
+
+-   Transform the `ch_addresses` object into EPSG:3857 to match the bus stop object.
+-   Calculate the distance (in meters) from each address to the nearest bus stop.
+-   Create a simplified dataset that includes only the following fields: `OBJECTID`, `LBCSDesc`, distance variable

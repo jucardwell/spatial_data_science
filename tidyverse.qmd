@@ -6,7 +6,7 @@ This chapter will introduce you to the basics of working with the tidyverse. Aft
 -   Create a descriptive statistics table using the gt package
 -   Create basic visualizations and describe data distributions (histogram, boxplot/violin plot, scatterplot, bar chart)
 
-We will continue to use the data that we used in the Basic R chapter. To start, create a new .Rmd document (formatted like we formatted our .Rmd in the Basic R chapter). Read in the data using the same command we used in our previous .Rmd.
+We will continue to use the data that we used in the Basic R chapter. To start, create a new .Rmd document (formatted like we formatted our .Rmd in the Basic R chapter). Read in the data using the same commands we used in our previous .Rmd.
 
 ## Data Structure in the Tidyverse
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Point Pattern Analysis – spatial_data_science</title>
+<title>14&nbsp; Point Pattern Analysis – spatial_data_science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./autocorrelation.html" rel="next">
-<link href="./spatial_wrangling.html" rel="prev">
+<link href="./tmap.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ppa.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ppa.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -214,14 +214,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./analytical_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Analytic Datasets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced tmap</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ppa.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exploring_two.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bivariate Relationships and Regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -234,17 +252,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reading-in-data" id="toc-reading-in-data" class="nav-link active" data-scroll-target="#reading-in-data"><span class="header-section-number">12.1</span> Reading in Data</a></li>
-  <li><a href="#analyzing-global-structure" id="toc-analyzing-global-structure" class="nav-link" data-scroll-target="#analyzing-global-structure"><span class="header-section-number">12.2</span> Analyzing Global Structure</a>
+  <li><a href="#reading-in-data" id="toc-reading-in-data" class="nav-link active" data-scroll-target="#reading-in-data"><span class="header-section-number">14.1</span> Reading in Data</a></li>
+  <li><a href="#analyzing-global-structure" id="toc-analyzing-global-structure" class="nav-link" data-scroll-target="#analyzing-global-structure"><span class="header-section-number">14.2</span> Analyzing Global Structure</a>
   <ul class="collapse">
-  <li><a href="#quadrat-analyis" id="toc-quadrat-analyis" class="nav-link" data-scroll-target="#quadrat-analyis"><span class="header-section-number">12.2.1</span> Quadrat Analyis</a></li>
-  <li><a href="#kernel-density" id="toc-kernel-density" class="nav-link" data-scroll-target="#kernel-density"><span class="header-section-number">12.2.2</span> Kernel Density</a></li>
+  <li><a href="#quadrat-analyis" id="toc-quadrat-analyis" class="nav-link" data-scroll-target="#quadrat-analyis"><span class="header-section-number">14.2.1</span> Quadrat Analyis</a></li>
+  <li><a href="#kernel-density" id="toc-kernel-density" class="nav-link" data-scroll-target="#kernel-density"><span class="header-section-number">14.2.2</span> Kernel Density</a></li>
   </ul></li>
-  <li><a href="#analyzing-local-structure" id="toc-analyzing-local-structure" class="nav-link" data-scroll-target="#analyzing-local-structure"><span class="header-section-number">12.3</span> Analyzing Local Structure</a>
+  <li><a href="#analyzing-local-structure" id="toc-analyzing-local-structure" class="nav-link" data-scroll-target="#analyzing-local-structure"><span class="header-section-number">14.3</span> Analyzing Local Structure</a>
   <ul class="collapse">
-  <li><a href="#nearest-neighbor-analysis" id="toc-nearest-neighbor-analysis" class="nav-link" data-scroll-target="#nearest-neighbor-analysis"><span class="header-section-number">12.3.1</span> Nearest Neighbor Analysis</a></li>
+  <li><a href="#nearest-neighbor-analysis" id="toc-nearest-neighbor-analysis" class="nav-link" data-scroll-target="#nearest-neighbor-analysis"><span class="header-section-number">14.3.1</span> Nearest Neighbor Analysis</a></li>
   </ul></li>
-  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">12.4</span> Mini-Challenge</a></li>
+  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">14.4</span> Mini-Challenge</a></li>
   </ul>
 </nav>
     </div>
@@ -253,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></h1>
 </div>
 
 
@@ -277,6 +295,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A first-order process means the pattern of points is determined by external factors or a trend in the environment.</li>
 <li>A second-order process means the pattern is determined by interaction (attraction or repulsion) between the points themselves.</li>
 </ul>
+<p>After completing this chapter, you should be able to:</p>
+<ul>
+<li>Analyze global structure of point data using quadrat analysis and KDE</li>
+<li>Analyze local structure of point data using NNA</li>
+</ul>
 <p>We will use the following spatial datasets:</p>
 <ul>
 <li>Location of lightning strikes in Orange County in 2024 from <a href="https://www.goes-r.gov/spacesegment/glm.html">Geostationary Lightning Mapper</a> data</li>
@@ -284,8 +307,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Orange County boundaries from the <code>tigris</code> package</li>
 </ul>
 <p><strong>To follow along with this tutorial, make a new .Rmd document. As you move through the tutorial add chunks, headers, and relevant text to your document.</strong></p>
-<section id="reading-in-data" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="reading-in-data"><span class="header-section-number">12.1</span> Reading in Data</h2>
+<section id="reading-in-data" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="reading-in-data"><span class="header-section-number">14.1</span> Reading in Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -299,10 +322,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>county_boundary <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1KmNzcbvzggh1rJ-mH0YB4kbCB7sxmrjc"</span>) <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">2264</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="analyzing-global-structure" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="analyzing-global-structure"><span class="header-section-number">12.2</span> Analyzing Global Structure</h2>
-<section id="quadrat-analyis" class="level3" data-number="12.2.1">
-<h3 data-number="12.2.1" class="anchored" data-anchor-id="quadrat-analyis"><span class="header-section-number">12.2.1</span> Quadrat Analyis</h3>
+<section id="analyzing-global-structure" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="analyzing-global-structure"><span class="header-section-number">14.2</span> Analyzing Global Structure</h2>
+<section id="quadrat-analyis" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="quadrat-analyis"><span class="header-section-number">14.2.1</span> Quadrat Analyis</h3>
 <p>Quadrat analysis is a count-based method used to assess the global structure of a spatial pattern. In this method, the study area is divided into a grid of equally-sized cells (quadrats), and the number of points falling into each cell is counted. The results are then compared to the outcome of a Poisson distribution (which we use to model CSR).</p>
 <p>We can start by creating 12 quadrats and counting the number of lightning strikes in each. The number of quadrats is highly dependent on the size of the study region and the number of events.</p>
 <div class="cell">
@@ -363,8 +386,8 @@ Quadrats: 9 tiles (irregular windows)</code></pre>
 <p>There are a few issues with quadrat tests. The results are highly sensitive to the size and placement of the quadrats and also don’t consider variability within the quadrats.</p>
 <p><strong>Q3: Experiment with different numbers of quadrats. How do your results change?</strong></p>
 </section>
-<section id="kernel-density" class="level3" data-number="12.2.2">
-<h3 data-number="12.2.2" class="anchored" data-anchor-id="kernel-density"><span class="header-section-number">12.2.2</span> Kernel Density</h3>
+<section id="kernel-density" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="kernel-density"><span class="header-section-number">14.2.2</span> Kernel Density</h3>
 <p>Kernel Density Estimation (KDE) is a simple way to create a smooth map of where points are most concentrated. Instead of dividing the study area into fixed quadrats and counting how many events fall in each one (like the quadrat test), KDE places a smooth, bell-shaped “influence curve” over every point in the dataset (kernel). These curves are highest at the point itself and gradually taper off with distance. When all of these curves are added together, they form a continuous surface where high peaks show areas with many nearby points and lower areas show places with fewer points. Because KDE is only a descriptive smoothing technique, it does not involve a statistical model or a test of randomness like a quadrat test does. However, it can capture more local variability and is not sensitive to size/placement of the window of analysis like quadrat tests.</p>
 <p>The main parameter of the KDE is bandwidth. The bandwidth controls the width of each kernel. A large bandwidth (each point has broader influence) is better at capturing global variation and a small bandwidth is better at capturing local variation.</p>
 <p>We can create a kernel density estimation for lightning strikes:</p>
@@ -388,13 +411,13 @@ Quadrats: 9 tiles (irregular windows)</code></pre>
 <p><strong>Q4: Experiment with different bandwidth sizes. How does this change what you can learn about the data? What spatial patterns emerge in the data?</strong></p>
 </section>
 </section>
-<section id="analyzing-local-structure" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="analyzing-local-structure"><span class="header-section-number">12.3</span> Analyzing Local Structure</h2>
-<section id="nearest-neighbor-analysis" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="nearest-neighbor-analysis"><span class="header-section-number">12.3.1</span> Nearest Neighbor Analysis</h3>
+<section id="analyzing-local-structure" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="analyzing-local-structure"><span class="header-section-number">14.3</span> Analyzing Local Structure</h2>
+<section id="nearest-neighbor-analysis" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="nearest-neighbor-analysis"><span class="header-section-number">14.3.1</span> Nearest Neighbor Analysis</h3>
 <p>Nearest neighbor methods evaluate clustering or dispersion based on the distances between each point and its closest neighbors. In these methods, we are analyzing local structure, not global structure.</p>
-<section id="g--function" class="level4" data-number="12.3.1.1">
-<h4 data-number="12.3.1.1" class="anchored" data-anchor-id="g--function"><span class="header-section-number">12.3.1.1</span> G- Function</h4>
+<section id="g--function" class="level4" data-number="14.3.1.1">
+<h4 data-number="14.3.1.1" class="anchored" data-anchor-id="g--function"><span class="header-section-number">14.3.1.1</span> G- Function</h4>
 <p>The G-function (nearest-neighbor distribution function) analyzes the distance from each point to its closest neighboring point. It helps us determine if points are closer (clustered) or farther (dispersed) from their neighbors than expected under CSR.</p>
 <p>If the G-curve of our data rises faster than the CSR curve at short distances (i.e., lies above it), this indicates that points tend to have closer neighbors than expected by chance, meaning clustering. If it rises slower (below CSR), points are more evenly spaced, indicating dispersion.</p>
 <div class="cell">
@@ -411,8 +434,8 @@ Quadrats: 9 tiles (irregular windows)</code></pre>
 </div>
 <p>Modeling the G-curve of our lightning data, we can see that it is very similar to the CSR-curve, meaning that there is likely not local clustering.</p>
 </section>
-<section id="f--function" class="level4" data-number="12.3.1.2">
-<h4 data-number="12.3.1.2" class="anchored" data-anchor-id="f--function"><span class="header-section-number">12.3.1.2</span> F- Function</h4>
+<section id="f--function" class="level4" data-number="14.3.1.2">
+<h4 data-number="14.3.1.2" class="anchored" data-anchor-id="f--function"><span class="header-section-number">14.3.1.2</span> F- Function</h4>
 <p>The F-function (empty space function) examines the distance from randomly chosen locations in the study area to the nearest point in the dataset. It helps us determine whether points are generally closer to or farther from arbitrary locations than expected under Complete Spatial Randomness (CSR).</p>
 <p>If the F-curve of our data rises faster than the CSR curve at short distances (i.e., lies above it), this suggests that empty spaces are closer to events than expected, compared to the null landscape, as in a dispersed pattern. If it rises slower (below CSR), most locations are farther from empty space than expected by chance, indicating clustering.</p>
 <div class="cell">
@@ -433,8 +456,8 @@ Quadrats: 9 tiles (irregular windows)</code></pre>
 </section>
 </section>
 </section>
-<section id="mini-challenge" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">12.4</span> Mini-Challenge</h2>
+<section id="mini-challenge" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">14.4</span> Mini-Challenge</h2>
 <p>The <a href="https://www.ncei.noaa.gov/stormevents/">NOAA Storm Events</a> dataset is a long-term dataset that contains records of major storms/weather events that are intense enough to cause loss of life, injuries, or significant property damage. The data subset that you have is all event entries in Orange County from 2010-2025. Using the methods we’ve learned, analyze the spatial pattern of this dataset considering its local and global structure. Hypothesize on the types of processes (and even the actual processes) that might be determining this spatial pattern.</p>
 
 
@@ -860,13 +883,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./spatial_wrangling.html" class="pagination-link" aria-label="Spatial Wrangling">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Spatial Wrangling</span></span>
+      <a href="./tmap.html" class="pagination-link" aria-label="Advanced tmap">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced tmap</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./autocorrelation.html" class="pagination-link" aria-label="Spatial Autocorrelation">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
