@@ -38,6 +38,7 @@ R packages extend the functionality of Base R and must be downloaded. We will us
 -   sf: This package allows us to read and manipulate spatial datasets
 -   terra: This package allows us to read and manipulate rasters
 -   spdep: We use this package to create neighborhood definitions for spatial data
+-   sfdep: This package allows integration of spdep to sf
 -   car: Includes basic statistical functions
 -   e1071:Includes basic statistical functions
 -   spatstat:Includes spatial statistical functions
@@ -52,6 +53,7 @@ install.packages("tidyverse")
 install.packages("gt")
 install.packages("sf")
 install.packages("spdep")
+install.packages("sfdep")
 install.packages("terra")
 install.packages("e1071")
 install.packages("car")
