@@ -28,7 +28,7 @@ In this lab, you will examine several spatial datasets to understand their struc
 ### Specifications
 
 | Specification |
-|----|
+|------------------------------------------------------------------------|
 | Student downloaded three appropriate data files from each of the sources in Part 1. |
 | Student answered all Part 2 questions for each dataset in complete sentences and demonstrated competent understanding (no substantial errors). |
 | Student submitted one Word document with responses and all three data files to Canvas |
@@ -60,7 +60,7 @@ In this part of the lab, you will examine each dataset you downloaded to underst
 
 1.  Who collected or provided the data?
 2.  How was the data collected?
-3.  Would this data be considered "old-school" or "new-school" data?
+3.  Would this data be considered "old-school", "new-school", or volunteered data?
 4.  What does one row in the dataset represent?
 5.  What does one column in the dataset represent?
 6.  What is the unit of analysis?
@@ -81,7 +81,7 @@ In this lab, you will work with a population projection file for North Carolina 
 ### Specifications
 
 | Specification |
-|----|
+|------------------------------------------------------------------------|
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
 | **Reading Data**: All required datasets are read into R. Responses correctly identify basic properties of the data. Minor inaccuracies are acceptable if overall understanding is clear. |
 | **Manipulating Data:** Code produces the required variables and transformed datasets. Minor coding errors or inefficiencies are acceptable if the results are usable. |
@@ -134,7 +134,7 @@ You will work with several spatial datasets:
 ### Specifications
 
 | Specification |
-|----|
+|------------------------------------------------------------------------|
 | Lab is submitted on Canvas and follows general formatting guidelines. Minor formatting issues may be present but do not interfere with readability or interpretation. |
 | **Reading Data**: All required datasets are read into R. Responses correctly identify basic properties of the data. Minor inaccuracies are acceptable if overall understanding is clear. |
 | **Manipulating Data:** Code produces the required variables and transformed datasets. Minor coding errors or inefficiencies are acceptable if the results are usable. |
@@ -203,7 +203,7 @@ In this lab, you will practice formulating spatial research questions and findin
 ### Specifications
 
 | Specification |
-|----|
+|------------------------------------------------------------------------|
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
 | **RQ1**: Student successfully reads in data using relative file paths and creates a basic map of the datasets. Written interpretation demonstrates competent understanding of the datasets. |
 | **RQ2**: Student successfully reads in data using relative file paths and creates a basic map of the datasets. Written interpretation demonstrates competent understanding of the datasets. |
@@ -245,7 +245,7 @@ In this lab, you will explore the analytic datasets produced in the Analytic Dat
 ### Specifications
 
 | Specification |
-|----|
+|------------------------------------------------------------------------|
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
 | The required transformations are performed to create the analytic variable for each research question (e.g., aggregation, reprojection, spatial joins, buffering, distance calculations, raster extraction). |
 | The overall workflow reflects the intended steps, even if minor errors are present |
@@ -274,7 +274,7 @@ In this lab, you will create well-designed maps for the analytic datasets create
 ### Specifications
 
 | Specification |
-|----|
+|------------------------------------------------------------------------|
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
 | Maps follow the core design instructions. Minor design or formatting issues are acceptable |
 
