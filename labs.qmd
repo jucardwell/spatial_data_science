@@ -18,6 +18,13 @@ All submitted labs should follow the following formatting guidelines (unless oth
 -   Organization
     -   Code chunks should be logically organized under clear, informative section headers
     -   Written responses should appear directly below the code chunk that produces the the relevant output
+-   AI
+    -   AI tools may be utilized as a support resource; however, they should not serve as the primary approach to completing work. Students are expected to engage first with course materials, critical thinking, and independent reasoning.  Any use of AI must meaningfully contribute to the student’s learning process, and students must be able to justify the role AI played in their work.
+    -   AI use must be documented using the following structure:
+        1.  A description of the problem(s) you encountered
+        2.  How (or if) the AI use supported solving this problem
+        3.  How (or if) this use of AI will help you approach similar problems independently in the future.
+    -   AI documentation should be included as text at the bottom of the document
 
 ## Lab 1
 
@@ -70,7 +77,7 @@ In this part of the lab, you will examine each dataset you downloaded to underst
 10. Are there missing values or incomplete fields?
 11. Identify one limitation or potential source of bias in the data
 12. Describe one research question this dataset could help answer
-13. Describe one research question that this dataset would not be useful for because the unit of analysis does not match the question
+13. Describe one research question that this dataset would not be useful for because of the unit of analysis or the representation decisions
 
 ## Lab 2
 
