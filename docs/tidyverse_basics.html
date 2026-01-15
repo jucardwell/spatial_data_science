@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/clipboard-3717346850.png" class="img-fluid"></p>
 <p>Then add a chunk below this text and load the tidyverse package. Format that chunk so that it is not included in the knitted document.</p>
 <p>You will read in the school absence data directly from Google Drive using the following command:</p>
-<p><code>absences &lt;- read_csv("https://drive.google.com/uc?export=download&amp;id=1yH50dkdLLPx0AiHbvzWoLtSSnIY-1moh")</code></p>
+<p><code>absences &lt;- read_csv("https://drive.google.com/uc?export=download&amp;id=1cDHtaBhZpTwTct77f53kSmurSNG4hAI-")</code></p>
 <p>To practice reading in data locally, download the <a href="https://drive.google.com/uc?export=download&amp;id=1eQ8UbyoCGNWlo4uTmKvzi40pAhL_54rO">NC Rurality Data</a> to your GEOG215 folder (or whatever subfolder you have your .Rmd file saved to). Then, write a relative file path to read in that file. You will use the command</p>
 <p><code>rurality &lt;- read_csv("RELATIVEFILEPATH")</code></p>
 <p>Your .Rmd should now look something like this</p>
@@ -350,6 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Q3: Where is the output printed when you run those commands?</strong></p>
+<p><strong>Q4: Write a command that multiplies 5 by 2</strong></p>
 </section>
 <section id="boolean-operators" class="level3" data-number="7.3.3">
 <h3 data-number="7.3.3" class="anchored" data-anchor-id="boolean-operators"><span class="header-section-number">7.3.3</span> Boolean Operators</h3>
@@ -367,6 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## is less? </span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span>) <span class="sc">&lt;</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Q5: Write a command that adds 10+7 and checks whether that is greater than 20.</strong></p>
 </section>
 <section id="functions" class="level3" data-number="7.3.4">
 <h3 data-number="7.3.4" class="anchored" data-anchor-id="functions"><span class="header-section-number">7.3.4</span> Functions</h3>
@@ -381,6 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#sum, remove na</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="cn">NA</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Q5: Write a command that calculates the max of the following values (1, 92, 57, 12).</strong></p>
 </section>
 </section>
 <section id="assigning-and-printing-objects" class="level2" data-number="7.4">
@@ -394,6 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## print an object</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>math_object</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Q6: Create an object called <code>my_first_object</code> and assign the string “Hello World” to it. Then print the object.</strong></p>
 </section>
 <section id="data-types" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="data-types"><span class="header-section-number">7.5</span> Data Types</h2>
@@ -420,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>rural <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Urban"</span>, <span class="st">"Rural"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Q4: What happens if you values are not the expected data type? For instance, if you wanted to add sample to x?</strong></p>
+<p><strong>Q7: What happens if you values are not the expected data type? For instance, if you wanted to add sample to x?</strong></p>
 </section>
 <section id="data-structures" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="data-structures"><span class="header-section-number">7.6</span> Data Structures</h2>

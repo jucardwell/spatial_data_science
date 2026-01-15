@@ -36,7 +36,7 @@ Then add a chunk below this text and load the tidyverse package. Format that chu
 
 You will read in the school absence data directly from Google Drive using the following command:
 
-`absences <- read_csv("https://drive.google.com/uc?export=download&id=1yH50dkdLLPx0AiHbvzWoLtSSnIY-1moh")`
+`absences <- read_csv("https://drive.google.com/uc?export=download&id=1cDHtaBhZpTwTct77f53kSmurSNG4hAI-")`
 
 To practice reading in data locally, download the [NC Rurality Data](https://drive.google.com/uc?export=download&id=1eQ8UbyoCGNWlo4uTmKvzi40pAhL_54rO) to your GEOG215 folder (or whatever subfolder you have your .Rmd file saved to). Then, write a relative file path to read in that file. You will use the command
 
@@ -88,6 +88,8 @@ Add the following commands to your code chunk. In addition to running a full chu
 
 **Q3: Where is the output printed when you run those commands?**
 
+**Q4: Write a command that multiplies 5 by 2**
+
 ### Boolean Operators
 
 Boolean logical operators return either a true or a false based on the conditions. Add these commands to your code chunk and run each one.
@@ -106,6 +108,8 @@ Boolean logical operators return either a true or a false based on the condition
 (3 * 5) < 20
 ```
 
+**Q5: Write a command that adds 10+7 and checks whether that is greater than 20.**
+
 ### Functions
 
 Functions can be though of as "actions". Base R already has many built in functions. The basic setup of a function is `function(argument, ...)`. Add these commands to your code chunk and run each one.
@@ -123,6 +127,8 @@ mean(c(1, 10, 100, NA), na.rm = TRUE)
 
 ```
 
+**Q5: Write a command that calculates the max of the following values (1, 92, 57, 12).**
+
 ## Assigning and Printing Objects
 
 So far, every command we’ve run has been *evaluated in the console*, which means R immediately prints the result at the bottom of the chunk. This happens any time you type an expression without saving it as an object.
@@ -137,6 +143,8 @@ math_object <- 4 + 3
 math_object
 
 ```
+
+**Q6: Create an object called `my_first_object` and assign the string "Hello World" to it. Then print the object.**
 
 ## Data Types
 
@@ -167,7 +175,7 @@ rural <- factor(c("Urban", "Rural"))
 
 ```
 
-**Q4: What happens if you values are not the expected data type? For instance, if you wanted to add sample to x?**
+**Q7: What happens if you values are not the expected data type? For instance, if you wanted to add sample to x?**
 
 ## Data Structures
 
