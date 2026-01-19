@@ -252,16 +252,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-structure-in-the-tidyverse" id="toc-data-structure-in-the-tidyverse" class="nav-link active" data-scroll-target="#data-structure-in-the-tidyverse"><span class="header-section-number">8.1</span> Data Structure in the Tidyverse</a></li>
-  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"><span class="header-section-number">8.2</span> Descriptive Statistics</a></li>
-  <li><a href="#basic-plotting-with-ggplot2" id="toc-basic-plotting-with-ggplot2" class="nav-link" data-scroll-target="#basic-plotting-with-ggplot2"><span class="header-section-number">8.3</span> Basic Plotting with ggplot2</a>
+  <li><a href="#creating-a-.rmd-and-reading-data" id="toc-creating-a-.rmd-and-reading-data" class="nav-link active" data-scroll-target="#creating-a-.rmd-and-reading-data"><span class="header-section-number">8.1</span> Creating a .Rmd and Reading Data</a></li>
+  <li><a href="#running-chunks-and-knitting" id="toc-running-chunks-and-knitting" class="nav-link" data-scroll-target="#running-chunks-and-knitting"><span class="header-section-number">8.2</span> Running Chunks and Knitting</a></li>
+  <li><a href="#data-structure-in-the-tidyverse" id="toc-data-structure-in-the-tidyverse" class="nav-link" data-scroll-target="#data-structure-in-the-tidyverse"><span class="header-section-number">8.3</span> Data Structure in the Tidyverse</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"><span class="header-section-number">8.4</span> Descriptive Statistics</a></li>
+  <li><a href="#basic-plotting-with-ggplot2" id="toc-basic-plotting-with-ggplot2" class="nav-link" data-scroll-target="#basic-plotting-with-ggplot2"><span class="header-section-number">8.5</span> Basic Plotting with ggplot2</a>
   <ul class="collapse">
-  <li><a href="#the-language-of-ggplot2" id="toc-the-language-of-ggplot2" class="nav-link" data-scroll-target="#the-language-of-ggplot2"><span class="header-section-number">8.3.1</span> The “Language” of ggplot2</a></li>
-  <li><a href="#histogram-density-plot" id="toc-histogram-density-plot" class="nav-link" data-scroll-target="#histogram-density-plot"><span class="header-section-number">8.3.2</span> Histogram/ Density Plot</a></li>
-  <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart"><span class="header-section-number">8.3.3</span> Bar Chart</a></li>
-  <li><a href="#faceting-and-grouping-plots" id="toc-faceting-and-grouping-plots" class="nav-link" data-scroll-target="#faceting-and-grouping-plots"><span class="header-section-number">8.3.4</span> Faceting and Grouping Plots</a></li>
+  <li><a href="#the-language-of-ggplot2" id="toc-the-language-of-ggplot2" class="nav-link" data-scroll-target="#the-language-of-ggplot2"><span class="header-section-number">8.5.1</span> The “Language” of ggplot2</a></li>
+  <li><a href="#histogram-density-plot" id="toc-histogram-density-plot" class="nav-link" data-scroll-target="#histogram-density-plot"><span class="header-section-number">8.5.2</span> Histogram/ Density Plot</a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">8.5.3</span> Boxplot</a></li>
+  <li><a href="#violin-plot" id="toc-violin-plot" class="nav-link" data-scroll-target="#violin-plot"><span class="header-section-number">8.5.4</span> Violin Plot</a></li>
+  <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart"><span class="header-section-number">8.5.5</span> Bar Chart</a></li>
+  <li><a href="#faceting-and-grouping-plots" id="toc-faceting-and-grouping-plots" class="nav-link" data-scroll-target="#faceting-and-grouping-plots"><span class="header-section-number">8.5.6</span> Faceting and Grouping Plots</a></li>
   </ul></li>
-  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">8.4</span> Mini-Challenge</a></li>
+  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">8.6</span> Mini-Challenge</a></li>
   </ul>
 </nav>
     </div>
@@ -289,13 +293,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>This chapter will introduce you to the basics of working with the tidyverse. After completing these exercises, you should be able to:</p>
 <ul>
+<li>Read in data using a relative file path</li>
 <li>Use the <code>mutate</code>, <code>filter</code>, <code>rename</code>, <code>summarise</code>, and <code>select</code> commands from the tidyverse package</li>
 <li>Create a descriptive statistics table using the gt package</li>
 <li>Create basic visualizations and describe data distributions (histogram, boxplot/violin plot, scatterplot, bar chart)</li>
 </ul>
-<p>We will continue to use the data that we used in the Basic R chapter. To start, create a new .Rmd document (formatted like we formatted our .Rmd in the Basic R chapter). Read in the data using the same commands we used in our previous .Rmd.</p>
-<section id="data-structure-in-the-tidyverse" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="data-structure-in-the-tidyverse"><span class="header-section-number">8.1</span> Data Structure in the Tidyverse</h2>
+<p>We will use the following datasets:</p>
+<ul>
+<li>Data on chronic school absence rate for North Carolina Public Schools before and after the Covid-19 pandemic from the <a href="https://www.dpi.nc.gov/data-reports/school-report-cards/school-report-card-resources-researchers">North Carolina Department of Public Instruction</a></li>
+<li>North Carolina census tract rurality definitions (RUCA codes) from the <a href="https://www.ers.usda.gov/data-products/rural-urban-commuting-area-codes">USDA Economic Research Service</a> and the <a href="https://www.ncruralcenter.org/">NC Rural Center</a><strong>.</strong> RUCA codes establish urban cores and the census tracts that are the most economically integrated with those cores through commuting. The NC Rural Center defines rurality as areas with less than 250 residents per square mile.</li>
+</ul>
+<section id="creating-a-.rmd-and-reading-data" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="creating-a-.rmd-and-reading-data"><span class="header-section-number">8.1</span> Creating a .Rmd and Reading Data</h2>
+<p>To follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. Once you’ve saved it, close the file and re-open it. <strong>Every time you see code below, you should copy it to your own document!</strong></p>
+<p><strong>Q1: Once you re-open the folder, what is your current working directory? How do you know?</strong></p>
+<p>Remove all the code chunks except for the setup chunk. Below the setup chunk add a “first-level header” called “Loading Libraries and Reading in Data”.</p>
+<p><img src="images/clipboard-3717346850.png" class="img-fluid"></p>
+<p>Then add a chunk below this text and load the tidyverse package. Format that chunk so that it is not included in the knitted document.</p>
+<p>You will read in the school absence data directly from Google Drive using the following command:</p>
+<p><code>absences &lt;- read_csv("https://drive.google.com/uc?export=download&amp;id=1cDHtaBhZpTwTct77f53kSmurSNG4hAI-")</code></p>
+<p>To practice reading in data locally, download the <a href="https://drive.google.com/uc?export=download&amp;id=1eQ8UbyoCGNWlo4uTmKvzi40pAhL_54rO">NC Rurality Data</a> to your GEOG215 folder (or whatever subfolder you have your .Rmd file saved to). Then, write a relative file path to read in that file. You will use the command</p>
+<p><code>rurality &lt;- read_csv("RELATIVEFILEPATH")</code></p>
+<p>Your .Rmd should now look something like this</p>
+<p><img src="images/clipboard-3987952332.png" class="img-fluid"></p>
+</section>
+<section id="running-chunks-and-knitting" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="running-chunks-and-knitting"><span class="header-section-number">8.2</span> Running Chunks and Knitting</h2>
+<p>We have completed our code chunk for loading libraries and reading in data. Now we can”Run” or evaluate that code. We can evaluate a code chunk by clicking the green arrow. Once you’ve evaluated the chunk, the datasets should show up in your Environment. Those are now “Objects”</p>
+<p><img src="images/clipboard-1977768479.png" class="img-fluid"></p>
+<p>Now practice knitting your document using the Knit button on the top panel. This should create a new .html file that will be saved in your working directory. The file will open in a new window.</p>
+<p><img src="images/clipboard-1659240099.png" class="img-fluid"></p>
+<p><strong>Q2: Why does the knitted document not include our code?</strong></p>
+</section>
+<section id="data-structure-in-the-tidyverse" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="data-structure-in-the-tidyverse"><span class="header-section-number">8.3</span> Data Structure in the Tidyverse</h2>
 <p>Add a first-level header called “Using the Tidyverse”. Under the header, add a code chunk</p>
 <p>For the most part, we will be working with a special data structure called a <code>tibble</code>. A tibble is tidyverse’s version of a data frame. In a tibble, each row is an observation and each column is a variable. This is called “tidy” data.</p>
 <p>To get a basic understanding of our data, we can use the <code>str</code> command:</p>
@@ -307,10 +338,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rurality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You should also double-click each object in the “Environment” tab. This will open the tibble so that you can explore it.</p>
-<p><strong>Q1: How many rows are in the absences dataset?</strong></p>
-<p><strong>Q2: How many variables are in our rurality dataset?</strong></p>
-<p><strong>Q3: What is the data type of the <code>year</code> variable in the absences dataset?</strong></p>
-<p><strong>Q4: Which of the absences variables are characters?</strong></p>
+<p><strong>Q3: How many rows are in the absences dataset?</strong></p>
+<p><strong>Q4: How many variables are in our rurality dataset?</strong></p>
+<p><strong>Q5: What is the data type of the <code>year</code> variable in the absences dataset?</strong></p>
+<p><strong>Q6: Which of the absences variables are characters?</strong></p>
 <p>Basic data manipulation in the tidyverse generally involves “piping”. Piping is the way that we can “chain” operations or commands and it looks like this: <code>|&gt;</code> (in documentation you might also see a pipe written like this <code>%&gt;%</code>). Run each of the following commands and add a descriptive comment above it.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
@@ -337,8 +368,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> absences <span class="sc">|&gt;</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">max_before_covid =</span> <span class="fu">max</span>(pre_covid_pct), <span class="at">max_after_covid =</span> <span class="fu">max</span>(after_covid_pct))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Q5: Why wasn’t the last command printed to the console?</strong></p>
-<p><strong>Q6: Write a command that creates an object called <code>metro_core</code> and counts the number of observations that have a <code>ruca_code</code> of “Metropolitan Core”</strong></p>
+<p><strong>Q7: Why wasn’t the last command printed to the console?</strong></p>
+<p><strong>Q8: Write a command that creates an object called <code>metro_core</code> and counts the number of observations that have a <code>ruca_code</code> of “Metropolitan Core”</strong></p>
 <p>Usually, unless we are doing basic data exploration, we want to save our manipulated data as objects. You can either “re-write” an object by using the same name, or you can re-name the manipulated object. Run each of the following commands and add a descriptive comment above it.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
@@ -359,11 +390,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>logical_rural <span class="ot">&lt;-</span> rurality <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">highly_rural =</span> <span class="fu">ifelse</span>(ruca_code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Small town low commuting"</span>, <span class="st">"Rural area"</span>, <span class="st">"Small town core"</span>), <span class="st">"Highly Rural"</span>, <span class="st">"Not Highly Rural"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Q7: Write a command that creates an object called <code>high_absence_schools</code> that filters the <code>logical</code></strong> <strong>object to just schools that have a high absence rate before Covid.</strong></p>
-<p><strong>Q8: Write a command that creates an object called</strong> <code>urban</code> <strong>that filters the <code>rurality</code> object to just observations that are “Metropolitan high commuting” or “Metropolitan core”</strong></p>
+<p><strong>Q9: Write a command that creates an object called <code>high_absence_schools</code> that filters the <code>logical</code></strong> <strong>object to just schools that have a high absence rate before Covid.</strong></p>
+<p><strong>Q10: Write a command that creates an object called</strong> <code>urban</code> <strong>that filters the <code>rurality</code> object to just observations that are “Metropolitan high commuting” or “Metropolitan core”</strong></p>
 </section>
-<section id="descriptive-statistics" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="descriptive-statistics"><span class="header-section-number">8.2</span> Descriptive Statistics</h2>
+<section id="descriptive-statistics" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="descriptive-statistics"><span class="header-section-number">8.4</span> Descriptive Statistics</h2>
 <p>Descriptive statistics allow us to understand the distribution of our dataset. We can use a similar command structure to create almost all of the descriptive statistics tables in our class. Add a first-level header called “Describing the Data”. Add a code chunk below.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Notice that you need to add these libraries. You might need to install them. </span></span>
@@ -380,42 +411,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_pct =</span> <span class="fu">sd</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">variance_pct =</span> <span class="fu">var</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_dev =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(pre_covid_pct <span class="sc">-</span> <span class="fu">mean</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv_pct =</span> sd_pct <span class="sc">/</span> mean_pct,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_pct =</span> <span class="fu">min</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_pct =</span> <span class="fu">max</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">skewness =</span> <span class="fu">skewness</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">kurtosis =</span> <span class="fu">kurtosis</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="do">##this will format the table for display</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>display_table <span class="ot">&lt;-</span>  pre_covid_stat <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Statistic"</span>, <span class="at">values_to =</span> <span class="st">"Value"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Chronic Absences at NC Public Schools before Covid-19"</span>,</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">everything</span>(),</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">#display the table</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>display_table</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_pct =</span> <span class="fu">min</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_pct =</span> <span class="fu">max</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">skewness =</span> <span class="fu">skewness</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">kurtosis =</span> <span class="fu">kurtosis</span>(pre_covid_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="do">##this will format the table for display</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>display_table <span class="ot">&lt;-</span>  pre_covid_stat <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"Statistic"</span>, <span class="at">values_to =</span> <span class="st">"Value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Chronic Absences at NC Public Schools before Covid-19"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">everything</span>(),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">#display the table</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>display_table</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="do">### CATEGORICAL DATA #####</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="do">## create a basic table of descriptive statistics for NC Rural Center Rural Definition</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>rural_table <span class="ot">&lt;-</span> rurality <span class="sc">|&gt;</span> </span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(nc_rural_center) <span class="sc">|&gt;</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())  <span class="sc">|&gt;</span>  <span class="fu">gt</span>() </span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>rural_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="do">### CATEGORICAL DATA #####</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="do">## create a basic table of descriptive statistics for NC Rural Center Rural Definition</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>rural_table <span class="ot">&lt;-</span> rurality <span class="sc">|&gt;</span> </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(nc_rural_center) <span class="sc">|&gt;</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())  <span class="sc">|&gt;</span>  <span class="fu">gt</span>() </span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>rural_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="basic-plotting-with-ggplot2" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="basic-plotting-with-ggplot2"><span class="header-section-number">8.3</span> Basic Plotting with ggplot2</h2>
+<section id="basic-plotting-with-ggplot2" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="basic-plotting-with-ggplot2"><span class="header-section-number">8.5</span> Basic Plotting with ggplot2</h2>
 <p>Data visualizations can add additional information to our descriptive statistics table. Add a first-level header called “Plotting our Data”. Add a code chunk below it.</p>
-<section id="the-language-of-ggplot2" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="the-language-of-ggplot2"><span class="header-section-number">8.3.1</span> The “Language” of ggplot2</h3>
+<section id="the-language-of-ggplot2" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="the-language-of-ggplot2"><span class="header-section-number">8.5.1</span> The “Language” of ggplot2</h3>
 <p>The ggplot2 package builds visualizations using a conceptual framework based on the grammar of graphics– meaning that every graph can be built from the same components. These components are a dataset, a coordinate system, and geoms (visual marks that represent data points). The basic “formula” of a ggplot is:</p>
 <p>1) Start with the data -&gt; ggplot(DATAFRAME,</p>
 <p>2) Map variables to aesthetics -&gt; aes(x = , y =, color = , size = , shape= )</p>
@@ -424,8 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>ggplot(data, aes(x = var_for_x_axis, y = var_for_y_axis)) + geom_point()</code></p>
 <p>We will work extensively with ggplot2 graphs in this class. The following examples provide a very brief introduction on using ggplot2</p>
 </section>
-<section id="histogram-density-plot" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="histogram-density-plot"><span class="header-section-number">8.3.2</span> Histogram/ Density Plot</h3>
+<section id="histogram-density-plot" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="histogram-density-plot"><span class="header-section-number">8.5.2</span> Histogram/ Density Plot</h3>
 <p>A histogram is a graph that displays the frequency of observations within user-set “bins”. A density plot is a smooth curve that shows the distribution of the data. The curve represents the proportion of the data in each range rather than the frequency. Both of these visualizations help us understand the distribution of our data</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a histogram of pre covid absences</span></span>
@@ -450,8 +480,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion"</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="boxplot" class="level4" data-number="8.3.2.1">
-<h4 data-number="8.3.2.1" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">8.3.2.1</span> Boxplot</h4>
+</section>
+<section id="boxplot" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">8.5.3</span> Boxplot</h3>
 <p>A boxplot is a standardized way of displaying the distribution of data based on a five-number summary: minimum, first quartile (Q1), median, third quartile (Q3), and maximum. It can also highlight outliers in the data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## absences is the data</span></span>
@@ -463,10 +494,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Ratio"</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Q16: Make a box plot of after covid absences</strong></p>
 </section>
-<section id="violin-plot" class="level4" data-number="8.3.2.2">
-<h4 data-number="8.3.2.2" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">8.3.2.2</span> Violin Plot</h4>
+<section id="violin-plot" class="level3" data-number="8.5.4">
+<h3 data-number="8.5.4" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">8.5.4</span> Violin Plot</h3>
 <p>A violin plot is a method of plotting numeric data and can be understood as a combination of a boxplot and a density plot. It shows the distribution of the data across different values.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Look how we've layered two different plot types onto the same graph</span></span>
@@ -480,9 +510,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x=</span><span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="bar-chart" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="bar-chart"><span class="header-section-number">8.3.3</span> Bar Chart</h3>
+<section id="bar-chart" class="level3" data-number="8.5.5">
+<h3 data-number="8.5.5" class="anchored" data-anchor-id="bar-chart"><span class="header-section-number">8.5.5</span> Bar Chart</h3>
 <p>A bar chart displays the count of each observations in a group. It is a useful visualization for nominal/categorical data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this creates the grouped dataset</span></span>
@@ -498,8 +527,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="faceting-and-grouping-plots" class="level3" data-number="8.3.4">
-<h3 data-number="8.3.4" class="anchored" data-anchor-id="faceting-and-grouping-plots"><span class="header-section-number">8.3.4</span> Faceting and Grouping Plots</h3>
+<section id="faceting-and-grouping-plots" class="level3" data-number="8.5.6">
+<h3 data-number="8.5.6" class="anchored" data-anchor-id="faceting-and-grouping-plots"><span class="header-section-number">8.5.6</span> Faceting and Grouping Plots</h3>
 <p>Faceting and grouped visualization are two ways to compare distributions across categories in <code>ggplot2</code>. <strong>Faceting</strong> creates separate panels for each level of a categorical variable, making it easy to see each group individually. <strong>Grouped visualization</strong> overlays multiple groups in a single plot, using color or fill to distinguish them, so you can compare distributions directly. In both cases, the variable used to define the groups must be <strong>categorical</strong> (like <code>rural</code>), because these techniques rely on discrete levels to separate or color the data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">##grouped visualization (see fill value)</span></span>
@@ -532,8 +561,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="mini-challenge" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">8.4</span> Mini-Challenge</h2>
+<section id="mini-challenge" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">8.6</span> Mini-Challenge</h2>
 <p>Add a new first level header called “Mini-Challenge #2”. Under that header, add a code chunk. In the code chunk, write commands to do the following:</p>
 <ul>
 <li>Make a descriptive statistics table of <code>after_covid_ratio</code></li>

@@ -7,56 +7,11 @@ This chapter will introduce you to the basics of working with base R. After comp
 -   Read in data using a relative file path
 -   Execute the basics of base R by creating comments, assigning objects, and using base R functions
 
-We will use the following datasets:
-
--   Data on chronic school absence rate for North Carolina Public Schools before and after the Covid-19 pandemic from the [North Carolina Department of Public Instruction](https://www.dpi.nc.gov/data-reports/school-report-cards/school-report-card-resources-researchers)
--   North Carolina census tract rurality definitions (RUCA codes) from the [USDA Economic Research Service](https://www.ers.usda.gov/data-products/rural-urban-commuting-area-codes) and the [NC Rural Center](https://www.ncruralcenter.org/)**.** RUCA codes establish urban cores and the census tracts that are the most economically integrated with those cores through commuting. The NC Rural Center defines rurality as areas with less than 250 residents per square mile.
-
-```{r, include=FALSE}
-
-library(tidyverse)
-
-absences <- read_csv("https://drive.google.com/uc?export=download&id=1cDHtaBhZpTwTct77f53kSmurSNG4hAI-")
-
-rurality <- read_csv("nc_rurality_tracts.csv")
-
-```
-
 ## Creating a .Rmd and Reading Data
 
-To follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. Once you've saved it, close the file and re-open it. **Every time you see code below, you should copy it to your own document!**
+To follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. **Every time you see code below, you should copy it to your own document!**
 
-**Q1: Once you re-open the folder, what is your current working directory? How do you know?**
-
-Remove all the code chunks except for the setup chunk. Below the setup chunk add a "first-level header" called "Loading Libraries and Reading in Data".
-
-![](images/clipboard-3717346850.png)
-
-Then add a chunk below this text and load the tidyverse package. Format that chunk so that it is not included in the knitted document.
-
-You will read in the school absence data directly from Google Drive using the following command:
-
-`absences <- read_csv("https://drive.google.com/uc?export=download&id=1cDHtaBhZpTwTct77f53kSmurSNG4hAI-")`
-
-To practice reading in data locally, download the [NC Rurality Data](https://drive.google.com/uc?export=download&id=1eQ8UbyoCGNWlo4uTmKvzi40pAhL_54rO) to your GEOG215 folder (or whatever subfolder you have your .Rmd file saved to). Then, write a relative file path to read in that file. You will use the command
-
-`rurality <- read_csv("RELATIVEFILEPATH")`
-
-Your .Rmd should now look something like this
-
-![](images/clipboard-3987952332.png)
-
-## Running Chunks and Knitting
-
-We have completed our code chunk for loading libraries and reading in data. Now we can"Run" or evaluate that code. We can evaluate a code chunk by clicking the green arrow. Once you've evaluated the chunk, the datasets should show up in your Environment. Those are now "Objects"
-
-![](images/clipboard-1977768479.png)
-
-Now practice knitting your document using the Knit button on the top panel. This should create a new .html file that will be saved in your working directory. The file will open in a new window.
-
-![](images/clipboard-1659240099.png)
-
-**Q2: Why does the knitted document not include our code?**
+Remove all the code chunks except for the setup chunk.
 
 ## Basic R Commands
 
@@ -86,9 +41,9 @@ Add the following commands to your code chunk. In addition to running a full chu
 
 ```
 
-**Q3: Where is the output printed when you run those commands?**
+**Q1: Where is the output printed when you run those commands?**
 
-**Q4: Write a command that multiplies 5 by 2**
+**Q2: Write a command that multiplies 5 by 2**
 
 ### Boolean Operators
 
@@ -108,7 +63,7 @@ Boolean logical operators return either a true or a false based on the condition
 (3 * 5) < 20
 ```
 
-**Q5: Write a command that adds 10+7 and checks whether that is greater than 20.**
+**Q3: Write a command that adds 10+7 and checks whether that is greater than 20.**
 
 ### Functions
 
@@ -127,7 +82,7 @@ mean(c(1, 10, 100, NA), na.rm = TRUE)
 
 ```
 
-**Q5: Write a command that calculates the max of the following values (1, 92, 57, 12).**
+**Q4: Write a command that calculates the max of the following values (1, 92, 57, 12).**
 
 ## Assigning and Printing Objects
 
@@ -144,7 +99,7 @@ math_object
 
 ```
 
-**Q6: Create an object called `my_first_object` and assign the string "Hello World" to it. Then print the object.**
+**Q5: Create an object called `my_first_object` and assign the string "Hello World" to it. Then print the object.**
 
 ## Data Types
 
@@ -175,7 +130,7 @@ rural <- factor(c("Urban", "Rural"))
 
 ```
 
-**Q7: What happens if you values are not the expected data type? For instance, if you wanted to add sample to x?**
+**Q6: What happens if you values are not the expected data type? For instance, if you wanted to add sample to x?**
 
 ## Data Structures
 

@@ -2,11 +2,61 @@
 
 This chapter will introduce you to the basics of working with the tidyverse. After completing these exercises, you should be able to:
 
+-   Read in data using a relative file path
 -   Use the `mutate`, `filter`, `rename`, `summarise`, and `select` commands from the tidyverse package
 -   Create a descriptive statistics table using the gt package
 -   Create basic visualizations and describe data distributions (histogram, boxplot/violin plot, scatterplot, bar chart)
 
-We will continue to use the data that we used in the Basic R chapter. To start, create a new .Rmd document (formatted like we formatted our .Rmd in the Basic R chapter). Read in the data using the same commands we used in our previous .Rmd.
+We will use the following datasets:
+
+-   Data on chronic school absence rate for North Carolina Public Schools before and after the Covid-19 pandemic from the [North Carolina Department of Public Instruction](https://www.dpi.nc.gov/data-reports/school-report-cards/school-report-card-resources-researchers)
+-   North Carolina census tract rurality definitions (RUCA codes) from the [USDA Economic Research Service](https://www.ers.usda.gov/data-products/rural-urban-commuting-area-codes) and the [NC Rural Center](https://www.ncruralcenter.org/)**.** RUCA codes establish urban cores and the census tracts that are the most economically integrated with those cores through commuting. The NC Rural Center defines rurality as areas with less than 250 residents per square mile.
+
+```{r, include=FALSE}
+
+library(tidyverse)
+
+absences <- read_csv("https://drive.google.com/uc?export=download&id=1cDHtaBhZpTwTct77f53kSmurSNG4hAI-")
+
+rurality <- read_csv("nc_rurality_tracts.csv")
+
+```
+
+## Creating a .Rmd and Reading Data
+
+To follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. Once you've saved it, close the file and re-open it. **Every time you see code below, you should copy it to your own document!**
+
+**Q1: Once you re-open the folder, what is your current working directory? How do you know?**
+
+Remove all the code chunks except for the setup chunk. Below the setup chunk add a "first-level header" called "Loading Libraries and Reading in Data".
+
+![](images/clipboard-3717346850.png)
+
+Then add a chunk below this text and load the tidyverse package. Format that chunk so that it is not included in the knitted document.
+
+You will read in the school absence data directly from Google Drive using the following command:
+
+`absences <- read_csv("https://drive.google.com/uc?export=download&id=1cDHtaBhZpTwTct77f53kSmurSNG4hAI-")`
+
+To practice reading in data locally, download the [NC Rurality Data](https://drive.google.com/uc?export=download&id=1eQ8UbyoCGNWlo4uTmKvzi40pAhL_54rO) to your GEOG215 folder (or whatever subfolder you have your .Rmd file saved to). Then, write a relative file path to read in that file. You will use the command
+
+`rurality <- read_csv("RELATIVEFILEPATH")`
+
+Your .Rmd should now look something like this
+
+![](images/clipboard-3987952332.png)
+
+## Running Chunks and Knitting
+
+We have completed our code chunk for loading libraries and reading in data. Now we can"Run" or evaluate that code. We can evaluate a code chunk by clicking the green arrow. Once you've evaluated the chunk, the datasets should show up in your Environment. Those are now "Objects"
+
+![](images/clipboard-1977768479.png)
+
+Now practice knitting your document using the Knit button on the top panel. This should create a new .html file that will be saved in your working directory. The file will open in a new window.
+
+![](images/clipboard-1659240099.png)
+
+**Q2: Why does the knitted document not include our code?**
 
 ## Data Structure in the Tidyverse
 
@@ -26,13 +76,13 @@ str(rurality)
 
 You should also double-click each object in the "Environment" tab. This will open the tibble so that you can explore it.
 
-**Q1: How many rows are in the absences dataset?**
+**Q3: How many rows are in the absences dataset?**
 
-**Q2: How many variables are in our rurality dataset?**
+**Q4: How many variables are in our rurality dataset?**
 
-**Q3: What is the data type of the `year` variable in the absences dataset?**
+**Q5: What is the data type of the `year` variable in the absences dataset?**
 
-**Q4: Which of the absences variables are characters?**
+**Q6: Which of the absences variables are characters?**
 
 Basic data manipulation in the tidyverse generally involves "piping". Piping is the way that we can "chain" operations or commands and it looks like this: `|>` (in documentation you might also see a pipe written like this `%>%`). Run each of the following commands and add a descriptive comment above it.
 
@@ -62,9 +112,9 @@ summary <- absences |>
   summarise(max_before_covid = max(pre_covid_pct), max_after_covid = max(after_covid_pct))
 ```
 
-**Q5: Why wasn't the last command printed to the console?**
+**Q7: Why wasn't the last command printed to the console?**
 
-**Q6: Write a command that creates an object called `metro_core` and counts the number of observations that have a `ruca_code` of "Metropolitan Core"**
+**Q8: Write a command that creates an object called `metro_core` and counts the number of observations that have a `ruca_code` of "Metropolitan Core"**
 
 Usually, unless we are doing basic data exploration, we want to save our manipulated data as objects. You can either "re-write" an object by using the same name, or you can re-name the manipulated object. Run each of the following commands and add a descriptive comment above it.
 
@@ -88,9 +138,9 @@ logical <- renamed_absences |> mutate(high_absence = ifelse(pre_covid_ratio > .2
 logical_rural <- rurality |> mutate(highly_rural = ifelse(ruca_code %in% c("Small town low commuting", "Rural area", "Small town core"), "Highly Rural", "Not Highly Rural"))
 ```
 
-**Q7: Write a command that creates an object called `high_absence_schools` that filters the `logical`** **object to just schools that have a high absence rate before Covid.**
+**Q9: Write a command that creates an object called `high_absence_schools` that filters the `logical`** **object to just schools that have a high absence rate before Covid.**
 
-**Q8: Write a command that creates an object called** `urban` **that filters the `rurality` object to just observations that are "Metropolitan high commuting" or "Metropolitan core"**
+**Q10: Write a command that creates an object called** `urban` **that filters the `rurality` object to just observations that are "Metropolitan high commuting" or "Metropolitan core"**
 
 ## Descriptive Statistics
 
@@ -111,7 +161,6 @@ pre_covid_stat <- absences |> select(pre_covid_pct) |>
     sd_pct = sd(pre_covid_pct, na.rm = TRUE),
     variance_pct = var(pre_covid_pct, na.rm = TRUE),
     mean_dev = mean(abs(pre_covid_pct - mean(pre_covid_pct, na.rm = TRUE)), na.rm = TRUE),
-    cv_pct = sd_pct / mean_pct,
     min_pct = min(pre_covid_pct, na.rm = TRUE),
     max_pct = max(pre_covid_pct, na.rm = TRUE),
     skewness = skewness(pre_covid_pct, na.rm = TRUE), 
@@ -190,7 +239,7 @@ ggplot(absences, aes(x = pre_covid_pct)) +
   ) 
 ```
 
-#### Boxplot
+### Boxplot
 
 A boxplot is a standardized way of displaying the distribution of data based on a five-number summary: minimum, first quartile (Q1), median, third quartile (Q3), and maximum. It can also highlight outliers in the data.
 
@@ -205,9 +254,7 @@ ggplot(absences, aes(y = pre_covid_pct)) +
   )
 ```
 
-**Q16: Make a box plot of after covid absences**
-
-#### Violin Plot
+### Violin Plot
 
 A violin plot is a method of plotting numeric data and can be understood as a combination of a boxplot and a density plot. It shows the distribution of the data across different values.
 
