@@ -10,6 +10,18 @@ To use R and RStudio, you will need to download and install both programs on you
 
 Once you have downloaded and installed RStudio, open up the application. We need to change one global setting before we start. **You only need to do this once!** Navigate **Tools** \> **Global Options**, unclick “Restore .RData into Workspace at Startup” and choosing **Never** on the “Save workspace to .RData on exit”.
 
+## Using .Rmd files
+
+To create a .Rmd file go to File \> New File \> R Markdown.
+
+A .Rmd is made up of two main components: code chunks (this is where you write code) and text (any words that are outside of a code chunk). Any time you are writing code, it needs to be in a code chunk. Chunks can then be **run** to execute the code within the chunk. The idea of *chunking* is to group code that accomplishes a single, related task into one code chunk. When you begin a new step or process in your workflow, you start a new chunk.
+
+Knitting a .Rmd means that you create a rendered .html including your code, output, and text. To knit your document, click the knit button. It will create a .html in whatever folder you have the .Rmd saved in.
+
+This file [introduces R Markdowns](https://drive.google.com/file/d/1nzIRkL5vpWj7RArNuOxI8efQ34-Sbcv5/view?usp=sharing)
+
+This file [provides an example of how to use R Markdowns in an Analytical Workflow](https://drive.google.com/file/d/1t7YkI9z3lFiUyRwKfXYCgg6L_oUxSuap/view?usp=sharing)
+
 ## The RStudio Environment
 
 The RStudio environment consists of four panels.
@@ -110,10 +122,6 @@ The command "../" takes you "up" one level from the working directory (for insta
 When you open a script, the working directory is automatically set to where that script is saved. If you are saving a new file, you must save it, close it, and reopen it for the working directory to be correct.
 
 ## .Rmd Formatting
-
-A .Rmd is made up of two main components: code chunks (this is where you write code) and text (any words that are outside of a code chunk). Any time you are writing code, it needs to be in a code chunk. Chunks can then be **run** to execute the code within the chunk. The idea of *chunking* is to group code that accomplishes a single, related task into one code chunk. When you begin a new step or process in your workflow, you start a new chunk.
-
-Knitting a .Rmd means that you create a rendered .html including your code, output, and text. To knit your document, click the knit button. It will create a .html in whatever folder you have the .Rmd saved in.
 
 Sometimes we want to modify how code and output actually appears in our knitted document. The follow commands can be used to help format .Rmd documents so that the knitted document is easy to read.
 

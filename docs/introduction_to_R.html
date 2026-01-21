@@ -253,20 +253,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#downloading-and-installing-r-and-rstudio" id="toc-downloading-and-installing-r-and-rstudio" class="nav-link active" data-scroll-target="#downloading-and-installing-r-and-rstudio"><span class="header-section-number">6.1</span> Downloading and Installing R and RStudio</a></li>
-  <li><a href="#the-rstudio-environment" id="toc-the-rstudio-environment" class="nav-link" data-scroll-target="#the-rstudio-environment"><span class="header-section-number">6.2</span> The RStudio Environment</a></li>
-  <li><a href="#creating-and-saving-files" id="toc-creating-and-saving-files" class="nav-link" data-scroll-target="#creating-and-saving-files"><span class="header-section-number">6.3</span> Creating and Saving Files</a></li>
-  <li><a href="#downloading-packages" id="toc-downloading-packages" class="nav-link" data-scroll-target="#downloading-packages"><span class="header-section-number">6.4</span> Downloading Packages</a></li>
-  <li><a href="#file-management" id="toc-file-management" class="nav-link" data-scroll-target="#file-management"><span class="header-section-number">6.5</span> File Management</a></li>
-  <li><a href="#accessing-data" id="toc-accessing-data" class="nav-link" data-scroll-target="#accessing-data"><span class="header-section-number">6.6</span> Accessing Data</a>
+  <li><a href="#using-.rmd-files" id="toc-using-.rmd-files" class="nav-link" data-scroll-target="#using-.rmd-files"><span class="header-section-number">6.2</span> Using .Rmd files</a></li>
+  <li><a href="#the-rstudio-environment" id="toc-the-rstudio-environment" class="nav-link" data-scroll-target="#the-rstudio-environment"><span class="header-section-number">6.3</span> The RStudio Environment</a></li>
+  <li><a href="#creating-and-saving-files" id="toc-creating-and-saving-files" class="nav-link" data-scroll-target="#creating-and-saving-files"><span class="header-section-number">6.4</span> Creating and Saving Files</a></li>
+  <li><a href="#downloading-packages" id="toc-downloading-packages" class="nav-link" data-scroll-target="#downloading-packages"><span class="header-section-number">6.5</span> Downloading Packages</a></li>
+  <li><a href="#file-management" id="toc-file-management" class="nav-link" data-scroll-target="#file-management"><span class="header-section-number">6.6</span> File Management</a></li>
+  <li><a href="#accessing-data" id="toc-accessing-data" class="nav-link" data-scroll-target="#accessing-data"><span class="header-section-number">6.7</span> Accessing Data</a>
   <ul class="collapse">
-  <li><a href="#finding-file-paths" id="toc-finding-file-paths" class="nav-link" data-scroll-target="#finding-file-paths"><span class="header-section-number">6.6.1</span> Finding File Paths</a></li>
-  <li><a href="#absolute-file-paths" id="toc-absolute-file-paths" class="nav-link" data-scroll-target="#absolute-file-paths"><span class="header-section-number">6.6.2</span> Absolute File Paths</a></li>
-  <li><a href="#relative-file-paths" id="toc-relative-file-paths" class="nav-link" data-scroll-target="#relative-file-paths"><span class="header-section-number">6.6.3</span> Relative File Paths</a></li>
+  <li><a href="#finding-file-paths" id="toc-finding-file-paths" class="nav-link" data-scroll-target="#finding-file-paths"><span class="header-section-number">6.7.1</span> Finding File Paths</a></li>
+  <li><a href="#absolute-file-paths" id="toc-absolute-file-paths" class="nav-link" data-scroll-target="#absolute-file-paths"><span class="header-section-number">6.7.2</span> Absolute File Paths</a></li>
+  <li><a href="#relative-file-paths" id="toc-relative-file-paths" class="nav-link" data-scroll-target="#relative-file-paths"><span class="header-section-number">6.7.3</span> Relative File Paths</a></li>
   </ul></li>
-  <li><a href="#rmd-formatting" id="toc-rmd-formatting" class="nav-link" data-scroll-target="#rmd-formatting"><span class="header-section-number">6.7</span> .Rmd Formatting</a>
+  <li><a href="#rmd-formatting" id="toc-rmd-formatting" class="nav-link" data-scroll-target="#rmd-formatting"><span class="header-section-number">6.8</span> .Rmd Formatting</a>
   <ul class="collapse">
-  <li><a href="#text-formatting" id="toc-text-formatting" class="nav-link" data-scroll-target="#text-formatting"><span class="header-section-number">6.7.1</span> Text Formatting</a></li>
-  <li><a href="#chunk-formatting" id="toc-chunk-formatting" class="nav-link" data-scroll-target="#chunk-formatting"><span class="header-section-number">6.7.2</span> Chunk Formatting</a></li>
+  <li><a href="#text-formatting" id="toc-text-formatting" class="nav-link" data-scroll-target="#text-formatting"><span class="header-section-number">6.8.1</span> Text Formatting</a></li>
+  <li><a href="#chunk-formatting" id="toc-chunk-formatting" class="nav-link" data-scroll-target="#chunk-formatting"><span class="header-section-number">6.8.2</span> Chunk Formatting</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -302,8 +303,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Once you have downloaded and installed RStudio, open up the application. We need to change one global setting before we start. <strong>You only need to do this once!</strong> Navigate <strong>Tools</strong> &gt; <strong>Global Options</strong>, unclick “Restore .RData into Workspace at Startup” and choosing <strong>Never</strong> on the “Save workspace to .RData on exit”.</p>
 </section>
-<section id="the-rstudio-environment" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="the-rstudio-environment"><span class="header-section-number">6.2</span> The RStudio Environment</h2>
+<section id="using-.rmd-files" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="using-.rmd-files"><span class="header-section-number">6.2</span> Using .Rmd files</h2>
+<p>To create a .Rmd file go to File &gt; New File &gt; R Markdown.</p>
+<p>A .Rmd is made up of two main components: code chunks (this is where you write code) and text (any words that are outside of a code chunk). Any time you are writing code, it needs to be in a code chunk. Chunks can then be <strong>run</strong> to execute the code within the chunk. The idea of <em>chunking</em> is to group code that accomplishes a single, related task into one code chunk. When you begin a new step or process in your workflow, you start a new chunk.</p>
+<p>Knitting a .Rmd means that you create a rendered .html including your code, output, and text. To knit your document, click the knit button. It will create a .html in whatever folder you have the .Rmd saved in.</p>
+<p>This file <a href="https://drive.google.com/file/d/1nzIRkL5vpWj7RArNuOxI8efQ34-Sbcv5/view?usp=sharing">introduces R Markdowns</a></p>
+<p>This file <a href="https://drive.google.com/file/d/1t7YkI9z3lFiUyRwKfXYCgg6L_oUxSuap/view?usp=sharing">provides an example of how to use R Markdowns in an Analytical Workflow</a></p>
+</section>
+<section id="the-rstudio-environment" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-rstudio-environment"><span class="header-section-number">6.3</span> The RStudio Environment</h2>
 <p>The RStudio environment consists of four panels.</p>
 <ol type="1">
 <li><strong>Source</strong>: This is where you can edit R files (either .R or .Rmd) and run R code.</li>
@@ -318,13 +327,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="creating-and-saving-files" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="creating-and-saving-files"><span class="header-section-number">6.3</span> Creating and Saving Files</h2>
+<section id="creating-and-saving-files" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="creating-and-saving-files"><span class="header-section-number">6.4</span> Creating and Saving Files</h2>
 <p>In this class, we will primarily be working with .Rmd files. An R Markdown or .Rmd is a document format that is designed to easily integrate text and code. This means that you can easily type answers to questions, descriptions of code outputs, and other assignment tasks within the same document as your code.</p>
 <p>To make a new .Rmd file, navigate to File &gt; New Script &gt; R Markdown</p>
 </section>
-<section id="downloading-packages" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="downloading-packages"><span class="header-section-number">6.4</span> Downloading Packages</h2>
+<section id="downloading-packages" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="downloading-packages"><span class="header-section-number">6.5</span> Downloading Packages</h2>
 <p>R packages extend the functionality of Base R and must be downloaded. We will use a small set of libraries in this class.</p>
 <ul>
 <li>tmap: This is the main mapping package we will use</li>
@@ -355,8 +364,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Once you have downloaded the packages, you will need to load them every time you want to use them.</p>
 </section>
-<section id="file-management" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="file-management"><span class="header-section-number">6.5</span> File Management</h2>
+<section id="file-management" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="file-management"><span class="header-section-number">6.6</span> File Management</h2>
 <p>You will generate a large number of files in this class. The easiest thing to do to make sure that you can succeed in this class is to make sure you are following a file organization structure. These are the rules for file management in this class.</p>
 <ul>
 <li>Everyone <strong>MUST</strong> make a GEOG215 folder on their computer (please do not put it in your Downloads folder!!!)</li>
@@ -365,12 +374,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If you are <strong>not accessing a dataset directly from a cloud location</strong> (more on this later), you <strong>must use relative file paths</strong> to read in the data.</li>
 </ul>
 </section>
-<section id="accessing-data" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="accessing-data"><span class="header-section-number">6.6</span> Accessing Data</h2>
+<section id="accessing-data" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="accessing-data"><span class="header-section-number">6.7</span> Accessing Data</h2>
 <p>For most of this class, you will <strong>access datasets directly from Google Drive without downloading them</strong>. This makes things simpler and saves you from having to manage a large number of files on your computer. Whenever you need to use data from Google Drive, I will provide the exact command to read it in.</p>
 <p>However, there will be cases where you will download data onto your computer. In these cases, you have to tell R where on your computer the data is saved. We do this using a “file path” which references a location on your local computer.</p>
-<section id="finding-file-paths" class="level3" data-number="6.6.1">
-<h3 data-number="6.6.1" class="anchored" data-anchor-id="finding-file-paths"><span class="header-section-number">6.6.1</span> Finding File Paths</h3>
+<section id="finding-file-paths" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="finding-file-paths"><span class="header-section-number">6.7.1</span> Finding File Paths</h3>
 <p>Both Mac and PC have ways to find the file path of a particular document.</p>
 <ul>
 <li>On a Mac, press and hold the command key and click on the file &gt; “Get Info” &gt; “Where”</li>
@@ -379,13 +388,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Mac uses forward slashes in file paths (/) by default. Windows <em>sometimes</em> uses backslashes (\) in file paths. You must always use forward slashes in R, even if you are using Windows. This means that if you copy a file path from a PC, you must replace all backslashes to front slashes.</p>
 <p>There are two ways to write file paths.</p>
 </section>
-<section id="absolute-file-paths" class="level3" data-number="6.6.2">
-<h3 data-number="6.6.2" class="anchored" data-anchor-id="absolute-file-paths"><span class="header-section-number">6.6.2</span> Absolute File Paths</h3>
+<section id="absolute-file-paths" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="absolute-file-paths"><span class="header-section-number">6.7.2</span> Absolute File Paths</h3>
 <p>An absolute file path references a specific location on someone’s local computer (what you would get from the “Get Info” or “Copy as Path” and will look something like this:</p>
 <p>“/Users/juliacardwell/Documents/GEOG215/my_data.csv”</p>
 </section>
-<section id="relative-file-paths" class="level3" data-number="6.6.3">
-<h3 data-number="6.6.3" class="anchored" data-anchor-id="relative-file-paths"><span class="header-section-number">6.6.3</span> Relative File Paths</h3>
+<section id="relative-file-paths" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="relative-file-paths"><span class="header-section-number">6.7.3</span> Relative File Paths</h3>
 <p>Relative file paths reference a location <em>relative</em> to the current working directory. You can find the current working directory by looking in the console.</p>
 <p><img src="images/workingdirectory.png" class="img-fluid"></p>
 <p>For instance, if I had a file within my spatial_data_sciene folder called “my_data.csv”, the relative path would be:</p>
@@ -394,17 +403,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When you open a script, the working directory is automatically set to where that script is saved. If you are saving a new file, you must save it, close it, and reopen it for the working directory to be correct.</p>
 </section>
 </section>
-<section id="rmd-formatting" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="rmd-formatting"><span class="header-section-number">6.7</span> .Rmd Formatting</h2>
-<p>A .Rmd is made up of two main components: code chunks (this is where you write code) and text (any words that are outside of a code chunk). Any time you are writing code, it needs to be in a code chunk. Chunks can then be <strong>run</strong> to execute the code within the chunk. The idea of <em>chunking</em> is to group code that accomplishes a single, related task into one code chunk. When you begin a new step or process in your workflow, you start a new chunk.</p>
-<p>Knitting a .Rmd means that you create a rendered .html including your code, output, and text. To knit your document, click the knit button. It will create a .html in whatever folder you have the .Rmd saved in.</p>
+<section id="rmd-formatting" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="rmd-formatting"><span class="header-section-number">6.8</span> .Rmd Formatting</h2>
 <p>Sometimes we want to modify how code and output actually appears in our knitted document. The follow commands can be used to help format .Rmd documents so that the knitted document is easy to read.</p>
-<section id="text-formatting" class="level3" data-number="6.7.1">
-<h3 data-number="6.7.1" class="anchored" data-anchor-id="text-formatting"><span class="header-section-number">6.7.1</span> Text Formatting</h3>
+<section id="text-formatting" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="text-formatting"><span class="header-section-number">6.8.1</span> Text Formatting</h3>
 <p><img src="images/textformatting.png" class="img-fluid"></p>
 </section>
-<section id="chunk-formatting" class="level3" data-number="6.7.2">
-<h3 data-number="6.7.2" class="anchored" data-anchor-id="chunk-formatting"><span class="header-section-number">6.7.2</span> Chunk Formatting</h3>
+<section id="chunk-formatting" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="chunk-formatting"><span class="header-section-number">6.8.2</span> Chunk Formatting</h3>
 <p><img src="images/codechunk.png" class="img-fluid"></p>
 
 
