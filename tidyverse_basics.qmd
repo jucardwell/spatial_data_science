@@ -11,11 +11,13 @@ This chapter will introduce you to the basics of working with base R. After comp
 
 To follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. **Every time you see code below, you should copy it to your own document!**
 
-Remove all the code chunks except for the setup chunk.
+Remove all the code chunks except for the setup chunk. You should review the formatting guidance [here](https://jucardwell.github.io/spatial_data_science/introduction_to_R.html#downloading-and-installing-r-and-rstudio)
 
 ## Basic R Commands
 
-Add a new first level header called "Practicing Basic R Commands". Then add a code chunk below that.
+[Add a new first level header](https://jucardwell.github.io/spatial_data_science/introduction_to_R.html#rmd-formatting) called "Practicing Basic R Commands". Then add a R code chunk below that. Your document should look like this now.
+
+![](images/clipboard-3803477352.png)
 
 ### Making Comments
 
@@ -27,7 +29,7 @@ Any time you write a command, you will want to include a descriptive comment abo
 
 ### Basic Math
 
-Add the following commands to your code chunk. In addition to running a full chunk, you can also run a single line of code by clicking "Command" and "Return" on a Mac or "Control" and "Enter" on a PC. Run each of the following commands.
+Add the following commands to your code chunk. In addition to running a full chunk (by pressing the green arrow at the top of the chunk), you can also run a single line of code by clicking "Command" and "Return" on a Mac or "Control" and "Enter" on a PC. Run each of the following commands.
 
 ```{r, eval=F}
 ## basic addition
@@ -88,7 +90,7 @@ mean(c(1, 10, 100, NA), na.rm = TRUE)
 
 So far, every command we’ve run has been *evaluated in the console*, which means R immediately prints the result at the bottom of the chunk. This happens any time you type an expression without saving it as an object.
 
-Saving as an object means that the result of that command is stored in our environment (like the data we read in). To create objects, we use the `<-` command. To see the output in the console, you need to print the object. The benefit of using objects is that we can "call" that object in later commands without having to rewrite the whole command over again. Add these commands to your code chunk and run each one.
+Saving as an object means that the result of that command is stored in our environment (look to the right, you can also double click on the object). To create objects, we use the `<-` command. To see the output in the console, you need to print the object. The benefit of using objects is that we can "call" that object in later commands without having to rewrite the whole command over again. Add these commands to your code chunk and run each one.
 
 ```{r, eval = F}
 ## save an object
@@ -155,6 +157,24 @@ df <- data.frame(a = 1:3, b = c("x", "y", "z"))
 
 ```
 
+## Adding Text and Knitting Practice
+
+Below the code chunk, you can write in regular text. This is the benefit of using .Rmd documents– you can seamlessly integrate both code and text. Below your "Practicing Basic R Commands" chunk, add some text that describes the main things you learned in that section.
+
+Then "Knit" your document using the "Knit" button on the top panel. Knitting creates a .html version of your .Rmd. It will open in a new tab.
+
+## Reading in a File
+
+Below your "Practicing Basic R Commands" chunk, add a new first-level header called "Reading in and Manipulating Data".
+
+Download [this file](https://drive.google.com/file/d/1XyaBYTAmOIROidbvOXIBPBqrWA6_2Lb5/view?usp=sharing) into your GEOG215 folder. Then use a "[relative file path](https://jucardwell.github.io/spatial_data_science/introduction_to_R.html#accessing-data)" to read in the data using this command:
+
+```{r, eval = F}
+
+nc_example <- read.csv("RELATIVEFILEPATH")
+
+```
+
 ## Indexing and Subsetting
 
 Indexing is used to select or subset elements from data structures.
@@ -167,15 +187,6 @@ Indexing is used to select or subset elements from data structures.
 Add these commands to your chunk. Run each command and add a comment based on what the command is doing.
 
 ```{r, eval = F}
-
-#practice df (I made these values up!)
-nc_example <- data.frame(
-  county = c("Wake", "Durham", "Orange", "Buncombe", "Mecklenburg"),
-  population = c(1130000, 330000, 150000, 270000, 1135000),
-  region = factor(c("Piedmont", "Piedmont", "Piedmont", "Mountain", "Piedmont")),
-  pct_rural = c(0.03, 0.07, 0.28, 0.35, 0.02),
-  has_university = c(TRUE, TRUE, TRUE, FALSE, TRUE)
-)
 
 #
 nc_example[1, ]  
@@ -197,6 +208,10 @@ nc_example[["population"]]
 
 #
 nc_example[nc_example$population > 300000, ]
+
+
+#
+nc_example[nc_example$has_university == "Yes", ]
 
 ```
 

@@ -94,7 +94,7 @@
     "href": "tidyverse_basics.html",
     "title": "7  Basic R",
     "section": "",
-    "text": "7.1 Creating a .Rmd and Reading Data\nThis chapter will introduce you to the basics of working with base R. After completing these exercises, you should be able to:\nTo follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. Every time you see code below, you should copy it to your own document!\nRemove all the code chunks except for the setup chunk.",
+    "text": "7.1 Creating a .Rmd and Reading Data\nThis chapter will introduce you to the basics of working with base R. After completing these exercises, you should be able to:\nTo follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. Every time you see code below, you should copy it to your own document!\nRemove all the code chunks except for the setup chunk. You should review the formatting guidance here",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
     ]
@@ -114,7 +114,7 @@
     "href": "tidyverse_basics.html#basic-r-commands",
     "title": "7  Basic R",
     "section": "7.2 Basic R Commands",
-    "text": "7.2 Basic R Commands\nAdd a new first level header called “Practicing Basic R Commands”. Then add a code chunk below that.\n\n7.2.1 Making Comments\nAny time you write a command, you will want to include a descriptive comment above it. To make a comment, we use this formatting.\n\n## this is a comment\n\n\n\n7.2.2 Basic Math\nAdd the following commands to your code chunk. In addition to running a full chunk, you can also run a single line of code by clicking “Command” and “Return” on a Mac or “Control” and “Enter” on a PC. Run each of the following commands.\n\n## basic addition\n4 + 3\n\n## basic division\n123.1 / 3.445\n\n##exponents\n5^2\n\nQ1: Where is the output printed when you run those commands?\nQ2: Write a command that multiplies 5 by 2\n\n\n7.2.3 Boolean Operators\nBoolean logical operators return either a true or a false based on the conditions. Add these commands to your code chunk and run each one.\n\n## is greater? \n2 &gt; 5\n\n## is equal? \n3 == 3\n\n## is greater or equal? \n10000 &gt;= 1\n\n## is less? \n(3 * 5) &lt; 20\n\nQ3: Write a command that adds 10+7 and checks whether that is greater than 20.\n\n\n7.2.4 Functions\nFunctions can be though of as “actions”. Base R already has many built in functions. The basic setup of a function is function(argument, ...). Add these commands to your code chunk and run each one.\n\n#sum\nsum(2:963)\n\n#sum\nmean(c(1, 10, 100, NA))\n\n#sum, remove na\nmean(c(1, 10, 100, NA), na.rm = TRUE)\n\nQ4: Write a command that calculates the max of the following values (1, 92, 57, 12).",
+    "text": "7.2 Basic R Commands\nAdd a new first level header called “Practicing Basic R Commands”. Then add a R code chunk below that. Your document should look like this now.\n\n\n7.2.1 Making Comments\nAny time you write a command, you will want to include a descriptive comment above it. To make a comment, we use this formatting.\n\n## this is a comment\n\n\n\n7.2.2 Basic Math\nAdd the following commands to your code chunk. In addition to running a full chunk (by pressing the green arrow at the top of the chunk), you can also run a single line of code by clicking “Command” and “Return” on a Mac or “Control” and “Enter” on a PC. Run each of the following commands.\n\n## basic addition\n4 + 3\n\n## basic division\n123.1 / 3.445\n\n##exponents\n5^2\n\nQ1: Where is the output printed when you run those commands?\nQ2: Write a command that multiplies 5 by 2\n\n\n7.2.3 Boolean Operators\nBoolean logical operators return either a true or a false based on the conditions. Add these commands to your code chunk and run each one.\n\n## is greater? \n2 &gt; 5\n\n## is equal? \n3 == 3\n\n## is greater or equal? \n10000 &gt;= 1\n\n## is less? \n(3 * 5) &lt; 20\n\nQ3: Write a command that adds 10+7 and checks whether that is greater than 20.\n\n\n7.2.4 Functions\nFunctions can be though of as “actions”. Base R already has many built in functions. The basic setup of a function is function(argument, ...). Add these commands to your code chunk and run each one.\n\n#sum\nsum(2:963)\n\n#sum\nmean(c(1, 10, 100, NA))\n\n#sum, remove na\nmean(c(1, 10, 100, NA), na.rm = TRUE)\n\nQ4: Write a command that calculates the max of the following values (1, 92, 57, 12).",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
     ]
@@ -124,7 +124,7 @@
     "href": "tidyverse_basics.html#assigning-and-printing-objects",
     "title": "7  Basic R",
     "section": "7.3 Assigning and Printing Objects",
-    "text": "7.3 Assigning and Printing Objects\nSo far, every command we’ve run has been evaluated in the console, which means R immediately prints the result at the bottom of the chunk. This happens any time you type an expression without saving it as an object.\nSaving as an object means that the result of that command is stored in our environment (like the data we read in). To create objects, we use the &lt;- command. To see the output in the console, you need to print the object. The benefit of using objects is that we can “call” that object in later commands without having to rewrite the whole command over again. Add these commands to your code chunk and run each one.\n\n## save an object\nmath_object &lt;- 4 + 3\n\n## print an object\nmath_object\n\nQ5: Create an object called my_first_object and assign the string “Hello World” to it. Then print the object.",
+    "text": "7.3 Assigning and Printing Objects\nSo far, every command we’ve run has been evaluated in the console, which means R immediately prints the result at the bottom of the chunk. This happens any time you type an expression without saving it as an object.\nSaving as an object means that the result of that command is stored in our environment (look to the right, you can also double click on the object). To create objects, we use the &lt;- command. To see the output in the console, you need to print the object. The benefit of using objects is that we can “call” that object in later commands without having to rewrite the whole command over again. Add these commands to your code chunk and run each one.\n\n## save an object\nmath_object &lt;- 4 + 3\n\n## print an object\nmath_object\n\nQ5: Create an object called my_first_object and assign the string “Hello World” to it. Then print the object.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
     ]
@@ -153,8 +153,8 @@
     "objectID": "tidyverse_basics.html#indexing-and-subsetting",
     "href": "tidyverse_basics.html#indexing-and-subsetting",
     "title": "7  Basic R",
-    "section": "7.6 Indexing and Subsetting",
-    "text": "7.6 Indexing and Subsetting\nIndexing is used to select or subset elements from data structures.\n\n[] selects elements by position\n[[]] extracts a single element\n$ extracts a column by name\nLogical indexing selects elements that meet a condition\n\nAdd these commands to your chunk. Run each command and add a comment based on what the command is doing.\n\n#practice df (I made these values up!)\nnc_example &lt;- data.frame(\n  county = c(\"Wake\", \"Durham\", \"Orange\", \"Buncombe\", \"Mecklenburg\"),\n  population = c(1130000, 330000, 150000, 270000, 1135000),\n  region = factor(c(\"Piedmont\", \"Piedmont\", \"Piedmont\", \"Mountain\", \"Piedmont\")),\n  pct_rural = c(0.03, 0.07, 0.28, 0.35, 0.02),\n  has_university = c(TRUE, TRUE, TRUE, FALSE, TRUE)\n)\n\n#\nnc_example[1, ]  \n\n#\nnc_example[, 2]\n\n#\nnc_example[3, 1] \n\n#\nnc_example[2:4, 3]\n\n#\nnc_example$population\n\n#\nnc_example[[\"population\"]]\n\n#\nnc_example[nc_example$population &gt; 300000, ]",
+    "section": "7.8 Indexing and Subsetting",
+    "text": "7.8 Indexing and Subsetting\nIndexing is used to select or subset elements from data structures.\n\n[] selects elements by position\n[[]] extracts a single element\n$ extracts a column by name\nLogical indexing selects elements that meet a condition\n\nAdd these commands to your chunk. Run each command and add a comment based on what the command is doing.\n\n#\nnc_example[1, ]  \n\n#\nnc_example[, 2]\n\n#\nnc_example[3, 1] \n\n#\nnc_example[2:4, 3]\n\n#\nnc_example$population\n\n#\nnc_example[[\"population\"]]\n\n#\nnc_example[nc_example$population &gt; 300000, ]\n\n\n#\nnc_example[nc_example$has_university == \"Yes\", ]",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
     ]
@@ -163,8 +163,8 @@
     "objectID": "tidyverse_basics.html#creating-a-new-variable",
     "href": "tidyverse_basics.html#creating-a-new-variable",
     "title": "7  Basic R",
-    "section": "7.7 Creating a New Variable",
-    "text": "7.7 Creating a New Variable\nWe can create new variables using the $ command. Add this command and a descriptive comment\n\n#\nnc_example$pct_urban = 1 - nc_example$pct_rural",
+    "section": "7.9 Creating a New Variable",
+    "text": "7.9 Creating a New Variable\nWe can create new variables using the $ command. Add this command and a descriptive comment\n\n#\nnc_example$pct_urban = 1 - nc_example$pct_rural",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
     ]
@@ -173,8 +173,8 @@
     "objectID": "tidyverse_basics.html#mini-challenge",
     "href": "tidyverse_basics.html#mini-challenge",
     "title": "7  Basic R",
-    "section": "7.8 Mini-Challenge",
-    "text": "7.8 Mini-Challenge\nAdd a new first level header called “Mini-Challenge #1”. Under that header, add a code chunk. In the code chunk, write commands to do the following:\n\nAdd a variable to the nc_example data frame called “pop_million” that calculates the population of each county in millions\nUsing the nc_example data frame, create a new object called triangle_region that contains only the counties located in the Piedmont region.\nExtract the pct_rural value for Orange County\nUsing the triangle-region object you created, calculate and print the mean population of the Triangle counties\nCreate a new object called very_rural that returns a filtered data frame containing only counties where more than 20% of the population is rural",
+    "section": "7.10 Mini-Challenge",
+    "text": "7.10 Mini-Challenge\nAdd a new first level header called “Mini-Challenge #1”. Under that header, add a code chunk. In the code chunk, write commands to do the following:\n\nAdd a variable to the nc_example data frame called “pop_million” that calculates the population of each county in millions\nUsing the nc_example data frame, create a new object called triangle_region that contains only the counties located in the Piedmont region.\nExtract the pct_rural value for Orange County\nUsing the triangle-region object you created, calculate and print the mean population of the Triangle counties\nCreate a new object called very_rural that returns a filtered data frame containing only counties where more than 20% of the population is rural",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
     ]
@@ -877,6 +877,26 @@
     "text": "8.3 Data Structure in the Tidyverse\nAdd a first-level header called “Using the Tidyverse”. Under the header, add a code chunk\nFor the most part, we will be working with a special data structure called a tibble. A tibble is tidyverse’s version of a data frame. In a tibble, each row is an observation and each column is a variable. This is called “tidy” data.\nTo get a basic understanding of our data, we can use the str command:\n\n#structure of absences\nstr(absences)\n\n#structure of rurality\nstr(rurality)\n\nYou should also double-click each object in the “Environment” tab. This will open the tibble so that you can explore it.\nQ3: How many rows are in the absences dataset?\nQ4: How many variables are in our rurality dataset?\nQ5: What is the data type of the year variable in the absences dataset?\nQ6: Which of the absences variables are characters?\nBasic data manipulation in the tidyverse generally involves “piping”. Piping is the way that we can “chain” operations or commands and it looks like this: |&gt; (in documentation you might also see a pipe written like this %&gt;%). Run each of the following commands and add a descriptive comment above it.\n\n#\nabsences |&gt; slice_head(n = 5)\n\n#\nabsences |&gt; select(1)\n\n#\nabsences |&gt; select(rural)\n\n#\nabsences |&gt;\n  summarise(mean_percent = mean(pre_covid_pct))\n\n#\nabsences |&gt;\n  summarise(max_percent = max(after_covid_pct))\n\n#\nrurality |&gt; summarise(n_rural = sum(nc_rural_center == \"Rural\"))\n\n#\nsummary &lt;- absences |&gt;\n  summarise(max_before_covid = max(pre_covid_pct), max_after_covid = max(after_covid_pct))\n\nQ7: Why wasn’t the last command printed to the console?\nQ8: Write a command that creates an object called metro_core and counts the number of observations that have a ruca_code of “Metropolitan Core”\nUsually, unless we are doing basic data exploration, we want to save our manipulated data as objects. You can either “re-write” an object by using the same name, or you can re-name the manipulated object. Run each of the following commands and add a descriptive comment above it.\n\n#\nnon_rural_data &lt;- absences |&gt; filter(rural == \"non-rural\")\n\n#\npre_covid &lt;- absences |&gt; select(agency_code, pre_covid_pct)\n\n#\nrenamed_absences &lt;- absences |&gt; rename(pre_covid_ratio = pre_covid_pct, after_covid_ratio = after_covid_pct)\n\n#\nadded_column &lt;- renamed_absences |&gt; mutate(change = after_covid_ratio - pre_covid_ratio)\n\n#\nlogical &lt;- renamed_absences |&gt; mutate(high_absence = ifelse(pre_covid_ratio &gt; .25, 1, 0))\n\n#\nlogical_rural &lt;- rurality |&gt; mutate(highly_rural = ifelse(ruca_code %in% c(\"Small town low commuting\", \"Rural area\", \"Small town core\"), \"Highly Rural\", \"Not Highly Rural\"))\n\nQ9: Write a command that creates an object called high_absence_schools that filters the logical object to just schools that have a high absence rate before Covid.\nQ10: Write a command that creates an object called urban that filters the rurality object to just observations that are “Metropolitan high commuting” or “Metropolitan core”",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Basic Tidyverse Manipulation</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#adding-text-and-knitting-practice",
+    "href": "tidyverse_basics.html#adding-text-and-knitting-practice",
+    "title": "7  Basic R",
+    "section": "7.6 Adding Text and Knitting Practice",
+    "text": "7.6 Adding Text and Knitting Practice\nBelow the code chunk, you can write in regular text. This is the benefit of using .Rmd documents– you can seamlessly integrate both code and text. Below your “Practicing Basic R Commands” chunk, add some text that describes the main things you learned in that section.\nThen “Knit” your document using the “Knit” button on the top panel. Knitting creates a .html version of your .Rmd. It will open in a new tab.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
+    ]
+  },
+  {
+    "objectID": "tidyverse_basics.html#reading-in-a-file",
+    "href": "tidyverse_basics.html#reading-in-a-file",
+    "title": "7  Basic R",
+    "section": "7.7 Reading in a File",
+    "text": "7.7 Reading in a File\nBelow your “Practicing Basic R Commands” chunk, add a new first-level header called “Reading in and Manipulating Data”.\nDownload this file into your GEOG215 folder. Then use a “relative file path” to read in the data using this command:\n\nnc_example &lt;- read.csv(\"RELATIVEFILEPATH\")",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic R</span>"
     ]
   }
 ]

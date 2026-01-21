@@ -263,9 +263,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#assigning-and-printing-objects" id="toc-assigning-and-printing-objects" class="nav-link" data-scroll-target="#assigning-and-printing-objects"><span class="header-section-number">7.3</span> Assigning and Printing Objects</a></li>
   <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="header-section-number">7.4</span> Data Types</a></li>
   <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures"><span class="header-section-number">7.5</span> Data Structures</a></li>
-  <li><a href="#indexing-and-subsetting" id="toc-indexing-and-subsetting" class="nav-link" data-scroll-target="#indexing-and-subsetting"><span class="header-section-number">7.6</span> Indexing and Subsetting</a></li>
-  <li><a href="#creating-a-new-variable" id="toc-creating-a-new-variable" class="nav-link" data-scroll-target="#creating-a-new-variable"><span class="header-section-number">7.7</span> Creating a New Variable</a></li>
-  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">7.8</span> Mini-Challenge</a></li>
+  <li><a href="#adding-text-and-knitting-practice" id="toc-adding-text-and-knitting-practice" class="nav-link" data-scroll-target="#adding-text-and-knitting-practice"><span class="header-section-number">7.6</span> Adding Text and Knitting Practice</a></li>
+  <li><a href="#reading-in-a-file" id="toc-reading-in-a-file" class="nav-link" data-scroll-target="#reading-in-a-file"><span class="header-section-number">7.7</span> Reading in a File</a></li>
+  <li><a href="#indexing-and-subsetting" id="toc-indexing-and-subsetting" class="nav-link" data-scroll-target="#indexing-and-subsetting"><span class="header-section-number">7.8</span> Indexing and Subsetting</a></li>
+  <li><a href="#creating-a-new-variable" id="toc-creating-a-new-variable" class="nav-link" data-scroll-target="#creating-a-new-variable"><span class="header-section-number">7.9</span> Creating a New Variable</a></li>
+  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">7.10</span> Mini-Challenge</a></li>
   </ul>
 </nav>
     </div>
@@ -301,11 +303,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="creating-a-.rmd-and-reading-data" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="creating-a-.rmd-and-reading-data"><span class="header-section-number">7.1</span> Creating a .Rmd and Reading Data</h2>
 <p>To follow along with this tutorial, you should create a new .Rmd document and save it into your GEOG215 folder. <strong>Every time you see code below, you should copy it to your own document!</strong></p>
-<p>Remove all the code chunks except for the setup chunk.</p>
+<p>Remove all the code chunks except for the setup chunk. You should review the formatting guidance <a href="https://jucardwell.github.io/spatial_data_science/introduction_to_R.html#downloading-and-installing-r-and-rstudio">here</a></p>
 </section>
 <section id="basic-r-commands" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="basic-r-commands"><span class="header-section-number">7.2</span> Basic R Commands</h2>
-<p>Add a new first level header called “Practicing Basic R Commands”. Then add a code chunk below that.</p>
+<p><a href="https://jucardwell.github.io/spatial_data_science/introduction_to_R.html#rmd-formatting">Add a new first level header</a> called “Practicing Basic R Commands”. Then add a R code chunk below that. Your document should look like this now.</p>
+<p><img src="images/clipboard-3803477352.png" class="img-fluid"></p>
 <section id="making-comments" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="making-comments"><span class="header-section-number">7.2.1</span> Making Comments</h3>
 <p>Any time you write a command, you will want to include a descriptive comment above it. To make a comment, we use this formatting.</p>
@@ -315,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="basic-math" class="level3" data-number="7.2.2">
 <h3 data-number="7.2.2" class="anchored" data-anchor-id="basic-math"><span class="header-section-number">7.2.2</span> Basic Math</h3>
-<p>Add the following commands to your code chunk. In addition to running a full chunk, you can also run a single line of code by clicking “Command” and “Return” on a Mac or “Control” and “Enter” on a PC. Run each of the following commands.</p>
+<p>Add the following commands to your code chunk. In addition to running a full chunk (by pressing the green arrow at the top of the chunk), you can also run a single line of code by clicking “Command” and “Return” on a Mac or “Control” and “Enter” on a PC. Run each of the following commands.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## basic addition</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">+</span> <span class="dv">3</span></span>
@@ -366,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="assigning-and-printing-objects" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="assigning-and-printing-objects"><span class="header-section-number">7.3</span> Assigning and Printing Objects</h2>
 <p>So far, every command we’ve run has been <em>evaluated in the console</em>, which means R immediately prints the result at the bottom of the chunk. This happens any time you type an expression without saving it as an object.</p>
-<p>Saving as an object means that the result of that command is stored in our environment (like the data we read in). To create objects, we use the <code>&lt;-</code> command. To see the output in the console, you need to print the object. The benefit of using objects is that we can “call” that object in later commands without having to rewrite the whole command over again. Add these commands to your code chunk and run each one.</p>
+<p>Saving as an object means that the result of that command is stored in our environment (look to the right, you can also double click on the object). To create objects, we use the <code>&lt;-</code> command. To see the output in the console, you need to print the object. The benefit of using objects is that we can “call” that object in later commands without having to rewrite the whole command over again. Add these commands to your code chunk and run each one.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## save an object</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>math_object <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">3</span></span>
@@ -423,8 +426,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"z"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="indexing-and-subsetting" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="indexing-and-subsetting"><span class="header-section-number">7.6</span> Indexing and Subsetting</h2>
+<section id="adding-text-and-knitting-practice" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="adding-text-and-knitting-practice"><span class="header-section-number">7.6</span> Adding Text and Knitting Practice</h2>
+<p>Below the code chunk, you can write in regular text. This is the benefit of using .Rmd documents– you can seamlessly integrate both code and text. Below your “Practicing Basic R Commands” chunk, add some text that describes the main things you learned in that section.</p>
+<p>Then “Knit” your document using the “Knit” button on the top panel. Knitting creates a .html version of your .Rmd. It will open in a new tab.</p>
+</section>
+<section id="reading-in-a-file" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="reading-in-a-file"><span class="header-section-number">7.7</span> Reading in a File</h2>
+<p>Below your “Practicing Basic R Commands” chunk, add a new first-level header called “Reading in and Manipulating Data”.</p>
+<p>Download <a href="https://drive.google.com/file/d/1XyaBYTAmOIROidbvOXIBPBqrWA6_2Lb5/view?usp=sharing">this file</a> into your GEOG215 folder. Then use a “<a href="https://jucardwell.github.io/spatial_data_science/introduction_to_R.html#accessing-data">relative file path</a>” to read in the data using this command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nc_example <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"RELATIVEFILEPATH"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="indexing-and-subsetting" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="indexing-and-subsetting"><span class="header-section-number">7.8</span> Indexing and Subsetting</h2>
 <p>Indexing is used to select or subset elements from data structures.</p>
 <ul>
 <li><code>[]</code> selects elements by position</li>
@@ -434,47 +450,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Add these commands to your chunk. Run each command and add a comment based on what the command is doing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#practice df (I made these values up!)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nc_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">county =</span> <span class="fu">c</span>(<span class="st">"Wake"</span>, <span class="st">"Durham"</span>, <span class="st">"Orange"</span>, <span class="st">"Buncombe"</span>, <span class="st">"Mecklenburg"</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">population =</span> <span class="fu">c</span>(<span class="dv">1130000</span>, <span class="dv">330000</span>, <span class="dv">150000</span>, <span class="dv">270000</span>, <span class="dv">1135000</span>),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">region =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Piedmont"</span>, <span class="st">"Piedmont"</span>, <span class="st">"Piedmont"</span>, <span class="st">"Mountain"</span>, <span class="st">"Piedmont"</span>)),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pct_rural =</span> <span class="fu">c</span>(<span class="fl">0.03</span>, <span class="fl">0.07</span>, <span class="fl">0.28</span>, <span class="fl">0.35</span>, <span class="fl">0.02</span>),</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">has_university =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>nc_example[<span class="dv">1</span>, ]  </span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>nc_example[, <span class="dv">2</span>]</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>nc_example[<span class="dv">3</span>, <span class="dv">1</span>] </span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>nc_example[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">3</span>]</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>nc_example<span class="sc">$</span>population</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>nc_example[[<span class="st">"population"</span>]]</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>nc_example[nc_example<span class="sc">$</span>population <span class="sc">&gt;</span> <span class="dv">300000</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nc_example[<span class="dv">1</span>, ]  </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>nc_example[, <span class="dv">2</span>]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>nc_example[<span class="dv">3</span>, <span class="dv">1</span>] </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>nc_example[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">3</span>]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>nc_example<span class="sc">$</span>population</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>nc_example[[<span class="st">"population"</span>]]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>nc_example[nc_example<span class="sc">$</span>population <span class="sc">&gt;</span> <span class="dv">300000</span>, ]</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>nc_example[nc_example<span class="sc">$</span>has_university <span class="sc">==</span> <span class="st">"Yes"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="creating-a-new-variable" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="creating-a-new-variable"><span class="header-section-number">7.7</span> Creating a New Variable</h2>
+<section id="creating-a-new-variable" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="creating-a-new-variable"><span class="header-section-number">7.9</span> Creating a New Variable</h2>
 <p>We can create new variables using the <code>$</code> command. Add this command and a descriptive comment</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nc_example<span class="sc">$</span>pct_urban <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> nc_example<span class="sc">$</span>pct_rural</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nc_example<span class="sc">$</span>pct_urban <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> nc_example<span class="sc">$</span>pct_rural</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="mini-challenge" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">7.8</span> Mini-Challenge</h2>
+<section id="mini-challenge" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">7.10</span> Mini-Challenge</h2>
 <p>Add a new first level header called “Mini-Challenge #1”. Under that header, add a code chunk. In the code chunk, write commands to do the following:</p>
 <ul>
 <li>Add a variable to the nc_example data frame called “pop_million” that calculates the population of each county in millions</li>
