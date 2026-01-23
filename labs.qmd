@@ -15,6 +15,12 @@ All submitted labs should follow the following formatting guidelines (unless oth
     -   Code chunks should not display messages or warnings in the knitted .html. If messages or warnings are printed, you need to include `message = F, warning = F` in the r header.
     -   Each code chunk should perform one logical task/analysis
     -   Do not print large datasets or unnecessary intermediate outputs
+-   Maps
+    -   Maps must use an appropriate visual variable and classification scheme
+    -   Formatting should not detract from map meaning
+        -   If using a basemap, transparency must be added
+        -   Display variable must be clear (i.e. renaming legend, adding title)
+        -   Legend must not cover any map components
 -   Organization
     -   Code chunks should be logically organized under clear, informative section headers
     -   Written responses should appear directly below the code chunk that produces the the relevant output
