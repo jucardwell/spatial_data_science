@@ -5,7 +5,8 @@
 **Guiding Question:** What is data science, and how do we acquire data for analysis?
 
 -   Explain the purpose of data science and describe each stage in a typical data science workflow
--   Identify types of spatial data providers and explain the differences between “old-school” and “new-school” data acquisition.
+-   Explain the origins of data science, including the rise of big data and advances in computing power, and discuss how these developments have shaped the way knowledge is conceptualized and produced
+-   Identify types of spatial data providers and explain the differences between “old-school”, “new-school”, and volunteer data acquisition and how these differences might impact analytical strategies/results
 -   Determine what each row in a dataset represents (the unit of analysis) and identify the type of each variable
 -   Identify the main characteristics of data quality, bias, and representativeness and how these influence whether a dataset is fit for a particular use
 
@@ -14,6 +15,7 @@
 **Guiding Question:** How do we structure and explore data effectively?
 
 -   Explain the relationship between general programming concepts and tidyverse abstractions for data wrangling
+-   Describe the major components of the tidyverse code design philosophy (human-readable, composable, consistent, tidy) and why these components make tidyverse suitable for “doing” data science
 -   Identify the major components of “tidy” data
 -   Use basic tidyverse functions (select, filter, mutate, rename) to manipulate a dataset
 -   Create basic visualizations ( non-map graphics) of a variable
@@ -23,8 +25,9 @@
 
 **Guiding Question:** How is spatial data unique?
 
--   Describe spatial dependence, spatial heterogeneity, and distance decay, and explain why they make spatial data unique
--   Describe the main components of vector and raster data structures and how they relate to conceptual models of the world (field and object)
+-   Describe spatial dependence and spatial heterogeneity and explain why they make spatial data unique
+-   Explain how spatial patterns and processes change across different scales 
+-   Describe topology and why spatial relationships matter in spatial analysis
 -   Explain the characteristics of geographic and projected coordinate systems and their importance for spatial analysis
 -   Evaluate the impact of MAUP and ecological fallacy on spatial data analysis and the conclusions drawn from aggregated data
 -   Create basic maps of a variable

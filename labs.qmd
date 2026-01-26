@@ -98,7 +98,7 @@ In this lab, you will work with a population projection file for North Carolina 
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
 | **Reading Data**: All required datasets are read into R. Responses correctly identify basic properties of the data. Minor inaccuracies are acceptable if overall understanding is clear. |
 | **Manipulating Data:** Code produces the required variables and transformed datasets. Minor coding errors or inefficiencies are acceptable if the results are usable. |
-| **Describing Data**: Required tables and non-map graphics are present. Written responses correctly describe patterns or distributions shown in the outputs. |
+| **Describing Data**: Required tables and non-map graphics are present. Written responses correctly describe patterns or distributions shown in the outputs. Response is focused on extracting meaning, not simply summarizing descriptive statistics results. |
 
 ### Lab Instructions
 
@@ -108,7 +108,7 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 
 **Reading Data**
 
--   Load the `tidyverse` and `gt` library and read in the data using the following command: `nc_pop <- read_csv("https://drive.google.com/uc?export=download&id=1ogC0lRjEMaXLmRrZkwLVI9MbmJdk4NIy")`
+-   Load the `tidyverse`, `gt` , and `e1071` libraries and read in the data using the following command: `nc_pop <- read_csv("https://drive.google.com/uc?export=download&id=1ogC0lRjEMaXLmRrZkwLVI9MbmJdk4NIy")`
 -   Answer the following questions:
     -   What does each row in the dataset represent?
     -   What does each column in the dataset represent?
@@ -127,7 +127,7 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 **Describing Data**
 
 -   Create a descriptive statistics table of the `change` variable
--   Create two graphics, using `ggplot` that help describe the data.
+-   Create two graphics using `ggplot` that help describe the data.
 -   Answer the following questions:
     -   Describe what the descriptive statistics table tells you about the distribution of the variable
     -   Describe what the graphics tell you about the variable, focusing on what you couldn't already learn from the descriptive statistics table
@@ -151,7 +151,7 @@ You will work with several spatial datasets:
 | Lab is submitted on Canvas and follows general formatting guidelines. Minor formatting issues may be present but do not interfere with readability or interpretation. |
 | **Reading Data**: All required datasets are read into R. Responses correctly identify basic properties of the data. Minor inaccuracies are acceptable if overall understanding is clear. |
 | **Manipulating Data:** Code produces the required variables and transformed datasets. Minor coding errors or inefficiencies are acceptable if the results are usable. |
-| **Describing Data**: Required maps, tables, and non-map graphics are present. Written responses correctly describe patterns or distributions shown in the outputs. |
+| **Describing Data**: Required maps, tables, and non-map graphics are present. Written responses correctly describe patterns or distributions shown in the outputs. Response is focused on extracting meaning, not simply summarizing descriptive statistics results. |
 
 ### Lab Instructions
 

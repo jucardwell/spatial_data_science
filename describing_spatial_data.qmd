@@ -38,6 +38,26 @@ tree_cover <- rast("https://drive.google.com/uc?export=download&id=1_SqO-ocyLCg3
 
 ```
 
+```{r, eval=F}
+#load libraries
+library(sf)
+library(tmap)
+library(sfdep)
+library(tidyverse)
+library(terra)
+
+
+##the command to read in vector data using the sf package is st_read()
+torn <- st_read("https://drive.google.com/uc?export=download&id=1K5yFnDthJGKnWPragZPmQyCDpf8seSEI")
+
+##this data is not spatial yet, so we'll use our regular read in command
+nc_hosp <- read_csv("https://drive.google.com/uc?export=download&id=1Ylu33qdfA-pXb0uHtKMQIcDeVBOwUHMV"
+) 
+
+## the command to read in raster data using the terra package is rast()
+tree_cover <- rast("https://drive.google.com/uc?export=download&id=1_SqO-ocyLCg3g1Mv1ZbqOd5Pa1sTddps")
+```
+
 ## Getting to Know Spatial Data
 
 Add a first-level header called "Getting to Know Spatial Data". As you move through the tutorial, copy and paste the commands, making sure each command has a descriptive comment.
