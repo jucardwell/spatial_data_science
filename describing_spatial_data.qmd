@@ -117,6 +117,13 @@ spatial_hosp <- nc_hosp |> st_as_sf(coords = c("X", "Y"), crs = 2264)
 
 We will use the `tmap` package to create maps of our spatial data. Mapping data is a very important component of getting to know our data.
 
+The basic `tmap` formula is:
+
+-   `tm_shape(DATASET) + tm_dots()` For point geometries
+-   `tm_shape(DATASET) + tm_polygons()` For polygon geometries
+
+To map a VARIABLE, you will modify your command by putting `fill = "VARIABLE"` in the `tm_dots()` or `tm_polygons()`
+
 We can make a very basic map of tornado locations using the following command:
 
 ```{r}
@@ -191,7 +198,7 @@ The standard deviational ellipse is a method for summarizing the spatial central
 std_ellip_torn <- std_dev_ellipse(torn)
 
 #create an ellipse of those values
-std_ellip_torn <- sfdep::st_ellipse(geometry =std_ellip_torn,
+std_ellip_torn <- st_ellipse(geometry =std_ellip_torn,
                                    sx = std_ellip_torn$sx,
                                    sy = std_ellip_torn$sy,
                                    rotation = -std_ellip_torn$theta)
