@@ -13,7 +13,7 @@ All submitted labs should follow the following formatting guidelines (unless oth
     -   All commands **MUST** have a descriptive comment
     -   Code must follow the syntax that we have used in class
     -   Code chunks should not display messages or warnings in the knitted .html. If messages or warnings are printed, you need to include `message = F, warning = F` in the r header.
-    -   Each code chunk should perform one logical task/analysis
+    -   Each code chunk should perform one logical set of tasks/analyses (i.e. one code chunk could include all of your data manipulation, another code chunk could contain all of your data visualizations)
     -   Do not print large datasets or unnecessary intermediate outputs
 -   Maps
     -   Maps must use an appropriate visual variable and classification scheme
