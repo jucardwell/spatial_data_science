@@ -191,7 +191,7 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 -   Create a descriptive statistics table of `perc_wfh` for both the `county_wfh` and `tract_wfh` objects
 -   Create one non-map graphic of `perc_wfh` for both the `county_wfh` and `tract_wfh` objects
 -   Answer the following questions (*Remember that the underlying data for the ACS is collected at the individual/household level, the only difference is the level of spatial aggregation*):
-    -   How does the distribution of `perc_wfh` differ between the county-level and tract level data?
+    -   How does the distribution of `perc_wfh` differ between the county-level and tract level data? Include discussion of central tendency, spread, shape, and frequency.
     -   How does changing the scale of aggregation (counties vs. tracts) affect the spatial pattern you observe?
     -   What does this example demonstrate about the scale effect of MAUP and why it matters for interpreting spatial data?
 
