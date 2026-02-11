@@ -1,6 +1,6 @@
 # Labs
 
-## General Formatting Guidance
+## General Formatting Guidance ([SAMPLE FILE](https://drive.google.com/file/d/1t7YkI9z3lFiUyRwKfXYCgg6L_oUxSuap/view?usp=sharing))
 
 All submitted labs should follow the following formatting guidelines (unless otherwise noted). If your work does not follow these guidelines, it will need to be revised and resubmitted:
 
