@@ -72,7 +72,7 @@ We use a spatial join to link sidewalk segments to school buffers based on spati
 After the spatial join, we are no longer doing spatial operations. From this point forward, we are working with a table of relationships between sidewalks and schools. To simplify the data and avoid confusion, we drop the geometry column.
 
 ```{r, eval = F}
-sidewalks_by_school <- sidewalks |>
+sidewalks_by_school <- durham_sidewalks |>
   # join by intersection
   st_join(buffered_schools) |> 
   # drop geometry for aggregation (aggregating geometries is not a good idea!)
@@ -80,7 +80,7 @@ sidewalks_by_school <- sidewalks |>
 
 ```
 
-**Q2: Open up the `sidewalks_by_school` object. What is different about this object compared to the original `sidewalks` object?**
+**Q2: Open up the `sidewalks_by_school` object. What is different about this object compared to the original `durham_sidewalks` object?**
 
 ### Step 4: Aggregate Sidewalk Data to School Level
 

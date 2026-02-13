@@ -357,13 +357,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We use a spatial join to link sidewalk segments to school buffers based on spatial intersection. This join assigns each sidewalk to the school or schools whose buffer it falls within. Because a sidewalk can be within walking distance of more than one school, the same sidewalk segment may appear multiple times in the joined dataset. This is expected and reflects a many-to-many spatial relationship.</p>
 <p>After the spatial join, we are no longer doing spatial operations. From this point forward, we are working with a table of relationships between sidewalks and schools. To simplify the data and avoid confusion, we drop the geometry column.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sidewalks_by_school <span class="ot">&lt;-</span> sidewalks <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sidewalks_by_school <span class="ot">&lt;-</span> durham_sidewalks <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># join by intersection</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_join</span>(buffered_schools) <span class="sc">|&gt;</span> </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop geometry for aggregation (aggregating geometries is not a good idea!)</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Q2: Open up the <code>sidewalks_by_school</code> object. What is different about this object compared to the original <code>sidewalks</code> object?</strong></p>
+<p><strong>Q2: Open up the <code>sidewalks_by_school</code> object. What is different about this object compared to the original <code>durham_sidewalks</code> object?</strong></p>
 </section>
 <section id="step-4-aggregate-sidewalk-data-to-school-level" class="level3" data-number="11.1.5">
 <h3 data-number="11.1.5" class="anchored" data-anchor-id="step-4-aggregate-sidewalk-data-to-school-level"><span class="header-section-number">11.1.5</span> Step 4: Aggregate Sidewalk Data to School Level</h3>
