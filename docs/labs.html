@@ -545,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.</p>
 <p><strong>Reading Data</strong></p>
 <ul>
-<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>spdep</code>, <code>gt</code>, <code>terra</code>, <code>sf_dep</code>, and <code>sf</code> libraries</p></li>
+<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>spdep</code>, <code>gt</code>, <code>terra</code>, <code>sfdep</code>, and <code>sf</code> libraries</p></li>
 <li><p>Read in the data using the following commands:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>turbines <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1LLl871Mv3BY7hI56kWPiaMvvk5SxFcQX"</span>)</span>
@@ -589,7 +589,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Describing Wind Turbines</strong></p>
 <ul>
-<li>Calculate mean center of wind turbines, standard deviational ellipse of wind turbines, and weighted mean center based on a variable of interest selected from the <a href="https://eta-publications.lbl.gov/sites/default/files/2025-06/uswtdb_v8_1_20250527_codebook.xlsx">dataset</a>.</li>
+<li>Calculate mean center of wind turbines, standard deviational ellipse of wind turbines, and weighted mean center based on a variable of interest selected from the <a href="https://eta-publications.lbl.gov/sites/default/files/2025-06/uswtdb_v8_1_20250527_codebook.xlsx">dataset</a>.
+<ul>
+<li>To calculate the weighted mean center, you may need to drop NA values from your variable of interest. To do this, create a new object <code>turbine_dropped &lt;- turbines |&gt; drop_na(VARIABLEOFINTEREST)</code> and use that object to calculate the weighted mean center.</li>
+</ul></li>
 <li>Create a map that symbolizes the mean center of wind turbines, the standard deviational ellipse of wind turbines, and the weighted mean center (<em>make sure that you add manual legend entries for the mean center and weighted mean center</em>)</li>
 <li>Answer the following questions:
 <ul>
@@ -664,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.6" class="anchored" data-anchor-id="lab-5"><span class="header-section-number">4.6</span> Lab 5</h2>
 <section id="overview-4" class="level3" data-number="4.6.1">
 <h3 data-number="4.6.1" class="anchored" data-anchor-id="overview-4"><span class="header-section-number">4.6.1</span> Overview</h3>
-<p>In this lab, you will explore the analytic datasets produced in the Analytic Dataset Practicum</p>
+<p>In this lab, you will practice creating analytical datasets by using spatial feature engineering.</p>
 </section>
 <section id="specifications-4" class="level3" data-number="4.6.2">
 <h3 data-number="4.6.2" class="anchored" data-anchor-id="specifications-4"><span class="header-section-number">4.6.2</span> Specifications</h3>
@@ -688,20 +691,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>The overall workflow reflects the intended steps, even if minor errors are present</td>
 </tr>
 <tr class="even">
-<td>Each dataset is saved to local device</td>
-</tr>
-<tr class="odd">
-<td>Descriptive statistics and a non-map visualization are created for each analytic dataset. Written responses accurately describe what the analytic variable represents and what the distribution shows.</td>
+<td>Each analytical dataset includes the required visualization (scatterplot and map). Written responses accurately describe what the analytic variable represents and what the distribution shows.</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="lab-instructions-4" class="level3" data-number="4.6.3">
 <h3 data-number="4.6.3" class="anchored" data-anchor-id="lab-instructions-4"><span class="header-section-number">4.6.3</span> Lab Instructions</h3>
-<p>For this lab, use the same document that you created your analytic datasets in. Each analytic dataset should have it’s own header and code chunk.</p>
+<p>Create a new .Rmd document (and save it to your GEOG215 folder).</p>
+<p>Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.</p>
+<p><strong>Reading Data</strong></p>
 <ul>
-<li>Create a descriptive statistics table and one non-map visualization for each dataset</li>
-<li>Export each dataset using the following command <code>st_write(DATASET, "name.geojson")</code>. Note that this will save the file into your working directory.</li>
+<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>spdep</code>, <code>gt</code>, <code>terra</code>, <code>sfdep</code>, and <code>sf</code> libraries</p></li>
+<li><p>Read in the data using the following commands:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>turbines <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1LLl871Mv3BY7hI56kWPiaMvvk5SxFcQX"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>county_wfh <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1kV-HKXvlrhfSKOHli4QuRfNoW6I76ihN"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tract_wfh <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1H-MgCZmca_0YLHg3P6zxqhVrldOTddyD"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>wbgt_raster <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1l4kZvyCf9ySy7CQlKlzl5y9z6aYHHlpa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
 </ul>
 <p>For each analytic dataset, create a descriptive statistics table and one non-map visualization. Then answer the following questions for each dataset:</p>
 <ul>

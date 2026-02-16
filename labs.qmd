@@ -161,7 +161,7 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 
 **Reading Data**
 
--   Load the `tidyverse` , `tmap`, `spdep`, `gt`, `terra`, `sf_dep`, and `sf` libraries
+-   Load the `tidyverse` , `tmap`, `spdep`, `gt`, `terra`, `sfdep`, and `sf` libraries
 
 -   Read in the data using the following commands:
 
@@ -204,6 +204,7 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 **Describing Wind Turbines**
 
 -   Calculate mean center of wind turbines, standard deviational ellipse of wind turbines, and weighted mean center based on a variable of interest selected from the [dataset](https://eta-publications.lbl.gov/sites/default/files/2025-06/uswtdb_v8_1_20250527_codebook.xlsx).
+    -   To calculate the weighted mean center, you may need to drop NA values from your variable of interest. To do this, create a new object `turbine_dropped <- turbines |> drop_na(VARIABLEOFINTEREST)` and use that object to calculate the weighted mean center.
 -   Create a map that symbolizes the mean center of wind turbines, the standard deviational ellipse of wind turbines, and the weighted mean center (*make sure that you add manual legend entries for the mean center and weighted mean center*)
 -   Answer the following questions:
     -   What does your map reveal about the spatial distribution of wind turbines?
@@ -254,7 +255,7 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 
 ### Overview
 
-In this lab, you will explore the analytic datasets produced in the Analytic Dataset Practicum
+In this lab, you will practice creating analytical datasets by using spatial feature engineering.
 
 ### Specifications
 
@@ -263,15 +264,29 @@ In this lab, you will explore the analytic datasets produced in the Analytic Dat
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
 | The required transformations are performed to create the analytic variable for each research question (e.g., aggregation, reprojection, spatial joins, buffering, distance calculations, raster extraction). |
 | The overall workflow reflects the intended steps, even if minor errors are present |
-| Each dataset is saved to local device |
-| Descriptive statistics and a non-map visualization are created for each analytic dataset. Written responses accurately describe what the analytic variable represents and what the distribution shows. |
+| Each analytical dataset includes the required visualization (scatterplot and map). Written responses accurately describe what the analytic variable represents and what the distribution shows. |
 
 ### Lab Instructions
 
-For this lab, use the same document that you created your analytic datasets in. Each analytic dataset should have it's own header and code chunk.
+Create a new .Rmd document (and save it to your GEOG215 folder).
 
--   Create a descriptive statistics table and one non-map visualization for each dataset
--   Export each dataset using the following command `st_write(DATASET, "name.geojson")`. Note that this will save the file into your working directory.
+Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.
+
+**Reading Data**
+
+-   Load the `tidyverse` , `tmap`, `spdep`, `gt`, `terra`, `sfdep`, and `sf` libraries
+
+-   Read in the data using the following commands:
+
+    ```{r, eval = F}
+    turbines <- st_read("https://drive.google.com/uc?export=download&id=1LLl871Mv3BY7hI56kWPiaMvvk5SxFcQX")
+
+    county_wfh <- st_read("https://drive.google.com/uc?export=download&id=1kV-HKXvlrhfSKOHli4QuRfNoW6I76ihN")
+
+    tract_wfh <- st_read("https://drive.google.com/uc?export=download&id=1H-MgCZmca_0YLHg3P6zxqhVrldOTddyD")
+
+    wbgt_raster <- rast("https://drive.google.com/uc?export=download&id=1l4kZvyCf9ySy7CQlKlzl5y9z6aYHHlpa")
+    ```
 
 For each analytic dataset, create a descriptive statistics table and one non-map visualization. Then answer the following questions for each dataset:
 
