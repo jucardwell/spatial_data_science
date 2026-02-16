@@ -545,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.</p>
 <p><strong>Reading Data</strong></p>
 <ul>
-<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>spdep</code>, <code>gt</code>, <code>terra</code>, and <code>sf</code> libraries</p></li>
+<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>spdep</code>, <code>gt</code>, <code>terra</code>, <code>sf_dep</code>, and <code>sf</code> libraries</p></li>
 <li><p>Read in the data using the following commands:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>turbines <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1LLl871Mv3BY7hI56kWPiaMvvk5SxFcQX"</span>)</span>
@@ -570,7 +570,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Describing Work From Home</strong></p>
 <ul>
 <li>Create a map of <code>perc_wfh</code> for both the <code>county_wfh</code> and <code>tract_wfh</code> objects.</li>
-<li>Create a descriptive statistics table of <code>perc_wfh</code> for both the <code>county_wfh</code> and <code>tract_wfh</code> objects</li>
+<li>Create a descriptive statistics table of <code>perc_wfh</code> for both the <code>county_wfh</code> and <code>tract_wfh</code> objects
+<ul>
+<li>To make a descriptive statistics table when you are using spatial data you must add the command <code>st_drop_geometry()</code> before creating the table (i.e.&nbsp;<code>DATA |&gt; st_drop_geometry() |&gt; select(VARIABLE)</code></li>
+</ul></li>
 <li>Create one non-map graphic of <code>perc_wfh</code> for both the <code>county_wfh</code> and <code>tract_wfh</code> objects</li>
 <li>Answer the following questions (<em>Remember that the underlying data for the ACS is collected at the individual/household level, the only difference is the level of spatial aggregation</em>):
 <ul>
