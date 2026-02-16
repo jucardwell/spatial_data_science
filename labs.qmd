@@ -255,14 +255,14 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 
 ### Overview
 
-In this lab, you will practice creating analytical datasets by using spatial feature engineering.
+In this lab, you will practice creating analytic datasets by using spatial feature engineering.
 
 ### Specifications
 
 | Specification |
 |------------------------------------------------------------------------|
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
-| The required transformations are performed to create the analytic variable for each research question (e.g., aggregation, reprojection, spatial joins, buffering, distance calculations, raster extraction). |
+| The required transformations are performed to create the analytic variable for each research question |
 | The overall workflow reflects the intended steps, even if minor errors are present |
 | Each analytical dataset includes the required visualization (scatterplot and map). Written responses accurately describe what the analytic variable represents and what the distribution shows. |
 
@@ -274,25 +274,43 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 
 **Reading Data**
 
--   Load the `tidyverse` , `tmap`, `spdep`, `gt`, `terra`, `sfdep`, and `sf` libraries
+-   Load the `tidyverse` , `tmap`, `terra`, and `sf` libraries
 
 -   Read in the data using the following commands:
 
     ```{r, eval = F}
-    turbines <- st_read("https://drive.google.com/uc?export=download&id=1LLl871Mv3BY7hI56kWPiaMvvk5SxFcQX")
+    #all ems stations across the triangle region
+    triangle_ems <- st_read("https://drive.google.com/uc?export=download&id=1JYZxoM3GB43AnSY2mKW1p_ixeBBh1CBJ")
 
-    county_wfh <- st_read("https://drive.google.com/uc?export=download&id=1kV-HKXvlrhfSKOHli4QuRfNoW6I76ihN")
+    #all census blocks across the triangle region
+    triangle_blocks <- st_read("https://drive.google.com/uc?export=download&id=1Q6f9wPXrN0NMZJZkAR9OFkneCfxIBiOl")
 
-    tract_wfh <- st_read("https://drive.google.com/uc?export=download&id=1H-MgCZmca_0YLHg3P6zxqhVrldOTddyD")
+    #all census blocks across chapel hill
+    ch_blocks <- st_read("https://drive.google.com/uc?export=download&id=14Jhu9ZQDRL14lQGiTUKcqqrsQcooH6BU")
 
-    wbgt_raster <- rast("https://drive.google.com/uc?export=download&id=1l4kZvyCf9ySy7CQlKlzl5y9z6aYHHlpa")
+    #raster of average summer temp in ch (in celcius)
+    ch_summer_heat <- rast("https://drive.google.com/uc?export=download&id=1qvJepSdhFTiKZIAyn76VA9xvlIM8f5s8")
+
+    #raster of canopy cover in ch (% per pixel)
+    ch_canopy_cover <- rast("https://drive.google.com/uc?export=download&id=1a5MibyiyAJgxIqTxzSBOoMNqklErlIVR")
+
     ```
 
-For each analytic dataset, create a descriptive statistics table and one non-map visualization. Then answer the following questions for each dataset:
+**Analytic Dataset #1**
 
--   What does a single row in your final analytic dataset represent?
--   What did you need to do to the original data in order to create this analytic dataset?
--   What does the distribution of this variable suggest about the research question?
+For this analytic dataset you should create a new object that adds two columns to the `ch_blocks` object. One column, `av_heat` should be the average summer heat across each block. The second column, `av_canopy` should be the average tree canopy across each block.
+
+After creating the analytic dataset, create a scatterplot (`dataset |> ggplot(aes(x = VARIABLE1, y= VARIABLE2) + geom_point()`) that shows the relationship between summer heat and canopy coverage across Chapel Hill.
+
+Below the code chunk, write a brief interpretation of the relationship shown in the scatterplot.
+
+**Analytic Dataset #2**
+
+For this analytic dataset you should create a new object that adds a column to the `triangle_blocks` object. The new column (`count_ems`) should include a count of each EMS station that is within 5 miles of the block group.
+
+After creating the analytic dataset, create a basic map that displays the `count_ems` variable across the triangle.
+
+Below the code chunk, write a brief interpretation of the spatial pattern of the map.
 
 ## Lab 6
 

@@ -667,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.6" class="anchored" data-anchor-id="lab-5"><span class="header-section-number">4.6</span> Lab 5</h2>
 <section id="overview-4" class="level3" data-number="4.6.1">
 <h3 data-number="4.6.1" class="anchored" data-anchor-id="overview-4"><span class="header-section-number">4.6.1</span> Overview</h3>
-<p>In this lab, you will practice creating analytical datasets by using spatial feature engineering.</p>
+<p>In this lab, you will practice creating analytic datasets by using spatial feature engineering.</p>
 </section>
 <section id="specifications-4" class="level3" data-number="4.6.2">
 <h3 data-number="4.6.2" class="anchored" data-anchor-id="specifications-4"><span class="header-section-number">4.6.2</span> Specifications</h3>
@@ -685,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood.</td>
 </tr>
 <tr class="even">
-<td>The required transformations are performed to create the analytic variable for each research question (e.g., aggregation, reprojection, spatial joins, buffering, distance calculations, raster extraction).</td>
+<td>The required transformations are performed to create the analytic variable for each research question</td>
 </tr>
 <tr class="odd">
 <td>The overall workflow reflects the intended steps, even if minor errors are present</td>
@@ -702,24 +702,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.</p>
 <p><strong>Reading Data</strong></p>
 <ul>
-<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>spdep</code>, <code>gt</code>, <code>terra</code>, <code>sfdep</code>, and <code>sf</code> libraries</p></li>
+<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>terra</code>, and <code>sf</code> libraries</p></li>
 <li><p>Read in the data using the following commands:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>turbines <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1LLl871Mv3BY7hI56kWPiaMvvk5SxFcQX"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>county_wfh <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1kV-HKXvlrhfSKOHli4QuRfNoW6I76ihN"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tract_wfh <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1H-MgCZmca_0YLHg3P6zxqhVrldOTddyD"</span>)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#all ems stations across the triangle region</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>triangle_ems <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1JYZxoM3GB43AnSY2mKW1p_ixeBBh1CBJ"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#all census blocks across the triangle region</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>triangle_blocks <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1Q6f9wPXrN0NMZJZkAR9OFkneCfxIBiOl"</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>wbgt_raster <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1l4kZvyCf9ySy7CQlKlzl5y9z6aYHHlpa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#all census blocks across chapel hill</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>ch_blocks <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=14Jhu9ZQDRL14lQGiTUKcqqrsQcooH6BU"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#raster of average summer temp in ch (in celcius)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ch_summer_heat <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1qvJepSdhFTiKZIAyn76VA9xvlIM8f5s8"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#raster of canopy cover in ch (% per pixel)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ch_canopy_cover <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1a5MibyiyAJgxIqTxzSBOoMNqklErlIVR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul>
-<p>For each analytic dataset, create a descriptive statistics table and one non-map visualization. Then answer the following questions for each dataset:</p>
-<ul>
-<li>What does a single row in your final analytic dataset represent?</li>
-<li>What did you need to do to the original data in order to create this analytic dataset?</li>
-<li>What does the distribution of this variable suggest about the research question?</li>
-</ul>
+<p><strong>Analytic Dataset #1</strong></p>
+<p>For this analytic dataset you should create a new object that adds two columns to the <code>ch_blocks</code> object. One column, <code>av_heat</code> should be the average summer heat across each block. The second column, <code>av_canopy</code> should be the average tree canopy across each block.</p>
+<p>After creating the analytic dataset, create a scatterplot (<code>dataset |&gt; ggplot(aes(x = VARIABLE1, y= VARIABLE2) + geom_point()</code>) that shows the relationship between summer heat and canopy coverage across Chapel Hill.</p>
+<p>Below the code chunk, write a brief interpretation of the relationship shown in the scatterplot.</p>
+<p><strong>Analytic Dataset #2</strong></p>
+<p>For this analytic dataset you should create a new object that adds a column to the <code>triangle_blocks</code> object. The new column (<code>count_ems</code>) should include a count of each EMS station that is within 5 miles of the block group.</p>
+<p>After creating the analytic dataset, create a basic map that displays the <code>count_ems</code> variable across the triangle.</p>
+<p>Below the code chunk, write a brief interpretation of the spatial pattern of the map.</p>
 </section>
 </section>
 <section id="lab-6" class="level2" data-number="4.7">
