@@ -123,7 +123,7 @@ nursing_homes <- nursing_homes |>
     #this command returns the INDEX of the nearest hospital
     nearest_hosp = st_nearest_feature(nursing_homes, hospitals),
     #this command gets the name of the nearest hospital using base R syntax
-    hospital_name = hospitals$name[nearest_hosp],
+    hospital_name = hospitals$facility[nearest_hosp],
     #this calculates the distance using base R synax
     dist_hospital = st_distance(
       nursing_homes,
