@@ -34,7 +34,7 @@ durham_heat <- rast("https://drive.google.com/uc?export=download&id=1JJevl4YG-l9
 medical_facilities <- st_read("https://drive.google.com/uc?export=download&id=1goDoTCMwDdwFn-SSri10iQpUkIYZq30I")
 ```
 
-Any time we do spatial analysis in R, we MUST use a projected coordinate system. For these exercises, we will use CRS = 2264 (North Carolina State Plane)
+Any time we do spatial analysis in R, we MUST use a projected coordinate system. For these exercises, we will use CRS = 2264 (North Carolina State Plane). You will use the command `st_transform(crs = 2264)`. 
 
 **Q1: For each of the vector objects above, transform them to CRS = 2264. Do not transform the raster.**
 

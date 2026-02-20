@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>medical_facilities <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1goDoTCMwDdwFn-SSri10iQpUkIYZq30I"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Any time we do spatial analysis in R, we MUST use a projected coordinate system. For these exercises, we will use CRS = 2264 (North Carolina State Plane)</p>
+<p>Any time we do spatial analysis in R, we MUST use a projected coordinate system. For these exercises, we will use CRS = 2264 (North Carolina State Plane). You will use the command <code>st_transform(crs = 2264)</code>.</p>
 <p><strong>Q1: For each of the vector objects above, transform them to CRS = 2264. Do not transform the raster.</strong></p>
 <section id="research-question-1-which-schools-in-durham-nc-are-most-accessible-by-sidewalk" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="research-question-1-which-schools-in-durham-nc-are-most-accessible-by-sidewalk"><span class="header-section-number">11.1</span> Research Question 1: Which schools in Durham, NC are most accessible by sidewalk?</h2>
