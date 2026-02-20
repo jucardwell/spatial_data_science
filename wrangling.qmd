@@ -161,7 +161,7 @@ ch_temp_wide <- ch_temp_agg |>
 
 ### Step 4: Make our Data Spatial
 
-Q12: The latitude and longitude values in the `ch_temp_wide` object are in CRS =4326. Using the command we learned in the Introduction to Spatial Data chapter, convert this object to a spatial object and map the maximum summer temperature at the four stations. Add the command `tmap_options("view")` before you create the map.
+Q12: The latitude and longitude values in the `ch_temp_wide` object are in CRS =4326. Using the command we learned in the Introduction to Spatial Data chapter, convert this object to a spatial object and map the maximum summer temperature at the four stations. Add the command `tmap_mode("view")` before you create the map.
 
 ## Mini Challenge
 
