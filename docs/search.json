@@ -504,7 +504,7 @@
     "href": "competencies.html#concept-4-asking-spatial-questions",
     "title": "3  Course Competencies",
     "section": "3.4 Concept 4: Asking Spatial Questions",
-    "text": "3.4 Concept 4: Asking Spatial Questions\nGuiding Question: How do spatial questions guide spatial data science, and how do they shape analytic datasets?\n\nGenerate a spatial research question and connect it to specific spatial data requirements\nExplain the distinction between raw data and analytic data\nDetermine the data transformations required to convert raw spatial data into analytic datasets that can address specific spatial questions",
+    "text": "3.4 Concept 4: Asking Spatial Questions\nGuiding Question: How do spatial questions guide spatial data science, and how do they shape analytic datasets?\n\nExplain the distinction between spatial feature engineering (using space as a variable) and spatial pattern/process analysis (analyzing spatial structure)\nExplain the role of a research question in transforming raw data to an analytical dataset\nDescribe the main methods non-spatial and spatial methods we have used to create analytical datasets (group_by() , summarise(), pivot() , left_join(), st_nearest_feature() , st_distance(), st_buffer(), exact_extract(), st_join()\nDetermine the data transformations required to convert raw spatial data into analytic datasets that can address specific spatial questions",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
     ]
@@ -514,7 +514,7 @@
     "href": "competencies.html#concept-5-wrangling-data",
     "title": "3  Course Competencies",
     "section": "3.5 Concept 5: Wrangling Data",
-    "text": "3.5 Concept 5: Wrangling Data\nGuiding Question: How do we transform raw spatial data into datasets ready for analysis?\n\nUse tidyverse tools to group, summarize, reshape, and join datasets\nUse tidyverse tools to create derived variables and construct aggregations\nPerform spatial joins, buffering operations, and distance calculations using sf tools\nDetect and address missing data, duplicates, and invalid geometries\nApply the data transformations required to convert raw spatial data into analytic datasets that can address specific spatial questions",
+    "text": "3.5 Concept 5: Wrangling Data\nGuiding Question: How do we transform raw spatial data into datasets ready for analysis?\n\nUse tidyverse tools to group, summarize, reshape, and join datasets\nUse tidyverse tools to create derived variables and construct aggregations\nPerform spatial joins, buffering operations, raster summarization, and distance calculations using sf tools\nApply the data transformations required to convert raw spatial data into analytic datasets that can address specific spatial questions",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
     ]
@@ -524,7 +524,7 @@
     "href": "competencies.html#concept-6-mapping",
     "title": "3  Course Competencies",
     "section": "3.6 Concept 6: Mapping",
-    "text": "3.6 Concept 6: Mapping\nGuiding Question: How do we visualize spatial patterns in our analytic dataset and communicate them?\n\nCreate effective thematic maps using tmap, including layering, symbology, legends, and annotation\nSelect appropriate classification methods and evaluate how those choices affect interpretation",
+    "text": "3.6 Concept 6: Mapping\nGuiding Question: How do we visualize spatial patterns in our analytic dataset and communicate them?\n\nCreate effective thematic maps using tmap, including layering, symbology, legends, and annotation\nSelect appropriate visual variables and classification methods and evaluate how those choices affect interpretation",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
     ]
@@ -534,7 +534,7 @@
     "href": "competencies.html#concept-7-ai-in-programming",
     "title": "3  Course Competencies",
     "section": "3.7 Concept 7: AI in Programming",
-    "text": "3.7 Concept 7: AI in Programming\nGuiding Question: How does AI change the way we write code and solve problems? How can we use AI tools effectively for coding and analysis? \n\nExplain how AI-assisted programming fits into modern data science workflows\nIdentify the strengths, limitations, and risks of using AI in spatial data science \nCreate effective prompts that guide LLM tools towards effective code assistance\nApply GitHub Copilot to assist in writing, debugging, and documenting code\nAssess the reliability and accuracy of AI-generated code",
+    "text": "3.7 Concept 7: AI in Programming\nGuiding Question: How does AI change the way we write code and solve problems? How can we use AI tools effectively for coding and analysis? \n\nExplain how AI-assisted programming fits into modern data science workflows\nIdentify the strengths, limitations, and risks of using AI in spatial data science\nCreate effective prompts that guide LLM tools towards effective code assistance\nAssess the reliability and accuracy of AI-generated code",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
     ]

@@ -292,8 +292,9 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="3.4" class="anchored" data-anchor-id="concept-4-asking-spatial-questions"><span class="header-section-number">3.4</span> Concept 4: Asking Spatial Questions</h2>
 <p><strong>Guiding Question:</strong> How do spatial questions guide spatial data science, and how do they shape analytic datasets?</p>
 <ul>
-<li>Generate a spatial research question and connect it to specific spatial data requirements</li>
-<li>Explain the distinction between raw data and analytic data</li>
+<li>Explain the distinction between spatial feature engineering (using space as a variable) and spatial pattern/process analysis (analyzing spatial structure)</li>
+<li>Explain the role of a research question in transforming raw data to an analytical dataset</li>
+<li>Describe the main methods non-spatial and spatial methods we have used to create analytical datasets (<code>group_by()</code> , <code>summarise()</code>, <code>pivot()</code> , <code>left_join()</code>, <code>st_nearest_feature()</code> , <code>st_distance()</code>, <code>st_buffer()</code>, <code>exact_extract()</code>, <code>st_join()</code></li>
 <li>Determine the data transformations required to convert raw spatial data into analytic datasets that can address specific spatial questions</li>
 </ul>
 </section>
@@ -303,8 +304,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Use tidyverse tools to group, summarize, reshape, and join datasets</li>
 <li>Use tidyverse tools to create derived variables and construct aggregations</li>
-<li>Perform spatial joins, buffering operations, and distance calculations using sf tools</li>
-<li>Detect and address missing data, duplicates, and invalid geometries</li>
+<li>Perform spatial joins, buffering operations, raster summarization, and distance calculations using sf tools</li>
 <li>Apply the data transformations required to convert raw spatial data into analytic datasets that can address specific spatial questions</li>
 </ul>
 </section>
@@ -313,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Guiding Question:</strong> How do we visualize spatial patterns in our analytic dataset and communicate them?</p>
 <ul>
 <li>Create effective thematic maps using tmap, including layering, symbology, legends, and annotation</li>
-<li>Select appropriate classification methods and evaluate how those choices affect interpretation</li>
+<li>Select appropriate visual variables and classification methods and evaluate how those choices affect interpretation</li>
 </ul>
 </section>
 <section id="concept-7-ai-in-programming" class="level2" data-number="3.7">
@@ -321,9 +321,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Guiding Question:</strong> How does AI change the way we write code and solve problems? How can we use AI tools effectively for coding and analysis?&nbsp;</p>
 <ul>
 <li>Explain how AI-assisted programming fits into modern data science workflows</li>
-<li>Identify the strengths, limitations, and risks of using AI in spatial data science&nbsp;</li>
+<li>Identify the strengths, limitations, and risks of using AI in spatial data science</li>
 <li>Create effective prompts that guide LLM tools towards effective code assistance</li>
-<li>Apply GitHub Copilot to assist in writing, debugging, and documenting code</li>
 <li>Assess the reliability and accuracy of AI-generated code</li>
 </ul>
 </section>
