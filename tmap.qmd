@@ -11,6 +11,7 @@ After completing these exercises, you should be able to:
 -   Add basic formatting to a tmap
 
 We will use our NC county boundary and Durham schools data to practice our tmap visualization.
+
 ```{r, include = F}
 library(tidyverse)
 library(sf)
@@ -191,7 +192,7 @@ tm_shape(nc_counties) +
 
 In this exercise, you will create a well-designed map that leverages the stylistic and formatting capabilities of the `tmap` package. You will likely want to add formatting components that we have not explicitly covered. See [Spatial Data Visualization with tmap](https://tmap.geocompx.org/) for additional assistance.
 
-### Map Prompt: Create a well-designed map of weekend bus serviceability to Chapel Hill parks 
+### Map Prompt: Create a well-designed map of weekend bus serviceability to Chapel Hill parks
 
 ```{r, eval = F}
 
@@ -202,3 +203,4 @@ num_weekend_buses <- st_read("https://drive.google.com/uc?export=download&id=1sm
 parks <- st_read("https://drive.google.com/uc?export=download&id=1WfzXK_3NZsll9ov8uD5-9i8ceVMlEUlN")
 ```
 
+In the `num_weekend_buses` the `num_routes` variable represents how many bus lines service that road
