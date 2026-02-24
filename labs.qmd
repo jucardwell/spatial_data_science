@@ -262,8 +262,7 @@ In this lab, you will practice creating analytic datasets by using spatial featu
 | Specification |
 |------------------------------------------------------------------------|
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
-| The required transformations are performed to create the analytic variable for each research question |
-| The overall workflow reflects the intended steps, even if minor errors are present |
+| The required transformations are performed to create the analytic variable for each research question. The overall workflow reflects the intended steps, even if minor errors are present |
 | Each analytical dataset includes the required visualization (scatterplot and map). Written responses accurately describe what the analytic variable represents and what the distribution shows. |
 
 ### Lab Instructions
@@ -274,7 +273,7 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 
 **Reading Data**
 
--   Load the `tidyverse` , `tmap`, `terra`, and `sf` libraries
+-   Load the `tidyverse` , `tmap`, `terra`, `exactextractr`, and `sf` libraries
 
 -   Read in the data using the following commands:
 
@@ -300,7 +299,7 @@ Then complete the following tasks. Your .Rmd file should be organized so that ea
 
 For this analytic dataset you should create a new object that adds two columns to the `ch_blocks` object. One column, `av_heat` should be the average summer heat across each block. The second column, `av_canopy` should be the average tree canopy across each block.
 
-After creating the analytic dataset, create a scatterplot (`dataset |> ggplot(aes(x = VARIABLE1, y= VARIABLE2) + geom_point()`) that shows the relationship between summer heat and canopy coverage across Chapel Hill.
+After creating the analytic dataset, create a scatterplot `dataset |> ggplot(aes(x = VARIABLE1, y= VARIABLE2)) + geom_point()` that shows the relationship between summer heat and canopy coverage across Chapel Hill.
 
 Below the code chunk, write a brief interpretation of the relationship shown in the scatterplot.
 

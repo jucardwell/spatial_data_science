@@ -9,7 +9,7 @@ In this research question, our goal is to create an analytic variable representi
 ### Data:
 
 -   North Carolina county boundaries from US Census Bureau
--   2025 air quality data by station from [US EPA](https://www.epa.gov/outdoor-air-quality-data/download-daily-data)
+-   2025 summer season daily average temperature values for each weather station in NC air quality data by station from [North Carolina State Climate Office](%22https://products.climate.ncsu.edu/cardinal/%22)
 
 ```{r, eval = F}
 library(tidyverse)
@@ -17,19 +17,19 @@ library(sf)
 
 nc_counties <- st_read("https://drive.google.com/uc?export=download&id=1g9sGIikgOEubqoj97fUVoCYAKlBDVX5a")
 
-aq <- read_csv("https://drive.google.com/uc?export=download&id=1sP4D1SdDorB6c_MZo7H4mpkHoKOaNqIT")
+temp <- read_csv("https://drive.google.com/uc?export=download&id=16wJAatPKM0cF7VNy8hwNWOeJiiDNvsTt")
+
 
 ```
 
 ### Processing Steps:
 
--   In the `aq` object, each row represents a single day in 2025 at a single station. Aggregate the `aq` object to the station level (this will summarize values at that station over the year). The aggregated dataset should include two calculated columns `total_obs` (total number of observations in the year) `total_less` (total observations less than good AQI (AQI \> 50). The `group_by` command must include latitude and longitude as well as station ID.
--   Spatialize the station data using the `st_as_sf()` command. The CRS = 4326
--   Reproject the `nc_counties` and `aq` objects into CRS = 2264 (North Carolina State Plane, ft)
--   Execute a spatial join between `aq` and `nc_counties`. Drop geometry and aggregate the `aq` object to the county level (take the sum of the `total_obs` and `total_less` columns per county).
--   Calculate a `perc_less` variable representing the percent of county observations that are less than good AQI.
+-   In the `temp` object, each row represents a single day in the 2025 summer season (June - August) at a single weather station in North Carolina. Aggregate the `temp` object to the station level (this will summarize values at that station over the season). The aggregated dataset should include two calculated columns `total_obs` (total number of observations per station) and `total_over_70` (total observations per station where the daily temperature value is over 70 degrees). The `group_by` command must include `site`, `latitude`, and `longitude`
+-   Spatialize the station-level data using the `st_as_sf()` command. The CRS = 4326.
+-   Reproject the `nc_counties` and `aq` objects into CRS = 2264 (North Carolina State Plane, ft) (i.e. `nc_counties <- nc_counties |> st_transform(crs = 2264)`)
+-   Execute a spatial join between `temp` and `nc_counties`. Drop geometry and aggregate the `aq` object to the county level (take the sum of the `total_obs` and `total_over_70` columns per county).
+-   Calculate a `pct_over_70` variable representing the percent of county observations that are over 70 degrees.
 -   Use a table join to add your county-aggregated data to the `nc_counties` object.
--   Create a simplified dataset that includes only the following fields: `GEOID`, `NAME`, `total_obs`, `total_less`, `perc_less`.
 
 ## RQ2: How does tree cover canopy vary within walking distance from bus stops in Chapel Hill, NC?
 

@@ -685,12 +685,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood.</td>
 </tr>
 <tr class="even">
-<td>The required transformations are performed to create the analytic variable for each research question</td>
+<td>The required transformations are performed to create the analytic variable for each research question. The overall workflow reflects the intended steps, even if minor errors are present</td>
 </tr>
 <tr class="odd">
-<td>The overall workflow reflects the intended steps, even if minor errors are present</td>
-</tr>
-<tr class="even">
 <td>Each analytical dataset includes the required visualization (scatterplot and map). Written responses accurately describe what the analytic variable represents and what the distribution shows.</td>
 </tr>
 </tbody>
@@ -702,7 +699,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Then complete the following tasks. Your .Rmd file should be organized so that each task has a text header, a code chunk, comments for each command, and any written components directly under the chunk. Remember to follow the Formatting Guide.</p>
 <p><strong>Reading Data</strong></p>
 <ul>
-<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>terra</code>, and <code>sf</code> libraries</p></li>
+<li><p>Load the <code>tidyverse</code> , <code>tmap</code>, <code>terra</code>, <code>exactextractr</code>, and <code>sf</code> libraries</p></li>
 <li><p>Read in the data using the following commands:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#all ems stations across the triangle region</span></span>
@@ -723,7 +720,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Analytic Dataset #1</strong></p>
 <p>For this analytic dataset you should create a new object that adds two columns to the <code>ch_blocks</code> object. One column, <code>av_heat</code> should be the average summer heat across each block. The second column, <code>av_canopy</code> should be the average tree canopy across each block.</p>
-<p>After creating the analytic dataset, create a scatterplot (<code>dataset |&gt; ggplot(aes(x = VARIABLE1, y= VARIABLE2) + geom_point()</code>) that shows the relationship between summer heat and canopy coverage across Chapel Hill.</p>
+<p>After creating the analytic dataset, create a scatterplot <code>dataset |&gt; ggplot(aes(x = VARIABLE1, y= VARIABLE2)) + geom_point()</code> that shows the relationship between summer heat and canopy coverage across Chapel Hill.</p>
 <p>Below the code chunk, write a brief interpretation of the relationship shown in the scatterplot.</p>
 <p><strong>Analytic Dataset #2</strong></p>
 <p>For this analytic dataset you should create a new object that adds a column to the <code>triangle_blocks</code> object. The new column (<code>count_ems</code>) should include a count of each EMS station that is within 5 miles of the block group.</p>
