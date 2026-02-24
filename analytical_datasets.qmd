@@ -2,9 +2,9 @@
 
 In this chapter, we will work on manipulating and combining data to create analytic datasets.
 
-## RQ1: What is the distribution of moderate or worse air quality days by NC county in 2025?
+## RQ1: What is the distribution of warm summer days in 2025 by North Carolina county? 
 
-In this research question, our goal is to create an analytic variable representing the percent of air quality observations per county in 2025 that were moderate or worse air quality.
+In this research question, our goal is to create an analytic variable representing the percent of daily average summer temperatures that were above 70 degrees farenheit by NC county
 
 ### Data:
 
