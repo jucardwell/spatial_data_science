@@ -27,7 +27,7 @@ temp <- read_csv("https://drive.google.com/uc?export=download&id=16wJAatPKM0cF7V
 -   In the `temp` object, each row represents a single day in the 2025 summer season (June - August) at a single weather station in North Carolina. Aggregate the `temp` object to the station level (this will summarize values at that station over the season). The aggregated dataset should include two calculated columns `total_obs` (total number of observations per station) and `total_over_70` (total observations per station where the daily temperature value is over 70 degrees). The `group_by` command must include `site`, `latitude`, and `longitude`
 -   Spatialize the station-level data using the `st_as_sf()` command. The CRS = 4326.
 -   Reproject the `nc_counties` and `temp` objects into CRS = 2264 (North Carolina State Plane, ft) (i.e. `nc_counties <- nc_counties |> st_transform(crs = 2264)`)
--   Execute a spatial join between `temp` and `nc_counties`. Drop geometry and aggregate the `temp` object to the county level (take the sum of the `total_obs` and `total_over_70` columns per county).
+-   Execute a spatial join between `temp` and `nc_counties`. Drop geometry and aggregate the spatial `temp` object to the county level (take the sum of the `total_obs` and `total_over_70` columns per county).
 -   Calculate a `pct_over_70` variable representing the percent of county observations that are over 70 degrees.
 -   Use a table join to add your county-aggregated data to the `nc_counties` object.
 
