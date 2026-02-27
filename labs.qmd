@@ -305,7 +305,7 @@ Below the code chunk, write a brief interpretation of the relationship shown in 
 
 **Analytic Dataset #2**
 
-For this analytic dataset you should create a new object that adds a column to the `triangle_blocks` object. The new column (`count_ems`) should include a count of each EMS station that is within 5 miles of the block group.
+For this analytic dataset you should create a new object that adds a column to the `triangle_blocks` object. The new column (`count_ems`) should include a count of each EMS station that is within 5 miles of the block.
 
 After creating the analytic dataset, create a basic map that displays the `count_ems` variable across the triangle.
 
@@ -323,14 +323,15 @@ In this lab, you will create well-designed maps for the analytic datasets create
 |------------------------------------------------------------------------|
 | Lab is submitted on Canvas and follows the general formatting guidelines. Minor formatting issues don’t prevent the work from being read and understood. |
 | Maps follow the core design instructions. Minor design or formatting issues are acceptable |
+| All maps use ONLY tmap v4 code |
 
 ### Lab Instructions
 
-**Map 1: AQI for North Carolina Counties**
+**Map 1: Warm Summer Days for North Carolina Counties**
 
 This map should adhere to the following design guidelines:
 
--   County values for percent moderate or worse air quality days should be represented by dots (hint: you can use the `tm_dots()` command even with polygons)
+-   County values for percent warm summer days should be represented by dots (hint: you can use the `tm_dots()` command even with polygons)
 -   The dots should visualized using an appropriate color palette and classification scheme
 -   The map should include a basemap and a legend within the map frame
 -   The map title should be centered above the map
