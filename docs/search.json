@@ -928,5 +928,15 @@
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Creating Analytic Datasets</span>"
     ]
+  },
+  {
+    "objectID": "labs.html#lab-7",
+    "href": "labs.html#lab-7",
+    "title": "4  Labs",
+    "section": "4.8 Lab 7",
+    "text": "4.8 Lab 7\n\n4.8.1 Overview\nIn this lab, you will practice generating effective prompts for AI assistance (LLM) with a coding task\nYou will work with several spatial datasets:\n\nNon-motorist crashes in Carrboro (crashes involving a pedestrian or bicycle)\nCarrboro block group boundaries (vector) and ACS data (tabular data)\nCarrboro roadways\n\n\n\n4.8.2 Specifications\n\n\n\n\n\n\nSpecification\n\n\n\n\nLab is submitted on Canvas and follows general formatting guidelines. Minor formatting issues may be present but do not interfere with readability or interpretation.\n\n\nReading Data: Data is downloaded and read in using relative file paths\n\n\nTask 1: The initial prompt clearly follows the COSF framework. Any necessary revisions to the prompt or generated code have been made in order to successfully complete the task. The written responses demonstrate thoughtful engagement with the process of using an LLM for coding assistance.\n\n\nTask 2: The initial prompt clearly follows the COSF framework. Any necessary revisions to the prompt or generated code have been made in order to successfully complete the task. The written responses demonstrate thoughtful engagement with the process of using an LLM for coding assistance.\n\n\n\n\n\n4.8.3 Lab Instructions\nCreate a new .Rmd document (and save it to your GEOG215 folder). Download the data and read in each dataset using relative file paths.\nThen complete the Prompting Practice and create finalized code to complete each task. For each of the two tasks, your .Rmd should be structured as follows:\n\nHeader for the task\nThe initial text prompt you provided to an LLM (as text)\nThe initial code output provided by the LLM. You should include this in a code chunk, but set eval = F. This will prevent the code from running in the final .html.\nA code chunk with the final code you used to complete the task and a map of the output\nText below the chunk that answers these questions:\n\nHow effective was the initial prompt in generating useful code?\nWhat issues or errors appeared in the initial code output?\nWhat modifications did you make to the prompt or the code in order to successfully complete the task? Did you use the LLM to fix these issues or did you fix them independently?\nIn what ways did the LLM speed up the process or make the task easier?\nWhat challenges or limitations did you encounter when using the LLM?",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labs</span>"
+    ]
   }
 ]
