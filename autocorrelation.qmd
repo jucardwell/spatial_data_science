@@ -66,7 +66,7 @@ We can explore three different neighborhood definitions using our datasets:
 
 One way to determine neighbors is to set a distance threshold. Any observations within a set distance would be considered a neighbor. For our census tracts, we could set a distance of 3 miles. The code below demonstrates the neighborhood for the census tract that campus is in.
 
-```{r}
+```{r, message = F, warning= F}
 #isolate ch tract
 ch_tract <- tracts_sf |> filter(GEOID == 37135011400)
 
@@ -80,7 +80,7 @@ tm_shape(neighbors) + tm_polygons() + tm_shape(ch_tract) + tm_polygons(fill = "b
 
 For our school dataset, we could say that any school within 20 miles is a neighbor
 
-```{r}
+```{r, message = F, warning= F}
 #isolate Chapel Hill High School
 chhs <- schools_sf |> filter(school_nam == "Chapel Hill High")
 
@@ -98,7 +98,7 @@ tm_shape(chhs_neighbors) + tm_dots() + tm_shape(chhs) + tm_dots(fill = "blue")
 
 The Queens Case neighborhood definition is extremely common in spatial statistics that consider contiguous aerial units (like census tracts). The Queens neighborhood selects neighbors based on any contact (including corners) with the feature of interest. We can't use contiguity based neighbors for points since they do not touch. The Queens neighborhood for Chapel Hill would look this this:
 
-```{r}
+```{r, message = F, warning= F}
 queen_neighbors <- tracts_sf |> st_filter(ch_tract, .predicates = st_intersects) 
 
 tm_shape(queen_neighbors) + tm_polygons() + tm_shape(ch_tract) + tm_polygons(fill = "blue")
@@ -108,7 +108,7 @@ tm_shape(queen_neighbors) + tm_polygons() + tm_shape(ch_tract) + tm_polygons(fil
 
 The k-nearest neighbor definition selects the nearest neighbors based on a set number of neighbors. For instance, for our Chapel Hill High point, we could set number of neighbors to 3.
 
-```{r}
+```{r, message = F, warning= F}
 #calculate distances
 calc_dist <- chhs_neighbors |> st_distance(chhs)
 
@@ -131,7 +131,7 @@ The main parameter for calculating Moran's I is the neighborhood definition.
 
 We can start by making a basic map of our variable of interest.
 
-```{r}
+```{r, message = F, warning= F}
 tm_shape(tracts_sf) + tm_polygons(fill = "med_hh_inc", fill.scale = tm_scale_intervals(style = "fisher"), col_alpha = 0)
 ```
 
@@ -139,12 +139,21 @@ tm_shape(tracts_sf) + tm_polygons(fill = "med_hh_inc", fill.scale = tm_scale_int
 
 We can formalize this by calculating Moran's I using Queens Case neighbors
 
-```{r}
+```{r, message = F, warning= F}
 #calculate neighborhoods
 nb <- poly2nb(tracts_sf, queen = TRUE) # queen shares point or border
 
+#if you wanted to do k nearest neighbors
+coords <- st_coordinates(st_centroid(tracts_sf))
+knn <- knearneigh(coords, k = 5) #number of neighbors
+nb_k5 <- knn2nb(knn) #put in nbw command below
+
+#if you wanted to do fixed distance then put nb_d in nbw command
+nb_d <- dnearneigh(coords, d1 = 0, d2 = 50000) #d2 is how far in units (in our case ft)
+
+
 #set neighborhood weight matrix
-nbw <- nb2listw(nb, style = "W")
+nbw <- nb2listw(nb, style = "W", zero.policy = T)
 
 #calculate Morans I
 gmoran <- moran.test(tracts_sf$med_hh_inc, nbw)
@@ -159,7 +168,7 @@ Our Moran's I indicates strong clustering (.59) at a highly statistically signif
 
 We can map chronic absence rate before Covid (which we've done before)
 
-```{r}
+```{r, message = F, warning= F}
 tm_shape(schools_sf) + tm_dots(fill = "pre_covid_pct", fill.scale = tm_scale_intervals(style = "fisher"), col_alpha = 0)
 ```
 
@@ -167,9 +176,13 @@ tm_shape(schools_sf) + tm_dots(fill = "pre_covid_pct", fill.scale = tm_scale_int
 
 We can then calculate Moran's I using a our 20-mile distance-based neighborhood definition
 
-```{r}
+```{r, message = F, warning= F}
 #calculate neighborhoods
 nb_school <- dnearneigh(schools_sf, d1 = 0, d2 = 26400) 
+
+###if you wanted to do knearest neighbor
+knn <- knearneigh(schools_sf, k = 5) #number of neighbors
+nb_k5 <- knn2nb(knn) #put in nbw command below
 
 #set neighborhood weight matrix
 nbw_school <- nb2listw(nb_school, style = "W", zero.policy = T)
@@ -187,7 +200,7 @@ We know that both of our datasets are clustered because of our Moran's I values 
 
 For the median household income:
 
-```{r}
+```{r, message = F, warning= F}
 locali<-localmoran_perm(tracts_sf$med_hh_inc, nbw) %>%
   as_tibble() %>%
   set_names(c("local_i", "exp_i", "var_i", "z_i", "p_i",
@@ -217,7 +230,7 @@ tm_shape(tracts_sf) + tm_polygons("lisa_cluster", col_alpha = 0)
 
 For the school chronic absences:
 
-```{r}
+```{r, message = F, warning= F}
 locali_school<-localmoran_perm(schools_sf$pre_covid_pct, nbw_school) %>%
   as_tibble() %>%
   set_names(c("local_i", "exp_i", "var_i", "z_i", "p_i",
