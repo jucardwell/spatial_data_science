@@ -399,7 +399,10 @@ Then complete the [Prompting Practice](https://docs.google.com/document/d/1I4YxC
 
 In the Autocorrelation tutorial, we learned how to define spatial neighbors and how to use these neighborhoods to assess whether values at locations are related to values at near locations.
 
-In this lab, you will practice applying these skills to the NC schools dataset from the autocorrelation tutorial and census tract data for the Triangle region of NC.
+In this lab, you will practice applying these skills to the NC schools dataset from the autocorrelation tutorial and census tract data for the Triangle region of NC. Your goal is to define an appropriate neighborhood definition and explore global and local autocorrelation for the two following datasets:
+
+-   Percent without health insurance by census tract in the Triangle region of North Carolina
+-   Percent of students with chronic absenteeism in North Carolina schools before and after Covid
 
 ### Specifications
 
@@ -446,4 +449,4 @@ This lab is designed to assess the [Concept 8 Competencies](https://jucardwell.g
 5.  Under a header called "Analyzing Local Autocorrelation" add a code chunk, and a written analysis below the code chunk that does the following:
 
     -   Calculate and map Local Indicators of Autocorrelation for all datasets
-    -   Describe your results. What is the spatial pattern of clustering? Propose one reasonable hypothesis for why this pattern might exist.
+    -   Describe your results. What is the spatial pattern of clustering? Propose one reasonable hypothesis for why this pattern might exist. Also, compare the local spatial structure of chronic absences before and after covid.
