@@ -292,13 +292,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Tobler’s First Law of Geography reminds us that everything is related to everything else, but near things are more related than distant things. Spatial autocorrelation describes how a variable is correlated with itself across geographic space. In other words, spatial autocorrelation can tell us <em>how</em> related near things are to each other in our dataset.</p>
-<p>Point pattern analysis is focused on the <em>location</em> of events. In point patterns, the source of randomness is the location itself. In assessing autocorrelation, we are considering whether the <em>value</em> at locations is random.</p>
 <p>There are two general scenarios in which we might want to analyze autocorrelation:</p>
 <ul>
 <li><strong>Areal units</strong>: Many sources of geographical data come aggregated into zones that may or may not be meaningful. For instance, census data is aggregated from the individual household level to statistical units (like census tracts). In these cases, the location of the units is pre-determined, so it is not meaningful to analyze location. Instead, it is useful to consider values at these fixed locations to determine if there are spatial patterns in the variable.</li>
 <li><strong>Locations:</strong> For some datasets, we might be interested both in the pattern of location AND the pattern in value. In these cases, both the location and value are meaningful– for instance, our lightning strike dataset. In this case, we might be interested in both where the lightning strikes are and something about the the strikes when they occur (for instance, are more powerful strikes located near each other).</li>
 </ul>
-<p>Just like point pattern analysis, quantifying autocorrelation is useful because it helps us understand the spatial pattern/structure of our data, which helps us in generating hypotheses about the processes that generate the pattern.</p>
+<p>Quantifying autocorrelation is useful because it helps us understand the spatial pattern/structure of our data, which helps us in generating hypotheses about the processes that generate the pattern.</p>
 <p>In addition, spatial autocorrelation allows us to understand how spatially dependent our variable is. Spatial dependence can be a serious problem for applying traditional statistical methods because these methods generally have an assumption of independence. Measuring the strength of spatial dependence helps us evaluate how serious this issue is and decide whether we need to adjust our approach- for example, by modifying our sampling design, using methods that account for spatial structure, or interpreting results with greater caution.</p>
 <p>After completing these exercises, you should be able to:</p>
 <ul>
@@ -323,9 +322,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that the crs </span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#of the datasets is NAD83/ North Carolina, meaning that the units are feet</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tracts_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1_X3s6sTw5zeIuXa6wDQ61r8Px7_tI7Nr"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tracts_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1mUxk0R_lqcfuJppw_A-1vy-pcB9XdCnS"</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>schools_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1mUxk0R_lqcfuJppw_A-1vy-pcB9XdCnS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>schools_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1_X3s6sTw5zeIuXa6wDQ61r8Px7_tI7Nr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="defining-neighbors" class="level2" data-number="15.2">
