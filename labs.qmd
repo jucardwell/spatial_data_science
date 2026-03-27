@@ -399,20 +399,18 @@ Then complete the [Prompting Practice](https://docs.google.com/document/d/1I4YxC
 
 In the Autocorrelation tutorial, we learned how to define spatial neighbors and how to use these neighborhoods to assess whether values at locations are related to values at near locations.
 
-In this lab, you will practice applying these skills to the
-
-*Remember that you can use the [**Command Compendium**](https://jucardwell.github.io/quant_methods/command.html) to help you modify R commands.*
+In this lab, you will practice applying these skills to the NC schools dataset from the autocorrelation tutorial and census tract data for the Triangle region of NC.
 
 ### Specifications
 
-This lab is designed to assess the [Concept 8 Competencies](https://jucardwell.github.io/quant_methods/competencies.html#concept-8-patterns-in-values). You'll be evaluated on the following specifications:
+This lab is designed to assess the [Concept 8 Competencies](https://jucardwell.github.io/spatial_data_science/competencies.html#concept-8-spatial-neighborhoods-and-weights). You'll be evaluated on the following specifications:
 
 | Specification |
 |------------------------------------------------------------------------|
 | HTML and RMD versions the R Markdown file have been submitted. |
 | The RMD is clearly organized (appropriate headings, code chunk formatting, and clean output) so that the analysis is easy to read and understand. |
-| **Defining Neighborhoods**: Student defines neighborhoods and creates spatial weight matrices for both NC schools and NC counties. Written justification explains why the chosen neighborhood definition is appropriate for this analysis. |
-| **Analyzing Global Autocorrelation:** Student computes Moran’s I for school SAT scores and county-level Covid-19 workplace mobility. Written interpretation explains what the Moran’s I values indicate about spatial structure and strength of autocorrelation. |
+| **Defining Neighborhoods**: Student defines neighborhoods and creates spatial weight matrices for both NC schools and Triangle tracts. Written justification explains why the chosen neighborhood definition is appropriate for this analysis. |
+| **Analyzing Global Autocorrelation:** Student computes Moran’s I for school chronic absence percentages (before and after covid) and tract level percent population without health insurance. Written interpretation explains what the Moran’s I values indicate about spatial structure and strength of autocorrelation. |
 | **Analyzing Local Autocorrelation:** Student computes and maps local indicators of spatial autocorrelation for both datasets. Written interpretation describes the observed clustering patterns and proposes one reasonable hypothesis for why these patterns exist. |
 
 ### Lab Instructions
@@ -428,23 +426,24 @@ This lab is designed to assess the [Concept 8 Competencies](https://jucardwell.g
     library(spatstat)
     library(spdep)
 
-    school_sat <- st_read("https://drive.google.com/uc?export=download&id=1i-C2PF3ajbpHTlavh3m1QbWNObpobprZ") 
+    schools_sf <- st_read("https://drive.google.com/uc?export=download&id=1_X3s6sTw5zeIuXa6wDQ61r8Px7_tI7Nr")
 
-    covid_mobility <- st_read("https://drive.google.com/uc?export=download&id=1YbCNVR5K8jDF5HOKHcoJ25gz7VkRvDHa") 
+    acs_tract_nc <- st_read("https://drive.google.com/uc?export=download&id=1cnz4xgdDRZvlXzN3IyvCxOETRWfrpw-0") |> filter(COUNTYFP %in% c("135", "183", "063")) |> filter(!is.na(pct_no_health_insur))
+
 
     ```
 
 3.  Under a header called "Defining Neighbors" add a code chunk, and a written analysis below the code chunk that does the following:
 
-    -   Defines neighborhoods and creates a neighborhood weight matrix for NC schools and NC counties. You can use any appropriate neighborhood definition
+    -   Defines neighborhoods and creates a neighborhood weight matrix for NC schools and NC tracts. The goal is to explore global and local autocorrelation in percent of population with no health insurance (tracts) and chronic absences at NC schools before and after Covid. You can use any appropriate neighborhood definition
     -   Justify your neighborhood definition. Why is it useful for this particular analysis?
 
 4.  Under a header called "Analyzing Global Autocorrelation" add a code chunk, and a written analysis below the code chunk that does the following:
 
-    -   Computes Moran's I for school SAT scores and NC county covid mobility scores using your selected neighborhood definition. For the covid mobility dataset, you should use the `workplace_change` variable, which represents the percent change in workplace mobility from March-May 2020.
-    -   Describe your results. What does the Moran's I value tell you about the structure of the data (and the strength of this structure)?
+    -   Computes Moran's I for school chronic absences dataset (for both before and after covid) and NC tract values for no health insurance using your selected neighborhood definition.
+    -   Describe your results. What does the Moran's I value tell you about the structure of the data (and the strength of this structure)? Also, compare the spatial structure of chronic absences before and after covid.
 
 5.  Under a header called "Analyzing Local Autocorrelation" add a code chunk, and a written analysis below the code chunk that does the following:
 
-    -   Calculate and map Local Indicators of Autocorrelation for both datasets
+    -   Calculate and map Local Indicators of Autocorrelation for all datasets
     -   Describe your results. What is the spatial pattern of clustering? Propose one reasonable hypothesis for why this pattern might exist.

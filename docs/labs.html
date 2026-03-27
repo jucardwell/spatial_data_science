@@ -226,20 +226,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ppa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Spatial Autocorrelation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exploring_two.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bivariate Relationships and Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Bivariate Relationships and Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ppa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Point Pattern Analysis</span></span></a>
   </div>
 </li>
     </ul>
@@ -294,6 +294,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#overview-6" id="toc-overview-6" class="nav-link" data-scroll-target="#overview-6"><span class="header-section-number">4.8.1</span> Overview</a></li>
   <li><a href="#specifications-6" id="toc-specifications-6" class="nav-link" data-scroll-target="#specifications-6"><span class="header-section-number">4.8.2</span> Specifications</a></li>
   <li><a href="#lab-instructions-6" id="toc-lab-instructions-6" class="nav-link" data-scroll-target="#lab-instructions-6"><span class="header-section-number">4.8.3</span> Lab Instructions</a></li>
+  </ul></li>
+  <li><a href="#lab-8" id="toc-lab-8" class="nav-link" data-scroll-target="#lab-8"><span class="header-section-number">4.9</span> Lab 8</a>
+  <ul class="collapse">
+  <li><a href="#overview-7" id="toc-overview-7" class="nav-link" data-scroll-target="#overview-7"><span class="header-section-number">4.9.1</span> Overview</a></li>
+  <li><a href="#specifications-7" id="toc-specifications-7" class="nav-link" data-scroll-target="#specifications-7"><span class="header-section-number">4.9.2</span> Specifications</a></li>
+  <li><a href="#lab-instructions-7" id="toc-lab-instructions-7" class="nav-link" data-scroll-target="#lab-instructions-7"><span class="header-section-number">4.9.3</span> Lab Instructions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -850,6 +856,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>What challenges or limitations did you encounter when using the LLM?</li>
 </ul></li>
 </ul>
+</section>
+</section>
+<section id="lab-8" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="lab-8"><span class="header-section-number">4.9</span> Lab 8</h2>
+<section id="overview-7" class="level3" data-number="4.9.1">
+<h3 data-number="4.9.1" class="anchored" data-anchor-id="overview-7"><span class="header-section-number">4.9.1</span> Overview</h3>
+<p>In the Autocorrelation tutorial, we learned how to define spatial neighbors and how to use these neighborhoods to assess whether values at locations are related to values at near locations.</p>
+<p>In this lab, you will practice applying these skills to the NC schools dataset from the autocorrelation tutorial and census tract data for the Triangle region of NC.</p>
+</section>
+<section id="specifications-7" class="level3" data-number="4.9.2">
+<h3 data-number="4.9.2" class="anchored" data-anchor-id="specifications-7"><span class="header-section-number">4.9.2</span> Specifications</h3>
+<p>This lab is designed to assess the <a href="https://jucardwell.github.io/spatial_data_science/competencies.html#concept-8-spatial-neighborhoods-and-weights">Concept 8 Competencies</a>. You’ll be evaluated on the following specifications:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HTML and RMD versions the R Markdown file have been submitted.</td>
+</tr>
+<tr class="even">
+<td>The RMD is clearly organized (appropriate headings, code chunk formatting, and clean output) so that the analysis is easy to read and understand.</td>
+</tr>
+<tr class="odd">
+<td><strong>Defining Neighborhoods</strong>: Student defines neighborhoods and creates spatial weight matrices for both NC schools and Triangle tracts. Written justification explains why the chosen neighborhood definition is appropriate for this analysis.</td>
+</tr>
+<tr class="even">
+<td><strong>Analyzing Global Autocorrelation:</strong> Student computes Moran’s I for school chronic absence percentages (before and after covid) and tract level percent population without health insurance. Written interpretation explains what the Moran’s I values indicate about spatial structure and strength of autocorrelation.</td>
+</tr>
+<tr class="odd">
+<td><strong>Analyzing Local Autocorrelation:</strong> Student computes and maps local indicators of spatial autocorrelation for both datasets. Written interpretation describes the observed clustering patterns and proposes one reasonable hypothesis for why these patterns exist.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-instructions-7" class="level3" data-number="4.9.3">
+<h3 data-number="4.9.3" class="anchored" data-anchor-id="lab-instructions-7"><span class="header-section-number">4.9.3</span> Lab Instructions</h3>
+<ol type="1">
+<li><p>Create a new .Rmd named “LASTNAME_lab8.Rmd”. Save it into your GEOG391 folder.</p></li>
+<li><p>Remove sample text (leaving the header and set-up chunk). Add a chunk for loading libraries and reading in data. Add the following code into that chunk:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load libraries</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>schools_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1_X3s6sTw5zeIuXa6wDQ61r8Px7_tI7Nr"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>acs_tract_nc <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1cnz4xgdDRZvlXzN3IyvCxOETRWfrpw-0"</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(COUNTYFP <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"135"</span>, <span class="st">"183"</span>, <span class="st">"063"</span>)) <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pct_no_health_insur))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Under a header called “Defining Neighbors” add a code chunk, and a written analysis below the code chunk that does the following:</p>
+<ul>
+<li>Defines neighborhoods and creates a neighborhood weight matrix for NC schools and NC tracts. The goal is to explore global and local autocorrelation in percent of population with no health insurance (tracts) and chronic absences at NC schools before and after Covid. You can use any appropriate neighborhood definition</li>
+<li>Justify your neighborhood definition. Why is it useful for this particular analysis?</li>
+</ul></li>
+<li><p>Under a header called “Analyzing Global Autocorrelation” add a code chunk, and a written analysis below the code chunk that does the following:</p>
+<ul>
+<li>Computes Moran’s I for school chronic absences dataset (for both before and after covid) and NC tract values for no health insurance using your selected neighborhood definition.</li>
+<li>Describe your results. What does the Moran’s I value tell you about the structure of the data (and the strength of this structure)? Also, compare the spatial structure of chronic absences before and after covid.</li>
+</ul></li>
+<li><p>Under a header called “Analyzing Local Autocorrelation” add a code chunk, and a written analysis below the code chunk that does the following:</p>
+<ul>
+<li>Calculate and map Local Indicators of Autocorrelation for all datasets</li>
+<li>Describe your results. What is the spatial pattern of clustering? Propose one reasonable hypothesis for why this pattern might exist.</li>
+</ul></li>
+</ol>
 
 
 </section>
