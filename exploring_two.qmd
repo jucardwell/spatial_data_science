@@ -25,7 +25,7 @@ library(sf)
 library(spatialreg)
 library(spdep)
 
-acs_tract_nc <- st_read("https://drive.google.com/uc?export=download&id=1cnz4xgdDRZvlXzN3IyvCxOETRWfrpw-0") |> filter(COUNTYFP %in% c("135", "183", "063")) |> filter(!is.na(no_health_insur), !is.na(pct_pov))
+acs_tract_nc <- st_read("https://drive.google.com/uc?export=download&id=1cnz4xgdDRZvlXzN3IyvCxOETRWfrpw-0") |> filter(COUNTYFP %in% c("135", "183", "063")) |> filter(!is.na(pct_no_health_insur), !is.na(pct_under_poverty_level))
 
 ```
 
@@ -45,7 +45,7 @@ cor(acs_tract_nc$pct_no_health_insur, acs_tract_nc$pct_under_poverty_level)
 
 One of the simplest visualizations we can use to explore bivariate relationships is a scatterplot. For instance, if we want to explore the relationship between our no health insurance variable and our poverty variable, we could do the following
 
-```{r, eval = F}
+```{r}
 
 ggplot(acs_tract_nc, aes(x = pct_no_health_insur, y= pct_under_poverty_level))  + geom_point()
 
@@ -55,7 +55,7 @@ ggplot(acs_tract_nc, aes(x = pct_no_health_insur, y= pct_under_poverty_level))  
 
 While scatterplots ignore geography, bivariate maps allow us to explore how two variables co-vary across space. A bivariate map classifies each variable into categories (for instance, quantiles) and combines them into a single color scheme, making it possible to identify areas where both variables are simultaneously high or low.
 
-```{r, eval=F}
+```{r}
 #bivariate map based on quantiles
 tm_shape(acs_tract_nc) + 
   tm_polygons(fill = tm_vars(c("pct_no_health_insur", "pct_under_poverty_level"), multivariate = TRUE),
@@ -71,7 +71,7 @@ tm_shape(acs_tract_nc) +
 
 Linear regression provides a formal statistical framework for modeling the relationship between two variables. In an ordinary least squares (OLS) regression, we estimate the expected value of a dependent variable as a linear function of an independent variable. OLS allows us to quantify the strength and direction of the relationship and to assess whether the observed association is unlikely to have occurred by chance.
 
-```{r, eval = F}
+```{r}
 #traditional regression
 ols_model <- lm(pct_no_health_insur ~ pct_under_poverty_level, data = acs_tract_nc)
 
@@ -81,7 +81,7 @@ summary(ols_model)
 
 However, OLS regression relies on several assumptions, including that observations are independent. One way to evaluate whether spatial dependence is present is to examine the residuals from an OLS regression. If the model has adequately captured the underlying process, residuals should be randomly distributed across space. Spatial clustering in residuals suggests that important spatial structure remains unmodeled. A statistically significant Moran’s I indicates that the independence assumption of OLS has been violated and that a spatial regression approach may be more appropriate.
 
-```{r, eval = F}
+```{r}
 #add residuals as a variable
 acs_tract_nc <-acs_tract_nc |> mutate(olsresid = resid(ols_model)) 
 
@@ -113,16 +113,16 @@ The spatial error model, in contrast, assumes that spatial dependence operates t
 
 To choose an appropriate model, it is important that we don't just look at model fit, but that we also consider the potential underlying processes. In this case, it is not doesn't make much logical sense that it would be a diffusive process, so a lag model wouldn't be appropriate.
 
-```{r, eval = F}
+```{r}
 #lag model
-fit.lag<-lagsarlm(pct_pov ~ no_health_insur,  
+fit.lag<-lagsarlm(pct_under_poverty_level ~ pct_no_health_insur,  
                   data = acs_tract_nc, 
                   listw = nbw) 
 #see results
 summary(fit.lag)
 
 #error model
-fit.error<-errorsarlm(pct_pov ~ no_health_insur,  
+fit.error<-errorsarlm(pct_under_poverty_level ~ pct_no_health_insur,  
                   data = acs_tract_nc, 
                   listw = nbw)  
 #see results

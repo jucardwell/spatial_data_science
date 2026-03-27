@@ -392,3 +392,59 @@ Then complete the [Prompting Practice](https://docs.google.com/document/d/1I4YxC
     -   What modifications did you make to the prompt or the code in order to successfully complete the task? Did you use the LLM to fix these issues or did you fix them independently?
     -   In what ways did the LLM speed up the process or make the task easier?
     -   What challenges or limitations did you encounter when using the LLM?
+
+## Lab 8
+
+### Overview
+
+In the Autocorrelation tutorial, we learned how to define spatial neighbors and how to use these neighborhoods to assess whether values at locations are related to values at near locations.
+
+In this lab, you will practice applying these skills to the
+
+*Remember that you can use the [**Command Compendium**](https://jucardwell.github.io/quant_methods/command.html) to help you modify R commands.*
+
+### Specifications
+
+This lab is designed to assess the [Concept 8 Competencies](https://jucardwell.github.io/quant_methods/competencies.html#concept-8-patterns-in-values). You'll be evaluated on the following specifications:
+
+| Specification |
+|------------------------------------------------------------------------|
+| HTML and RMD versions the R Markdown file have been submitted. |
+| The RMD is clearly organized (appropriate headings, code chunk formatting, and clean output) so that the analysis is easy to read and understand. |
+| **Defining Neighborhoods**: Student defines neighborhoods and creates spatial weight matrices for both NC schools and NC counties. Written justification explains why the chosen neighborhood definition is appropriate for this analysis. |
+| **Analyzing Global Autocorrelation:** Student computes Moran’s I for school SAT scores and county-level Covid-19 workplace mobility. Written interpretation explains what the Moran’s I values indicate about spatial structure and strength of autocorrelation. |
+| **Analyzing Local Autocorrelation:** Student computes and maps local indicators of spatial autocorrelation for both datasets. Written interpretation describes the observed clustering patterns and proposes one reasonable hypothesis for why these patterns exist. |
+
+### Lab Instructions
+
+1.  Create a new .Rmd named "LASTNAME_lab8.Rmd". Save it into your GEOG391 folder.
+
+2.  Remove sample text (leaving the header and set-up chunk). Add a chunk for loading libraries and reading in data. Add the following code into that chunk:
+
+    ```{r, eval=F}
+    #load libraries
+    library(sf)
+    library(tidyverse)
+    library(spatstat)
+    library(spdep)
+
+    school_sat <- st_read("https://drive.google.com/uc?export=download&id=1i-C2PF3ajbpHTlavh3m1QbWNObpobprZ") 
+
+    covid_mobility <- st_read("https://drive.google.com/uc?export=download&id=1YbCNVR5K8jDF5HOKHcoJ25gz7VkRvDHa") 
+
+    ```
+
+3.  Under a header called "Defining Neighbors" add a code chunk, and a written analysis below the code chunk that does the following:
+
+    -   Defines neighborhoods and creates a neighborhood weight matrix for NC schools and NC counties. You can use any appropriate neighborhood definition
+    -   Justify your neighborhood definition. Why is it useful for this particular analysis?
+
+4.  Under a header called "Analyzing Global Autocorrelation" add a code chunk, and a written analysis below the code chunk that does the following:
+
+    -   Computes Moran's I for school SAT scores and NC county covid mobility scores using your selected neighborhood definition. For the covid mobility dataset, you should use the `workplace_change` variable, which represents the percent change in workplace mobility from March-May 2020.
+    -   Describe your results. What does the Moran's I value tell you about the structure of the data (and the strength of this structure)?
+
+5.  Under a header called "Analyzing Local Autocorrelation" add a code chunk, and a written analysis below the code chunk that does the following:
+
+    -   Calculate and map Local Indicators of Autocorrelation for both datasets
+    -   Describe your results. What is the spatial pattern of clustering? Propose one reasonable hypothesis for why this pattern might exist.
