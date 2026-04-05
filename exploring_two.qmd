@@ -15,7 +15,7 @@ library(sf)
 library(spatialreg)
 library(spdep)
 
-acs_tract_nc <- st_read("https://drive.google.com/uc?export=download&id=1cnz4xgdDRZvlXzN3IyvCxOETRWfrpw-0") |> filter(COUNTYFP %in% c("135", "183", "063"))
+acs_tract_nc <- st_read("https://drive.google.com/uc?export=download&id=1cnz4xgdDRZvlXzN3IyvCxOETRWfrpw-0") |> filter(COUNTYFP %in% c("135", "183", "063")) |> filter(COUNTYFP %in% c("135", "183", "063")) |> filter(!is.na(pct_no_health_insur), !is.na(pct_under_poverty_level))
 ```
 
 ```{r, eval = F}
@@ -55,7 +55,7 @@ ggplot(acs_tract_nc, aes(x = pct_no_health_insur, y= pct_under_poverty_level))  
 
 While scatterplots ignore geography, bivariate maps allow us to explore how two variables co-vary across space. A bivariate map classifies each variable into categories (for instance, quantiles) and combines them into a single color scheme, making it possible to identify areas where both variables are simultaneously high or low.
 
-```{r}
+```{r, message = F, warning = F}
 #bivariate map based on quantiles
 tm_shape(acs_tract_nc) + 
   tm_polygons(fill = tm_vars(c("pct_no_health_insur", "pct_under_poverty_level"), multivariate = TRUE),
@@ -79,9 +79,11 @@ ols_model <- lm(pct_no_health_insur ~ pct_under_poverty_level, data = acs_tract_
 summary(ols_model)
 ```
 
+We can interpret the OLS by looking at a few key things. The pct_under_poverty_level estimate tells us that a 1 unit increase in poverty is associated with a .31 unit increase in percent of population without health insurance. This coefficient is statistically significant. Our intercept tells us what conditions would be expected at 0% poverty (i.e. 5% without health insurance). Our multiple R-squared tells us how much of the variation in percent with no health insurance can be explained with our model (about 17% of our variation). The F-statistic shows that the model as a whole is statistically significant. Finally, the Residual standard error suggests that the typical deviation between observed and predicted uninsured rates is about 6 percentage points, indicating that while poverty is a significant predictor, a substantial portion of variation remains unexplained by this model.
+
 However, OLS regression relies on several assumptions, including that observations are independent. One way to evaluate whether spatial dependence is present is to examine the residuals from an OLS regression. If the model has adequately captured the underlying process, residuals should be randomly distributed across space. Spatial clustering in residuals suggests that important spatial structure remains unmodeled. A statistically significant Moran’s I indicates that the independence assumption of OLS has been violated and that a spatial regression approach may be more appropriate.
 
-```{r}
+```{r, message = F, warning = F}
 #add residuals as a variable
 acs_tract_nc <-acs_tract_nc |> mutate(olsresid = resid(ols_model)) 
 
@@ -115,19 +117,25 @@ To choose an appropriate model, it is important that we don't just look at model
 
 ```{r}
 #lag model
-fit.lag<-lagsarlm(pct_under_poverty_level ~ pct_no_health_insur,  
+fit.lag<-lagsarlm(pct_no_health_insur ~ pct_under_poverty_level,  
                   data = acs_tract_nc, 
                   listw = nbw) 
 #see results
 summary(fit.lag)
 
 #error model
-fit.error<-errorsarlm(pct_under_poverty_level ~ pct_no_health_insur,  
+fit.error<-errorsarlm(pct_no_health_insur ~ pct_under_poverty_level,  
                   data = acs_tract_nc, 
                   listw = nbw)  
 #see results
 summary(fit.error)
 ```
+
+The spatial lag model examines how the percent of the population without health insurance in one tract is influenced both by the poverty rate in that tract and by uninsured rates in neighboring tracts. From the Coefficients section, the estimate for pct_under_poverty_level (0.228690) indicates that a 1 percentage point increase in poverty is associated with about a 0.23 percentage point increase in the uninsured rate. This relationship is statistically significant based on the p-value. The spatial dependence is captured by Rho = 0.51578, which is positive and statistically significant. This suggests that uninsured rates are spatially clustered across tracts. The AIC (1934.6) is lower than the OLS AIC (1990.3), indicating improved model fit, and the LM test for residual autocorrelation (p = 0.5964) suggests no remaining spatial autocorrelation.
+
+The spatial error model examines spatial dependence in the residuals. From the Coefficients section, the estimate for pct_under_poverty_level (0.286329) indicates that a 1 percentage point increase in poverty is associated with about a 0.29 percentage point increase in the uninsured rate, and this effect is statistically significant. The spatial error parameter, Lambda = 0.5388 indicates that unobserved factors affecting uninsured rates are spatially correlated. The AIC (1935) is also lower than the OLS AIC (1990.3), showing improved fit.
+
+Although the lag model has a slightly lower AIC than the error model, the difference is minimal. The substantive interpretation of the lag model is not very convincing in this context, it doesn't make much sense that there would be a direct interaction between block groups in terms of informing insurance coverage. Instead, Instead, similarities across neighboring areas are more likely due to shared underlying factors. Given the stronger theoretical justification, the spatial error model is likely more appropriate.
 
 ## Mini-Challenge
 

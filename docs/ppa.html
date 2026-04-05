@@ -259,9 +259,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#analyzing-local-structure" id="toc-analyzing-local-structure" class="nav-link" data-scroll-target="#analyzing-local-structure"><span class="header-section-number">16.3</span> Analyzing Local Structure</a>
   <ul class="collapse">
-  <li><a href="#nearest-neighbor-analysis" id="toc-nearest-neighbor-analysis" class="nav-link" data-scroll-target="#nearest-neighbor-analysis"><span class="header-section-number">16.3.1</span> Nearest Neighbor Analysis</a></li>
+  <li><a href="#average-nearest-neighbor-ann" id="toc-average-nearest-neighbor-ann" class="nav-link" data-scroll-target="#average-nearest-neighbor-ann"><span class="header-section-number">16.3.1</span> Average Nearest Neighbor (ANN)</a></li>
+  <li><a href="#l--function" id="toc-l--function" class="nav-link" data-scroll-target="#l--function"><span class="header-section-number">16.3.2</span> L- Function</a></li>
   </ul></li>
-  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge"><span class="header-section-number">16.4</span> Mini-Challenge</a></li>
   </ul>
 </nav>
     </div>
@@ -287,24 +287,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Point Pattern Analysis (PPA) is a set of methods that can help us interpret the spatial distribution of events (represented as points) in a defined study area/region. The goal is to determine if the observed pattern is likely the result of a random process (the null hypothesis of Complete Spatial Randomness, or CSR) or if it exhibits significant clustering or regularity (dispersion).</p>
-<p>If a pattern is random, there is no way to predict where the next event will happen. However, if a spatial pattern is non-random, that means that it is likely the outcome of a meaningful process. If this is the case, we than then develop hypotheses about the <strong>underlying process</strong>.</p>
-<p>Spatial patterns are the outcome of different mechanistic processes:</p>
+<p>Point Pattern Analysis (PPA) is a set of methods that can help us interpret the spatial distribution of events (represented as points) in a defined study area/region. The goal is to identify deviations from the null hypothesis (complete spatial randomness modeled by a homogeneous Poisson distribution) that can be related to mechanistic processes at the first-order and the second-order:</p>
 <ul>
-<li>A first-order process means the pattern of points is determined by external factors or a trend in the environment.</li>
-<li>A second-order process means the pattern is determined by interaction (attraction or repulsion) between the points themselves.</li>
+<li>A first-order process means the pattern of points is determined by external factors or a trend in the environment</li>
+<li>A second-order process means the pattern is determined by interaction (attraction or repulsion) between the points themselves</li>
 </ul>
-<p>After completing this chapter, you should be able to:</p>
-<ul>
-<li>Analyze global structure of point data using quadrat analysis and KDE</li>
-<li>Analyze local structure of point data using NNA</li>
-</ul>
-<p>We will use the following spatial datasets:</p>
-<ul>
-<li>Location of lightning strikes in Orange County in 2024 from <a href="https://www.goes-r.gov/spacesegment/glm.html">Geostationary Lightning Mapper</a> data</li>
-<li>Storm Event reports in Orange County from the <a href="https://www.ncei.noaa.gov/stormevents/">NCEI Storm Events Database</a></li>
-<li>Orange County boundaries from the <code>tigris</code> package</li>
-</ul>
+<p>For this tutorial, we will use two different simulated datasets. You will need to download the simulated datasets from this <a href="https://drive.google.com/file/d/1DUtKbB0ZCraWibsB1Hh7gdpdxVUPRa1b">link</a> and put it in the folder that your tutorial is saved in.</p>
 <p><strong>To follow along with this tutorial, make a new .Rmd document. As you move through the tutorial add chunks, headers, and relevant text to your document.</strong></p>
 <section id="reading-in-data" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="reading-in-data"><span class="header-section-number">16.1</span> Reading in Data</h2>
@@ -313,12 +301,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#lightning</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>lightning <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1mskHuewJIzt5WgUXmr7EK7B72CJt2s62"</span>) <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">2264</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#load simulated datasets</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"point_patterns.RData"</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>storm_events <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1pXB0M5Xi_ocXWBiD6K9Fv6nhWIpmeZ8V"</span>) <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">2264</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>county_boundary <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1KmNzcbvzggh1rJ-mH0YB4kbCB7sxmrjc"</span>) <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">2264</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="analyzing-global-structure" class="level2" data-number="16.2">
@@ -326,26 +312,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quadrat-analyis" class="level3" data-number="16.2.1">
 <h3 data-number="16.2.1" class="anchored" data-anchor-id="quadrat-analyis"><span class="header-section-number">16.2.1</span> Quadrat Analyis</h3>
 <p>Quadrat analysis is a count-based method used to assess the global structure of a spatial pattern. In this method, the study area is divided into a grid of equally-sized cells (quadrats), and the number of points falling into each cell is counted. The results are then compared to the outcome of a Poisson distribution (which we use to model CSR).</p>
-<p>We can start by creating 12 quadrats and counting the number of lightning strikes in each. The number of quadrats is highly dependent on the size of the study region and the number of events.</p>
+<p>The number of quadrats is highly dependent on the size of the study region and the number of events.</p>
+<p>A very simple rule of thumb for choosing the number of quadrats in a quadrat test is to ensure that each quadrat contains enough points for the chi-square approximation to be valid. At a minimum, each quadrat should have at least 5 observations. However, for patterns that show clear clustering, this might not be possible. In that case, you can use Monte Carlo estimation for more robust estimates. For example, for our <code>sample_pattern_1</code> dataset, 16 quadrats is too few because many quadrats have 5 or fewer. However, even with 9 quadrats, there are low numbers (because this dataset likely shows clustering). Therefore, we might choose to continue with 9 quadrats but add a Monte Carlo estimation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#turn county boundary into owin object for spatstat</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>oc_owin <span class="ot">&lt;-</span> county_boundary <span class="sc">|&gt;</span> <span class="fu">as.owin</span>()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#turn lightning strikes into a ppp</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>lightning.ppp <span class="ot">&lt;-</span> <span class="fu">as.ppp</span>(<span class="fu">st_coordinates</span>(lightning), <span class="at">W =</span> oc_owin)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#create a quadrat count with 9 quadrats</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>q_count <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(lightning.ppp, <span class="at">nx =</span> <span class="dv">3</span>, <span class="at">ny =</span> <span class="dv">3</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#create a table with counts in each quadrat</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(q_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>q_count
-241 292 331 393 514 537 538 607 615 
-  1   1   1   1   1   1   1   1   1 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot counts</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(q_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sample_pattern_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -353,24 +323,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a quadrat count with 9 quadrats</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>q_count <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(sample_pattern_1, <span class="at">nx =</span> <span class="dv">3</span>, <span class="at">ny =</span> <span class="dv">3</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plot counts</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(q_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ppa_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p><strong>Q1: What do you notice about the quadrat counts (note that some of the quadrats are slightly smaller than others based on the boundaries of the county)?</strong></p>
-<p>We can formally test the quadrat counts against CSR using the quadrat test. A chi-square test compares quadrat counts to expected counts from CSR.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>q_test <span class="ot">&lt;-</span> <span class="fu">quadrat.test</span>(lightning.ppp, <span class="at">nx =</span> <span class="dv">3</span>, <span class="at">ny =</span> <span class="dv">3</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>q_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate variance to mean ratio</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="fu">as.vector</span>(q_count)) <span class="sc">/</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">as.vector</span>(q_count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.595339</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#run q test with simulations</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>q_test <span class="ot">&lt;-</span> <span class="fu">quadrat.test</span>(sample_pattern_1, <span class="at">nx=</span><span class="dv">3</span>, <span class="at">ny=</span><span class="dv">3</span>, <span class="at">method=</span> <span class="st">"MonteCarlo"</span>, <span class="at">nsim=</span><span class="dv">99</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>q_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-    Chi-squared test of CSR using quadrat counts
+    Conditional Monte Carlo test of CSR using quadrat counts
+    Test statistic: Pearson X2 statistic
 
-data:  lightning.ppp
-X2 = 225.12, df = 8, p-value &lt; 2.2e-16
+data:  sample_pattern_1
+X2 = 44.763, p-value = 0.02
 alternative hypothesis: two.sided
 
-Quadrats: 9 tiles (irregular windows)</code></pre>
+Quadrats: 3 by 3 grid of tiles</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(q_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(q_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ppa_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you explore the plot of the quadrat test, the first number (top-left) is the number of events in the quadrat. The second number (top-right) is the expected number of events under CSR. The third number (bottom) is the residual, which is based on how different the top two values are. A larger residual indicates a larger difference.</p>
+<p><strong>Q2: Based on the residuals, which quadrats differ the most from expected values. What does this tell us about the spatial pattern?</strong></p>
+<p>For <code>sample_pattern_1</code> our variance-to-mean ratio is 3.5, which indicates clustering. A Poisson (random) distribution has a variance-to-mean ratio of 1, meaning the variance equals the mean. Values greater than 1 indicate clustering, while values less than 1 indicate dispersion. The small p-value of the X2 quadrat test allows us to reject the null hypothesis of spatial randomness in favor of the alternative that the observed pattern is non-random and clustered.</p>
+<div class="cell" data-messsage="false">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sample_pattern_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -378,27 +378,62 @@ Quadrats: 9 tiles (irregular windows)</code></pre>
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a quadrat count with 9 quadrats</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>q_count <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(sample_pattern_2, <span class="at">nx =</span> <span class="dv">3</span>, <span class="at">ny =</span> <span class="dv">3</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plot counts</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(q_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ppa_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>The very small p-value tells us that we can reject the null hypothesis and indicates that the pattern is not random. To interpret whether the pattern is likely clustered or likely dispersed, we compare our X2 value (225.12) to the degrees of freedom (8). A larger X2 value means more clustered.</p>
-<p>If you explore the plot of the quadrat test, the first number (top-left) is the number of events in the quadrat. The second number (top-right) is the expected number of events under CSR. The third number (bottom) is the residual, which is based on how different the top two values are. A larger residual indicates a larger difference.</p>
-<p><strong>Q2: Based on the residuals, which quadrats differ the most from expected values. What does this tell us about the spatial pattern?</strong></p>
-<p>There are a few issues with quadrat tests. The results are highly sensitive to the size and placement of the quadrats and also don’t consider variability within the quadrats.</p>
-<p><strong>Q3: Experiment with different numbers of quadrats. How do your results change?</strong></p>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate variance to mean ratio</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="fu">as.vector</span>(q_count)) <span class="sc">/</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">as.vector</span>(q_count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.868421</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#run q test with simulations</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>q_test <span class="ot">&lt;-</span> <span class="fu">quadrat.test</span>(sample_pattern_2, <span class="at">nx=</span><span class="dv">3</span>, <span class="at">ny=</span><span class="dv">3</span>, <span class="at">method=</span> <span class="st">"MonteCarlo"</span>, <span class="at">nsim=</span><span class="dv">999</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>q_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Conditional Monte Carlo test of CSR using quadrat counts
+    Test statistic: Pearson X2 statistic
+
+data:  sample_pattern_2
+X2 = 14.947, p-value = 0.122
+alternative hypothesis: two.sided
+
+Quadrats: 3 by 3 grid of tiles</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(q_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ppa_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>On the other hand, our quadrat test for <code>sample_pattern_2</code> indicates that we fail to reject the null hypothesis of complete spatial randomness, suggesting the observed spatial pattern does not differ significantly from a random distribution.</p>
 </section>
 <section id="kernel-density" class="level3" data-number="16.2.2">
 <h3 data-number="16.2.2" class="anchored" data-anchor-id="kernel-density"><span class="header-section-number">16.2.2</span> Kernel Density</h3>
-<p>Kernel Density Estimation (KDE) is a simple way to create a smooth map of where points are most concentrated. Instead of dividing the study area into fixed quadrats and counting how many events fall in each one (like the quadrat test), KDE places a smooth, bell-shaped “influence curve” over every point in the dataset (kernel). These curves are highest at the point itself and gradually taper off with distance. When all of these curves are added together, they form a continuous surface where high peaks show areas with many nearby points and lower areas show places with fewer points. Because KDE is only a descriptive smoothing technique, it does not involve a statistical model or a test of randomness like a quadrat test does. However, it can capture more local variability and is not sensitive to size/placement of the window of analysis like quadrat tests.</p>
+<p>Kernel Density Estimation (KDE) is a simple way to create a smooth map of where points are most concentrated. Instead of dividing the study area into fixed quadrats and counting how many events fall in each one (like the quadrat test), KDE places an “influence curve” over every point in the dataset (kernel). When using a Guassian kernel, this curve is highest at the point itself and gradually taper off with distance. When all of these curves are added together, they form a continuous surface where high peaks show areas with many nearby points and lower areas show places with fewer points. Because KDE is only a descriptive smoothing technique, it does not involve a statistical model or a test of randomness like a quadrat test does. However, it can capture more local variability and is not sensitive to size/placement of the window of analysis like quadrat tests.In addition, KDE can be a useful input for accounting for intensity in second-order testing of spatial patterns.</p>
 <p>The main parameter of the KDE is bandwidth. The bandwidth controls the width of each kernel. A large bandwidth (each point has broader influence) is better at capturing global variation and a small bandwidth is better at capturing local variation.</p>
-<p>We can create a kernel density estimation for lightning strikes:</p>
+<p>In R, the <code>density()</code> function defaults to a gaussian kernel with a nrd0 bandwidth selector, a variation of Silverman’s Rule of Thumb that uses the minimum of the standard deviation and the scaled interquartile range to determine smoothness.</p>
+<p>We can create a kernel density estimation for our two patterns:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#turn off scientific notation</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#create KDE, sigma is the bandwidth (which is in feet in this dataset)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>kernel_density <span class="ot">&lt;-</span> <span class="fu">density</span>(lightning.ppp, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">sigma =</span> <span class="dv">4000</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#plot </span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(kernel_density)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create KDE</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>kernel_density1 <span class="ot">&lt;-</span> <span class="fu">density.ppp</span>(sample_pattern_1)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plot </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(kernel_density1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -406,23 +441,50 @@ Quadrats: 9 tiles (irregular windows)</code></pre>
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>kernel_density2 <span class="ot">&lt;-</span> <span class="fu">density.ppp</span>(sample_pattern_2)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plot </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(kernel_density2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ppa_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p><strong>Q4: Experiment with different bandwidth sizes. How does this change what you can learn about the data? What spatial patterns emerge in the data?</strong></p>
+</div>
+</div>
 </section>
 </section>
 <section id="analyzing-local-structure" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="analyzing-local-structure"><span class="header-section-number">16.3</span> Analyzing Local Structure</h2>
-<section id="nearest-neighbor-analysis" class="level3" data-number="16.3.1">
-<h3 data-number="16.3.1" class="anchored" data-anchor-id="nearest-neighbor-analysis"><span class="header-section-number">16.3.1</span> Nearest Neighbor Analysis</h3>
-<p>Nearest neighbor methods evaluate clustering or dispersion based on the distances between each point and its closest neighbors. In these methods, we are analyzing local structure, not global structure.</p>
-<section id="g--function" class="level4" data-number="16.3.1.1">
-<h4 data-number="16.3.1.1" class="anchored" data-anchor-id="g--function"><span class="header-section-number">16.3.1.1</span> G- Function</h4>
-<p>The G-function (nearest-neighbor distribution function) analyzes the distance from each point to its closest neighboring point. It helps us determine if points are closer (clustered) or farther (dispersed) from their neighbors than expected under CSR.</p>
-<p>If the G-curve of our data rises faster than the CSR curve at short distances (i.e., lies above it), this indicates that points tend to have closer neighbors than expected by chance, meaning clustering. If it rises slower (below CSR), points are more evenly spaced, indicating dispersion.</p>
+<section id="average-nearest-neighbor-ann" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="average-nearest-neighbor-ann"><span class="header-section-number">16.3.1</span> Average Nearest Neighbor (ANN)</h3>
+<p>The ANN statistic is a distance-based method for summarizing local spatial structure in a point pattern. ANN is focused specifically on the distance of each point to its nearest neighbor. Therefore, ANN is useful for identifying very local clustering.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>g_pattern1 <span class="ot">&lt;-</span> <span class="fu">Gest</span>(lightning.ppp, <span class="at">correction =</span> <span class="st">"none"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g_pattern1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#compute observed ANN</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ANN_obs1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">nndist</span>(sample_pattern_1))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">999</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>ANN_sim1 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(nsim)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#MC simulations</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim){</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">rpoispp</span>(kernel_density1) <span class="co">#simulate inhomogeneous Poisson using our KDE</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  ANN_sim1[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">nndist</span>(sim))</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#monte Carlo p-value (two-sided)</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>N_greater1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(ANN_sim1 <span class="sc">&gt;=</span> ANN_obs1)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>p_value1 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">min</span>((N_greater1 <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">/</span>(nsim <span class="sc">+</span> <span class="dv">1</span>), (nsim <span class="sc">-</span> N_greater1 <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">/</span>(nsim <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>p_value1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.966</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1f. Plot ANN null distribution</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ANN_sim1,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Monte Carlo Distribution of ANN (sample_pattern_1)"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Average Nearest Neighbor Distance"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ANN_obs1, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -430,17 +492,69 @@ Quadrats: 9 tiles (irregular windows)</code></pre>
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ANN_sim2 <span class="ot">&lt;-</span> <span class="fu">numeric</span>(nsim)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#observed ANN</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>ANN_obs2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">nndist</span>(sample_pattern_2))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#compute average intensity (lambda) for homogeneous Poisson</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>lambda2 <span class="ot">&lt;-</span> sample_pattern_2<span class="sc">$</span>n <span class="sc">/</span> <span class="fu">area.owin</span>(sample_pattern_2<span class="sc">$</span>window)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nsim){</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">rpoispp</span>(lambda2, <span class="at">win =</span> sample_pattern_2<span class="sc">$</span>window)  <span class="co"># simulate CSR</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  ANN_sim2[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">nndist</span>(sim))</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#monte Carlo p-value (two-sided)</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>N_greater2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(ANN_sim2 <span class="sc">&gt;=</span> ANN_obs2)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>p_value2 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">min</span>((N_greater2 <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">/</span>(nsim <span class="sc">+</span> <span class="dv">1</span>), (nsim <span class="sc">-</span> N_greater2 <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">/</span>(nsim <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>p_value2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.896</code></pre>
 </div>
-<p>Modeling the G-curve of our lightning data, we can see that it is very similar to the CSR-curve, meaning that there is likely not local clustering.</p>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot ANN null distribution</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ANN_sim2,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Monte Carlo Distribution of ANN (sample_pattern_2)"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Average Nearest Neighbor Distance"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> ANN_obs2, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ppa_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both of our point patterns do not indicate deviation from the null process, meaning there is no evidence of significant local clustering or dispersion; consequently, the observed spatial arrangements are statistically indistinguishable from their respective Poisson processes.</p>
 </section>
-<section id="f--function" class="level4" data-number="16.3.1.2">
-<h4 data-number="16.3.1.2" class="anchored" data-anchor-id="f--function"><span class="header-section-number">16.3.1.2</span> F- Function</h4>
-<p>The F-function (empty space function) examines the distance from randomly chosen locations in the study area to the nearest point in the dataset. It helps us determine whether points are generally closer to or farther from arbitrary locations than expected under Complete Spatial Randomness (CSR).</p>
-<p>If the F-curve of our data rises faster than the CSR curve at short distances (i.e., lies above it), this suggests that empty spaces are closer to events than expected, compared to the null landscape, as in a dispersed pattern. If it rises slower (below CSR), most locations are farther from empty space than expected by chance, indicating clustering.</p>
+<section id="l--function" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="l--function"><span class="header-section-number">16.3.2</span> L- Function</h3>
+<p>The L-Function is a transformation of Ripley’s K-Function used to diagnose local spatial structure by analyzing how a spatial point pattern deviates from randomness across different distance scales. It evaluates whether points tend to occur closer together or farther apart than would be expected if they were randomly distributed.</p>
+<p>The L-function measures the number of neighboring points within increasing distances of each point and applies a transformation that makes deviations from randomness easier to interpret. To understand the results, the observed L-function is compared to the expected values from a reference model, typically a homogeneous Poisson process (Complete Spatial Randomness, CSR). If the data show large-scale variation in intensity, an inhomogeneous Poisson process is used instead so that underlying global structure is accounted for and the results can focus on local structure.</p>
+<p>If observed values are greater than the expected values, the pattern indicates clustering at that distance; if they are smaller, the pattern suggests regular spacing or inhibition; and if they are similar, the pattern is consistent with randomness. Examining the L-function across distances allows researchers to identify the spatial scales at which clustering or dispersion occurs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>f_pattern <span class="ot">&lt;-</span> <span class="fu">Fest</span>(lightning.ppp, <span class="at">correction =</span> <span class="st">"none"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(f_pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#first point pattern demonstrated global structure, therefore we use an inhomogenous Poisson as comparison. Correction corrects for edge effects. </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>l_funct_pattern1 <span class="ot">&lt;-</span> <span class="fu">envelope</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  sample_pattern_1,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> Linhom, <span class="co">#inhomogenous</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nsim =</span> <span class="dv">99</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">funargs =</span> <span class="fu">list</span>(<span class="at">correction =</span> <span class="st">"iso"</span>),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">expression</span>(. <span class="sc">-</span> r)   <span class="co"># subtract r from obs and simulated</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
+81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 
+99.
+
+Done.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(l_funct_pattern1, <span class="at">legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -448,18 +562,40 @@ Quadrats: 9 tiles (irregular windows)</code></pre>
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#use homogenous for pattern 2 since it demonstrated no global structure</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>l_funct_pattern2 <span class="ot">&lt;-</span> <span class="fu">envelope</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  sample_pattern_2,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> Lest,<span class="co">#homogenous</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nsim =</span> <span class="dv">99</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">funargs =</span> <span class="fu">list</span>(<span class="at">correction =</span> <span class="st">"iso"</span>),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">expression</span>(. <span class="sc">-</span> r)   <span class="co"># subtract r from obs and simulated</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
+81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 
+99.
+
+Done.</code></pre>
 </div>
-<p>Modeling the F-curve of our lightning data, we see that it closely follows the CSR-curve, suggesting that random locations in the study area are, on average, about as close to the nearest lightning strike as expected under Complete Spatial Randomness.</p>
-<p><strong>Q5: Based on this global and local analysis of spatial patterns in the lightning strike dataset, how would you describe the spatial pattern of this dataset?</strong></p>
-<p><strong>Q6: Can you hypothesis about what type of process might be determining this spatial pattern?</strong></p>
-</section>
-</section>
-</section>
-<section id="mini-challenge" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">16.4</span> Mini-Challenge</h2>
-<p>The <a href="https://www.ncei.noaa.gov/stormevents/">NOAA Storm Events</a> dataset is a long-term dataset that contains records of major storms/weather events that are intense enough to cause loss of life, injuries, or significant property damage. The data subset that you have is all event entries in Orange County from 2010-2025. Using the methods we’ve learned, analyze the spatial pattern of this dataset considering its local and global structure. Hypothesize on the types of processes (and even the actual processes) that might be determining this spatial pattern.</p>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(l_funct_pattern2, <span class="at">legend =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ppa_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In these plots, the grey indicates the simulation envelope, the red line is CSR (or inhomogenous point pattern estimated from KDE) and the black line is the dataset value.</p>
+<p>For the first pattern, the inhomogeneous L-function shows values close to zero across all distances, indicating that once the global variation in intensity is accounted for, the points are distributed roughly as expected under an inhomogeneous Poisson process. This suggests there is no significant local clustering or regularity beyond what is explained by the overall trend, so the observed spatial structure is largely due to the global inhomogeneity rather than local interactions between points.</p>
+<p>For the second pattern, the centered L-function rises above zero for intermediate distances, approximately from 0.07 to 0.25 of the unit window. This positive deviation indicates that points are closer together than expected under a homogeneous Poisson process, revealing local clustering at that scale.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

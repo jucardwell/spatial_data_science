@@ -334,9 +334,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.scale =</span> <span class="fu">tm_scale_bivariate</span>(<span class="at">values =</span><span class="st">"bivario.folk_warmth"</span>, </span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">scale1 =</span> <span class="fu">tm_scale_intervals</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Lo"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"Hi"</span>)), </span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">scale2 =</span> <span class="fu">tm_scale_intervals</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Lo"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"Hi"</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Labels abbreviated by the first two letters, e.g.: "Lo" =&gt; "Lo". However, there are duplicated abbreviations.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -351,11 +348,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="15.4" class="anchored" data-anchor-id="regression"><span class="header-section-number">15.4</span> Regression</h2>
 <p>Linear regression provides a formal statistical framework for modeling the relationship between two variables. In an ordinary least squares (OLS) regression, we estimate the expected value of a dependent variable as a linear function of an independent variable. OLS allows us to quantify the strength and direction of the relationship and to assess whether the observed association is unlikely to have occurred by chance.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#traditional regression</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ols_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(pct_no_health_insur <span class="sc">~</span> pct_under_poverty_level, <span class="at">data =</span> acs_tract_nc)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#see results</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#traditional regression</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ols_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(pct_no_health_insur <span class="sc">~</span> pct_under_poverty_level, <span class="at">data =</span> acs_tract_nc)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#see results</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -377,16 +374,14 @@ Multiple R-squared:  0.1684,    Adjusted R-squared:  0.1657
 F-statistic: 61.76 on 1 and 305 DF,  p-value: 6.723e-14</code></pre>
 </div>
 </div>
+<p>We can interpret the OLS by looking at a few key things. The pct_under_poverty_level estimate tells us that a 1 unit increase in poverty is associated with a .31 unit increase in percent of population without health insurance. This coefficient is statistically significant. Our intercept tells us what conditions would be expected at 0% poverty (i.e.&nbsp;5% without health insurance). Our multiple R-squared tells us how much of the variation in percent with no health insurance can be explained with our model (about 17% of our variation). The F-statistic shows that the model as a whole is statistically significant. Finally, the Residual standard error suggests that the typical deviation between observed and predicted uninsured rates is about 6 percentage points, indicating that while poverty is a significant predictor, a substantial portion of variation remains unexplained by this model.</p>
 <p>However, OLS regression relies on several assumptions, including that observations are independent. One way to evaluate whether spatial dependence is present is to examine the residuals from an OLS regression. If the model has adequately captured the underlying process, residuals should be randomly distributed across space. Spatial clustering in residuals suggests that important spatial structure remains unmodeled. A statistically significant Moran’s I indicates that the independence assumption of OLS has been violated and that a spatial regression approach may be more appropriate.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add residuals as a variable</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>acs_tract_nc <span class="ot">&lt;-</span>acs_tract_nc <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">olsresid =</span> <span class="fu">resid</span>(ols_model)) </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#map residuals</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(acs_tract_nc) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"olsresid"</span>,<span class="at">fill.scale =</span> <span class="fu">tm_scale_intervals</span>(<span class="at">values =</span> <span class="st">"bu_pu"</span>, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">n =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Multiple palettes called "bu_pu" found: "brewer.bu_pu", "matplotlib.bu_pu". The first one, "brewer.bu_pu", is returned.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add residuals as a variable</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>acs_tract_nc <span class="ot">&lt;-</span>acs_tract_nc <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">olsresid =</span> <span class="fu">resid</span>(ols_model)) </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#map residuals</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(acs_tract_nc) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"olsresid"</span>,<span class="at">fill.scale =</span> <span class="fu">tm_scale_intervals</span>(<span class="at">values =</span> <span class="st">"bu_pu"</span>, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">n =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -394,15 +389,15 @@ F-statistic: 61.76 on 1 and 305 DF,  p-value: 6.723e-14</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate neighborhoods</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(acs_tract_nc, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#set neighborhood weight matrix</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>nbw <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(nb, <span class="at">style =</span> <span class="st">"W"</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate Morans I</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>gmoran <span class="ot">&lt;-</span> <span class="fu">moran.test</span>(acs_tract_nc<span class="sc">$</span>olsresid, nbw)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>gmoran</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate neighborhoods</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(acs_tract_nc, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#set neighborhood weight matrix</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>nbw <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(nb, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate Morans I</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>gmoran <span class="ot">&lt;-</span> <span class="fu">moran.test</span>(acs_tract_nc<span class="sc">$</span>olsresid, nbw)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>gmoran</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Moran I test under randomisation
@@ -426,73 +421,76 @@ Moran I statistic       Expectation          Variance
 <p>The spatial error model, in contrast, assumes that spatial dependence operates through the error term rather than through direct interaction between dependent variables. This approach is appropriate when unobserved spatial processes affect the outcome but are not explicitly included in the model.</p>
 <p>To choose an appropriate model, it is important that we don’t just look at model fit, but that we also consider the potential underlying processes. In this case, it is not doesn’t make much logical sense that it would be a diffusive process, so a lag model wouldn’t be appropriate.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lag model</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fit.lag<span class="ot">&lt;-</span><span class="fu">lagsarlm</span>(pct_under_poverty_level <span class="sc">~</span> pct_no_health_insur,  </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> acs_tract_nc, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">listw =</span> nbw) </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#see results</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.lag)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lag model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fit.lag<span class="ot">&lt;-</span><span class="fu">lagsarlm</span>(pct_no_health_insur <span class="sc">~</span> pct_under_poverty_level,  </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> acs_tract_nc, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">listw =</span> nbw) </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#see results</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.lag)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:lagsarlm(formula = pct_under_poverty_level ~ pct_no_health_insur, 
+Call:lagsarlm(formula = pct_no_health_insur ~ pct_under_poverty_level, 
     data = acs_tract_nc, listw = nbw)
 
 Residuals:
-      Min        1Q    Median        3Q       Max 
--13.70657  -3.54652  -0.68192   2.65004  36.90662 
+     Min       1Q   Median       3Q      Max 
+-11.6932  -3.4795  -1.2084   2.3006  22.0051 
 
 Type: lag 
 Coefficients: (asymptotic standard errors) 
-                    Estimate Std. Error z value  Pr(&gt;|z|)
-(Intercept)         0.332002   0.642734  0.5165    0.6055
-pct_no_health_insur 0.320553   0.054177  5.9168 3.283e-09
+                        Estimate Std. Error z value  Pr(&gt;|z|)
+(Intercept)             1.657568   0.605603  2.7371  0.006199
+pct_under_poverty_level 0.228690   0.037297  6.1316 8.702e-10
 
-Rho: 0.71701, LR test value: 129.61, p-value: &lt; 2.22e-16
-Asymptotic standard error: 0.044171
-    z-value: 16.233, p-value: &lt; 2.22e-16
-Wald statistic: 263.5, p-value: &lt; 2.22e-16
+Rho: 0.51578, LR test value: 57.678, p-value: 3.0864e-14
+Asymptotic standard error: 0.062164
+    z-value: 8.2971, p-value: &lt; 2.22e-16
+Wald statistic: 68.841, p-value: &lt; 2.22e-16
 
-Log likelihood: -1010.117 for lag model
-ML residual variance (sigma squared): 37.191, (sigma: 6.0984)
+Log likelihood: -963.288 for lag model
+ML residual variance (sigma squared): 29.377, (sigma: 5.4201)
 Number of observations: 307 
 Number of parameters estimated: 4 
-AIC: 2028.2, (AIC for lm: 2155.8)
+AIC: 1934.6, (AIC for lm: 1990.3)
 LM test for residual autocorrelation
-test value: 2.2817, p-value: 0.13091</code></pre>
+test value: 0.28046, p-value: 0.5964</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#error model</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fit.error<span class="ot">&lt;-</span><span class="fu">errorsarlm</span>(pct_under_poverty_level <span class="sc">~</span> pct_no_health_insur,  </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> acs_tract_nc, </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">listw =</span> nbw)  </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#see results</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#error model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fit.error<span class="ot">&lt;-</span><span class="fu">errorsarlm</span>(pct_no_health_insur <span class="sc">~</span> pct_under_poverty_level,  </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> acs_tract_nc, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">listw =</span> nbw)  </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#see results</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Call:errorsarlm(formula = pct_under_poverty_level ~ pct_no_health_insur, 
+Call:errorsarlm(formula = pct_no_health_insur ~ pct_under_poverty_level, 
     data = acs_tract_nc, listw = nbw)
 
 Residuals:
-      Min        1Q    Median        3Q       Max 
--13.48710  -3.45216  -0.80146   2.37222  35.79070 
+     Min       1Q   Median       3Q      Max 
+-11.5055  -3.5309  -1.1656   2.5294  21.7796 
 
 Type: error 
 Coefficients: (asymptotic standard errors) 
-                    Estimate Std. Error z value  Pr(&gt;|z|)
-(Intercept)         7.540770   1.455428  5.1811 2.205e-07
-pct_no_health_insur 0.363018   0.061989  5.8562 4.736e-09
+                        Estimate Std. Error z value  Pr(&gt;|z|)
+(Intercept)             5.253212   0.811811  6.4710 9.737e-11
+pct_under_poverty_level 0.286329   0.044786  6.3933 1.624e-10
 
-Lambda: 0.74554, LR test value: 127.08, p-value: &lt; 2.22e-16
-Asymptotic standard error: 0.044664
-    z-value: 16.692, p-value: &lt; 2.22e-16
-Wald statistic: 278.63, p-value: &lt; 2.22e-16
+Lambda: 0.5388, LR test value: 57.283, p-value: 3.7748e-14
+Asymptotic standard error: 0.063813
+    z-value: 8.4435, p-value: &lt; 2.22e-16
+Wald statistic: 71.292, p-value: &lt; 2.22e-16
 
-Log likelihood: -1011.383 for error model
-ML residual variance (sigma squared): 36.989, (sigma: 6.0818)
+Log likelihood: -963.4851 for error model
+ML residual variance (sigma squared): 29.239, (sigma: 5.4073)
 Number of observations: 307 
 Number of parameters estimated: 4 
-AIC: 2030.8, (AIC for lm: 2155.8)</code></pre>
+AIC: 1935, (AIC for lm: 1990.3)</code></pre>
 </div>
 </div>
+<p>The spatial lag model examines how the percent of the population without health insurance in one tract is influenced both by the poverty rate in that tract and by uninsured rates in neighboring tracts. From the Coefficients section, the estimate for pct_under_poverty_level (0.228690) indicates that a 1 percentage point increase in poverty is associated with about a 0.23 percentage point increase in the uninsured rate. This relationship is statistically significant based on the p-value. The spatial dependence is captured by Rho = 0.51578, which is positive and statistically significant. This suggests that uninsured rates are spatially clustered across tracts. The AIC (1934.6) is lower than the OLS AIC (1990.3), indicating improved model fit, and the LM test for residual autocorrelation (p = 0.5964) suggests no remaining spatial autocorrelation.</p>
+<p>The spatial error model examines spatial dependence in the residuals. From the Coefficients section, the estimate for pct_under_poverty_level (0.286329) indicates that a 1 percentage point increase in poverty is associated with about a 0.29 percentage point increase in the uninsured rate, and this effect is statistically significant. The spatial error parameter, Lambda = 0.5388 indicates that unobserved factors affecting uninsured rates are spatially correlated. The AIC (1935) is also lower than the OLS AIC (1990.3), showing improved fit.</p>
+<p>Although the lag model has a slightly lower AIC than the error model, the difference is minimal. The substantive interpretation of the lag model is not very convincing in this context, it doesn’t make much sense that there would be a direct interaction between block groups in terms of informing insurance coverage. Instead, Instead, similarities across neighboring areas are more likely due to shared underlying factors. Given the stronger theoretical justification, the spatial error model is likely more appropriate.</p>
 </section>
 <section id="mini-challenge" class="level2" data-number="15.6">
 <h2 data-number="15.6" class="anchored" data-anchor-id="mini-challenge"><span class="header-section-number">15.6</span> Mini-Challenge</h2>
