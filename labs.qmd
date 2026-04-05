@@ -418,7 +418,7 @@ This lab is designed to assess the [Concept 8 Competencies](https://jucardwell.g
 
 ### Lab Instructions
 
-1.  Create a new .Rmd named "LASTNAME_lab8.Rmd". Save it into your GEOG391 folder.
+1.  Create a new .Rmd named "LASTNAME_lab8.Rmd". Save it into your GEOG215 folder.
 
 2.  Remove sample text (leaving the header and set-up chunk). Add a chunk for loading libraries and reading in data. Add the following code into that chunk:
 
@@ -450,3 +450,80 @@ This lab is designed to assess the [Concept 8 Competencies](https://jucardwell.g
 
     -   Calculate and map Local Indicators of Autocorrelation for all datasets
     -   Describe your results. What is the spatial pattern of clustering? Propose one reasonable hypothesis for why this pattern might exist. Also, compare the local spatial structure of chronic absences before and after covid.
+
+## Lab 9
+
+### Overview
+
+In the Bivariate Relationships tutorial, we learned how to explore relationships with two variables. We also learned that spatial autocorrelation can appear in model residuals when nearby locations share similar values for reasons not fully captured by the observed covariates, so we learned how to use spatial regression models to help account for residual autocorrelation.
+
+In the Point Pattern Analysis tutorial, we learned how to interpret the spatial structure of unmarked point data.
+
+In this lab, you will practice applying these skills to a dataset representing wildfire locations in Croatan National Forest in North Carolina from 1957-2024 (from [US Forest Service](https://data-usfs.hub.arcgis.com/datasets/usfs::national-usfs-fire-occurrence-point-feature-layer/explore?location=64.276190%2C-9.593052%2C5.89)) and data from the American Community Survey for North Carolina census tracts.
+
+### Specifications
+
+This lab is designed to assess the [Concept 9 Competencies](https://jucardwell.github.io/quant_methods/competencies.html#concept-8-patterns-in-values). You'll be evaluated on the following specifications:
+
+| Specification |
+|------------------------------------------------------------------------|
+| HTML and RMD versions the R Markdown file have been submitted. |
+| The RMD is clearly organized (appropriate headings, code chunk formatting, and clean output) so that the analysis is easy to read and understand |
+| OLS Model: Student fits the specified OLS model and interprets the coefficient estimates in context |
+| Residual Spatial Dependence: Student defines a neighborhood structure, creates a spatial weights matrix, and tests OLS residuals for spatial autocorrelation. Written interpretation explains whether residual spatial structure is present |
+| Traditional Spatial Model: Student fits an appropriate spatial regression model and explains why it was chosen. Written interpretation compares the spatial model to the OLS model |
+| Analyzing Global Structure: Student maps the point pattern, computes and visualizes a quadrat count (with Monte Carlo simulations) and tests it against CSR, and creates a kernel density estimate for both datasets. |
+| Analyzing Local Structure: Student computes and visualizes ANN and L-function (both with Monte Carlo simulations). Student appropriately determines whether to test against CSR or an Inhomogeneous Poisson Pattern. |
+| Describing Results: Student integrates global and local results to identify the dominant spatial process (first-order, second-order, or both) and proposes a specific hypothesis informed by background research. |
+
+### Lab Instructions
+
+1.  Create a new .Rmd named "LASTNAME_lab9.Rmd". Save it into your GEOG215 folder.
+
+2.  Remove sample text (leaving the header and set-up chunk). Add a chunk for loading libraries and reading in data. Add the following code into that chunk:
+
+    ```{r, eval=F}
+    library(sf)
+    library(tidyverse)
+    library(tmap)
+    library(spdep)
+    library(spatialreg)
+    library(spatstat)
+
+    acs_tract_nc <- st_read("https://drive.google.com/uc?export=download&id=1cnz4xgdDRZvlXzN3IyvCxOETRWfrpw-0")
+
+
+    wildfire_points <- st_read("https://drive.google.com/uc?export=download&id=16m9HJAn5uzSyiUdhdhoboPRRi9dDDQaT") |> st_transform(crs =2264)
+
+    ###THIS TURNS THE DATA INTO A POINT PATTERN OBJECT WITH A DEFINED BOUNDARY###
+    ### USE THIS FOR PPA####
+    combined_wildfire <- st_union(wildfire_points)
+    bb_wildfire <- st_convex_hull(combined_wildfire) |> as.owin()
+    wildfire.ppp <- as.ppp(st_coordinates(wildfire_points), W = bb_wildfire)
+
+    ```
+
+3.  Under a header called "OLS" add a code chunk, and a written analysis below the code chunk that does the following:
+
+    -   Fits an OLS model with a dependent variable of median_hh_inc and a single predictor variable that you choose from the `acs_tract_data`
+    -   Describe the results of the OLS model. Interpret the relationship between median household income and the predictor variable.
+
+4.  Under a header called "Residual Spatial Dependence" add a code chunk, and a written analysis below the code chunk that does the following:
+
+    -   Test the OLS residuals for spatial dependence
+    -   Interprets the Moran’s I statistic for the OLS residuals and explain what the result suggests about the presence and strength of spatial autocorrelation.
+
+5.  Under a header called "Spatial Model" add a code chunk, and a written analysis below the code chunk that does the following:
+
+    -   Determine whether your analysis of the residuals indicates that you should use a spatial model. If so:
+        -   Determine whether an SEM or SLM is better suited for this dataset and run that model.
+        -   Interpret the results of the spatial regression model, including the estimated spatial parameter.
+
+6.  Under a header called "Analyzing Wildfire Points" add a code chunk, and a written analysis below the code chunk that does the following:
+
+    -   Make a map (with basemap) of the `wildfire_points` object
+    -   Test the quadrat count against CSR using a quadrat density test (use nx = 8, ny = 8). Add Monte Carlo simulations (n = 99) to the statistical testing
+    -   Create a KDE for wildfire counts
+    -   Run an ANN analysis that uses Monte Carlo simulations (n = 99) to create an empirical probability. You will need to determine if your simulations should homogeneous or inhomogeneous based on your global analysis.
+    -   Evaluate the L-function and envelope (n = 99). You will need to determine if you should use the homogeneous or inhomogeneous function (and simulations) based on your global analysis. Because our border is not a rectangle, we can't use the "iso" correction, so use the "border" correction instead.
+    -   In text below the chunk, identify whether there is evidence for the pattern of wildfires reflecting first-order processes, second-order processes, or a combination of both by clearly interpreting your analytical results. Based on brief background research on wildfires and the study area, propose one specific, plausible hypothesis about an underlying process that could be contributing to the spatial pattern.

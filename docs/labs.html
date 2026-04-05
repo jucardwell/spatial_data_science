@@ -301,6 +301,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#specifications-7" id="toc-specifications-7" class="nav-link" data-scroll-target="#specifications-7"><span class="header-section-number">4.9.2</span> Specifications</a></li>
   <li><a href="#lab-instructions-7" id="toc-lab-instructions-7" class="nav-link" data-scroll-target="#lab-instructions-7"><span class="header-section-number">4.9.3</span> Lab Instructions</a></li>
   </ul></li>
+  <li><a href="#lab-9" id="toc-lab-9" class="nav-link" data-scroll-target="#lab-9"><span class="header-section-number">4.10</span> Lab 9</a>
+  <ul class="collapse">
+  <li><a href="#overview-8" id="toc-overview-8" class="nav-link" data-scroll-target="#overview-8"><span class="header-section-number">4.10.1</span> Overview</a></li>
+  <li><a href="#specifications-8" id="toc-specifications-8" class="nav-link" data-scroll-target="#specifications-8"><span class="header-section-number">4.10.2</span> Specifications</a></li>
+  <li><a href="#lab-instructions-8" id="toc-lab-instructions-8" class="nav-link" data-scroll-target="#lab-instructions-8"><span class="header-section-number">4.10.3</span> Lab Instructions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -903,7 +909,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="lab-instructions-7" class="level3" data-number="4.9.3">
 <h3 data-number="4.9.3" class="anchored" data-anchor-id="lab-instructions-7"><span class="header-section-number">4.9.3</span> Lab Instructions</h3>
 <ol type="1">
-<li><p>Create a new .Rmd named “LASTNAME_lab8.Rmd”. Save it into your GEOG391 folder.</p></li>
+<li><p>Create a new .Rmd named “LASTNAME_lab8.Rmd”. Save it into your GEOG215 folder.</p></li>
 <li><p>Remove sample text (leaving the header and set-up chunk). Add a chunk for loading libraries and reading in data. Add the following code into that chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load libraries</span></span>
@@ -930,6 +936,108 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Calculate and map Local Indicators of Autocorrelation for all datasets</li>
 <li>Describe your results. What is the spatial pattern of clustering? Propose one reasonable hypothesis for why this pattern might exist. Also, compare the local spatial structure of chronic absences before and after covid.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="lab-9" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="lab-9"><span class="header-section-number">4.10</span> Lab 9</h2>
+<section id="overview-8" class="level3" data-number="4.10.1">
+<h3 data-number="4.10.1" class="anchored" data-anchor-id="overview-8"><span class="header-section-number">4.10.1</span> Overview</h3>
+<p>In the Bivariate Relationships tutorial, we learned how to explore relationships with two variables. We also learned that spatial autocorrelation can appear in model residuals when nearby locations share similar values for reasons not fully captured by the observed covariates, so we learned how to use spatial regression models to help account for residual autocorrelation.</p>
+<p>In the Point Pattern Analysis tutorial, we learned how to interpret the spatial structure of unmarked point data.</p>
+<p>In this lab, you will practice applying these skills to a dataset representing wildfire locations in Croatan National Forest in North Carolina from 1957-2024 (from <a href="https://data-usfs.hub.arcgis.com/datasets/usfs::national-usfs-fire-occurrence-point-feature-layer/explore?location=64.276190%2C-9.593052%2C5.89">US Forest Service</a>) and data from the American Community Survey for North Carolina census tracts.</p>
+</section>
+<section id="specifications-8" class="level3" data-number="4.10.2">
+<h3 data-number="4.10.2" class="anchored" data-anchor-id="specifications-8"><span class="header-section-number">4.10.2</span> Specifications</h3>
+<p>This lab is designed to assess the <a href="https://jucardwell.github.io/quant_methods/competencies.html#concept-8-patterns-in-values">Concept 9 Competencies</a>. You’ll be evaluated on the following specifications:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HTML and RMD versions the R Markdown file have been submitted.</td>
+</tr>
+<tr class="even">
+<td>The RMD is clearly organized (appropriate headings, code chunk formatting, and clean output) so that the analysis is easy to read and understand</td>
+</tr>
+<tr class="odd">
+<td>OLS Model: Student fits the specified OLS model and interprets the coefficient estimates in context</td>
+</tr>
+<tr class="even">
+<td>Residual Spatial Dependence: Student defines a neighborhood structure, creates a spatial weights matrix, and tests OLS residuals for spatial autocorrelation. Written interpretation explains whether residual spatial structure is present</td>
+</tr>
+<tr class="odd">
+<td>Traditional Spatial Model: Student fits an appropriate spatial regression model and explains why it was chosen. Written interpretation compares the spatial model to the OLS model</td>
+</tr>
+<tr class="even">
+<td>Analyzing Global Structure: Student maps the point pattern, computes and visualizes a quadrat count (with Monte Carlo simulations) and tests it against CSR, and creates a kernel density estimate for both datasets.</td>
+</tr>
+<tr class="odd">
+<td>Analyzing Local Structure: Student computes and visualizes ANN and L-function (both with Monte Carlo simulations). Student appropriately determines whether to test against CSR or an Inhomogeneous Poisson Pattern.</td>
+</tr>
+<tr class="even">
+<td>Describing Results: Student integrates global and local results to identify the dominant spatial process (first-order, second-order, or both) and proposes a specific hypothesis informed by background research.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-instructions-8" class="level3" data-number="4.10.3">
+<h3 data-number="4.10.3" class="anchored" data-anchor-id="lab-instructions-8"><span class="header-section-number">4.10.3</span> Lab Instructions</h3>
+<ol type="1">
+<li><p>Create a new .Rmd named “LASTNAME_lab9.Rmd”. Save it into your GEOG215 folder.</p></li>
+<li><p>Remove sample text (leaving the header and set-up chunk). Add a chunk for loading libraries and reading in data. Add the following code into that chunk:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>acs_tract_nc <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=1cnz4xgdDRZvlXzN3IyvCxOETRWfrpw-0"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>wildfire_points <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"https://drive.google.com/uc?export=download&amp;id=16m9HJAn5uzSyiUdhdhoboPRRi9dDDQaT"</span>) <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="at">crs =</span><span class="dv">2264</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">###THIS TURNS THE DATA INTO A POINT PATTERN OBJECT WITH A DEFINED BOUNDARY###</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="do">### USE THIS FOR PPA####</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>combined_wildfire <span class="ot">&lt;-</span> <span class="fu">st_union</span>(wildfire_points)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>bb_wildfire <span class="ot">&lt;-</span> <span class="fu">st_convex_hull</span>(combined_wildfire) <span class="sc">|&gt;</span> <span class="fu">as.owin</span>()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>wildfire.ppp <span class="ot">&lt;-</span> <span class="fu">as.ppp</span>(<span class="fu">st_coordinates</span>(wildfire_points), <span class="at">W =</span> bb_wildfire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Under a header called “OLS” add a code chunk, and a written analysis below the code chunk that does the following:</p>
+<ul>
+<li>Fits an OLS model with a dependent variable of median_hh_inc and a single predictor variable that you choose from the <code>acs_tract_data</code></li>
+<li>Describe the results of the OLS model. Interpret the relationship between median household income and the predictor variable.</li>
+</ul></li>
+<li><p>Under a header called “Residual Spatial Dependence” add a code chunk, and a written analysis below the code chunk that does the following:</p>
+<ul>
+<li>Test the OLS residuals for spatial dependence</li>
+<li>Interprets the Moran’s I statistic for the OLS residuals and explain what the result suggests about the presence and strength of spatial autocorrelation.</li>
+</ul></li>
+<li><p>Under a header called “Spatial Model” add a code chunk, and a written analysis below the code chunk that does the following:</p>
+<ul>
+<li>Determine whether your analysis of the residuals indicates that you should use a spatial model. If so:
+<ul>
+<li>Determine whether an SEM or SLM is better suited for this dataset and run that model.</li>
+<li>Interpret the results of the spatial regression model, including the estimated spatial parameter.</li>
+</ul></li>
+</ul></li>
+<li><p>Under a header called “Analyzing Wildfire Points” add a code chunk, and a written analysis below the code chunk that does the following:</p>
+<ul>
+<li>Make a map (with basemap) of the <code>wildfire_points</code> object</li>
+<li>Test the quadrat count against CSR using a quadrat density test (use nx = 8, ny = 8). Add Monte Carlo simulations (n = 99) to the statistical testing</li>
+<li>Create a KDE for wildfire counts</li>
+<li>Run an ANN analysis that uses Monte Carlo simulations (n = 99) to create an empirical probability. You will need to determine if your simulations should homogeneous or inhomogeneous based on your global analysis.</li>
+<li>Evaluate the L-function and envelope (n = 99). You will need to determine if you should use the homogeneous or inhomogeneous function (and simulations) based on your global analysis. Because our border is not a rectangle, we can’t use the “iso” correction, so use the “border” correction instead.</li>
+<li>In text below the chunk, identify whether there is evidence for the pattern of wildfires reflecting first-order processes, second-order processes, or a combination of both by clearly interpreting your analytical results. Based on brief background research on wildfires and the study area, propose one specific, plausible hypothesis about an underlying process that could be contributing to the spatial pattern.</li>
 </ul></li>
 </ol>
 
