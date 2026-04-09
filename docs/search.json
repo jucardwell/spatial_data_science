@@ -544,7 +544,7 @@
     "href": "competencies.html#concept-8-spatial-neighborhoods-and-weights",
     "title": "3  Course Competencies",
     "section": "3.8 Concept 8: Spatial Neighborhoods and Weights",
-    "text": "3.8 Concept 8: Spatial Neighborhoods and Weights\nGuiding Question: How do we quantify spatial relationships? \n\nExplain why different spatial weight and neighborhood definitions are used and how they influence analysis outcomes\nConstruct spatial weights and spatial weights matrices, justifying the choice of method for a specific analytic context",
+    "text": "3.8 Concept 8: Spatial Neighborhoods and Weights\nGuiding Question: How do we quantify spatial relationships? \n\nExplain how alternative neighborhood definitions (distance, contiguity, k-nearest) reflect different spatial processes and assumptions about interaction.\nConstruct and justify spatial weights matrices for a given dataset, aligning the choice of weights with data type, scale, and hypothesized mechanism of spatial dependence",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
     ]
@@ -554,7 +554,7 @@
     "href": "competencies.html#concept-9-exploratory-spatial-data-analysis-esda",
     "title": "3  Course Competencies",
     "section": "3.9 Concept 9: Exploratory Spatial Data Analysis (ESDA)",
-    "text": "3.9 Concept 9: Exploratory Spatial Data Analysis (ESDA)\nGuiding Question: How can we detect and interpret spatial patterns in data?\n\nCalculate and interpret global and local spatial autocorrelation metrics (e.g., Moran’s I, LISA)\nConduct point pattern analysis using nearest-neighbor measures and density estimation\nIdentify and interpret clusters, hot spots, outliers, and distinguish random from structured spatial patterns.\nUse bivariate maps, scatterplots, and regression to visualize and interpret spatial relationships between two variables\nUse ESDA results to generate or refine hypotheses and research questions",
+    "text": "3.9 Concept 9: Exploratory Spatial Data Analysis (ESDA)\nGuiding Question: How can we detect and interpret spatial patterns in data?\n\nMeasure and interpret global and local spatial autocorrelation (e.g., Moran’s I, LISA) to distinguish clustered, dispersed, and random patterns\nDescribe first-order and second-order spatial processes and how they generate observed spatial patterns\nAnalyze point patterns using quadrat density analysis, kernel density estimation (KDE), average nearest neighbor, and Ripley’s K/L functions to evaluate departures from complete spatial randomness (CSR)\nConstruct and interpret bivariate visualizations (scatterplots, correlation, bivariate maps) to assess the direction, strength, and form of relationships between variables\nSpecify and interpret an Ordinary Least Squares (OLS) regression model, including defining outcome and predictor variables and interpreting coefficients, intercepts, and residuals\nDiagnose spatial autocorrelation in OLS residuals to evaluate violations of independence and identify underlying spatial processes\nDetermine and justify the appropriate modeling approach (OLS, spatial lag, or spatial error) based on whether processes reflect spillover between observations or spatially structured unobserved factors\nGenerate and refine hypotheses about spatial processes using ESDA, point pattern analysis, and regression results, recognizing limitations of causal inference",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Course Competencies</span>"
     ]

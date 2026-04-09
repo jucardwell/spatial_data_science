@@ -330,19 +330,22 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="3.8" class="anchored" data-anchor-id="concept-8-spatial-neighborhoods-and-weights"><span class="header-section-number">3.8</span> Concept 8: Spatial Neighborhoods and Weights</h2>
 <p><strong>Guiding Question</strong>: How do we quantify spatial relationships?&nbsp;</p>
 <ul>
-<li>Explain why different spatial weight and neighborhood definitions are used and how they influence analysis outcomes</li>
-<li>Construct spatial weights and spatial weights matrices, justifying the choice of method for a specific analytic context</li>
+<li>Explain how alternative neighborhood definitions (distance, contiguity, k-nearest) reflect different spatial processes and assumptions about interaction.</li>
+<li>Construct and justify spatial weights matrices for a given dataset, aligning the choice of weights with data type, scale, and hypothesized mechanism of spatial dependence</li>
 </ul>
 </section>
 <section id="concept-9-exploratory-spatial-data-analysis-esda" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="concept-9-exploratory-spatial-data-analysis-esda"><span class="header-section-number">3.9</span> Concept 9: Exploratory Spatial Data Analysis (ESDA)</h2>
 <p><strong>Guiding Question:</strong> How can we detect and interpret spatial patterns in data?</p>
 <ul>
-<li>Calculate and interpret global and local spatial autocorrelation metrics (e.g., Moran’s I, LISA)</li>
-<li>Conduct point pattern analysis using nearest-neighbor measures and density estimation</li>
-<li>Identify and interpret clusters, hot spots, outliers, and distinguish random from structured spatial patterns.</li>
-<li>Use bivariate maps, scatterplots, and regression to visualize and interpret spatial relationships between two variables</li>
-<li>Use ESDA results to generate or refine hypotheses and research questions</li>
+<li>Measure and interpret global and local spatial autocorrelation (e.g., Moran’s I, LISA) to distinguish clustered, dispersed, and random patterns</li>
+<li>Describe first-order and second-order spatial processes and how they generate observed spatial patterns</li>
+<li>Analyze point patterns using quadrat density analysis, kernel density estimation (KDE), average nearest neighbor, and Ripley’s K/L functions to evaluate departures from complete spatial randomness (CSR)</li>
+<li>Construct and interpret bivariate visualizations (scatterplots, correlation, bivariate maps) to assess the direction, strength, and form of relationships between variables</li>
+<li>Specify and interpret an Ordinary Least Squares (OLS) regression model, including defining outcome and predictor variables and interpreting coefficients, intercepts, and residuals</li>
+<li>Diagnose spatial autocorrelation in OLS residuals to evaluate violations of independence and identify underlying spatial processes</li>
+<li>Determine and justify the appropriate modeling approach (OLS, spatial lag, or spatial error) based on whether processes reflect spillover between observations or spatially structured unobserved factors</li>
+<li>Generate and refine hypotheses about spatial processes using ESDA, point pattern analysis, and regression results, recognizing limitations of causal inference</li>
 </ul>
 
 
