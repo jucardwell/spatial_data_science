@@ -95,7 +95,7 @@ tm_shape(acs_tract_nc) + tm_polygons(fill = "olsresid",fill.scale = tm_scale_int
 nb <- poly2nb(acs_tract_nc, queen = TRUE)
 
 #set neighborhood weight matrix
-nbw <- nb2listw(nb, style = "W")
+nbw <- nb2listw(nb, style = "W", zero.policy = T)
 
 #calculate Morans I
 gmoran <- moran.test(acs_tract_nc$olsresid, nbw)
@@ -119,14 +119,14 @@ To choose an appropriate model, it is important that we don't just look at model
 #lag model
 fit.lag<-lagsarlm(pct_no_health_insur ~ pct_under_poverty_level,  
                   data = acs_tract_nc, 
-                  listw = nbw) 
+                  listw = nbw, zero.policy = T) 
 #see results
 summary(fit.lag)
 
 #error model
 fit.error<-errorsarlm(pct_no_health_insur ~ pct_under_poverty_level,  
                   data = acs_tract_nc, 
-                  listw = nbw)  
+                  listw = nbw, zero.policy = T)  
 #see results
 summary(fit.error)
 ```
